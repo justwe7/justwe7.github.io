@@ -3,7 +3,7 @@
   - [传输层](#%E4%BC%A0%E8%BE%93%E5%B1%82)
   - [网络层](#%E7%BD%91%E7%BB%9C%E5%B1%82)
   - [数据链路层](#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82)
-- [TCP/IP通信流](#TCPIP%E9%80%9A%E4%BF%A1%E6%B5%81)
+  - [TCP/IP通信流](#TCPIP%E9%80%9A%E4%BF%A1%E6%B5%81)
 - [与http相关的IP、TCP、DNS](#%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84IPTCPDNS)
   - [IP协议-负责传输](#IP%E5%8D%8F%E8%AE%AE-%E8%B4%9F%E8%B4%A3%E4%BC%A0%E8%BE%93)
   - [TCP协议-确保可靠性](#TCP%E5%8D%8F%E8%AE%AE-%E7%A1%AE%E4%BF%9D%E5%8F%AF%E9%9D%A0%E6%80%A7)
@@ -26,7 +26,7 @@
 ### 数据链路层
 硬件部分，包含系统、硬件驱动、网卡、网线等。
 
-## TCP/IP通信流
+### TCP/IP通信流
 发送端从应用层往下走，接收端从链路层往上走
 
 ![TCPIP](/static/tcpip.png "TCPIP通信流")
