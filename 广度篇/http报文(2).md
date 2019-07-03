@@ -46,9 +46,9 @@
   - [P3P](#P3P)
   - [部分web安全常识](#%E9%83%A8%E5%88%86web%E5%AE%89%E5%85%A8%E5%B8%B8%E8%AF%86)
 - [浏览器缓存](#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98)
-      - [强缓存](#%E5%BC%BA%E7%BC%93%E5%AD%98)
-        - [浏览器是根据什么决定「from disk cache」与「from memory cache」详情](#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%A0%B9%E6%8D%AE%E4%BB%80%E4%B9%88%E5%86%B3%E5%AE%9Afrom-disk-cache%E4%B8%8Efrom-memory-cache%E8%AF%A6%E6%83%85)
-      - [协商缓存（对比缓存）](#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%AF%B9%E6%AF%94%E7%BC%93%E5%AD%98)
+  - [强缓存](#%E5%BC%BA%E7%BC%93%E5%AD%98)
+    - [浏览器是根据什么决定「from disk cache」与「from memory cache」详情](#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%A0%B9%E6%8D%AE%E4%BB%80%E4%B9%88%E5%86%B3%E5%AE%9Afrom-disk-cache%E4%B8%8Efrom-memory-cache%E8%AF%A6%E6%83%85)
+  - [协商缓存（对比缓存）](#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%AF%B9%E6%AF%94%E7%BC%93%E5%AD%98)
 
 
 ## http报文首部
@@ -405,12 +405,12 @@ Do Not Track 的简称，意为拒绝个人信息被收集，是表示拒绝被�
 
 ## 浏览器缓存
 [参考](https://www.jianshu.com/p/4f07740d68e4)
-##### 强缓存
+### 强缓存
 强缓存在客户端和服务器端都会存在。   
 - 客户端：客户端在请求资源前，会检查上一次该资源响应头的Cache-Control字段，如果该字段的值为max-age=time(大于0的毫秒数)，如果该资源缓存的时间没有过这个时间值，则直接使用本地的缓存，而不像服务器发请求。     
 - 服务器端：服务器端在接收到一个请求后，如果该请求的头部Cache-Control字段的值为max-age=time(大于0的毫秒数)，如果距离上一次返回资源的时间小于这个毫秒数，那么服务器不会读取新的资源，而是直接返回304，告知客户端使用自己本地上次缓存的资源即可。      
 >注：这两种情况，其实归根结底最后都是使用的客户端本地的资源，服务器没有返回资源实体。这样的好处是节省请求次数或者请求流量，但缺点是，如果在max-age时间内服务器资源有更新，客户端无法得到最新的服务器资源。此时可以通过Ctrl+F5强制刷新(其实就是设置一个Cache-Control:no-cache的请求头)，获得最新的服务器资源。
-###### 浏览器是根据什么决定「from disk cache」与「from memory cache」[详情](https://www.zhihu.com/question/64201378/answer/217831630)
+#### 浏览器是根据什么决定「from disk cache」与「from memory cache」[详情](https://www.zhihu.com/question/64201378/answer/217831630)
 内存缓存的特点 快(读取快) 时效性(进程死，他也死)
 1. (以图片为例):访问-> 200 -> 退出浏览器再进来-> 200(from disk cache) -> 刷新 -> 200(from memory cache)
    总结: 会不会是chrome很聪明的判断既然已经从disk拿来了， 第二次就内存拿吧 快。（笑哭)第二个现象
@@ -422,7 +422,7 @@ Do Not Track 的简称，意为拒绝个人信息被收集，是表示拒绝被�
    总结: 隐私模式 是吧。 我不能暴露你东西。还是放到内存吧。 你关，我死。
 
 
-##### 协商缓存（对比缓存）
+### 协商缓存（对比缓存）
 对比缓存值存在于服务器端。    
 在没有走强缓存逻辑的情况下，服务器端会进行Last-Modified和Etag的校验，如果校验发现资源未更新，则会返回304，否则会返回新的资源实体。  
 - ETag和If-None-Match是一对  
