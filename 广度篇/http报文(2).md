@@ -1,3 +1,54 @@
+- [http报文首部](#http%E6%8A%A5%E6%96%87%E9%A6%96%E9%83%A8)
+  - [HTTP 请求报文](#HTTP-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87)
+  - [HTTP 响应报文](#HTTP-%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87)
+  - [HTTP 首部字段作用](#HTTP-%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E4%BD%9C%E7%94%A8)
+  - [4 种HTTP首部字段类型](#4-%E7%A7%8DHTTP%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B)
+- [http首部字段表](#http%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E8%A1%A8)
+  - [通用首部字段](#%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5)
+  - [请求首部字段](#%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5)
+  - [响应首部字段](#%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5)
+  - [实体首部字段](#%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5)
+  - [端到端首部和逐跳首部](#%E7%AB%AF%E5%88%B0%E7%AB%AF%E9%A6%96%E9%83%A8%E5%92%8C%E9%80%90%E8%B7%B3%E9%A6%96%E9%83%A8)
+- [HTTP/1.1通用首部字段详解](#HTTP11%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3)
+  - [Cache-Control](#Cache-Control)
+    - [表示是否能缓存的指令](#%E8%A1%A8%E7%A4%BA%E6%98%AF%E5%90%A6%E8%83%BD%E7%BC%93%E5%AD%98%E7%9A%84%E6%8C%87%E4%BB%A4)
+    - [控制可执行缓存的对象的指令](#%E6%8E%A7%E5%88%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%BC%93%E5%AD%98%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8C%87%E4%BB%A4)
+    - [指定缓存期限和认证的指令](#%E6%8C%87%E5%AE%9A%E7%BC%93%E5%AD%98%E6%9C%9F%E9%99%90%E5%92%8C%E8%AE%A4%E8%AF%81%E7%9A%84%E6%8C%87%E4%BB%A4)
+    - [Cache-Control 扩展](#Cache-Control-%E6%89%A9%E5%B1%95)
+    - [缓存分类](#%E7%BC%93%E5%AD%98%E5%88%86%E7%B1%BB)
+      - [强缓存](#%E5%BC%BA%E7%BC%93%E5%AD%98)
+      - [协商缓存（对比缓存）](#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%AF%B9%E6%AF%94%E7%BC%93%E5%AD%98)
+  - [Connection](#Connection)
+  - [Upgrade](#Upgrade)
+- [请求首部字段详解](#%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3)
+  - [Accept](#Accept)
+  - [Accept-Encoding](#Accept-Encoding)
+  - [If-XXXXX (条件请求)](#If-XXXXX-%E6%9D%A1%E4%BB%B6%E8%AF%B7%E6%B1%82)
+    - [If-Match](#If-Match)
+    - [If-Modified-Since](#If-Modified-Since)
+    - [If-None-Match](#If-None-Match)
+    - [If-Range](#If-Range)
+    - [If-Unmodified-Since](#If-Unmodified-Since)
+  - [Range](#Range)
+  - [Cookie](#Cookie)
+- [响应首部字段详解](#%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3)
+  - [ETag](#ETag)
+    - [强ETag 值](#%E5%BC%BAETag-%E5%80%BC)
+    - [弱ETag 值](#%E5%BC%B1ETag-%E5%80%BC)
+  - [Location](#Location)
+  - [Vary](#Vary)
+  - [Set-Cookie](#Set-Cookie)
+- [实体首部字段详解](#%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3)
+  - [Expires](#Expires)
+  - [Last-Modified](#Last-Modified)
+- [其他首部字段](#%E5%85%B6%E4%BB%96%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5)
+  - [X-Frame-Options](#X-Frame-Options)
+  - [X-XSS-Protection](#X-XSS-Protection)
+  - [DNT](#DNT)
+  - [P3P](#P3P)
+  - [扩展了解](#%E6%89%A9%E5%B1%95%E4%BA%86%E8%A7%A3)
+
+
 ## http报文首部
 http协议的请求报文和响应报文必定包含http首部。首部内容为**服务端和服务器**各自处理**请求和响应提供信息**(开发)。报文分为报文头部、空行和报文主体。但是**报文主体是可选**的，如一个GET请求报文中，就没有报文主体：  
 ![报文结构](/static/http2.png "报文结构")  
@@ -336,11 +387,13 @@ Range: bytes=5001-10000
 ## 其他首部字段
 HTTP 首部字段是可以自行扩展的。所以在 Web 服务器和浏览器的 应用上，会出现各种非标准的首部字段。 
 ### X-Frame-Options
-首部字段 X-Frame-Options 属于 HTTP 响应首部，用于控制网站内 容在其他 Web 网站的 Frame 标签内的显示问题。其主要目的是为了防 止点击劫持（clickjacking）攻击。 
+首部字段 X-Frame-Options 属于 HTTP 响应首部，用于控制网站内 容在其他 Web 网站的 Frame 标签内的显示问题。其主要目的是为了防 止点击劫持（clickjacking）攻击。   
+x-frame-option 控制是否允许被跨域资源iframe引入
 - `DENY` ：拒绝 
 - `SAMEORIGIN` ：仅同源域名下的页面（Top-level-browsing-context） 匹配时许可。
 ### X-XSS-Protection
-是针对跨站脚 本攻击（XSS）的一种对策，用于控制浏览器 XSS 防护机制的开关。 
+是针对跨站脚 本攻击（XSS）的一种对策，用于控制浏览器 XSS 防护机制的开关。  
+XSS攻击：其原理是攻击者向有XSS漏洞的网站中输入(传入)恶意的HTML或者JS代码，当其它用户浏览该网站时，这段HTML代码会自动执行，从而达到攻击的目的
 - `0` ：将 XSS 过滤设置成无效状态 
 - `1` ：将 XSS 过滤设置成有效状态
 ### DNT
@@ -350,6 +403,6 @@ Do Not Track 的简称，意为拒绝个人信息被收集，是表示拒绝被�
 ### P3P
 通过利用 P3P（The Platform for Privacy Preferences，在线隐私偏好平台）技术，可以让 Web 网站上 的个人隐私变成一种仅供程序可理解的形式，以达到保护用户隐私的 目的。 
 
-### web安全
-1. [点击劫持攻击](https://baike.baidu.com/item/%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81/6742958?fr=aladdin)，x-frame-option 控制是否允许被跨域资源iframe引入
-2. [XSS攻击](https://baike.baidu.com/item/XSS%E6%94%BB%E5%87%BB/954065?fr=aladdin)其原理是攻击者向有XSS漏洞的网站中输入(传入)恶意的HTML或者JS代码，当其它用户浏览该网站时，这段HTML代码会自动执行，从而达到攻击的目的。[博客](https://www.cnblogs.com/hellojesson/p/6386002.html)ba
+### 扩展了解
+1. [点击劫持攻击](https://baike.baidu.com/item/%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81/6742958?fr=aladdin)
+2. [XSS攻击](https://baike.baidu.com/item/XSS%E6%94%BB%E5%87%BB/954065?fr=aladdin)，[博客](https://www.cnblogs.com/hellojesson/p/6386002.html)
