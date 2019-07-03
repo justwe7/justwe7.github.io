@@ -3,6 +3,7 @@
   - [HTTP 响应报文](#HTTP-%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87)
   - [HTTP 首部字段作用](#HTTP-%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E4%BD%9C%E7%94%A8)
   - [4 种HTTP首部字段类型](#4-%E7%A7%8DHTTP%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B)
+  - [Chrome响应首部出现Provisional headers are shown](#Chrome%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%87%BA%E7%8E%B0Provisional-headers-are-shown)
 - [http首部字段表](#http%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E8%A1%A8)
   - [通用首部字段](#%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5)
   - [请求首部字段](#%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5)
@@ -17,6 +18,7 @@
     - [Cache-Control 扩展](#Cache-Control-%E6%89%A9%E5%B1%95)
     - [缓存分类](#%E7%BC%93%E5%AD%98%E5%88%86%E7%B1%BB)
       - [强缓存](#%E5%BC%BA%E7%BC%93%E5%AD%98)
+        - [浏览器是根据什么决定「from disk cache」与「from memory cache」详情](#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%A0%B9%E6%8D%AE%E4%BB%80%E4%B9%88%E5%86%B3%E5%AE%9Afrom-disk-cache%E4%B8%8Efrom-memory-cache%E8%AF%A6%E6%83%85)
       - [协商缓存（对比缓存）](#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%AF%B9%E6%AF%94%E7%BC%93%E5%AD%98)
   - [Connection](#Connection)
   - [Upgrade](#Upgrade)
@@ -98,6 +100,12 @@ Transfer-Encoding: chunked
 - 请求首部字段（Request Header Fields） - 从客户端向服务器端发送请求报文时使用的首部。补充了请求的附 加内容、客户端信息、响应内容相关优先级等信息。
 - 响应首部字段（Response Header Fields） - 从服务器端向客户端返回响应报文时使用的首部。补充了响应的附 加内容，也会要求客户端附加额外的内容信息。
 - 实体首部字段（Entity Header Fields） - 针对请求报文和响应报文的实体部分使用的首部。补充了资源内容 更新时间等与实体有关的信息。
+
+### Chrome响应首部出现Provisional headers are shown
+1. 强缓存from disk cache或者from memory cache。清空缓存操作： 调试模式打开->刷新按钮右键->清空缓存并硬性重新加载 或者 ctrl+F5
+2. 服务器出错或者超时，没有真正的返回
+3. 请求被浏览器插件拦截
+4. 跨域，请求被浏览器拦截  
 
 ## http首部字段表
 ### 通用首部字段
@@ -266,10 +274,24 @@ Cache-Control: private, community="UCI"
 客户端：客户端在请求资源前，会检查上一次该资源响应头的Cache-Control字段，如果该字段的值为max-age=time(大于0的毫秒数)，如果该资源缓存的时间没有过这个时间值，则直接使用本地的缓存，而不像服务器发请求。     
 服务器端：服务器端在接收到一个请求后，如果该请求的头部Cache-Control字段的值为max-age=time(大于0的毫秒数)，如果距离上一次返回资源的时间小于这个毫秒数，那么服务器不会读取新的资源，而是直接返回304，告知客户端使用自己本地上次缓存的资源即可。      
 >注：这两种情况，其实归根结底最后都是使用的客户端本地的资源，服务器没有返回资源实体。这样的好处是节省请求次数或者请求流量，但缺点是，如果在max-age时间内服务器资源有更新，客户端无法得到最新的服务器资源。此时可以通过Ctrl+F5强制刷新(其实就是设置一个Cache-Control:no-cache的请求头)，获得最新的服务器资源。
+###### 浏览器是根据什么决定「from disk cache」与「from memory cache」[详情](https://www.zhihu.com/question/64201378/answer/217831630)
+内存缓存的特点 快(读取快) 时效性(进程死，他也死)
+1. (以图片为例):访问-> 200 -> 退出浏览器再进来-> 200(from disk cache) -> 刷新 -> 200(from memory cache)
+   总结: 会不会是chrome很聪明的判断既然已经从disk拿来了， 第二次就内存拿吧 快。（笑哭)第二个现象
+2. (以图片为例):只要图片是base64 我看都是from memroy cache。 
+   总结: 解析渲染图片这么费劲的事情，还是做一次然后放到内存吧。 用的时候直接拿
+3. (以js css为例):个人在做静态测试的发现，大型的js css文件都是直接disk cache
+   总结: chrome会不会说 我擦 你这么大 太JB占地方了。 你就去硬盘里呆着吧。 慢就慢点吧。
+4. 隐私模式下，几乎都是 from memroy cache.
+   总结: 隐私模式 是吧。 我不能暴露你东西。还是放到内存吧。 你关，我死。
+
 
 ##### 协商缓存（对比缓存）
 对比缓存值存在于服务器端。    
-在没有走强缓存逻辑的情况下，服务器端会进行Last-Modified和Etag的校验，如果校验发现资源未更新，则会返回304，否则会返回新的资源实体。   
+在没有走强缓存逻辑的情况下，服务器端会进行Last-Modified和Etag的校验，如果校验发现资源未更新，则会返回304，否则会返回新的资源实体。  
+- ETag和If-None-Match是一对  
+- Last-Modified和If-Modified-Since是一对   
+
 
 
 ### Connection
