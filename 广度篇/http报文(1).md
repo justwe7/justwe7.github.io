@@ -52,6 +52,7 @@ HTTP 协议中也采纳了多部分对象集合，发送的一份报文 主体�
 - Accept-Encoding 
 - Accept-Language 
 - Content-Language
+  
 应用:[浏览器协商缓存](/广度篇/http报文(2).md#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%AF%B9%E6%AF%94%E7%BC%93%E5%AD%98)  
 
 
