@@ -405,7 +405,8 @@ Do Not Track 的简称，意为拒绝个人信息被收集，是表示拒绝被�
 
 
 ## 浏览器缓存   
-[参考](https://www.jianshu.com/p/4f07740d68e4)   
+[参考](https://www.jianshu.com/p/4f07740d68e4)    
+[扩展](https://blog.csdn.net/zl399615007/article/details/84534884)    
 ### 强缓存   
 强缓存在客户端和服务器端都会存在。   
 - 客户端：客户端在请求资源前，会检查上一次该资源响应头的Cache-Control字段，如果该字段的值为max-age=time(大于0的毫秒数)，如果该资源缓存的时间没有过这个时间值，则直接使用本地的缓存，而不像服务器发请求。     
