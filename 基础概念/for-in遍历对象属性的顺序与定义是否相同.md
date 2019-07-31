@@ -1,6 +1,5 @@
 定义一个对象  
 ```js
-var boo = false
 var num = -1
 var o = {
   '1': 1,
@@ -8,7 +7,7 @@ var o = {
   '3': 3,
   '0': 0,
   [num]: '-1',
-  false: boo,
+  false: false,
   'a': 'a',
   'aa': 'aa',
   '哈哈': 'hh',
