@@ -1,8 +1,7 @@
 
-
+<!-- 
 1. mountComponent方法调用vm._update 根据vnode更新dom结构
-2. vm._update调用vm._render 生成vnode
-
+2. vm._update调用vm._render 生成vnode -->
 
 1. new Vue会根据传入的option参数，初始化props，data，methods，watch，生命周期等，主要是实例一个Observer来进行数据劫持，主要是递归data使用defineReactive的核心代码Definepropty来getter setter
 2. compile会分析模板，将dom解析为AST，然后把不需要动态响应的打上静态的标记，然后使用render来将AST转为render function字符串。
