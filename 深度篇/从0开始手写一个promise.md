@@ -51,25 +51,29 @@
       }
     }
 ```
-大概用起来好像是没什么毛病了。。
+
+大概用起来好像是没什么毛病了。。。但是！！！(就怕但是😭)
+
 ```js
     new P((resolve, reject) => {
-      resolve(1234)
-      // setTimeout(() => { // !!! 这样实现有个问题  先执行then方法是无法执行内部更改状态的方法的
-      //   resolve(1234)
-      // }, 1000);
+      // resolve(1234)
+      setTimeout(() => { // !!! 这样实现有个问题  先执行then方法是无法执行内部更改状态的方法的
+        resolve(1234)
+      }, 1000);
     }).then(res => {
       console.log(res);
     }, err => {
       console.log(err);
     })
 ```
+
 如果promise传入fn执行真的是异步来更改状态的，可能就是:  
 promise => fn() => then() => resolve/reject。  
 假设用setTimeout来模拟异步，可以知道*setTimeout作为宏任务是在下一轮的event Loop*执行栈中来执行的，而**then方法**属于调用P构造函数内的一个方法，所以**会先于resolve/reject**状态更改执行，内部也就还是pending状态。
 
 **解决真·异步的问题：**
 借鉴[发布订阅模式](https://17qu.top/shi-yao-shi-fa-bu-ding-yue-mo-shi/)的思路：如果**执行then的时候没有进入结束**状态，可以在P中订阅一个终止的状态(包括成功和失败)传入要执行的方法，然后在异步结束状态的时候更改状态时候(这种情况--很简单使用其实内部状态已经没有影响了)，resolve/reject方法内部将分别**订阅的任务列表中的方法遍历执行**
+
 ```js
    /* 
       顺序应该是 
@@ -124,3 +128,37 @@ promise => fn() => then() => resolve/reject。
     }
   }
 ```
+
+### 较为完善实现
+
+日常更多用到的写法可能是链式调用，而不是在then里面传入两个状态回调，而且！！！**promise是支持链式**调用的new P().then().then().catch()。
+看看平常怎么写
+```js
+new Promise((resolve, reject) => {
+  reject('aasdfgfdg哈哈哈我专门的')
+}).then(res => {
+  return ++res
+}).then(res => {
+  
+}).catch(err => {
+  console.log(err)
+})
+
+// ---------------------------
+
+new Promise((resolve, reject) => {
+  resolve(1)
+}).then(res => {
+  return ++res
+}).then(res => {
+  aasdfgfdg哈哈哈我专门的
+}).catch(err => {
+  console.log(err)
+})
+```
+
+可以看到区别： 
+1. then可以不传两个参数。(处理一下resolveFn，rejectFn)
+2. then之后还可以then，说明应该then应该是有一个返回的函数 柯里化 (then方法应该能返回一个新的P)
+3. reject可以直接跳楼到catch方法
+4. catch可以捕获到then执行失败的代码(如何捕获代码呢？try catch)
