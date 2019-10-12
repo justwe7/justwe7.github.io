@@ -1,0 +1,9 @@
+{
+  "name": "justwe7-books",
+  "description": "日常的笔记",
+  "author": "ilihuaxi@gmail.com",
+  "private": true,
+  "scripts": {
+    "build": "git pull origin master && git add . && git commit -m 'update' && git push origin master"
+  }
+}
