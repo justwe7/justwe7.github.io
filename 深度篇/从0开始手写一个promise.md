@@ -72,7 +72,7 @@ promise => fn() => then() => resolve/reject。
 假设用setTimeout来模拟异步，可以知道*setTimeout作为宏任务是在下一轮的event Loop*执行栈中来执行的，而**then方法**属于调用P构造函数内的一个方法，所以**会先于resolve/reject**状态更改执行，内部也就还是pending状态。
 
 **解决真·异步的问题：**
-借鉴[发布订阅模式](https://17qu.top/shi-yao-shi-fa-bu-ding-yue-mo-shi/)的思路：如果**执行then的时候没有进入结束**状态，可以在P中订阅一个终止的状态(包括成功和失败)传入要执行的方法，然后在异步结束状态的时候更改状态时候(这种情况--很简单使用其实内部状态已经没有影响了)，resolve/reject方法内部将分别**订阅的任务列表中的方法遍历执行**
+借鉴[发布订阅模式](https://lihx.top/shi-yao-shi-fa-bu-ding-yue-mo-shi/)的思路：如果**执行then的时候没有进入结束**状态，可以在P中订阅一个终止的状态(包括成功和失败)传入要执行的方法，然后在异步结束状态的时候更改状态时候(这种情况--很简单使用其实内部状态已经没有影响了)，resolve/reject方法内部将分别**订阅的任务列表中的方法遍历执行**
 
 ```js
    /* 

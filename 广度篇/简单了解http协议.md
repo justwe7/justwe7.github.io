@@ -29,8 +29,8 @@
 
 ## 使用URI定位资源
 当客户端请求访问资源而发送请求时，URI 需要将作为请求报文中 的请求 URI 包含在内。指定请求URI的方式有：
-- 完整的uri,如：http://17qu.top/api/article(http://17qu.top 域)(/api/article 接口)
-- 首部字段(request)Host中指明域名或者IP(Host: 17qu.top)
+- 完整的uri,如：http://lihx.top/api/article(http://lihx.top 域)(/api/article 接口)
+- 首部字段(request)Host中指明域名或者IP(Host: lihx.top)
 
 ## 告知服务端意图的http方法(method)
 ### GET-获取资源

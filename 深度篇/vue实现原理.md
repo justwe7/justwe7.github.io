@@ -97,7 +97,7 @@ class Mvvm {
 
 watcher职责是监听数据的更新，然后再触发视图的更新，如何监听？【订阅发布模式】在哪监听？【getter处订阅(添加complie编译模板时添加一次订阅)，setter处发布通知更新】watcher对象里面有什么数据？【当前的vue实例，当前watcher的data对象下数据的key值，还有要执行什么操作】
 
-[订阅发布模式参考](https://17qu.top/shi-yao-shi-fa-bu-ding-yue-mo-shi/)
+[订阅发布模式参考](https://lihx.top/shi-yao-shi-fa-bu-ding-yue-mo-shi/)
 
 **首先实现的订阅发布模式**
 ```js
