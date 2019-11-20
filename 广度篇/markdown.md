@@ -288,8 +288,8 @@ Markdown 会被渲染成 HTML 页面，在 HTML 页面中可以通过锚点实�
 - 在英文排版中，要使用半角标点符号。
 
 ## 书写工具
-
-vscode推荐插件
+**vscode推荐插件**   
+> 推荐使用`ctrl + k` （同时按下后松手） `+ v` 侧边预览 或者 `ctrl + shift + v` 直接新tab预览
 - Markdown All in One
   > 支持一些markdown文本格式化，路径自动联想等。很实用！！！
 - Paste Image
