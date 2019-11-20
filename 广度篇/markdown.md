@@ -293,9 +293,9 @@ Markdown 会被渲染成 HTML 页面，在 HTML 页面中可以通过锚点实�
 - Markdown All in One
   > 支持一些markdown文本格式化，路径自动联想等。很实用！！！
 - Paste Image
-  > 在 Markdown 文件中插入图片一直不太方便，通常需要经历「截图」→「保存」→「导入」这几个步骤，使用 Paste Image 这个插件能够直接从剪切板粘贴图片到 Markdown 文件中，也就是说，插入图片只需两步就可以了，即「截图」→「粘贴」。
-  > 方法 1，调出命令行面板，输入[Paste Image]，按回车键后，截图就被插入到文件中了
-  > 方法 2，使用快捷键：Ctrl+Alt+V（Windows 系统）/Command+Option+V（macOS 系统）
+  > 在 Markdown 文件中插入图片一直不太方便，通常需要经历「截图」→「保存」→「导入」这几个步骤，使用 Paste Image 这个插件能够直接从剪切板粘贴图片到 Markdown 文件中，也就是说，插入图片只需两步就可以了，即「截图」→「粘贴」。    
+  > 方法 1，调出命令行面板，输入[Paste Image]，按回车键后，截图就被插入到文件中了   
+  > 方法 2，使用快捷键：Ctrl+Alt+V（Windows 系统）/Command+Option+V（macOS 系统）   
   > 粘贴的图片会被保存到当前编辑的文件所在的文件夹中，格式为 PNG，并以当前时间命名。
   > 小提示：如果快捷键有冲突，我们可以自定义快捷键。操作步骤：【管理】→【键盘快捷方式】→ 输入[Past Image]→ 双击快捷键 → 输入新的快捷键组合 → 按回车键保存。
 - Markdown Preview Enhanced
