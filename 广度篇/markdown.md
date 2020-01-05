@@ -265,6 +265,16 @@ Markdown 会被渲染成 HTML 页面，在 HTML 页面中可以通过锚点实�
 
 [送你上去](#markdown是什么)
 
+## 折叠菜单
+
+<details>
+  <summary>折叠菜单</summary>
+
+  > 折叠的内容。  
+  ```javascript
+  console.log(123)
+  ```
+</details>
 
 ## 书写风格
 
