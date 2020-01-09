@@ -1,1 +1,3 @@
 /广度篇/markdown.md
+node_modules/
+.vuepress/dist/
