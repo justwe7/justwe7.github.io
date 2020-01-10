@@ -1,56 +1,81 @@
 const globby = require('globby');
-const list = globby.sync(['**/*.md', '!*.md'], {gitignore: true})
+const aMdList = globby.sync(['**/*.md', '!*.md'], {gitignore: true})
 const sidebar = []
 
-
-const getItem = (pathArr, fileName, fullPath) => {
-  // pathArr.length
-  pathArr.forEach((path, deep) => {
+/* 
+  根节点处理
+*/
+const setRootItem = (pathArr, fileName, fullPath) => {
+  pathArr.forEach(pathName => {
     let sidebarIdx = null
-    if (deep === 0) { // 深度为0 代表一级目录  todo 优化为递归
-      const curObj = sidebar.filter((item, idx) => {
-        if (item.title === path) {
-          sidebarIdx = idx
-          return true
-        }
-        return false
-      })
-      if (curObj.length) {
-        if (!sidebar[sidebarIdx].children) {
-          sidebar[sidebarIdx].children = []
-        }
-        sidebar[sidebarIdx].children.push([
-          fullPath, fileName
-        ])
-      } else {
-        sidebar.push({
-          title: path,
-          children: [
-            [fullPath, fileName]
-          ]
-        })
+    const curObj = sidebar.filter((item, idx) => {
+      if (item.title === pathName) {
+        sidebarIdx = idx
+        return true
       }
+      return false
+    })
+    if (curObj.length) {
+      if (!sidebar[sidebarIdx].children) {
+        sidebar[sidebarIdx].children = []
+      }
+      sidebar[sidebarIdx].children.push([
+        fullPath, fileName
+      ])
+    } else {
+      sidebar.push({
+        title: pathName,
+        children: [
+          [fullPath, fileName]
+        ]
+      })
     }
   })
+}
+
+/* 
+·多级路径处理
+*/
+const setLeafItem = (fullPathArr, fileName, fullPath) => {
+  let curObj = sidebar
+  const pathArr = fullPathArr.slice(0)
+  pathArr.forEach(pathName => {
+    let _cur = curObj.filter(item => pathName === item.title)
+    if (_cur.length) {
+      curObj = _cur[0]
+      curObj = curObj.children
+    } else {
+      curObj.push({
+        title: pathName,
+        children: []
+      })
+      curObj = curObj[curObj.length-1].children
+    }
+  })
+  curObj.push([fullPath, fileName])
 }
 
 module.exports = (options, ctx) => {
   return {
     async ready() {
       const {themeConfig} = ctx.getSiteData ? ctx.getSiteData() : ctx;
-      console.log(themeConfig)
+      console.log(options)
+      const { titleEllipsis = null, } = options
 
-      
-      list.forEach(path => {
+      aMdList.forEach(path => {
         const pathArr = path.split('/')
-        const fileName = pathArr.pop()
-
+        let fileName = pathArr.pop()
         const pathLevel = pathArr.length
         if (!pathLevel) {
           return false
         }
-        if (pathLevel === 1) {
-          getItem(pathArr, fileName, path)
+        if (titleEllipsis && !isNaN(Number(titleEllipsis))) {
+          fileName = `${fileName.substr(0, titleEllipsis)}...`
+        }
+        if (pathLevel === 1) { // 层级为1直接操作 源数据
+          setRootItem(pathArr, fileName, path)
+        } else { // 多级目录文件 操作引用地址
+          setLeafItem(pathArr, fileName, path)
         }
       })
       /* const {rootDir = ctx.sourceDir} = options;
