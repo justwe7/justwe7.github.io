@@ -4,6 +4,7 @@ const getConfig = (() => {
   const defaultConf = {
     // pattern: ['**/*.md', '!*.md'],
     ignoreRoot: true,
+    ignoreFilder: ['doc'],
     titleoverflow: 13,
     base: '',
     gitignore: true
@@ -12,10 +13,10 @@ const getConfig = (() => {
     const config = Object.assign({}, defaultConf, _config)
     Object.defineProperty(config, 'pattern', {
       get: function() {
-        let { ignoreRoot = true, base } = config
+        let { ignoreRoot = true, base, ignoreFilder = [] } = config
         ;(base && !base.endsWith('/')) && (base = `${base}/`)
         const ruleStr = `${ignoreRoot ? '!*.md' : ''}&&${base}**/*.md`
-        const pattern = ruleStr.split('&&')
+        const pattern = ruleStr.split('&&').concat(ignoreFilder.map(path => `!${path}/**`))
         return pattern
       }
     })
@@ -25,7 +26,7 @@ const getConfig = (() => {
 
 const obj = {
   ignoreRoot: true,
-  base: 'doc'
+  // base: 'doc'
 }
 
 const config = getConfig(obj)
@@ -33,10 +34,12 @@ console.log(config)
 const { pattern, gitignore } = getConfig(obj)
 // const pattern = [`${base}/**/*.md`]
 
-// console.log(globby.sync(['**/*.md', '!*.md'], {gitignore: true}))
+console.log(globby.sync(['**/*.md', '!*.md'], {gitignore: true}))
 const list = globby.sync(pattern, { gitignore })
 // const list = globby.sync(['基础概念/**/*.md', '!*.md'], {gitignore: true})
-// console.log(list)
+console.log(list)
+
+return false
 const sidebar = []
 
 const setRootItem = (pathArr, fileName, fullPath) => {
@@ -57,8 +60,6 @@ const setRootItem = (pathArr, fileName, fullPath) => {
     } else {
       sidebar.push({
         title: pathName,
-        collapsable: false, // 可选的, 默认值是 true,
-        sidebarDepth: 1,
         children: [[fullPath, fileName]]
       })
     }

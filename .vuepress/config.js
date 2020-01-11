@@ -1,21 +1,21 @@
+const autoSidebar = require('vuepress-auto-sidebar.js')
 module.exports = {
   home: true,
   title: '学习笔记',
   description: '记录平时所接触到的知识点',
   plugins: [
     [
-      require('../slideBar'),
-      { titleEllipsis: 10 }
+      autoSidebar,
+      // { base: 'doc' }
+      // { titleOverflow: 20, ignoreFilder: ['doc'] }
     ]
   ],
-  // plugins: ['autobar'],
-
-  // plugins: ['permalink-pinyin', ['autobar', {'pinyinNav': true}], 'rpurl'],
   themeConfig: {
-    // lastUpdated: true
     repoLabel: '查看原文',
-    repo: 'vuejs/vuepress',
-    lastUpdated: 'Last Updated',
+    repo: 'https://github.com/justwe7/blog',
+    lastUpdated: '最近提交',
+    editLinks: true,
+    editLinkText: '完善此文档',
     smoothScroll: true
   }
 }
