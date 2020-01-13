@@ -4,7 +4,7 @@ module.exports = {
   title: '学习笔记',
   description: '记录平时所接触到的知识点',
   dest: 'docs',
-  base: './',
+  base: '/blog/',
   plugins: [
     [
       autoSidebar,
