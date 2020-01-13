@@ -16,7 +16,7 @@ module.exports = {
     repoLabel: 'GitHub',
     repo: 'https://github.com/justwe7/blog',
     lastUpdated: '最近提交',
-    docsDir: 'docs',
+    docsDir: '/docs',
     docsBranch: 'feature',
     editLinks: true,
     editLinkText: '纠正错误',
