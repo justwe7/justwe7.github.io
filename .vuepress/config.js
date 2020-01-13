@@ -11,7 +11,7 @@ module.exports = {
     ]
   ],
   themeConfig: {
-    repoLabel: '查看原文',
+    repoLabel: 'GitHub',
     repo: 'https://github.com/justwe7/blog',
     lastUpdated: '最近提交',
     editLinks: true,
