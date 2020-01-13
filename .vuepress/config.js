@@ -4,6 +4,7 @@ module.exports = {
   title: '学习笔记',
   description: '记录平时所接触到的知识点',
   dest: 'docs',
+  base: 'blog',
   plugins: [
     [
       autoSidebar,
@@ -15,8 +16,10 @@ module.exports = {
     repoLabel: 'GitHub',
     repo: 'https://github.com/justwe7/blog',
     lastUpdated: '最近提交',
+    docsDir: 'docs',
+    docsBranch: 'feature',
     editLinks: true,
-    editLinkText: '完善此文档',
+    editLinkText: '纠正错误',
     smoothScroll: true
   }
 }
