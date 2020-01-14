@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx vuepress dev",
     "build": "npx vuepress build",
-    "publish": "git pull origin feature && git add . && git commit -m 'update: books' && git push origin feature"
+    "publish": "git pull origin feature && git add . && git commit -m 'update' && git push origin feature"
   },
   "dependencies": {
     "vuepress": "^1.2.0"
