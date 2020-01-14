@@ -1,16 +1,16 @@
-- [什么是TCP/IP分层协议](#%E4%BB%80%E4%B9%88%E6%98%AFTCPIP%E5%88%86%E5%B1%82%E5%8D%8F%E8%AE%AE)
-  - [应用层](#%E5%BA%94%E7%94%A8%E5%B1%82)
-  - [传输层](#%E4%BC%A0%E8%BE%93%E5%B1%82)
-  - [网络层](#%E7%BD%91%E7%BB%9C%E5%B1%82)
-  - [数据链路层](#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82)
-  - [TCP/IP通信流](#TCPIP%E9%80%9A%E4%BF%A1%E6%B5%81)
-- [与http相关的IP、TCP、DNS](#%E4%B8%8Ehttp%E7%9B%B8%E5%85%B3%E7%9A%84IPTCPDNS)
-  - [IP协议-负责传输](#IP%E5%8D%8F%E8%AE%AE-%E8%B4%9F%E8%B4%A3%E4%BC%A0%E8%BE%93)
-  - [TCP协议-确保可靠性](#TCP%E5%8D%8F%E8%AE%AE-%E7%A1%AE%E4%BF%9D%E5%8F%AF%E9%9D%A0%E6%80%A7)
-    - [三次握手-确保数据能够到达目标](#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B-%E7%A1%AE%E4%BF%9D%E6%95%B0%E6%8D%AE%E8%83%BD%E5%A4%9F%E5%88%B0%E8%BE%BE%E7%9B%AE%E6%A0%87)
-    - [四次挥手-关闭TCP连接](#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B-%E5%85%B3%E9%97%ADTCP%E8%BF%9E%E6%8E%A5)
-  - [DNS](#DNS)
-- [参考文章](#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0)
+- [什么是TCP/IP分层协议](#%e4%bb%80%e4%b9%88%e6%98%aftcpip%e5%88%86%e5%b1%82%e5%8d%8f%e8%ae%ae)
+  - [应用层](#%e5%ba%94%e7%94%a8%e5%b1%82)
+  - [传输层](#%e4%bc%a0%e8%be%93%e5%b1%82)
+  - [网络层](#%e7%bd%91%e7%bb%9c%e5%b1%82)
+  - [数据链路层](#%e6%95%b0%e6%8d%ae%e9%93%be%e8%b7%af%e5%b1%82)
+  - [TCP/IP通信流](#tcpip%e9%80%9a%e4%bf%a1%e6%b5%81)
+- [与http相关的IP、TCP、DNS](#%e4%b8%8ehttp%e7%9b%b8%e5%85%b3%e7%9a%84iptcpdns)
+  - [IP协议-负责传输](#ip%e5%8d%8f%e8%ae%ae-%e8%b4%9f%e8%b4%a3%e4%bc%a0%e8%be%93)
+  - [TCP协议-确保可靠性](#tcp%e5%8d%8f%e8%ae%ae-%e7%a1%ae%e4%bf%9d%e5%8f%af%e9%9d%a0%e6%80%a7)
+    - [三次握手-确保数据能够到达目标](#%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b-%e7%a1%ae%e4%bf%9d%e6%95%b0%e6%8d%ae%e8%83%bd%e5%a4%9f%e5%88%b0%e8%be%be%e7%9b%ae%e6%a0%87)
+    - [四次挥手-关闭TCP连接](#%e5%9b%9b%e6%ac%a1%e6%8c%a5%e6%89%8b-%e5%85%b3%e9%97%adtcp%e8%bf%9e%e6%8e%a5)
+  - [DNS](#dns)
+- [参考文章](#%e5%8f%82%e8%80%83%e6%96%87%e7%ab%a0)
 
 ## 什么是TCP/IP分层协议
 计算机与网络设备要相互通信，双方就必须基于相同的方法，通信的规则就叫做协议。把与互联网相关联的协议集合起来总称为 TCP/IP。TCP/IP协议族按层次分别分为应用层、传输层、网络层、数据链路层。相对于OSI模型简化了表示层和会话层，数据链路层细化为了链路层和物理层。分层协议的好处是每个层次可以只考虑当前层次的任务，使设计更加简单。
@@ -29,7 +29,7 @@
 ### TCP/IP通信流
 发送端从应用层往下走，接收端从链路层往上走
 
-![TCPIP](/static/tcpip.png "TCPIP通信流")
+![TCPIP](../static/tcpip.png "TCPIP通信流")
 ## 与http相关的IP、TCP、DNS
 
 ### IP协议-负责传输
@@ -62,7 +62,7 @@ TCP处于传输层，提供可靠的字节流服务。所谓的字节流服务�
 ### DNS
 域名服务器，DNS协议通过域名查找IP地址，或者可以逆向从IP地址反查域名。
 
-![TCPIP](/static/http.png "http协议在TCP/IP运行")
+![TCPIP](../static/http.png "http协议在TCP/IP运行")
 
 
 

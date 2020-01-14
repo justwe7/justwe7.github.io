@@ -13,7 +13,7 @@
    2. 通用首部
    3. 实体首部
 
-![报文](/static/baowen.png "报文")
+![报文](../static/baowen.png)
 
 ### 优化传输
 
