@@ -1,15 +1,4 @@
----
-home: true
-heroImage: https://img.lihx.top/content/images/system/home_cover_1574163848049_34fc00.jpg
-features:
-- title: 基础概念
-  details: 前端必须知道的知识点。
-- title: 深度知识
-  details: 正则、性能优化、源码、设计模式等。
-- title: 广度知识
-  details: 包括不限于网络知识、Linux等后端运维扩展。
-footer: MIT Licensed | Copyright © 2020 justwe7
----
+### 个人前端学习笔记
 
 - 基础概念
   - [函数定义的几种方式](/基础概念/函数定义的5种方式.md)

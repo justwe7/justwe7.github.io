@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "npx vuepress dev",
-    "build:blog": "npx vuepress build",
-    "build": "git pull origin master && git add . && git commit -m 'update' && git push origin master"
+    "build": "npx vuepress build",
+    "publish": "git pull origin feature && git add . && git commit -m 'update: books' && git push origin feature"
   },
   "dependencies": {
     "vuepress": "^1.2.0"
