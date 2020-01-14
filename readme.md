@@ -21,3 +21,4 @@
   - [提升命令行效率的 Bash 快捷键](/广度知识/提升命令行效率的Bash快捷键.md)
   - [linux常用指令](/广度知识/linux常用指令.md)
   - [VSCode部分使用技巧总结](/广度知识/vscode.md)
+  - [GitPage+Vuepress+Jenkins静态博客](/广度知识/GitPage+Vuepress+Jenkins静态博客.md)
