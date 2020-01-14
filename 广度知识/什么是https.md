@@ -104,7 +104,7 @@ HTTPS 采用共享密钥加密和公开密钥加密两者并用的**混合加密
    2. 服务器的公开密钥是值得信赖的。 
 > 多数浏览器开发商发布版本时，会事先在内部植入常用认证机关的公开密钥。
      
-![https流程](/static/https流程.png "https流程")  
+![https流程](/static/httpsliucheng.png "https流程")  
 
 #### SSL响应速度
 当使用 SSL 时，它的处理速度会变慢。
@@ -116,7 +116,7 @@ HTTPS 采用共享密钥加密和公开密钥加密两者并用的**混合加密
 
 ## HTTPS 的安全通信机制 
 
-![https通信](/static/https通信.png "https通信")    
+![https通信](/static/httpstongxin.png "https通信")    
 
 1. 客户端通过发送Client Hello报文开始SSL 通信。报文中 包含客户端支持的SSL的指定版本、加密组件（Cipher Suite）列表（所使用的加密算法及密钥长度等）。 
 2. 服务器可进行SSL通信时，会以Server Hello报文作为应 答。和客户端一样，在报文中包含SSL 版本以及加密组 件。服务器的加密组件内容是从接收到的客户端加密组件 内筛选出来的。 
@@ -135,4 +135,4 @@ HTTPS 采用共享密钥加密和公开密钥加密两者并用的**混合加密
 了解：[HTTP和HTTPS握手的那些事](https://www.cnblogs.com/lovesong/p/5186200.html)   
 
 从仅使用服务器端的公开密 钥证书（服务器证书）建立 HTTPS 通信的整个过程:  
-![https完整流程](/static/https完整.png "https完整流程")  
+![https完整流程](/static/httpsguopcheng.png "https完整流程")  
