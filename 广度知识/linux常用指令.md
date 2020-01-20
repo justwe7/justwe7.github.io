@@ -257,3 +257,65 @@ type命令其实不能算查找命令，它是用来区分某个命令到底是�
 | `type cd` | 系统会提示，cd是shell的自带命令（build-in） |
 | `type grep` | 系统会提示，grep是一个外部命令，并显示该命令的路径 |
 | `type -p grep` | 加上-p参数后，就相当于which命令 |
+
+## 查看内存使用
+
+**top**
+
+内容分析：
+
+PID：进程的ID
+USER：进程所有者
+ PR：进程的优先级别，越小越优先被执行
+ NI：进程Nice值，代表这个进程的优先值
+ VIRT：进程占用的虚拟内存
+ RES：进程占用的物理内存
+ SHR：进程使用的共享内存
+S：进程的状态。S表示休眠，R表示正在运行，Z表示僵死状态
+ %CPU：进程占用CPU的使用
+ %MEM：进程使用的物理内存和总内存的百分
+ TIME+：该进程启动后占用的总的CPU时间，即占用CPU使用时间的累加值
+ COMMAND：启动该进程的命令名称
+
+2. free命令：
+输入命令分类：
+
+free    用KB为单位展示数据
+
+free -m    用MB为单位展示数据
+
+free -h     用GB为单位展示数据
+
+total : 总计屋里内存的大小
+
+used : 已使用内存的大小
+
+free : 可用内存的大小
+
+shared : 多个进程共享的内存总额
+
+buff/cache : 磁盘缓存大小
+
+available : 可用内存大小 ， 从应用程序的角度来说：available = free + buff/cache .
+
+
+
+**cat /proc/meminfo 命令**
+
+这是用来查看RAM使用情况最简单的方法。 这个动态更新的虚拟文件实际上是许多其他内存相关工具的组合显示，就如上面说列的 top, free等。它列出了所有我们想了解的内存的使用情况。
+
+进程的内存使用信息也可以通过： /proc//statm 和 /proc//status 来查看。
+
+
+**ps**
+
+输入内容方式：
+
+ps aux ：按照 pid 显示内容 （默认排序方式）
+
+ps aux --sort -rss : 按照 rss 排序显示内容
+
+
+**vmstat -s**
+
+
