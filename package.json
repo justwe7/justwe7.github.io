@@ -9,9 +9,12 @@
     "publish": "git pull origin feature && git add . && git commit -m 'update' && git push origin feature"
   },
   "dependencies": {
-    "vuepress": "^1.2.0"
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-comment": "^0.7.2"
   },
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.2.0",
+    "@vuepress/plugin-nprogress": "^1.2.0",
     "vuepress-auto-sidebar.js": "^1.0.1"
   }
 }

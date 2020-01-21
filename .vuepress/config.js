@@ -6,10 +6,25 @@ module.exports = {
   dest: 'docs',
   base: '/blog/',
   plugins: [
+    ['@vuepress/nprogress'],
+    ['@vuepress/back-to-top'],
     [
       autoSidebar,
       // { base: 'doc' }
       // { titleOverflow: 20, ignoreFilder: ['doc'] }
+    ],
+    [
+      'vuepress-plugin-comment',
+      {
+        choosen: 'valine', 
+        // options选项中的所有参数，会传给Valine的配置
+        options: {
+          el: '#valine-vuepress-comment',
+          avatar: 'monsterid',
+          appId: 'hAfrJDiMKxLmXVpSnRDIp1JT-gzGzoHsz',
+          appKey: 'uJ7s48tGgYtEqI5tSFPMTymR'
+        }
+      }
     ]
   ],
   themeConfig: {
