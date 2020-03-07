@@ -10,6 +10,9 @@
 `sudo systemctl start nginx`
 
 ### 停止服务
+`sudo systemctl stop nginx`
+
+### 重启服务
 `sudo systemctl restart nginx`
 
 ### 重新加载
