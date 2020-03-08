@@ -20,9 +20,15 @@
 ### 重新加载
 一般重新配置之后，不需要重启服务，这时可以使用重新加载。
 
-`sudo systemctl reload nginx `
+`sudo systemctl reload nginx`
 
 ### 查看启动后记录
 `ps aux | grep nginx`
 
 > 默认http模块配置 `include /etc/nginx/conf.d/*.conf;` 会读取conf.d下的所有 `.conf` 文件，如果域名服务太多，可以分多个文件管理
+
+
+| 路径                   | 类型     | 介绍                                      |
+| ---------------------- | -------- | ----------------------------------------- |
+| /etc/logrotate.d/nginx | 配置文件 | Nginx 日志轮转，用于logrotate服务日志切割 |
+https://www.cnblogs.com/jogen/p/8127295.html
