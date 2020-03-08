@@ -25,7 +25,7 @@ comment: false
   - [正则速查表](/深度知识/正则速查表.md)
 
 - 广度知识
-  - [GitPage+Vuepress+Jenkins静态博客](/广度知识/GitPage+Vuepress+Jenkins静态博客.md)
+  - [gitpage+vuepress+jenkins静态博客](/广度知识/gitpage+vuepress+jenkins静态博客.md)
   - [http报文-概念状态码](/广度知识/http报文-概念状态码.md)
   - [http报文-首部](/广度知识/http报文-首部.md)
   - [linux常用指令](/广度知识/linux常用指令.md)
@@ -49,3 +49,9 @@ comment: false
   - [简单了解http协议](/广度知识/简单了解http协议.md)
   - [自动化部署微信小程序](/广度知识/自动化部署微信小程序.md)
 
+
+
+### 更新
+- markdown编辑，根据文章目录结构自动生成结构
+- Git Hook + Jenkins持续化构建
+- Git Page + Vue Press界面
