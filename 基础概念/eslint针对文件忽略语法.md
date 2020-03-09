@@ -7,10 +7,18 @@
 ```js
 /* eslint-disable */
 
-// Disables all rules between comments
 let a = 1
 let b = 2
 console.log(b)
+```
+
+### 针对某个代码区间禁用 ESLint 语法校验
+两个 `/* eslint-disable */` 注释中间的代码块可以忽略语法检查
+```js
+/* eslint-disable */
+alert('校验忽略')
+/* eslint-enable */
+alert('校验不通过')
 ```
 
 ### 整个文件禁用部分 ESLint 语法校验规则（如no-alert, no-console）

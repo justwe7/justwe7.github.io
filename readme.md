@@ -15,7 +15,6 @@ comment: false
   - [vue中v-model和sync修饰符](/基础概念/vue中v-model和sync修饰符.md)
   - [函数定义的5种方式](/基础概念/函数定义的5种方式.md)
   - [模块化](/基础概念/模块化.md)
-
 - 深度知识
   - [chrome性能](/深度知识/chrome性能.md)
   - [vue实现原理](/深度知识/vue实现原理.md)
@@ -24,7 +23,6 @@ comment: false
   - [前端性能优化](/深度知识/前端性能优化.md)
   - [发布订阅模式](/深度知识/发布订阅模式.md)
   - [正则速查表](/深度知识/正则速查表.md)
-
 - 广度知识
   - [gitpage+vuepress+jenkins静态博客](/广度知识/gitpage+vuepress+jenkins静态博客.md)
   - [http报文-概念状态码](/广度知识/http报文-概念状态码.md)
@@ -49,7 +47,6 @@ comment: false
   - [提升命令行效率的Bash快捷键](/广度知识/提升命令行效率的Bash快捷键.md)
   - [简单了解http协议](/广度知识/简单了解http协议.md)
   - [自动化部署微信小程序](/广度知识/自动化部署微信小程序.md)
-
 
 
 ### 更新
