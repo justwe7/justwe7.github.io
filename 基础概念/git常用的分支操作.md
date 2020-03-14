@@ -31,7 +31,12 @@
 3. 然后推送到远端 `git push origin newBranch`
 4. 建立本地分支与远端 `git branch --set-upstream-to origin/newBranch`    
 
-## 关联操作
+## 关联远程分支
 
 把本地分支与远程origin的分支feat_a进行关联处理
 `git branch --set-upstream-to origin/feat_a`
+
+
+## 本地仓库与远端仓库建立关联
+1. `git remote add origin httpxxx` 关联远程仓库
+2. `git push -u origin master` 将最新的修改推送到远程仓库,在第一次进行push时,我们加上-u参数,后期push时就不用再加-u参数
