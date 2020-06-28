@@ -5,6 +5,7 @@ comment: false
 ### 个人前端学习笔记
 
 - 基础概念
+  - [chrome控制台十科全书](/基础概念/chrome控制台十科全书.md)
   - [echarts地图绘制代码留用](/基础概念/echarts地图绘制代码留用.md)
   - [eslint针对文件忽略语法](/基础概念/eslint针对文件忽略语法.md)
   - [for-in遍历对象属性的顺序与定义是否相同](/基础概念/for-in遍历对象属性的顺序与定义是否相同.md)
@@ -42,6 +43,7 @@ comment: false
   - [shell-运算符](/广度知识/shell-运算符.md)
   - [vscode](/广度知识/vscode.md)
   - [web及网络基础](/广度知识/web及网络基础.md)
+  - [windows快捷键](/广度知识/windows快捷键.md)
   - [window超好用的终端配置](/广度知识/window超好用的终端配置.md)
   - [什么是https](/广度知识/什么是https.md)
   - [提升命令行效率的Bash快捷键](/广度知识/提升命令行效率的Bash快捷键.md)
