@@ -7,7 +7,7 @@ module.exports = {
   base: '/blog/',
   plugins: [
     ['@vuepress/nprogress'],
-    ['@vuepress/back-to-top'],
+    // ['@vuepress/back-to-top'],
     [
       autoSidebar,
       // { base: 'doc' }
@@ -16,17 +16,18 @@ module.exports = {
     [
       'vuepress-plugin-comment',
       {
-        choosen: 'valine', 
+        choosen: 'valine',
         // options选项中的所有参数，会传给Valine的配置
         options: {
           el: '#valine-vuepress-comment',
           avatar: 'monsterid',
           appId: 'hAfrJDiMKxLmXVpSnRDIp1JT-gzGzoHsz',
-          appKey: 'uJ7s48tGgYtEqI5tSFPMTymR'
-        }
-      }
-    ]
+          appKey: 'uJ7s48tGgYtEqI5tSFPMTymR',
+        },
+      },
+    ],
   ],
+  head: [['link', { rel: 'icon', href: '/favorite.ico' }]],
   themeConfig: {
     repoLabel: 'GitHub',
     repo: 'https://github.com/justwe7/blog',
@@ -35,6 +36,6 @@ module.exports = {
     docsBranch: 'feature',
     editLinks: true,
     editLinkText: '纠正错误',
-    smoothScroll: true
-  }
+    smoothScroll: true,
+  },
 }
