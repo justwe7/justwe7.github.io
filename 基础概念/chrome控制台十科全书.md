@@ -1,7 +1,10 @@
 # chrome/edge 控制台指南
 
 ## Console面板
-> 请打开 [devtools/console/console.html](https://justwe7.github.io/devtools/console/console.html) 一起食用
+
+> 此章节请打开 [devtools/console/console.html](https://justwe7.github.io/devtools/console/console.html) 一起食用
+
+
 
 首先看一下console对象下面都有哪些方法:  
 ![image.png](https://img.lihx.top/images/2020/06/28/image.png)
@@ -189,3 +192,56 @@ $x('//li[p]') // 所有的li下的p
 keys(obj);
 values(obj);
 ```
+
+
+## Element面板
+
+> 此章节请打开 [devtools/element/element.html](https://justwe7.github.io/devtools/element/element.html) 一起食用
+
+
+### css 调试
+**伪元素样式保持**
+
+选中目标节点，element面版，查看style->:hov,选择对应的状态即可
+
+1.  
+![image6a303.png](https://img.lihx.top/images/2020/06/28/image6a303.png)
+
+2.  
+![20200628_185451.gif](https://img.lihx.top/images/2020/06/28/20200628_185451.gif)
+
+
+**查看最终样式**
+
+有时候样式覆盖过多，查看起来很麻烦，`computed` 就派上用场了
+
+![image1154d.png](https://img.lihx.top/images/2020/06/28/image1154d.png)
+
+> 点击某个样式可以直接跳转至对应css定义
+
+### html 调试
+
+**骚操作**
+
+选中节点，直接按键盘 `H` 可以直接让元素显示/隐藏，不用手动敲样式了，效果等同 `visibility: hidden`，还是要占据盒模型空间的。（记得把输入法改成英文~）
+
+![20200628_191941.gif](https://img.lihx.top/images/2020/06/28/20200628_191941.gif)
+
+
+**将某个元素存储到全局临时变量中**
+
+选中节点，右键，存为全局变量（在network面板中也能用，尤其是筛选接口的返回值很方便）
+
+![20200628_192801.gif](https://img.lihx.top/images/2020/06/28/20200628_192801.gif)
+
+**滚动到某个节点**
+
+如果页面很长，想找一个文本节点的显示位置又不想手动滑动可以试试 `滚动到视图`
+
+![20200628_190729.gif](https://img.lihx.top/images/2020/06/28/20200628_190729.gif)
+
+### DOM 断点
+
+可以监听到 DOM 节点的变更(子节点变动/属性变更/元素移除)，并断点至变更 DOM 状态的 js 代码行： 
+
+![20200628_192344.gif](https://img.lihx.top/images/2020/06/28/20200628_192344.gif)
