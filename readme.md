@@ -5,7 +5,6 @@ comment: false
 ### 个人前端学习笔记
 
 - 基础概念
-  - [chrome控制台十科全书](/基础概念/chrome控制台十科全书.md)
   - [echarts地图绘制代码留用](/基础概念/echarts地图绘制代码留用.md)
   - [eslint针对文件忽略语法](/基础概念/eslint针对文件忽略语法.md)
   - [for-in遍历对象属性的顺序与定义是否相同](/基础概念/for-in遍历对象属性的顺序与定义是否相同.md)
@@ -15,6 +14,7 @@ comment: false
   - [nginx控制](/基础概念/nginx控制.md)
   - [vue中v-model和sync修饰符](/基础概念/vue中v-model和sync修饰符.md)
   - [函数定义的5种方式](/基础概念/函数定义的5种方式.md)
+  - [攻略chrome控制台](/基础概念/攻略chrome控制台.md)
   - [模块化](/基础概念/模块化.md)
 - 深度知识
   - [chrome性能](/深度知识/chrome性能.md)

@@ -7,7 +7,7 @@ module.exports = {
   base: '/blog/',
   plugins: [
     ['@vuepress/nprogress'],
-    // ['@vuepress/back-to-top'],
+    ['@vuepress/back-to-top'],
     [
       autoSidebar,
       // { base: 'doc' }
