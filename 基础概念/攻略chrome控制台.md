@@ -270,11 +270,11 @@ values(obj);
 5. `Summary` 此窗格可以一目了然地告诉您请求总数、传输的数据量和加载时间
 
 
-### (1、2)Controls，Filters区域
+### （1、2）Controls，Filters区域
 ![imagee28b2.png](https://img.lihx.top/images/2020/07/04/imagee28b2.png)
 
 
-### (3) Overview区域
+### （3） Overview区域
 **使用大请求行**
 默认情况下，`Requests Table`一个资源只显示很小的一行。选中`Use large resource rows`(使用大资源行)按钮可以显示两个文本字段：主要字段和次要字段。列的标题栏指示辅助字段的含义。
 
@@ -298,9 +298,10 @@ values(obj);
 
 ![image7dd79.png](https://img.lihx.top/images/2020/07/05/image7dd79.png)
 
-### 使用Network面板进行网络优化
+#### 使用Network面板进行网络优化
+> 了解以上的信息可以针对Network进行一些优化
 
-#### 了解资源加载时序 
+##### 了解资源加载时序 
 了解网络下载资源的阶段至关重要。这是修复加载问题的基础。
 
 - 了解资源时序的阶段。
@@ -335,7 +336,7 @@ Resource Timing API提供了关于每个单独资源接收时间的详细信息�
 ![资源时序API图](https://img.lihx.top/images/2020/07/05/image.png)
 
 
-**在DevTools中查看**
+###### 在DevTools中查看
 
 `Network` (网络)面板中查看完整时序信息，您有三个选择：
 - 将鼠标悬停在时间轴列下的时间图表上。这将显示一个弹出窗口，显示完整的时序数据。
@@ -351,7 +352,7 @@ Resource Timing API提供了关于每个单独资源接收时间的详细信息�
   ).filter(item => item.name.includes("logo-1024px.png"))
 ```
 
-##### 各个阶段
+###### 各个阶段
 **Queuing(排队)**
 
 如果一个请求排队，则表明：  
@@ -538,8 +539,94 @@ https://justwe7.github.io/devtools/debug-js/get-started.html
 ### 设置断点
 
 
+#### 断点的面板
 
-## 终极大招 Command
+![image0187f.png](https://img.lihx.top/images/2020/07/06/image0187f.png)
+
+
+#### 指定位置的中断
+[官方文档介绍的很清楚](https://developers.google.com/web/tools/chrome-devtools/javascript/?hl=zh-cn)
+
+找到源代码，点击要中断代码执行的位置，点击红色按钮的位置。然后再触发该方法执行，因为已知点击按钮可以触发，精准的定位到代码行就可以了:
+
+![image.png](https://img.lihx.top/images/2020/07/06/image.png)
+
+
+#### 全局事件中断
+假如不知道代码执行的位置，如以下场景：
+
+![imagee7a93.png](https://img.lihx.top/images/2020/07/06/imagee7a93.png)
+
+看接口返回的列表总数应该是20条，但是页面到15条就显示到底部了
+
+
+![imagecc38e.png](https://img.lihx.top/images/2020/07/06/imagecc38e.png)
+
+看代码写的判断条件有点问题，单webpack 编译后的代码包含很多模块，无从找起
+
+大概知道问题原因是什么，可以试试自己的猜想对不对：
+
+1. 因为列表是提拉加载，所以肯定会触发网络请求，可以在事件侦听器里面打一个 `XHR` 的断点
+2. 然后提拉加载页面触发接口请求，如预期的，代码中断执行了。但是说找不到sourcemap，暂时把js的资源映射给关掉：
+  ![imageaadd2.png](https://img.lihx.top/images/2020/07/06/imageaadd2.png)
+  ![imaged604f.png](https://img.lihx.top/images/2020/07/06/imaged604f.png)
+3. 再次触发断点，发现可以查看到中断的代码了，因为肯定是页面中的业务代码将请求推入到执行堆栈的，所以可以在堆栈中找到对应的方法名：`getVideoList`
+   
+   ![image003b6.png](https://img.lihx.top/images/2020/07/06/image003b6.png)
+4. 点击方法名可以跳转到对应的源码，可以看到圈起来的代码和所猜想的问题代码应该是同一处
+  ![imageb8ea4.png](https://img.lihx.top/images/2020/07/06/imageb8ea4.png)
+5. 回过来看下问题原因： 页面请求完新数据后直接 `pageNum` 自增，然后直接就用于是否结束的判断了，有点不够严谨，不如直接比对当前的列表长度与接口返回的数据总数来判断: 
+   ![imaged4077.png](https://img.lihx.top/images/2020/07/06/imaged4077.png)
+6. 记住要修改的代码，在这个文件开头，也就是 `191.xxx.js` 第一行先打个断点。然后刷新页面，找到刚刚想要修改的代码: 用 `t.recommendList.length` 替换掉 `n.pageSize*t.pageNo`（不知道为什么在chrome上面一直不能成功，Edge可以。搜了搜,是因为Edge的bug还是chrome的bug🙃 [stackoverflow](https://stackoverflow.com/questions/6657229/how-can-i-edit-javascript-in-my-browser-like-i-can-use-firebug-to-edit-css-html)）
+7. 再`Ctrl + S`，保存一下，然后看下页面效果，列表可以全部加载出来了:
+![imagea80ad.png](https://img.lihx.top/images/2020/07/06/imagea80ad.png)
+
+> 在美化代码的面板中是不支持直接修改页面代码的
+
+#### 黑盒模式
+把脚本文件放入Blackbox(黑盒)，可以忽略来自第三方库的调用堆栈
+
+默认（不开启黑盒）：  
+![image70101.png](https://img.lihx.top/images/2020/07/06/image70101.png)
+
+开启黑盒：  
+![imagec7749.png](https://img.lihx.top/images/2020/07/06/imagec7749.png)
+
+- 打开方式1
+  1. 打开 DevTools `Settings` (设置)。
+  2. 在左侧的导航菜单中，单击 `Blackboxing` (黑箱)
+  3. 点击 `Add pattern...` (添加模式)按钮。
+  4. 在 `Pattern`(模式)文本框输入您希望从调用堆栈中排除的文件名模式。DevTools 会排除该模式匹配的任何脚本。
+  5. 在文本字段右侧的下拉菜单中，选择 `Blackbox` (黑箱)以执行脚本文件但是排除来自调用堆栈的调用，或选择 `Disabled` (禁用)来阻止文件执行。
+  6. 点击`Add`(添加) 保存。
+
+- 打开方式2
+直接在想要忽略的堆栈信息上 `blackbox script`
+
+#### DOM断点
+element 面板已经描述过
+
+
+## Performance 面板
+在 Performance 面板可以查看页面加载过程中的详细信息，比如在什么时间开始做什么事情，耗时多久等等。有人会问，这个跟上面的 Network 有什么区别呢，上面也能显示耗时信息。在 Performance 面板中，你不仅可以看到通过网络加载资源的信息，还能看到解析 JS、计算样式、重绘等页面加载的方方面面的信息
+
+
+## Memory
+Memory 面板主要显示页面 JS 对象和相关联的 DOM 节点的内存分布情况
+
+
+## Application
+记录网页加载的所有资源，包括存储信息、缓存信息以及页面用到的图片、字体、脚本、样式等信息
+
+## Security
+用于检测当面页面的安全性
+
+
+## Audits
+审计面板会对页面的加载进行分析，然后给出提高页面性能的建议，官网建议查看 [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) 来获得更多的页面加载建议
+
+
+## Command 终极大招
 在控制台打开的状态下， 组合按键 `Ctrl + Shift + P` 打开“命令”菜单，接下来就可以为所欲为了~
 
 ### 截图
