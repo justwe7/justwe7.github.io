@@ -677,14 +677,14 @@ http://mdn.github.io/simple-web-worker/
 CPU 资源。**此面积图指示消耗 CPU 资源的事件类型**。在CPU图表中的各种颜色与 `Summary` 面板里的颜色是相互对应的，`Summary` 面板就在 `Performance` 面板的下方。CPU图表中的各种颜色代表着在这个时间段内，CPU在各种处理上所花费的时间。如果你看到了某个处理占用了大量的时间，那么这可能就是一个可以找到性能瓶颈的线索
 
 ##### CPU 资源面积图颜色划分:
-| 颜色            | 执行内容               |
-| --------------- | ---------------------- |
-| 蓝色(Loading)   | 网络通信和HTML解析     |
-| 黄色(Scripting) | JavaScript执行         |
-| 紫色(Rendering) | 样式计算和布局，即重排 |
-| 绿色(Painting)  | 重绘                   |
-| 灰色(other)     | 其它事件花费的时间     |
-| 白色(Idle)      | 空闲时间               |
+| 颜色                                                                           | 执行内容               |
+| ------------------------------------------------------------------------------ | ---------------------- |
+| <span style="background: rgb(144,183,233);color: #000;">蓝色</span>(Loading)   | 网络通信和HTML解析     |
+| <span style="background: rgb(243,209,124);color: #000;">黄色</span>(Scripting) | JavaScript执行         |
+| <span style="background: rgb(175,153,235);color: #000;">紫色</span>(Rendering) | 样式计算和布局，即重排 |
+| <span style="background: rgb(144,193,233);color: #000;">绿色</span>(Painting)  | 重绘                   |
+| <span style="background: rgb(222,222,222);color: #000;">灰色</span>(other)     | 其它事件花费的时间     |
+| <span style="background: rgb(222,222,222);color: #000;">白色</div>(Idle)       | 空闲时间               |
 
 #### NET
 每条彩色横杠表示一种资源。横杠越长，检索资源所需的时间越长。 每个横杠的浅色部分表示等待时间（从请求资源到第一个字节下载完成的时间）
