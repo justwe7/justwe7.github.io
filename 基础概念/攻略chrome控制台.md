@@ -13,7 +13,7 @@
 顾名思义，清空控制台
 
 ### console.log, info, warn, error
-日常用的比较多的就是这几个了，其中 `log` 和 `info`，印象中在2016年之前老用info打印，还是有区别的，`info` 输出的内容前面是有一个蓝色背景的小圈, 大概跟这个差不多: i，后来chrome更新就没了
+日常用的比较多的就是这几个了，其中 `log` 和 `info`，印象中在2016年之前老用info打印，还是有区别的，`info` 输出的内容前面是有一个蓝色背景的小圈, 大概跟这个差不多: i，后来chrome更新就没了(IE还是可以看出差别的)
 
 ```js
 console.log('普通信息')
@@ -432,7 +432,7 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 #### 加载缓慢 
 
-正如我们所看到的，很多蓝色。
+正如我们所看到的，很多蓝色：
 ![高TTFB示例](https://img.lihx.top/images/2020/07/05/imageae084.png)
 
 如果看到 `Content Download` (内容下载)阶段花费了很多时间，提高服务响应速度、并行下载等优化措施帮助都不大。 主要的解决方案是发送更少的字节。（比如，下载一张高质量的大图，可能是几兆，这个时候你需要优化图片。）
@@ -624,10 +624,10 @@ http://mdn.github.io/simple-web-worker/
 
 1. controls。开始记录，停止记录和配置记录期间捕获的信息
 2. overview。页面性能的高级汇总
-3. Flame Chart [火焰图(线程面板)]。CPU 堆叠追踪的可视化在火焰图上看到一到三条垂直的虚线。
+3. Flame Chart [火焰图(线程面板)]。CPU 堆叠追踪的可视化在火焰图上看到一到三条垂直的虚线：
+   - 蓝线代表 `DOMContentLoaded` 事件
    - 绿线代表首次绘制的时间
-   - 蓝线代表 `DOMContentLoaded` 事件。
-   - 红线代表 `load` 事件.
+   - 红线代表 `load` 事件
 4. Details。在Flame Chart中，选择了某一事件后，这部分会展示与这个事件相关的更多信息；
    > 如果选择了某一帧，这部分会展示与选中帧相关的信息。如果既没有选中事件也没有选中帧，则这部分会展示当前记录时间段内的相关信息。
 
@@ -677,33 +677,136 @@ http://mdn.github.io/simple-web-worker/
 CPU 资源。**此面积图指示消耗 CPU 资源的事件类型**。在CPU图表中的各种颜色与 `Summary` 面板里的颜色是相互对应的，`Summary` 面板就在 `Performance` 面板的下方。CPU图表中的各种颜色代表着在这个时间段内，CPU在各种处理上所花费的时间。如果你看到了某个处理占用了大量的时间，那么这可能就是一个可以找到性能瓶颈的线索
 
 ##### CPU 资源面积图颜色划分:
-| 颜色                                                                           | 执行内容               |
-| ------------------------------------------------------------------------------ | ---------------------- |
-| <span style="background: rgb(144,183,233);color: #000;">蓝色</span>(Loading)   | 网络通信和HTML解析     |
-| <span style="background: rgb(243,209,124);color: #000;">黄色</span>(Scripting) | JavaScript执行         |
-| <span style="background: rgb(175,153,235);color: #000;">紫色</span>(Rendering) | 样式计算和布局，即重排 |
-| <span style="background: rgb(144,193,233);color: #000;">绿色</span>(Painting)  | 重绘                   |
-| <span style="background: rgb(222,222,222);color: #000;">灰色</span>(other)     | 其它事件花费的时间     |
-| <span style="background: rgb(222,222,222);color: #000;">白色</div>(Idle)       | 空闲时间               |
+| 颜色                                                                           | 执行内容                     |
+| ------------------------------------------------------------------------------ | ---------------------------- |
+| <span style="background: rgb(144,183,233);color: #fff;">蓝色</span>(Loading)   | 网络通信和HTML解析           |
+| <span style="background: rgb(243,209,124);color: #fff;">黄色</span>(Scripting) | JavaScript执行               |
+| <span style="background: rgb(175,153,235);color: #fff;">紫色</span>(Rendering) | 样式计算和布局，即重排       |
+| <span style="background: rgb(144,193,233);color: #fff;">绿色</span>(Painting)  | 更改外观而不会影响布局，重绘 |
+| <span style="background: rgb(222,222,222);color: #fff;">灰色</span>(other)     | 其它事件花费的时间           |
+| <span style="background: rgb(222,222,222);color: #000;">白色</span>(Idle)      | 空闲时间                     |
+
+> 重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘
+> 回流(重排)是布局或者几何属性需要改变就称为回流
+> 
+> 回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流
+
+[性能优化的相关总结](https://justwe7.github.io/blog/%E6%B7%B1%E5%BA%A6%E7%9F%A5%E8%AF%86/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html#%E9%87%8D%E7%BB%98%EF%BC%88repaint%EF%BC%89%E5%92%8C%E5%9B%9E%E6%B5%81%EF%BC%88reflow%EF%BC%89)
 
 #### NET
 每条彩色横杠表示一种资源。横杠越长，检索资源所需的时间越长。 每个横杠的浅色部分表示等待时间（从请求资源到第一个字节下载完成的时间）
 深色部分表示传输时间（下载第一个和最后一个字节之间的时间）
 
+HTML：蓝色
+CSS：紫色
+JS：黄色
+图片：绿色
+
+
 > 感觉优化网络性能直接使用 network 面板就好了
 
 ### (3)Flame Chart 火焰图（线程面板）
-详细的分析
+详细的分析某些任务的详细耗时，从而定位问题
 
 ![image10bff.png](https://img.lihx.top/images/2020/07/07/image10bff.png)
 
-> DOMContentLoaded顾名思义，就是dom内容加载完毕。那什么是dom内容加载完毕呢？我们从打开一个网页说起。当输入一个URL，页面的展示首先是空白的，然后过一会，页面会展示出内容，但是页面的有些资源比如说图片资源还无法看到，此时页面是可以正常的交互，过一段时间后，图片才完成显示在页面。从页面空白到展示出页面内容，会触发DOMContentLoaded事件。而这段时间就是HTML文档被加载和解析完成。
+#### 看到的几条虚线：
+![20200708_184105.gif](https://img.lihx.top/images/2020/07/08/20200708_184105.gif)
+
+- 蓝线代表 `DOMContentLoaded` 事件
+- 绿线代表首次绘制的时间
+  - FP: 首次绘制
+  - FCP： 第一次丰富内容的绘图
+  - FMP：第一次有意义的绘图
+  - LCP： 最大区域内容绘制
+- 红线代表 `load` 事件
+
+> - `DOMContentLoaded`: 就是dom内容加载完毕。
+> 那什么是dom内容加载完毕呢？我们从打开一个网页说起。当输入一个URL，页面的展示首先是空白的，然后过一会，页面会展示出内容，但是页面的有些资源比如说图片资源还无法看到，此时页面是可以正常的交互，过一段时间后，图片才完成显示在页面。从页面空白到展示出页面内容，会触发 `DOMContentLoaded` 事件。而这段时间就是HTML文档被加载和解析完成。
 >
-> load，页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件，简单来说，页面的load事件会在DOMContentLoaded被触发之后才触发。
+> - `load`: 页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件，简单来说，页面的load事件会在 `DOMContentLoaded` 被触发之后才触发。
+
+
+#### Main
+看下主线程，Devtools展示了主线程运行状况
+- X轴代表着时间。每个长条代表着一个event。长条越长就代表这个event花费的时间越长。
+- Y轴代表了调用栈（call stack）。在栈里，上面的event调用了下面的event
+
+![image.png](https://img.lihx.top/images/2020/07/08/image.png)
+
+如上图：click事件触发了 `script_foot_closure.js` 第53行的函数调用。
+再看下面，Function Call 可以看到一个匿名函数被调用，然后调用 Me() 函数，然后调用 Se()，依此类推。
+
+> DevTools为脚本分配随机颜色。在上图中，来自一个脚本的函数调用显示为浅绿色。来自另一个脚本的调用被渲染成米色。较深的黄色表示脚本活动，而紫色的事件表示渲染活动。这些较暗的黄色和紫色事件在所有记录中都是一致的。
+
+![20200708_191952.gif](https://img.lihx.top/images/2020/07/08/20200708_191952.gif)
+
+1. 在性能报告中，有很多的数据。可以通过双击，拖动等等动作来放大缩小报告范围，从各种时间段来观察分析报告
+2. 在事件长条的右上角处，如果出现了红色小三角，说明这个事件是存在问题的，需要特别注意
+3. 双击这个带有红色小三角的的事件。在Summary面板会看到详细信息。注意reveal这个链接，双击它会让高亮触发这个事件的event。如果点击了app.js:94这个链接，就会跳转到对应的代码处
+
 
 ### (4)Details 区域
+一般要配合 `Flame Chart` 一起使用
+
+- `summary` 区域是一个饼状图总览，汇总了各个事件类型所耗费的总时长，另外还有三个查看选项：
+- `Bottom-Up` 选项卡：要查看直接花费最多时间的活动时使用
+- `Call Tree` 选项卡：想查看导致最多工作的根活动时使用
+- `Event Log` 选项卡：想要按记录期间的活动顺序查看活动时使用
 
 
+### window.performance 对象
+> Performance 接口可以获取到当前页面中与性能相关的信息。它是 High Resolution Time API 的一部分，同时也融合了 Performance Timeline API、Navigation Timing API、 User Timing API 和 Resource Timing API。
+>
+> 实质上来说performance对象就是专门用于性能监测的对象，内置了几乎所有常用前端需要的性能参数监控。
+
+- performance
+  - `memory`
+    - totalJSHeapSize: '可使用内存大小' // 单位 KB
+    - usedJSHeapSize: '已使用内存大小'
+    - jsHeapSizeLimit: '内存大小限制'
+  - `navigation`
+    - redirectCount: 0 //如果有重定向的话，页面通过几次重定向跳转而来
+    - type: 0 
+      > type的值：
+      > 0  即TYPE_NAVIGATENEXT 正常进入页面（非刷新、非重定向等)
+      > 1  即TYPE_RELOAD 通过window.location.reload()刷新的页面
+      > 2  即TYPE_BACK_FORWARD 通过浏览器的前进后退按钮进入的页面（历史记录）
+      > 255 即TYPE_UNDEFINED 非以上方式进入的页面
+  - `onresourcetimingbufferfull` // 一个当resourcetimingbufferfull 事件触发时调用的EventHandler 这个事件当浏览器的资源时间性能缓冲区已满时会触发
+    > 在onresourcetimingbufferfull属性上设置一个回调函数：
+    > function buffer_full(event) {
+    >   console.log("WARNING: Resource Timing Buffer is FULL!");
+    >   performance.setResourceTimingBufferSize(200);
+    > }
+    > function init() {
+    >   // Set a callback if the resource buffer becomes filled
+    >   performance.onresourcetimingbufferfull = buffer_full;
+    > }
+    > `<body onload="init()">`
+  - `timeOrigin`: 1594219100175.9412, // 返回性能测量开始时的时间的高精度时间戳
+  - `timing`
+    - navigationStart: '时间戳'， //在同一个浏览器上下文中，前一个网页（与当前页面不一定同域）unload的时间戳，如果无前一个网页unload，则与fetchStart值相等；
+    - unloadEventStart: 0, // 前一个网页（与当前页面同域）unload的时间戳，如果无前一个网页unload或者前一个网页与当前页面不同域，则值为0
+    - unloadEventEnd:  0, //  和unloadEventStart 相对应，返回前一个网页unload事件绑定的回调函数执行王弼的时间戳
+    - redirectStart:  0, // 第一个HTTP重定向发生时的时间，有跳转且是同域名内部的重定向才算，否则值为0
+    - redirectEnd:  0, // 最后一个HTTP重定向完成时的时间，有跳转切尔是同域名内部的重定向才算，否则值为0
+    - fetchStart: '时间戳'， // 浏览器准备好使用HTTP请求抓取文档的时间，这发生在检查本地缓存之前
+    - domainLookupStart: '时间戳'， // DNS域名查询开始的时间，如果使用了本地缓存（即无DNS查询）或持久连接，则与fetchStart值相等
+    - domainLookupEnd:  '时间戳'， // DNS域名查询完成的时间，如果使用了本地缓存（即 无DNS查询）或持久连接，则与fetchStart值相等
+    - connectStart:  '时间戳'， // HTTP(TCP)开始建立连接的时间，如果是持久连接，则与fetchStart值相等；如果在传输层发生了错误且重新建立了连接，则这里显示的是新建立连接的时间
+    - connectEnd:  '时间戳'， // HTTP(TCP)完成建立连接的时间（握手），如果是持久连接，则与fetchStart相等；如果是在传输层发生了错误且重新建立连接，则这里咸宁市的是新建立的连接完成的时间；这
+    - secureConnectionStart:  0, // HTTPS连接开始的时间，如果不是安全连接，则值为0;
+    - requestStart: '时间戳'， // HTTP请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存，连接错误时这里显示的是新建立的连接的时间
+    - responseStart: '时间戳'， // HTTP开始接收响应的时间（获取到第一个字节），包括从本地读取缓存
+    - responseEnd: 0, // HTTP响应全部接收完毕的时间（获取到最后一个字节），包括从本地读取的缓存
+    - domLoading: 0, // 开始解析渲染DOM树的时间，此时Document.readyState变为interactive，并将抛出readystatechange相关事件（这里只是DOM树解析完毕，这时候并没有开始加载网页内的
+    - dominteractive: 0, // 完成解析DOM树的时间，Document,readyState变为interactive,并将抛出readystatechange相关事件（这时候并没有开始加载网页资源）
+    - domContentLoadedEventStart: 0, // DOM解析完成后，网页内资源加载开始的时间，在DOMContentLoaded事件抛出之前发生
+    - domContentLoadedEventEnd: 0, // DOM解析完成后，网页内资源加载完成的时间
+    - domComplete: 0, // DOM树解析完成，且资源也准备就绪的时间，Document.readyState变为complete,并将抛出readystatechange相关事件
+    - loadEventStart: 0, // load事件发送给文档，也即load回调函数开始执行的时间，如果没有绑定load事件，值为0
+    - loadEventEnd: 0 // load事件的回调函数执行完毕的时间
 
 ## Memory 面板
 > Memory 面板主要显示页面 JS 对象和相关联的 DOM 节点的内存分布情况
@@ -712,8 +815,21 @@ CPU 资源。**此面积图指示消耗 CPU 资源的事件类型**。在CPU图�
 ## Application 面板
 > 记录网页加载的所有资源，包括存储信息、缓存信息以及页面用到的图片、字体、脚本、样式等信息
 
+- Local Storage 如果你在开发过程中使用了local storage来存储键值对(KVPs)，那么你就可以通过Local Storage窗格来检查、新增、修改、删除这个键值对。
+- Application Cache 你可以使用Application Cache窗格去查看通过Application Cache API创建的资源。
+- Frames 将页面上的资源按frame类别进行组织显示。
+- Service Worker 是一种Web离线应用解决方案，可以使你的应用先访问本地缓存资源，所以在离线状态时，在没有通过网络接收到更多的数据前，仍可以提供基本的功能
+
+> [了解浏览器存储](https://segmentfault.com/a/1190000018748168)
+> [Service Worker](https://www.cnblogs.com/dojo-lzz/p/8047336.html)
+
 ## Security 面板
 > 用于检测当面页面的安全性
+
+该面板可以区分两种类型的不安全的页面：
+- 如果被请求的页面通过HTTP提供服务，那么这个主源就会被标记为不安全。
+- 如果被请求的页面是通过HTTPS获取的，但这个页面接着通过HTTP继续从其他来源检索内容，那么这个页面仍然被标记为不安全。这就是所谓的混合内容页面,混合内容页面只是部分受到保护,因为HTTP内容(非加密的内容)可以被嗅探者入侵,容易受到中间人攻击。如163，虽然证书chrome是认可的，但是页面有一部分http资源：  
+![imagee8ea4.png](https://img.lihx.top/images/2020/07/08/imagee8ea4.png)
 
 
 ## Audits 面板
@@ -749,6 +865,8 @@ CPU 资源。**此面积图指示消耗 CPU 资源的事件类型**。在CPU图�
 - https://juejin.im/post/5c009115f265da612859d8e2
 - https://zhuanlan.zhihu.com/p/29879682
 - https://www.cnblogs.com/ranyonsue/p/9342839.html
+- https://developer.mozilla.org/zh-CN/docs/Web/API/Performance
+- https://juejin.im/post/5dd4a0de5188254f98605ff9
 
 
 
