@@ -3,7 +3,7 @@
 ## Console 面板
 
 > 此章节请打开 [devtools/console/console.html](https://justwe7.github.io/devtools/console/console.html) 一起食用
-
+>
 > 一方面用来记录页面在执行过程中的信息（一般通过各种 console 语句来实现），另一方面用来当做 shell 窗口来执行脚本以及与页面文档、DevTools等进行交互
 
 首先看一下console对象下面都有哪些方法:  
@@ -193,11 +193,17 @@ keys(obj);
 values(obj);
 ```
 
+#### copy()
+可以直接将变量复制到剪贴板
+```js
+copy(temp1)
+```
+
 
 ## Element 面板
 
 > 此章节请打开 [devtools/element/element.html](https://justwe7.github.io/devtools/element/element.html) 一起食用
-
+>
 > 在 Elements 面板中可以通过 DOM 树的形式查看所有页面元素，同时也能对这些页面元素进行所见即所得的编辑
 
 ### css 调试
@@ -679,12 +685,12 @@ CPU 资源。**此面积图指示消耗 CPU 资源的事件类型**。在CPU图�
 ##### CPU 资源面积图颜色划分:
 | 颜色                                                                           | 执行内容                     |
 | ------------------------------------------------------------------------------ | ---------------------------- |
-| <span style="background: rgb(144,183,233);color: #fff;">蓝色</span>(Loading)   | 网络通信和HTML解析           |
-| <span style="background: rgb(243,209,124);color: #fff;">黄色</span>(Scripting) | JavaScript执行               |
-| <span style="background: rgb(175,153,235);color: #fff;">紫色</span>(Rendering) | 样式计算和布局，即重排       |
-| <span style="background: rgb(144,193,233);color: #fff;">绿色</span>(Painting)  | 更改外观而不会影响布局，重绘 |
-| <span style="background: rgb(222,222,222);color: #fff;">灰色</span>(other)     | 其它事件花费的时间           |
-| <span style="background: rgb(222,222,222);color: #000;">白色</span>(Idle)      | 空闲时间                     |
+| <span style="background: rgb(144,183,233);color: #fff;border: 1px;">蓝色</span>(Loading)   | 网络通信和HTML解析           |
+| <span style="background: rgb(243,209,124);color: #fff;border: 1px;">黄色</span>(Scripting) | JavaScript执行               |
+| <span style="background: rgb(175,153,235);color: #fff;border: 1px;">紫色</span>(Rendering) | 样式计算和布局，即重排       |
+| <span style="background: rgb(144,193,233);color: #fff;border: 1px;">绿色</span>(Painting)  | 更改外观而不会影响布局，重绘 |
+| <span style="background: rgb(222,222,222);color: #fff;border: 1px;">灰色</span>(other)     | 其它事件花费的时间           |
+| <span style="background: #fff;color: #000;border: 1px;">白色</span>(Idle)      | 空闲时间                     |
 
 > 重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘
 > 回流(重排)是布局或者几何属性需要改变就称为回流
