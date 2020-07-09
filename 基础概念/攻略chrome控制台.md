@@ -1,5 +1,3 @@
-# chrome/edge 控制台指南
-
 ## Console 面板
 
 > 此章节请打开 [devtools/console/console.html](https://justwe7.github.io/devtools/console/console.html) 一起食用
@@ -244,7 +242,7 @@ copy(temp1)
 ![20200628_192801.gif](https://img.lihx.top/images/2020/06/28/20200628_192801.gif)
 
 #### 滚动到某个节点
-如果页面很长，想找一个文本节点的显示位置又不想手动滑动可以试试 `滚动到视图`
+如果页面很长，想找一个文本节点的显示位置又不想手动滑动可以试试 `Scroll into view`
 
 ![20200628_190729.gif](https://img.lihx.top/images/2020/06/28/20200628_190729.gif)
 
@@ -348,15 +346,6 @@ Resource Timing API提供了关于每个单独资源接收时间的详细信息�
 - 将鼠标悬停在时间轴列下的时间图表上。这将显示一个弹出窗口，显示完整的时序数据。
 - 点击任何 `Requests Table` (请求列表)中的条目，并打开该条目的 `Timing` (时序)标签页。
 - 使用 `Resource Timing API` (资源时序API)从JavaScript中检索原始数据:
-
-<!-- ![资源时序信息](../images/resource-timing-data.png) -->
-
-> 这段代码可以在DevTools控制台中运行。它将使用`Resource Timing API`(资源时序API)来检索所有资源。然后它过滤条目，查找包含`logo-1024px.png`名称的条目。如果找到，会返回相关信息。
-```js
-  performance.getEntriesByType(
-  'resource'
-  ).filter(item => item.name.includes("logo-1024px.png"))
-```
 
 ###### 各个阶段
 **Queuing(排队)**
@@ -512,7 +501,17 @@ Time有两行：
 
 
 ### (5) Summary 区域
-114次请求 | 已传输 | 已加载 | 页面运行时间 | DOMContentLoaded时间 | load时间  
+`requests` 查看请求的总数量 | `transferred` 查看请求的总大小 | `resources` 资源 | `Finish` 页面运行时间 | DOMContentLoaded时间 | load时间  
+
+> DOMContentLoaded 会比 Load 时间小，两者时间差大致等于外部资源加载的时间
+
+> Finish 时间是页面上所有 http 请求发送到响应完成的时间，HTTP1.0/1.1 协议限定，单个域名的请求并发量是 6 个，即Finish是所有请求（不只是XHR请求，还包括DOC，img，js，css等资源的请求）在并发量为6的限制下完成的时间。
+> - Finish 的时间比 Load 大，意味着页面有相当部分的请求量，
+> - Finish 的时间比 Load 小，意味着页面请求量很少，如果页面是只有一个 html文档请求的静态页面，Finish时间基本就等于HTML文档请求的时间
+> 
+> 所以Finish 时间与DOMContentLoaded 和 Load 并无直接关系
+
+
 ![image.png](https://img.lihx.top/images/2020/07/04/image.png)
 
 当页面的初始的标记被解析完时，会触发 `DOMContentLoaded`。 它在Network(网络)面板上的显示：
@@ -524,10 +523,8 @@ Time有两行：
 当页面完全加载时触发 `load` 事件。 它显示也显示在：
 - 在 Overview (概览)窗格的红色垂直线表示这个事件。
 - 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
-- 在 Summary (概要)中，您可以查看改事件的确切时间。
-
-https://wehmo.wy.guahao.com/search?q=%E7%B3%96%E5%B0%BF%E7%97%85&searchType=search#index-component
-
+- 在 Summary (概要)中，可以查看改事件的确切时间
+![imagee4d7e.png](https://img.lihx.top/images/2020/07/05/imagee4d7e.png)
 
 ## Sources 面板
 > 此章节请打开 [/devtools/debug-js/get-started.html](https://justwe7.github.io/devtools/debug-js/get-started.html) 一起食用
@@ -583,7 +580,9 @@ https://wehmo.wy.guahao.com/search?q=%E7%B3%96%E5%B0%BF%E7%97%85&searchType=sear
   ![imageb8ea4.png](https://img.lihx.top/images/2020/07/06/imageb8ea4.png)
 5. 回过来看下问题原因： 页面请求完新数据后直接 `pageNum` 自增，然后直接就用于是否结束的判断了，有点不够严谨，不如直接比对当前的列表长度与接口返回的数据总数来判断: 
    ![imaged4077.png](https://img.lihx.top/images/2020/07/06/imaged4077.png)
-6. 记住要修改的代码，在这个文件开头，也就是 `191.xxx.js` 第一行先打个断点。然后刷新页面，找到刚刚想要修改的代码: 用 `t.recommendList.length` 替换掉 `n.pageSize*t.pageNo`（不知道为什么在chrome上面一直不能成功，Edge可以。搜了搜,是因为Edge的bug还是chrome的bug🙃 [stackoverflow](https://stackoverflow.com/questions/6657229/how-can-i-edit-javascript-in-my-browser-like-i-can-use-firebug-to-edit-css-html)）
+6. 记住要修改的代码，在这个文件开头，也就是 `191.xxx.js` 
+   1. 第一行先打个断点，push 方法之前再打一个断点: ![image.png](https://img.lihx.top/images/2020/07/09/image.png) (如果没有再刷新一下(也不清楚为什么可能会没有))
+   2. 然后刷新页面，找到刚刚想要修改的代码: 用 `t.recommendList.length` 替换掉 `n.pageSize*t.pageNo`（前两步是为了避免js开始解析问题代码，先阻塞一下运行: [stackoverflow](https://stackoverflow.com/questions/6657229/how-can-i-edit-javascript-in-my-browser-like-i-can-use-firebug-to-edit-css-html)）
 7. 再`Ctrl + S`，保存一下，然后看下页面效果，列表可以全部加载出来了:
 ![imagea80ad.png](https://img.lihx.top/images/2020/07/06/imagea80ad.png)
 
@@ -683,19 +682,21 @@ http://mdn.github.io/simple-web-worker/
 CPU 资源。**此面积图指示消耗 CPU 资源的事件类型**。在CPU图表中的各种颜色与 `Summary` 面板里的颜色是相互对应的，`Summary` 面板就在 `Performance` 面板的下方。CPU图表中的各种颜色代表着在这个时间段内，CPU在各种处理上所花费的时间。如果你看到了某个处理占用了大量的时间，那么这可能就是一个可以找到性能瓶颈的线索
 
 ##### CPU 资源面积图颜色划分:
-| 颜色                                                                           | 执行内容                     |
-| ------------------------------------------------------------------------------ | ---------------------------- |
+| 颜色                                                                                       | 执行内容                     |
+| ------------------------------------------------------------------------------------------ | ---------------------------- |
 | <span style="background: rgb(144,183,233);color: #fff;border: 1px;">蓝色</span>(Loading)   | 网络通信和HTML解析           |
 | <span style="background: rgb(243,209,124);color: #fff;border: 1px;">黄色</span>(Scripting) | JavaScript执行               |
 | <span style="background: rgb(175,153,235);color: #fff;border: 1px;">紫色</span>(Rendering) | 样式计算和布局，即重排       |
 | <span style="background: rgb(144,193,233);color: #fff;border: 1px;">绿色</span>(Painting)  | 更改外观而不会影响布局，重绘 |
 | <span style="background: rgb(222,222,222);color: #fff;border: 1px;">灰色</span>(other)     | 其它事件花费的时间           |
-| <span style="background: #fff;color: #000;border: 1px;">白色</span>(Idle)      | 空闲时间                     |
+| <span style="background: #fff;color: #000;border: 1px;">白色</span>(Idle)                  | 空闲时间                     |
 
 > 重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘
 > 回流(重排)是布局或者几何属性需要改变就称为回流
 > 
-> 回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流
+> 重排必定会发生重绘，重绘不一定会引发重排。重排所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列重排
+
+js修改dom结构或样式 -> 计算style -> layout(重排) -> paint(重绘) -> composite(合成)
 
 [性能优化的相关总结](https://justwe7.github.io/blog/%E6%B7%B1%E5%BA%A6%E7%9F%A5%E8%AF%86/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html#%E9%87%8D%E7%BB%98%EF%BC%88repaint%EF%BC%89%E5%92%8C%E5%9B%9E%E6%B5%81%EF%BC%88reflow%EF%BC%89)
 
@@ -721,14 +722,14 @@ JS：黄色
 
 - 蓝线代表 `DOMContentLoaded` 事件
 - 绿线代表首次绘制的时间
-  - FP: 首次绘制
-  - FCP： 第一次丰富内容的绘图
-  - FMP：第一次有意义的绘图
-  - LCP： 最大区域内容绘制
+  - FP(First Paint): 首次绘制
+  - FCP(First Contentful Paint)： 第一次丰富内容的绘图
+  - FMP(First Meaningful Paint)：第一次有意义的绘图
+  - LCP(Largest Contentful Paint)： 最大区域内容绘制
 - 红线代表 `load` 事件
 
 > - `DOMContentLoaded`: 就是dom内容加载完毕。
-> 那什么是dom内容加载完毕呢？我们从打开一个网页说起。当输入一个URL，页面的展示首先是空白的，然后过一会，页面会展示出内容，但是页面的有些资源比如说图片资源还无法看到，此时页面是可以正常的交互，过一段时间后，图片才完成显示在页面。从页面空白到展示出页面内容，会触发 `DOMContentLoaded` 事件。而这段时间就是HTML文档被加载和解析完成。
+> 那什么是dom内容加载完毕呢？打开一个网页当输入一个URL，页面的展示首先是空白的，然后过一会，页面会展示出内容，但是页面的有些资源比如说图片资源还无法看到，此时页面是可以正常的交互，过一段时间后，图片才完成显示在页面。从页面空白到展示出页面内容，会触发 `DOMContentLoaded` 事件。而这段时间就是HTML文档被加载和解析完成。
 >
 > - `load`: 页面上所有的资源（图片，音频，视频等）被加载以后才会触发load事件，简单来说，页面的load事件会在 `DOMContentLoaded` 被触发之后才触发。
 
@@ -766,57 +767,232 @@ JS：黄色
 >
 > 实质上来说performance对象就是专门用于性能监测的对象，内置了几乎所有常用前端需要的性能参数监控。
 
-- performance
+#### performance API
+
+<details>
+  <summary>performance API</summary>
+
   - `memory`
     - totalJSHeapSize: '可使用内存大小' // 单位 KB
     - usedJSHeapSize: '已使用内存大小'
     - jsHeapSizeLimit: '内存大小限制'
   - `navigation`
-    - redirectCount: 0 //如果有重定向的话，页面通过几次重定向跳转而来
+    - redirectCount: 0 
+      > 如果有重定向的话，页面通过几次重定向跳转而来
     - type: 0 
-      > type的值：
+      > 类似于小程序定义的场景值，type的值：
       > 0  即TYPE_NAVIGATENEXT 正常进入页面（非刷新、非重定向等)
       > 1  即TYPE_RELOAD 通过window.location.reload()刷新的页面
       > 2  即TYPE_BACK_FORWARD 通过浏览器的前进后退按钮进入的页面（历史记录）
       > 255 即TYPE_UNDEFINED 非以上方式进入的页面
   - `onresourcetimingbufferfull` // 一个当resourcetimingbufferfull 事件触发时调用的EventHandler 这个事件当浏览器的资源时间性能缓冲区已满时会触发
-    > 在onresourcetimingbufferfull属性上设置一个回调函数：
-    > function buffer_full(event) {
-    >   console.log("WARNING: Resource Timing Buffer is FULL!");
-    >   performance.setResourceTimingBufferSize(200);
-    > }
-    > function init() {
-    >   // Set a callback if the resource buffer becomes filled
-    >   performance.onresourcetimingbufferfull = buffer_full;
-    > }
-    > `<body onload="init()">`
-  - `timeOrigin`: 1594219100175.9412, // 返回性能测量开始时的时间的高精度时间戳
+    ```js
+    // 在onresourcetimingbufferfull属性上设置一个回调函数：
+    function buffer_full(event) {
+      console.log("WARNING: Resource Timing Buffer is FULL!");
+      performance.setResourceTimingBufferSize(200);
+    }
+    function init() {
+      // Set a callback if the resource buffer becomes filled
+      performance.onresourcetimingbufferfull = buffer_full;
+    }
+    <body onload="init()">
+    ```
+  - `timeOrigin`: 1594219100175.9412 
+    > 返回性能测量开始时的时间的高精度时间戳
   - `timing`
-    - navigationStart: '时间戳'， //在同一个浏览器上下文中，前一个网页（与当前页面不一定同域）unload的时间戳，如果无前一个网页unload，则与fetchStart值相等；
-    - unloadEventStart: 0, // 前一个网页（与当前页面同域）unload的时间戳，如果无前一个网页unload或者前一个网页与当前页面不同域，则值为0
-    - unloadEventEnd:  0, //  和unloadEventStart 相对应，返回前一个网页unload事件绑定的回调函数执行王弼的时间戳
-    - redirectStart:  0, // 第一个HTTP重定向发生时的时间，有跳转且是同域名内部的重定向才算，否则值为0
-    - redirectEnd:  0, // 最后一个HTTP重定向完成时的时间，有跳转切尔是同域名内部的重定向才算，否则值为0
-    - fetchStart: '时间戳'， // 浏览器准备好使用HTTP请求抓取文档的时间，这发生在检查本地缓存之前
-    - domainLookupStart: '时间戳'， // DNS域名查询开始的时间，如果使用了本地缓存（即无DNS查询）或持久连接，则与fetchStart值相等
-    - domainLookupEnd:  '时间戳'， // DNS域名查询完成的时间，如果使用了本地缓存（即 无DNS查询）或持久连接，则与fetchStart值相等
-    - connectStart:  '时间戳'， // HTTP(TCP)开始建立连接的时间，如果是持久连接，则与fetchStart值相等；如果在传输层发生了错误且重新建立了连接，则这里显示的是新建立连接的时间
-    - connectEnd:  '时间戳'， // HTTP(TCP)完成建立连接的时间（握手），如果是持久连接，则与fetchStart相等；如果是在传输层发生了错误且重新建立连接，则这里咸宁市的是新建立的连接完成的时间；这
-    - secureConnectionStart:  0, // HTTPS连接开始的时间，如果不是安全连接，则值为0;
-    - requestStart: '时间戳'， // HTTP请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存，连接错误时这里显示的是新建立的连接的时间
-    - responseStart: '时间戳'， // HTTP开始接收响应的时间（获取到第一个字节），包括从本地读取缓存
-    - responseEnd: 0, // HTTP响应全部接收完毕的时间（获取到最后一个字节），包括从本地读取的缓存
-    - domLoading: 0, // 开始解析渲染DOM树的时间，此时Document.readyState变为interactive，并将抛出readystatechange相关事件（这里只是DOM树解析完毕，这时候并没有开始加载网页内的
-    - dominteractive: 0, // 完成解析DOM树的时间，Document,readyState变为interactive,并将抛出readystatechange相关事件（这时候并没有开始加载网页资源）
-    - domContentLoadedEventStart: 0, // DOM解析完成后，网页内资源加载开始的时间，在DOMContentLoaded事件抛出之前发生
-    - domContentLoadedEventEnd: 0, // DOM解析完成后，网页内资源加载完成的时间
-    - domComplete: 0, // DOM树解析完成，且资源也准备就绪的时间，Document.readyState变为complete,并将抛出readystatechange相关事件
-    - loadEventStart: 0, // load事件发送给文档，也即load回调函数开始执行的时间，如果没有绑定load事件，值为0
-    - loadEventEnd: 0 // load事件的回调函数执行完毕的时间
+    - navigationStart: '时间戳'
+      > 在同一个浏览器上下文中，前一个网页（与当前页面不一定同域）unload的时间戳，如果无前一个网页unload，则与fetchStart值相等；
+    - unloadEventStart: 0
+      > 前一个网页（与当前页面同域）unload的时间戳，如果无前一个网页unload或者前一个网页与当前页面不同域，则值为0
+    - unloadEventEnd:  0
+      >  和unloadEventStart 相对应，返回前一个网页unload事件绑定的回调函数执行王弼的时间戳
+    - redirectStart:  0
+      > 第一个HTTP重定向发生时的时间，有跳转且是同域名内部的重定向才算，否则值为0
+    - redirectEnd:  0
+      > 最后一个HTTP重定向完成时的时间，有跳转切尔是同域名内部的重定向才算，否则值为0
+    - fetchStart: '时间戳'
+      > 浏览器准备好使用HTTP请求抓取文档的时间，这发生在检查本地缓存之前
+    - domainLookupStart: '时间戳'
+      > DNS域名查询开始的时间，如果使用了本地缓存（即无DNS查询）或持久连接，则与fetchStart值相等
+    - domainLookupEnd:  '时间戳'
+      > DNS域名查询完成的时间，如果使用了本地缓存（即 无DNS查询）或持久连接，则与fetchStart值相等
+    - connectStart:  '时间戳'
+      > HTTP(TCP)开始建立连接的时间，如果是持久连接，则与fetchStart值相等；如果在传输层发生了错误且重新建立了连接，则这里显示的是新建立连接的时间
+    - connectEnd:  '时间戳'
+      > HTTP(TCP)完成建立连接的时间（握手），如果是持久连接，则与fetchStart相等；如果是在传输层发生了错误且重新建立连接，则这里咸宁市的是新建立的连接完成的时间；这
+    - secureConnectionStart:  0
+      > HTTPS连接开始的时间，如果不是安全连接，则值为0;
+    - requestStart: '时间戳'
+      > HTTP请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存，连接错误时这里显示的是新建立的连接的时间
+    - responseStart: '时间戳'
+      > HTTP开始接收响应的时间（获取到第一个字节），包括从本地读取缓存
+    - responseEnd: 0
+      > HTTP响应全部接收完毕的时间（获取到最后一个字节），包括从本地读取的缓存
+    - domLoading: 0
+      > 开始解析渲染DOM树的时间，此时Document.readyState变为interactive，并将抛出readystatechange相关事件（这里只是DOM树解析完毕，这时候并没有开始加载网页内的
+    - dominteractive: 0
+      > 完成解析DOM树的时间，Document,readyState变为interactive,并将抛出readystatechange相关事件（这时候并没有开始加载网页资源）
+    - domContentLoadedEventStart: 0
+      > DOM解析完成后，网页内资源加载开始的时间，在DOMContentLoaded事件抛出之前发生
+    - domContentLoadedEventEnd: 0
+      > DOM解析完成后，网页内资源加载完成的时间
+    - domComplete: 0
+      > DOM树解析完成，且资源也准备就绪的时间，Document.readyState变为complete,并将抛出readystatechange相关事件
+    - loadEventStart: 0
+      > load事件发送给文档，也即load回调函数开始执行的时间，如果没有绑定load事件，值为0
+    - loadEventEnd: 0
+      > load事件的回调函数执行完毕的时间
+</details>
+
+#### 几个实用的API
+##### performance.now()方法
+`performance.now()` 返回 `performance.navigationStart` 至当前的毫秒数。
+`performance.navigationStart` 是下文将介绍到的可以说是浏览器访问最初的时间测量点。
+
+值得注意的两点：
+- 测量初始点是浏览器访问最初测量点，或者理解为在地址栏输入URL后按回车的那一瞬间。
+- 返回值是毫秒数，但带有精准的多位小数。
+
+用performance.now()检测for循环的执行时间(毫秒):
+```js
+  var st = performance.now();
+  for (var o = 0; o < 10000; o ++) console.log(o)
+  var end = performance.now();
+  console.log(`for时间${end - st}`); // for时间1155.9950000373647
+```
+
+#### performance.navigation
+performance.navigation负责纪录用户行为信息，只有两个属性:
+- `redirectCount`
+  - 如果有重定向的话，页面通过几次重定向跳转而来
+- `type`
+  - type的值：
+  - 0  即TYPE_NAVIGATENEXT 正常进入页面（非刷新、非重定向等)
+  - 1  即TYPE_RELOAD 通过window.location.reload()刷新的页面
+  - 2  即TYPE_BACK_FORWARD 通过浏览器的前进后退按钮进入的页面（历史记录）
+  - 255 即TYPE_UNDEFINED 非以上方式进入的页面
+```js
+  console.log(performance.navigation);
+  // PerformanceNavigation {type: 1, redirectCount: 0}
+```
+
+##### performance.timing
+`timing` 内包含了几乎所有时间节点
+
+```js
+function getTiming() {
+  try {
+    var time = performance.timing;
+    var timingObj = {};
+
+    var loadTime = (time.loadEventEnd - time.loadEventStart) / 1000;
+
+    if(loadTime < 0) {
+      setTimeout(function() {
+        getTiming();
+      }, 200);
+      return;
+    }
+
+    timingObj['重定向时间'] = (time.redirectEnd - time.redirectStart);
+    timingObj['DNS解析时间'] = (time.domainLookupEnd - time.domainLookupStart);
+    timingObj['TCP完成握手时间'] = (time.connectEnd - time.connectStart);
+    timingObj['HTTP请求响应完成时间'] = (time.responseEnd - time.requestStart);
+    timingObj['DOM开始加载前所花费时间'] = (time.responseEnd - time.navigationStart);
+    timingObj['DOM加载完成时间'] = ((time.domComplete || time.domLoading) - time.domLoading);
+    timingObj['DOM结构解析完成时间'] = (time.domInteractive - time.domLoading);
+    timingObj['总体网络交互耗时，即开始跳转到服务器资源下载完成时间'] = (time.responseEnd - time.navigationStart);
+    timingObj['可交互时间'] = (time.domContentLoadedEventEnd - time.domContentLoadedEventStart);
+    timingObj['首次出现内容'] = (time.domLoading - time.navigationStart);
+    timingObj['onload事件时间'] = (time.loadEventEnd - time.loadEventStart);
+    timingObj['页面完全加载时间'] = (timingObj['重定向时间'] + timingObj['DNS解析时间'] + timingObj['TCP完成握手时间'] + timingObj['HTTP请求响应完成时间'] + timingObj['DOM结构解析完成时间'] + timingObj['DOM加载完成时间']);
+
+    for(item in timingObj) {
+      console.log(item + ":" + timingObj[item] + '(ms)');
+    }
+
+    console.log(performance.timing);
+
+  } catch(e) {
+    console.log(timingObj)
+    console.log(performance.timing);
+  }
+}
+window.onload = getTiming()
+```
+
+##### performance.memory
+用于显示当前的内存占用情况
+```js
+console.log(performance.memory)
+/* {
+  jsHeapSizeLimit: 4294705152,
+  totalJSHeapSize: 13841857,
+  usedJSHeapSize: 12417637
+} */
+```
+- usedJSHeapSize表示：JS 对象（包括V8引擎内部对象）占用的内存数
+- totalJSHeapSize表示：可使用的内存
+- jsHeapSizeLimit表示：内存大小限制
+
+> 通常，`usedJSHeapSize` 不能大于 `totalJSHeapSize`，如果大于，有可能出现了内存泄漏。
+
+##### performance.getEntries()
+浏览器获取网页时，会对网页中每一个对象（脚本文件、样式表、图片文件等等）发出一个HTTP请求。`performance.getEntries` 方法以数组形式，返回一个 `PerformanceEntry` 列表，这些请求的时间统计信息，有多少个请求，返回数组就会有多少个成员
+
+- `name`：资源的链接
+- `duration`: 资源的总耗时（包括等待时长，请求时长，响应时长 相当于responseEnd - startTime）
+- `entryType`: 资源类型，entryType类型不同数组中的对象结构也不同:
+  | 值         | 该类型对象                  | 描述                                                             |
+  | ---------- | --------------------------- | ---------------------------------------------------------------- |
+  | mark       | PerformanceMark             | 通过mark()方法添加到数组中的对象                                 |
+  | measure    | PerformanceMeasure          | 通过measure()方法添加到数组中的对象                              |
+  | paint      | PerformancePaintTiming      | 值为first-paint'首次绘制、'first-contentful-paint'首次内容绘制。 |
+  | resource   | PerformanceResourceTiming   | 所有资源加载时间，用处最多                                       |
+  | navigation | PerformanceNavigationTiming | 现除chrome和Opera外均不支持，导航相关信息                        |
+  | frame      | PerformanceFrameTiming      | 现浏览器均未支持                                                 |
+- `initiatorType`: 如何发起的请求,初始类型（注意这个类型并不准确，例如在css中的图片资源会这个值显示css，所以还是推荐用name中的后缀名）
+  | 发起对象                             | 值                       | 描述                                                   |
+  | ------------------------------------ | ------------------------ | ------------------------------------------------------ |
+  | a Element                            | link/script/img/iframe等 | 通过标签形式加载的资源，值是该节点名的小写形式         |
+  | a CSS resource                       | css                      | 通过css样式加载的资源，比如background的url方式加载资源 |
+  | a XMLHttpRequest object              | xmlhttprequest/fetch     | 通过xhr加载的资源                                      |
+  | a PerformanceNavigationTiming object | navigation               | 当对象是PerformanceNavigationTiming时返回              |
+
+##### performance.getEntriesByType()
+方法返回给定类型的 getEntries 列表
+[打开页面](https://justwe7.github.io/devtools/network/queue.html)
+
+> 这段代码可以在DevTools控制台中运行。它将使用`Resource Timing API`(资源时序API)来检索所有资源。然后它过滤条目，查找包含`logo-1024px.png`名称的条目。如果找到，会返回相关信息。
+```js
+performance
+  .getEntriesByType('resource')
+  .filter(item => item.name.includes("logo-1024px.png"))
+```
+
+## Lighthouse(Audits) 面板
+> Lighthouse 是一个开源的自动化工具，用于改进网络应用的质量。 您可以将其作为一个 Chrome 扩展程序运行，或从命令行运行。 您为 Lighthouse 提供一个您要审查的网址，它将针对此页面运行一连串的测试，然后生成一个有关页面性能的报告
+> 
+> 会对页面的加载进行分析，然后给出提高页面性能的建议
+
+懒人专用👍
+
+![imagee4183.png](https://img.lihx.top/images/2020/07/09/imagee4183.png)
+
+有5个指标:
+- `Performance` 性能
+- `accessibility` 无障碍使用
+- `Best Practice` 用户体验
+- `SEO` SEO优化
+- `Progressive Web App` 页对于PWA的兼容性
 
 ## Memory 面板
 > Memory 面板主要显示页面 JS 对象和相关联的 DOM 节点的内存分布情况
 
+开始录制前先点击下垃圾回收 -> 点击开始录制。如果JS堆内存动态分配时间线，结束之前要再点击下垃圾回收，再结束录制
+
+![image258e7.png](https://img.lihx.top/images/2020/07/09/image258e7.png)
 
 ## Application 面板
 > 记录网页加载的所有资源，包括存储信息、缓存信息以及页面用到的图片、字体、脚本、样式等信息
@@ -838,43 +1014,36 @@ JS：黄色
 ![imagee8ea4.png](https://img.lihx.top/images/2020/07/08/imagee8ea4.png)
 
 
-## Audits 面板
-> 审计面板会对页面的加载进行分析，然后给出提高页面性能的建议，官网建议查看 [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) 来获得更多的页面加载建议
-
-
 ## Command 终极大招
 在控制台打开的状态下， 组合按键 `Ctrl + Shift + P` 打开“命令”菜单，接下来就可以为所欲为了~
 
 ### 截图
 当你只想对一个特别的 `DOM` 节点进行截图时，你可能需要使用其他工具弄半天，但现在你直接选中那个节点，打开 命令（`Command`） 菜单并且使用 `节点截图` 就可以了
 截取特定节点对应上图命令是`Screenshot Capture node screenshot`
-不只是这样，你同样可以用这种方式 实现`全屏截图` ：通过 `Screenshot Capture full size screenshot` 命令
+不只是这样，你同样可以用这种方式 实现`全屏截图`：通过 `Screenshot Capture full size screenshot` 命令
 
 ### CSS/JS 覆盖率
-- 打开调试面板，用快捷键 `shift+command+P （mac）`输入 `Show Coverage`调出相应面板![](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-- 点击`reload` 按钮开始检测![](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-- 点击相应文件即可查看具体的覆盖情况（绿色的为用到的代码，红色表示没有用到的代码）![](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-
+- 打开调试面板，用快捷键 `shift+command+P （mac）`输入 `Show Coverage` 调出相应面板
+- 点击`reload` 按钮开始检测 ![image756cf.png](https://img.lihx.top/images/2020/07/09/image756cf.png)
+- 点击相应文件即可查看具体的覆盖情况（绿色的为用到的代码，红色表示没有用到的代码）![image3b27b.png](https://img.lihx.top/images/2020/07/09/image3b27b.png)
 
 ### 媒体查询
-媒体查询是自适应网页设计的基本部分。在Chrome Devtools中的设备模式下，在三圆点菜单中点击 Show Media queries即可启用：
-点击媒体查询条形，调整视口大小和预览适合目标屏幕大小的样式
-右键点击某个条形，查看媒体查询在 CSS 中何处定义并跳到源代码中的定义
+媒体查询是自适应网页设计的基本部分。
+在Chrome Devtools中的设备模式下，在三圆点菜单点击, `Show Media queries` 即可启用：
+> 右键点击某个条形，查看媒体查询在 CSS 中何处定义并跳到源代码中的定义
 
-
+![20200709_171307.gif](https://img.lihx.top/images/2020/07/09/20200709_171307.gif)
 
 
 ## 参考
 - [Chrome Network ，Size 和 Time 为什么有两行参数](https://juejin.im/post/5c78aa2ae51d4575e963dc62)
-- [chrome 开发者工具](http://shouce.jb51.net/chrome/jian-cha-he-diao-shi-javascript/bian-li-dai-ma.html)
+- [Chrome 开发者工具](http://shouce.jb51.net/chrome/jian-cha-he-diao-shi-javascript/bian-li-dai-ma.html)
 - [Google chrome-devtools](https://developers.google.com/web/tools/chrome-devtools/javascript/?hl=zh-cn)
-- https://juejin.im/post/5c009115f265da612859d8e2
-- https://zhuanlan.zhihu.com/p/29879682
-- https://www.cnblogs.com/ranyonsue/p/9342839.html
-- https://developer.mozilla.org/zh-CN/docs/Web/API/Performance
-- https://juejin.im/post/5dd4a0de5188254f98605ff9
-
-
-
-https://justcode.ikeepstudying.com/2018/09/chrome%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9%E7%9A%84%E5%90%84%E7%A7%8D%E5%A7%BF%E5%8A%BF-js%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E5%BF%83%E5%BE%97-chrome-devtools-%E4%B8%AD%E8%B0%83%E8%AF%95-javascrip/
-
+- [Chrome devtools使用详解——Performance](https://juejin.im/post/5c009115f265da612859d8e2)
+- [全新Chrome Devtool Performance使用指南](https://zhuanlan.zhihu.com/p/29879682)
+- [Chrome-performance页面性能分析使用教程](https://www.cnblogs.com/ranyonsue/p/9342839.html)
+- [MDN Performance](https://developer.mozilla.org/zh-CN/docs/Web/API/Performance)
+- [网页性能检测-performance](https://juejin.im/post/5dd4a0de5188254f98605ff9)
+- [浏览器渲染详细过程](https://juejin.im/entry/590801780ce46300617c89b8)
+- [chrome设置断点的各种姿势](https://justcode.ikeepstudying.com/2018/09/chrome%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9%E7%9A%84%E5%90%84%E7%A7%8D%E5%A7%BF%E5%8A%BF-js%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E5%BF%83%E5%BE%97-chrome-devtools-%E4%B8%AD%E8%B0%83%E8%AF%95-javascrip/)
+- [Network Summary](https://blog.csdn.net/qq_37815596/article/details/89456190)
