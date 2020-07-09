@@ -224,9 +224,10 @@ copy(temp1)
 
 #### 调整某个元素的数值
 选中想要更改的值，按方向键上下就可以 `+ / -` 1个单位的值
-> `alt + 方向键` 可以 ×10 调整单位值
-> `Ctrl + 方向键` 可以 ×100 调整单位值
-> `shift + 方向键` 可以 /10 调整单位
+
+> `alt + 方向键` 可以 ×10 调整单位值  
+> `Ctrl + 方向键` 可以 ×100 调整单位值  
+> `shift + 方向键` 可以 /10 调整单位  
 
 ### html 调试
 
@@ -260,9 +261,7 @@ copy(temp1)
 
 
 ## Network 面板
-在 Network 面板中可以查看通过网络来请求来的资源的详细信息以及请求这些资源的耗时
-
-> 个人觉得理解 `Chrome Network` 的参数有助于我们对接口的性能有一个比较直观的感觉
+> 在 Network 面板中可以查看通过网络来请求来的资源的详细信息以及请求这些资源的耗时
 
 按区域划分大概分为如下几个区域：  
 ![image.png](https://img.lihx.top/images/2020/07/02/image.png)
@@ -501,18 +500,10 @@ Time有两行：
 
 
 ### (5) Summary 区域
+
+![imagef7b67.png](https://img.lihx.top/images/2020/07/09/imagef7b67.png)
+
 `requests` 查看请求的总数量 | `transferred` 查看请求的总大小 | `resources` 资源 | `Finish` 页面运行时间 | DOMContentLoaded时间 | load时间  
-
-> DOMContentLoaded 会比 Load 时间小，两者时间差大致等于外部资源加载的时间
-
-> Finish 时间是页面上所有 http 请求发送到响应完成的时间，HTTP1.0/1.1 协议限定，单个域名的请求并发量是 6 个，即Finish是所有请求（不只是XHR请求，还包括DOC，img，js，css等资源的请求）在并发量为6的限制下完成的时间。
-> - Finish 的时间比 Load 大，意味着页面有相当部分的请求量，
-> - Finish 的时间比 Load 小，意味着页面请求量很少，如果页面是只有一个 html文档请求的静态页面，Finish时间基本就等于HTML文档请求的时间
-> 
-> 所以Finish 时间与DOMContentLoaded 和 Load 并无直接关系
-
-
-![image.png](https://img.lihx.top/images/2020/07/04/image.png)
 
 当页面的初始的标记被解析完时，会触发 `DOMContentLoaded`。 它在Network(网络)面板上的显示：
 - 在 Overview (概览)窗格中的蓝色垂直线表示这个事件。
@@ -525,6 +516,14 @@ Time有两行：
 - 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
 - 在 Summary (概要)中，可以查看改事件的确切时间
 ![imagee4d7e.png](https://img.lihx.top/images/2020/07/05/imagee4d7e.png)
+
+> DOMContentLoaded 会比 Load 时间小，两者时间差大致等于外部资源加载的时间
+>
+> Finish 时间是页面上所有 http 请求发送到响应完成的时间，HTTP1.0/1.1 协议限定，单个域名的请求并发量是 6 个，即Finish是所有请求（不只是XHR请求，还包括DOC，img，js，css等资源的请求）在并发量为6的限制下完成的时间。
+> - Finish 的时间比 Load 大，意味着页面有相当部分的请求量，
+> - Finish 的时间比 Load 小，意味着页面请求量很少，如果页面是只有一个 html文档请求的静态页面，Finish时间基本就等于HTML文档请求的时间
+> 
+> 所以Finish 时间与DOMContentLoaded 和 Load 并无直接关系
 
 ## Sources 面板
 > 此章节请打开 [/devtools/debug-js/get-started.html](https://justwe7.github.io/devtools/debug-js/get-started.html) 一起食用
@@ -548,11 +547,11 @@ Time有两行：
 
 
 #### 指定位置的中断
-[官方文档介绍的很清楚](https://developers.google.com/web/tools/chrome-devtools/javascript/?hl=zh-cn)
+[断点调试基本流程](https://developers.google.com/web/tools/chrome-devtools/javascript/?hl=zh-cn)
 
 找到源代码，点击要中断代码执行的位置，点击红色按钮的位置。然后再触发该方法执行，因为已知点击按钮可以触发，精准的定位到代码行就可以了:
 
-![image.png](https://img.lihx.top/images/2020/07/06/image.png)
+![20200709_225251.gif](https://img.lihx.top/images/2020/07/09/20200709_225251.gif)
 
 
 #### 全局事件中断
