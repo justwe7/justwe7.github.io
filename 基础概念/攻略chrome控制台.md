@@ -564,9 +564,7 @@ Time有两行：
 
 ![imagecc38e.png](https://img.lihx.top/images/2020/07/06/imagecc38e.png)
 
-看代码写的判断条件有点问题，单webpack 编译后的代码包含很多模块，无从找起
-
-大概知道问题原因是什么，可以试试自己的猜想对不对：
+看代码写的判断条件有点问题，可以试试自己的设想的解决方式是否正确，但从编译后的代码找到对应位置就相当于大海捞针了
 
 1. 因为列表是提拉加载，所以肯定会触发网络请求，可以在事件侦听器里面打一个 `XHR` 的断点
 2. 然后提拉加载页面触发接口请求，如预期的，代码中断执行了。但是说找不到sourcemap，暂时把js的资源映射给关掉：
@@ -967,7 +965,7 @@ console.log(performance.memory)
 ```js
 performance
   .getEntriesByType('resource')
-  .filter(item => item.name.includes("logo-1024px.png"))
+  .filter(item => item.name.includes('logo-1024px.png'))
 ```
 
 ## Lighthouse(Audits) 面板
