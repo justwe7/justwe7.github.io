@@ -1,5 +1,4 @@
 ## Console 面板
-
 > 此章节请打开 [devtools/console/console.html](https://justwe7.github.io/devtools/console/console.html) 一起食用
 >
 > 一方面用来记录页面在执行过程中的信息（一般通过各种 console 语句来实现），另一方面用来当做 shell 窗口来执行脚本以及与页面文档、DevTools等进行交互
@@ -121,7 +120,7 @@ console.dir(obj)
 ### console.assert
 断言，用来进行条件判断。当表达式为false时，则显示错误信息，不会中断程序执行。
 
-> 可以用于提示用户，内部状态不正确
+> 可以用于提示用户，内部状态不正确（把那个说假话的揪出来）
 ```js
 var val = 1
 console.assert(val === 1, '等于1')
@@ -147,7 +146,6 @@ console.groupEnd()
 ![image4d2c2.png](https://img.lihx.top/images/2020/06/28/image4d2c2.png)
 
 ### $ 选择器
-
 #### $_
 可以记录上次计算的结果，直接用于代码执行:
 
@@ -566,7 +564,7 @@ Time有两行：
 
 看代码写的判断条件有点问题，但从编译后的代码找到对应位置进行调试就相当于大海捞针了。想试试自己的设想的解决方式是否正确：   
 1. 因为列表是提拉加载，所以肯定会触发网络请求，可以在事件侦听器里面打一个 `XHR` 的断点
-2. 然后提拉加载页面触发接口请求，如预期的，代码中断执行了。但是说找不到sourcemap，暂时把js的资源映射给关掉：
+2. 然后提拉加载页面触发接口请求，如预期的，代码中断执行了。但是说找不到sourcemap，暂时把js的资源映射给关掉[(相关解决方式)](https://stackoverflow.com/questions/61767538/devtools-failed-to-load-sourcemap-for-webpack-node-modules-js-map-http-e)：
   ![imageaadd2.png](https://img.lihx.top/images/2020/07/06/imageaadd2.png)
   ![imaged604f.png](https://img.lihx.top/images/2020/07/06/imaged604f.png)
 3. 再次触发断点，发现可以查看到中断的代码了，因为肯定是页面中的业务代码将请求推入到执行堆栈的，所以可以在堆栈中找到对应的方法名：`getVideoList`
@@ -961,11 +959,17 @@ console.log(performance.memory)
 [打开页面](https://justwe7.github.io/devtools/network/queue.html)
 
 > 这段代码可以在DevTools控制台中运行。它将使用`Resource Timing API`(资源时序API)来检索所有资源。然后它过滤条目，查找包含`logo-1024px.png`名称的条目。如果找到，会返回相关信息。
+
 ```js
 performance
   .getEntriesByType('resource')
   .filter(item => item.name.includes('logo-1024px.png'))
 ```
+
+注意:  
+返回资源的 `connectEnd` 等相关字段不是 `Unix` 时间戳，而是 `DOMHighResTimeStamp`。 [MDN PerformanceResourceTiming](https://developer.mozilla.org/zh-CN/docs/Web/API/PerformanceResourceTiming)
+
+> `DOMHighResTimeStamp` 是一个double类型，用于存储时间值。该值可以是离散的时间点或两个离散时间点之间的时间差。T单位为毫秒 ms (milliseconds) ，应准确至5微秒 µs (microseconds)。但是，如果浏览器无法提供准确到5微秒的时间值(例如,由于硬件或软件的限制), 浏览器可以以毫秒为单位的精确到毫秒的时间表示该值
 
 ## Lighthouse(Audits) 面板
 > Lighthouse 是一个开源的自动化工具，用于改进网络应用的质量。 您可以将其作为一个 Chrome 扩展程序运行，或从命令行运行。 您为 Lighthouse 提供一个您要审查的网址，它将针对此页面运行一连串的测试，然后生成一个有关页面性能的报告
@@ -998,7 +1002,7 @@ performance
 - Frames 将页面上的资源按frame类别进行组织显示。
 - Service Worker 是一种Web离线应用解决方案，可以使你的应用先访问本地缓存资源，所以在离线状态时，在没有通过网络接收到更多的数据前，仍可以提供基本的功能
 
-> [了解浏览器存储](https://segmentfault.com/a/1190000018748168)
+> [了解浏览器存储](https://segmentfault.com/a/1190000018748168)  
 > [Service Worker](https://www.cnblogs.com/dojo-lzz/p/8047336.html)
 
 ## Security 面板
