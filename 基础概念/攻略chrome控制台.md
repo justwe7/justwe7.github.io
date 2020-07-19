@@ -6,10 +6,13 @@
 首先看一下console对象下面都有哪些方法:  
 ![image.png](https://img.lihx.top/images/2020/06/28/image.png)
 
-### console.clear
+`Control` + `Shift` + `J`
+`Command` + `Option` + `J`
+
+### console.clear()
 顾名思义，清空控制台
 
-### console.log, info, warn, error
+### console.log(), info(), warn(), error()
 日常用的比较多的就是这几个了，其中 `log` 和 `info`，印象中在2016年之前老用info打印，还是有区别的，`info` 输出的内容前面是有一个蓝色背景的小圈, 大概跟这个差不多: i，后来chrome更新就没了(IE还是可以看出差别的)
 
 ```js
@@ -28,15 +31,15 @@ console.warn('警示信息')
 console.log(1, '2', +'3')
 // 占位符
 // %s 
-console.log('今晚%s产品', '打', '？？？')
+console.log('今晚%s老虎', '打', '？？？')
 // %c 
 console.log('今晚%s%c老虎', '打', 'color: red', '？？？')
-// 示例图没变红是因为我控制台装的样式插件好像有点bug
 ```
+带有占位符的参数之后的若干参数属于占位符的配置参数
 
-![image4d911.png](https://img.lihx.top/images/2020/06/28/image4d911.png)
+![image.png](https://img.lihx.top/images/2020/07/19/image.png)
 
-带有占位符的参数之后的若干参数属于占位符的配置参数。剩下的也可以自己试试，支持的占位符列表：
+其余的占位符列表还有：
 
 | 占位符 | 功能          |
 | ------ | ------------- |
@@ -47,7 +50,7 @@ console.log('今晚%s%c老虎', '打', 'color: red', '？？？')
 | %o     | 对象的链接    |
 | %c     | css格式字符串 |
 
-### console.time, timeEnd
+### console.time(), timeEnd()
 `time` 和 `timeEnd` 一般放在一起用，传入一个参数用来标识起始位置用于统计时间:
 
 ```js
@@ -58,7 +61,7 @@ console.timeEnd('t')
 ```
 会打印出中间代码的执行时间
 
-### console.count
+### console.count()
 顾名思义。。计数,可以用来统计某个函数的执行次数，也可以传入一个参数，并且根据传入的参数分组统计调用的次数
 ```js
 function foo(type = '') {
@@ -74,7 +77,7 @@ foo()    //default: 3
 foo('A') //A: 2
 ```
 
-### console.trace
+### console.trace()
 用于追踪代码的调用栈，不用专门断点去看了
 ```js
 console.trace()
@@ -86,7 +89,7 @@ foo()
 
 ![imagebabdf.png](https://img.lihx.top/images/2020/06/28/imagebabdf.png)
 
-### console.table
+### console.table()
 console.table()方法可以将复合类型的数据转为表格显示
 ```js
 var arr = [
@@ -98,7 +101,7 @@ console.table(arr)
 ```
 ![imageab741.png](https://img.lihx.top/images/2020/06/28/imageab741.png)
 
-### console.dir
+### console.dir()
 按便于阅读和打印的形式将对象打印  
 ```js
 var obj = {
@@ -117,7 +120,7 @@ console.dir(obj)
 ![imagef2bad.png](https://img.lihx.top/images/2020/06/28/imagef2bad.png)
 
 
-### console.assert
+### console.assert()
 断言，用来进行条件判断。当表达式为false时，则显示错误信息，不会中断程序执行。
 
 > 可以用于提示用户，内部状态不正确（把那个说假话的揪出来）
@@ -129,7 +132,7 @@ console.log('代码往下执行呢啊')
 ```
 ![image68db1.png](https://img.lihx.top/images/2020/06/28/image68db1.png)
 
-### console.group, groupEnd
+### console.group(), groupEnd()
 分组输出信息，可以用鼠标折叠/展开 
 ```js
 console.group('分组1')
@@ -181,7 +184,7 @@ $x('//li[p]') // 所有的li下的p
 
 ![image538c8.png](https://img.lihx.top/images/2020/06/28/image538c8.png)
 
-#### keys, values
+#### keys(), values()
 跟ES6对象扩展方法， `Object.keys()` 和 `Object.values()` 相同
 
 ```js
@@ -194,13 +197,16 @@ values(obj);
 ```js
 copy(temp1)
 ```
-
+与 `Save global variable` 结合使用神器
 
 ## Element 面板
 
 > 此章节请打开 [devtools/element/element.html](https://justwe7.github.io/devtools/element/element.html) 一起食用
 >
 > 在 Elements 面板中可以通过 DOM 树的形式查看所有页面元素，同时也能对这些页面元素进行所见即所得的编辑
+
+`Control` + `Shift` + `C`
+`Command` + `Option` + `C`
 
 ### css 调试
 #### style
@@ -251,6 +257,8 @@ copy(temp1)
 
 ![20200628_194515.gif](https://img.lihx.top/images/2020/06/28/20200628_194515.gif)
 
+目前chrome还是没有这项功能的，Edge打开位置：控制台打开状态 => `Esc`打开抽屉 => `···`选择3D视图面板
+
 ### DOM 断点
 
 可以监听到 DOM 节点的变更(子节点变动/属性变更/元素移除)，并断点至变更 DOM 状态的 js 代码行： 
@@ -259,58 +267,179 @@ copy(temp1)
 
 
 ## Network 面板
-> 在 Network 面板中可以查看通过网络来请求来的资源的详细信息以及请求这些资源的耗时
+> 可以查看通过网络请求的资源的相关详细信息
+
+`Control` + `Shift` + `I`
+`Command` + `Option` + `I`
 
 按区域划分大概分为如下几个区域：  
-![image.png](https://img.lihx.top/images/2020/07/02/image.png)
+![QQ20200719120526.png](https://img.lihx.top/images/2020/07/19/QQ20200719120526.png)
 
-1. `Controls`。使用这些选项可以控制 Network 面板的外观和功能。
-2. `Filters`。 使用这些选项可以控制在 Requests Table 中显示哪些资源。提示：按住 Cmd (Mac) 或 Ctrl (Windows/Linux) 并点击过滤器可以同时选择多个过滤器。
-3. `Overview`。 此图表显示了资源检索时间的时间线。如果您看到多条竖线堆叠在一起，则说明这些资源被同时检索x。
-4. `Requests Table`。 此表格列出了检索的每一个资源。 默认情况下，此表格按时间顺序排序，最早的资源在顶部。点击资源的名称可以显示更多信息。 提示：右键点击 Timeline 以外的任何一个表格标题可以添加或移除信息列。
-5. `Summary` 此窗格可以一目了然地告诉您请求总数、传输的数据量和加载时间
+1. `Controls` - 控制 Network 功能选项，以及一些展示外观
+2. `Filters` - 控制在 Requests Table 中显示哪些类型的资源
+   > tips：按住 Cmd (Mac) 或 Ctrl (Windows/Linux) 并点击筛选项可以同时选择多个筛选项
+3. `Overview` - 此图表显示了资源检索时间的时间线。如果您看到多条竖线堆叠在一起，则说明这些资源被同时检索。
+4. `Requests Table` - 此表格列出了检索的每一个资源。 默认情况下，此表格按时间顺序排序，最早的资源在顶部。点击资源的名称可以显示更多信息。 提示：右键点击 Timeline 以外的任何一个表格标题可以添加或移除信息列。
+5. `Summary` - 可以一目了然地看到页面的请求总数、传输的数据总量、加载时间
 
 
 ### （1、2）Controls，Filters区域
 ![imagee28b2.png](https://img.lihx.top/images/2020/07/04/imagee28b2.png)
 
+Filters 控制的展示：
+- **使用大请求行** - 默认情况下，`Requests Table`一个资源只显示很小的一行。选中`Use large resource rows`(使用大资源行)按钮可以显示两个文本字段：主要字段和次要字段。
+- **捕获屏幕截图** - 将鼠标悬停在某个屏幕截图上的时候，Timeline(时间轴)会显示一条垂直的黄线，指示该帧是何时被捕获的
+- **显示概述** - 展示页面整个生命周期的各个阶段（Overview区域）的耗时（蓝色绿色的那些横杠）
 
 ### （3） Overview区域
-**使用大请求行**
-默认情况下，`Requests Table`一个资源只显示很小的一行。选中`Use large resource rows`(使用大资源行)按钮可以显示两个文本字段：主要字段和次要字段。列的标题栏指示辅助字段的含义。
+页面整个生命周期的各个阶段网络资源加载耗时信息的汇总，可以选择区域来筛选 `Requests Table` 的详细资源信息
 
-**捕获屏幕截图**
-将鼠标悬停在某个屏幕截图上的时候，Timeline(时间轴)会显示一条垂直的黄线，指示该帧是何时被捕获的
+### (4) Requests Table区域
 
-**显示概述**
-展示页面整个生命周期的各个阶段的耗时（蓝色绿色黄色的那些小点）
+标题栏的对应描述：
 
-![image2e1ab.png](https://img.lihx.top/images/2020/07/05/image2e1ab.png)
+- `Name`**(名称)**: 资源的名称。
+- `Status`**(状态)**: HTTP状态代码。
+- `Type`**(类型)**: 请求的资源的MIME类型。
+- `Initiator`**(发起)**: 发起请求的对象或进程。它可能有以下几种值：
+  - `Parser`**(解析器)**: Chrome的HTML解析器发起了请求。
+  - `Redirect`**(重定向)**: HTTP重定向启动了请求。
+  - `Script`**(脚本)**: 脚本启动了请求。
+  - `Other`**(其他)**: 一些其他进程或动作发起请求，例如用户点击链接跳转到页面，或在地址栏中输入网址。
+- `Size`**(大小)**: 响应头的大小（通常是几百字节）加上响应数据，由服务器提供。
+- `Time`**(时间)**: 总持续时间，从请求的开始到接收响应中的最后一个字节。
+- `Timeline/Waterfall`**(时间轴)**: `Timeline`列显示所有网络请求的视觉瀑布
+
+> 在标题栏如(Name上)右键，可以添加或删除信息列，比如多加一个 Response Header 的 Content-Encoding 选项来总览页面资源的gzip压缩情况:
+
+![image11f8b.png](https://img.lihx.top/images/2020/07/05/image11f8b.png)
+
+#### 重新发起`xhr`请求
+在平时和后端联调时，我们用的最多的可能就是`Network`面板了。但是每次想重新查看一个请求，我们往往都是通过刷新页面、点击按钮等方式去触发`xhr`请求，这种方式有时显得会比较麻烦，我们可以通过`Replay XHR`的方式去发起一条新的请求，这样对于我们开发效率的提升是有所帮助的：
+![](https://img.lihx.top/images/2020/07/05/640wx_fmtgif.gif)
+
+
+#### 查看HTTP相关信息
+**查看网络请求的参数**
+
+可以通过点击 `query string parameters` (查询字符串参数)旁边的 `view URL encoded` (查看URL编码)或 `view decoded` (查看解码)链接，查看URL编码或解码格式的 `query string parameters` (查询字符串参数)。在使用postman复制相关入参时尤其实用。
+
+![image85eb1.png](https://img.lihx.top/images/2020/07/05/image85eb1.png)
+
+
+**查看HTTP响应内容**
+点击Response(响应)标签页可以查看该资源未格式化的HTTP响应内容
+
+> 接口的返回值(在preview中）同样也可以 `Save global variable` 存储一个全局变量  
+![20200705_111751.gif](https://img.lihx.top/images/2020/07/05/20200705_111751.gif)
+
+
+#### Size 和 Time 为什么有两行参数？
+![image08194.png](https://img.lihx.top/images/2020/07/05/image08194.png)
+
+##### 关于Size列
+`Size`有两行：
+
+- 第一行表示的是数据的**传输时**的大小，例如上图中的`190KB`
+- 第二行表示的是数据**实际**的大小`708KB`
+
+> 在服务器端采取`gzip`压缩算法将原有`708KB`压缩至`190KB`,传输大小缩短`3.7倍`，大大的提高了资源传输的效率
+
+**需要注意的点：**
+
+`gzip`压缩只会压缩`响应体`内容，所以适用于返回数据量大的时候，如果数据量太小的话，有可能会导致数据**传输时**的大小比**实际**大小要大(*例如加入一些额外的响应头*)
+
+##### 关于Time列
+Time有两行：
+
+- 第一行表示从客户端发送请求到服务端返回所有数据所花费的总时间，对于上图来说就是`471ms`
+- 第二行表示的是从客户端发送请求到服务器端返回第一个字节所表示的时间，对于上图来说就是`55ms`
+
+> 第一行的时间代表了所有项目：例如`解析dns`，`建立连接`，`等待服务器返回数据`，`传输数据`等
+> 
+> 第二行的时间是 `总时间 - 数据传输`的时间
+
+
+从上面的分析中我们看到 从**客户端请求到服务器处理结束准备返回数据**花了`55ms`，但是在进行**传输数据**的时候花费了`471ms`
+
+对于网慢的用户来说，可能会耗费更长的时间，所以在写代码（接口）的时候，返回的数据量要尽量精简
+
+
+#### Waterfall
+点击某个资源会展示出详细的网络加载信息：
+<!-- ![image2e1ab.png](https://img.lihx.top/images/2020/07/05/image2e1ab.png) -->
+
+![image143a7.png](https://img.lihx.top/images/2020/07/19/image143a7.png)
+
+相关字段描述:
 
 - `Queuing` (排队)
-- `Stalled` (停滞)
-- 如果适用:
-  - `DNS lookup` (DNS查找)
-  - `initial connection` (初始连接)
-  - `SSL handshake` (SSL握手)
-- `Request sent` (请求发送)
-- `Waiting` (等待)（到开始下载第一个字节的时间（TTFB））
-- `Content Download`(内容下载)
+  > 浏览器在以下情况下对请求排队
+  > 1. 存在更高优先级的请求,请求被渲染引擎推迟，这经常发生在 images（图像）上,因为它被认为比关键资源（如脚本/样式）的优先级低。
+  > 2. 此源已打开六个 TCP 连接，达到限值，仅适用于 HTTP/1.0 和 HTTP/1.1。在等待一个即将被释放的不可用的TCP socket
+  > 3. 浏览器正在短暂分配磁盘缓存中的空间，生成磁盘缓存条目（通常非常快）
+- `Stalled` (停滞) - 发送请求之前等待的时间。它可能因为进入队列的任意原因而被阻塞，这个时间包括代理协商的时间。请求可能会因 Queueing 中描述的任何原因而停止。
+- `DNS lookup` (DNS查找) - 浏览器正在解析请求IP地址，页面上的每个新域都需要完整的往返(roundtrip)才能进行DNS查找
+- `Proxy Negotiation` - 浏览器正在与代理服务器协商请求
+- `initial connection` (初始连接) - 建立连接所需的时间，包括TCP握手/重试和协商SSL。
+- `SSL handshake` (SSL握手) - 完成SSL握手所用的时间
+- `Request sent` (请求发送) - 发出网络请求所花费的时间，通常是几分之一毫秒。
+- `Waiting` (等待) - 等待初始响应所花费的时间，也称为`Time To First Byte`(接收到第一个字节所花费的时间)。这个时间除了等待服务器传递响应所花费的时间之外，还包括1次往返延迟时间及服务器准备响应所用的时间（服务器发送数据的延迟时间）
+- `Content Download`(内容下载) - 接收响应数据所花费的时间(从接收到第一个字节开始，到下载完最后一个字节结束)
+- `ServiceWorker Preparation` - 浏览器正在启动Service Worker
+- `Request to ServiceWorker` - 正在将请求发送到Service Worker
+- `Receiving Push` - 浏览器正在通过 HTTP/2 服务器推送接收此响应的数据
+- `Reading Push` - 浏览器正在读取之前收到的本地数据
 
-![image7dd79.png](https://img.lihx.top/images/2020/07/05/image7dd79.png)
+<!-- ![image7dd79.png](https://img.lihx.top/images/2020/07/05/image7dd79.png) -->
 
-#### 使用Network面板进行网络优化
+
+### (5) Summary 区域
+
+![imagef7b67.png](https://img.lihx.top/images/2020/07/09/imagef7b67.png)
+
+`requests` 查看请求的总数量 | `transferred` 查看请求的总大小 | `resources` 资源 | `Finish` 所有http请求响应完成的时间 | DOMContentLoaded时间 | load时间  
+
+当页面的初始的标记被解析完时，会触发 `DOMContentLoaded`。 它在Network(网络)面板上的显示：
+- 在 Overview (概览)窗格中的蓝色垂直线表示这个事件。
+- 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
+- 在 Summary (概要)窗格中，您可以查看事件的确切时间。
+![image4af35.png](https://img.lihx.top/images/2020/07/05/image4af35.png)
+
+当页面完全加载时触发 `load` 事件。 它显示也显示在：
+- 在 Overview (概览)窗格的红色垂直线表示这个事件。
+- 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
+- 在 Summary (概要)中，可以查看改事件的确切时间
+![imagee4d7e.png](https://img.lihx.top/images/2020/07/05/imagee4d7e.png)
+
+> DOMContentLoaded 会比 Load 时间小，两者时间差大致等于外部资源加载（一般是图片/字体）的时间
+>
+> Finish 时间是页面上所有 http 请求发送到响应完成的时间（如果页面存在一个轮询的接口，这个值也会累加的）。HTTP1.0/1.1 协议限定单个域名的请求并发量是 6 个，即Finish是所有请求（不只是XHR请求，还包括DOC，img，js，css等资源的请求）在并发量为6的限制下完成的时间。
+> - Finish 的时间比 Load 大，意味着页面有相当部分的请求量
+> - Finish 的时间比 Load 小，意味着页面请求量很少，如果页面是只有一个 html文档请求的静态页面，Finish时间基本就等于HTML文档请求的时间
+> 
+> 所以Finish 时间与DOMContentLoaded 和 Load 并无直接关系
+
+
+### 使用Network面板进行网络优化
 > 了解以上的信息可以针对Network进行一些优化
 
-##### 了解资源加载时序 
-了解网络下载资源的阶段至关重要。这是修复加载问题的基础。
+`Network` (网络)面板中查看完整时序信息：
+- 将鼠标悬停在时间轴列下的时间图表上会显示一个弹出窗口，显示完整的时序数据
+- 点击任何 `Requests Table` (请求列表)中的资源，并打开该资源的 `Timing` (时序)标签页
+- 使用 `Resource Timing API` (资源时序API)从JavaScript中检索原始数据
 
-- 了解资源时序的阶段。
-- 知道每个阶段提供给`Resource Timing`(资源时序)API。
-- 在时间轴图表中识别性能问题的不同指示。如连续的透明条或大块绿色。
+
+#### 了解资源加载时序 
+了解网络下载资源的阶段至关重要。这是修复加载问题的基础
+
+![资源时序API图](https://img.lihx.top/images/2020/07/05/image.png)
+
+- 了解资源时序的阶段
+- 知道每个阶段提供给`Resource Timing`(资源时序)API
+- 在时间轴图表中识别性能问题的不同指示。如连续的透明条或大块绿色
 
 所有网络请求都被视为资源。当它们通过网络检索时，分为不同的生命周期。`Network`(网络)面板使用的[Resource Timing API](http://www.w3.org/TR/resource-timing)和提供给开发者的API是一样的。
-
 
 > 当使用跨源资源的`Resource Timing API`时， 请确保所有资源都有CORS头信息。
 
@@ -334,64 +463,6 @@ Resource Timing API提供了关于每个单独资源接收时间的详细信息�
   - `responseStart` 记录最开始的响应时间。
   - `responseEnd` 记录响应结束时间。
 
-![资源时序API图](https://img.lihx.top/images/2020/07/05/image.png)
-
-
-###### 在DevTools中查看
-
-`Network` (网络)面板中查看完整时序信息，您有三个选择：
-- 将鼠标悬停在时间轴列下的时间图表上。这将显示一个弹出窗口，显示完整的时序数据。
-- 点击任何 `Requests Table` (请求列表)中的条目，并打开该条目的 `Timing` (时序)标签页。
-- 使用 `Resource Timing API` (资源时序API)从JavaScript中检索原始数据:
-
-###### 各个阶段
-**Queuing(排队)**
-
-如果一个请求排队，则表明：  
-- 请求被渲染引擎推迟，因为它被认为比关键资源（如脚本/样式）的优先级低。这经常发生在 images（图像） 上。
-- 这个请求被搁置，在等待一个即将被释放的不可用的TCP socket。
-- 这个请求被搁置，因为浏览器限制。在HTTP 1协议中，每个源上只能有
-[6个TCP连接](https://crbug.com/12066)
-- 正在生成磁盘缓存条目（通常非常快）
-
-
-**Stalled/Blocking (停止/阻塞)**
-
-发送请求之前等待的时间。它可能因为进入队列的任意原因而被阻塞。这个时间包括代理协商的时间。
-
-**Proxy Negotiation (代理协商)**
-
-与代理服务器连接协商花费的时间。
-
-
-**DNS Lookup (DNS查找)**
-
-执行DNS查找所用的时间。 页面上的每个新域都需要完整的往返(roundtrip)才能进行DNS查找。
-
-
-**Initial Connection / Connecting (初始连接/连接)**
-
-建立连接所需的时间， 包括TCP握手/重试和协商SSL。
-
-
-**SSL**
-
-完成SSL握手所用的时间。
-
-
-**Request Sent / Sending (请求已发送/正在发送)**
-
-发出网络请求所花费的时间。 通常是几分之一毫秒。
-
-
-**Waiting (TTFB) (等待)**
-
-等待初始响应所花费的时间，也称为`Time To First Byte`(接收到第一个字节所花费的时间)。这个时间除了等待服务器传递响应所花费的时间之外，还捕获到服务器发送数据的延迟时间。
-
-
-**Content Download / Downloading (内容下载/下载)**
-
-接收响应数据所花费的时间。(从接收到第一个字节开始，到下载完最后一个字节结束)
 
 #### 诊断网络问题 
 
@@ -409,7 +480,7 @@ Resource Timing API提供了关于每个单独资源接收时间的详细信息�
 
 #### 接收到第一个字节的时间很慢 
 
-正如我们所看到的，很多绿色。
+绿色的块占据比例很高：
 
 ![高TTFB示例](https://img.lihx.top/images/2020/07/05/image23444.png)
 
@@ -424,104 +495,12 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 #### 加载缓慢 
 
-正如我们所看到的，很多蓝色：
+蓝色的块占据比例很高：
+
 ![高TTFB示例](https://img.lihx.top/images/2020/07/05/imageae084.png)
 
 如果看到 `Content Download` (内容下载)阶段花费了很多时间，提高服务响应速度、并行下载等优化措施帮助都不大。 主要的解决方案是发送更少的字节。（比如，下载一张高质量的大图，可能是几兆，这个时候你需要优化图片。）
 
-
-### (4) Requests Table区域
-- `Name`**(名称)**: 资源的名称。
-- `Status`**(状态)**: HTTP状态代码。
-- `Type`**(类型)**: 请求的资源的MIME类型。
-- `Initiator`**(发起)**: 发起请求的对象或进程。它可能有以下几种值：
-  - `Parser`**(解析器)**: Chrome的HTML解析器发起了请求。
-  - `Redirect`**(重定向)**: HTTP重定向启动了请求。
-  - `Script`**(脚本)**: 脚本启动了请求。
-  - `Other`**(其他)**: 一些其他进程或动作发起请求，例如用户点击链接跳转到页面，或在地址栏中输入网址。
-- `Size`**(大小)**: 响应头的大小（通常是几百字节）加上响应数据，由服务器提供。
-- `Time`**(时间)**: 总持续时间，从请求的开始到接收响应中的最后一个字节。
-- `Timeline`**(时间轴)**: `Timeline`列显示所有网络请求的视觉瀑布。点击此列的标题栏会显示其他排序字段的菜单。
-
-> 在标题栏如(Name上)右键，可以添加或删除信息列
-
-![image11f8b.png](https://img.lihx.top/images/2020/07/05/image11f8b.png)
-
-#### 重新发起`xhr`请求
-在平时和后端联调时，我们用的最多的可能就是`Network`面板了。但是每次想重新查看一个请求，我们往往都是通过刷新页面、点击按钮等方式去触发`xhr`请求，这种方式有时显得会比较麻烦，我们可以通过`google`提供的`Replay XHR`的方式去发起一条新的请求，这样对于我们开发效率的提升是有所帮助的：
-![](https://img.lihx.top/images/2020/07/05/640wx_fmtgif.gif)
-
-
-#### 查看HTTP相关信息
-**查看网络请求的参数**
-
-可以通过点击query string parameters(查询字符串参数)旁边的view URL encoded(查看URL编码)或view decoded(查看解码)链接，查看URL编码或解码格式的query string parameters(查询字符串参数)
-![image85eb1.png](https://img.lihx.top/images/2020/07/05/image85eb1.png)
-
-
-**查看HTTP响应内容**
-点击Response(响应)标签页可以查看该资源未格式化的HTTP响应内容
-
-> 接口的返回值(在preview中）同样也可以 `Save global variable` 存储一个全局变量  
-![20200705_111751.gif](https://img.lihx.top/images/2020/07/05/20200705_111751.gif)
-
-
-#### Size 和 Time 为什么有两行参数？
-![image08194.png](https://img.lihx.top/images/2020/07/05/image08194.png)
-
-##### 关于Size列
-`Size`有两行：
-
-- 第一行表示的是数据的**传输时**的大小，例如上图中的`190KB`，
-- 第二行表示的是数据**实际**的大小`708KB`
-
-> 在服务器端采取`gzip`压缩算法将原有`708KB`压缩至`190KB`,传输大小缩短`3.7倍`，大大的提高了资源传输的效率
-
-**需要注意的点：**
-
-`gzip`压缩只会压缩`响应体`内容，所以适用于返回数据量大的时候，如果数据量太小的话，有可能会导致数据**传输时**的大小比**实际**大小要大(*例如加入一些额外的响应头*)
-
-##### 关于Time列
-Time有两行：
-
-- 第一行表示从客户端发送请求到服务端返回所有数据所花费的总时间，对于上图来说就是`471ms`
-- 第二行表示的是从客户端发送请求到服务器端返回第一个字节所表示的时间，对于上图来说就是`55ms`
-
-> 第一行的时间代表了所有项目：例如`解析dns`，`建立连接`，`等待服务器返回数据`，`传输数据`等
-> 
-> 第二行的时间是 `总时间 - 数据传输`的时间
-
-
-从上面的分析中我们看到 从**客户端请求到服务器处理结束准备返回数据**花了`55ms`，但是在进行**传输数据**的时候花费了`471ms`
-
-每个用户网络带宽不一样，对于网慢的用户来说，这个体验可能更差，所以在编写代码的时候，返回的数据量要尽量精简
-
-
-### (5) Summary 区域
-
-![imagef7b67.png](https://img.lihx.top/images/2020/07/09/imagef7b67.png)
-
-`requests` 查看请求的总数量 | `transferred` 查看请求的总大小 | `resources` 资源 | `Finish` 页面运行时间 | DOMContentLoaded时间 | load时间  
-
-当页面的初始的标记被解析完时，会触发 `DOMContentLoaded`。 它在Network(网络)面板上的显示：
-- 在 Overview (概览)窗格中的蓝色垂直线表示这个事件。
-- 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
-- 在 Summary (概要)窗格中，您可以查看事件的确切时间。
-![image4af35.png](https://img.lihx.top/images/2020/07/05/image4af35.png)
-
-当页面完全加载时触发 `load` 事件。 它显示也显示在：
-- 在 Overview (概览)窗格的红色垂直线表示这个事件。
-- 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
-- 在 Summary (概要)中，可以查看改事件的确切时间
-![imagee4d7e.png](https://img.lihx.top/images/2020/07/05/imagee4d7e.png)
-
-> DOMContentLoaded 会比 Load 时间小，两者时间差大致等于外部资源加载的时间
->
-> Finish 时间是页面上所有 http 请求发送到响应完成的时间，HTTP1.0/1.1 协议限定，单个域名的请求并发量是 6 个，即Finish是所有请求（不只是XHR请求，还包括DOC，img，js，css等资源的请求）在并发量为6的限制下完成的时间。
-> - Finish 的时间比 Load 大，意味着页面有相当部分的请求量，
-> - Finish 的时间比 Load 小，意味着页面请求量很少，如果页面是只有一个 html文档请求的静态页面，Finish时间基本就等于HTML文档请求的时间
-> 
-> 所以Finish 时间与DOMContentLoaded 和 Load 并无直接关系
 
 ## Sources 面板
 > 此章节请打开 [/devtools/debug-js/get-started.html](https://justwe7.github.io/devtools/debug-js/get-started.html) 一起食用
@@ -529,7 +508,7 @@ Time有两行：
 > 主要用来调试页面中的 JavaScript
 
 ### 自定义代码片段 Snippets
-在平常开发过程中，我们经常有些 `JavaScript` 的代码想在 `Chrome Devtools`中调试，直接在 `console` 下 写比较麻烦，或者我们经常有些代码片段(防抖、节流、获取地址栏参数等)想保存起来，每次打开 `Devtools` 都能获取到这些代码片段，而不用再去`google`，正好`Chrome Devtool` 就提供了这种功能。
+> 我们经常有些 `JavaScript` 的代码想在控制台中调试，假如代码量多的情况下直接在 `console` 下写比较麻烦，或者我们经常有些代码片段(防抖、节流、获取地址栏参数等)想保存起来，每次打开 `Devtools` 都能获取到这些代码片段，而不用再去从笔记里面找。
 
 如图所示，在 `Sources` 这个`tab`栏下，有个 `Snippets` 标签，在里面可以添加一些常用的代码片段。（当个小笔记本）
 
@@ -591,15 +570,15 @@ Time有两行：
 开启黑盒：  
 ![imagec7749.png](https://img.lihx.top/images/2020/07/06/imagec7749.png)
 
-- 打开方式1
-  1. 打开 DevTools `Settings` (设置)。
+- 打开方式①  
+  1. 打开 DevTools `Settings` (设置)
   2. 在左侧的导航菜单中，单击 `Blackboxing` (黑箱)
   3. 点击 `Add pattern...` (添加模式)按钮。
   4. 在 `Pattern`(模式)文本框输入您希望从调用堆栈中排除的文件名模式。DevTools 会排除该模式匹配的任何脚本。
   5. 在文本字段右侧的下拉菜单中，选择 `Blackbox` (黑箱)以执行脚本文件但是排除来自调用堆栈的调用，或选择 `Disabled` (禁用)来阻止文件执行。
-  6. 点击`Add`(添加) 保存。
+  6. 点击`Add`(添加) 保存
 
-- 打开方式2    
+- 打开方式②   
 直接在想要忽略的堆栈信息上 `blackbox script`
 
 #### DOM断点
@@ -611,23 +590,21 @@ http://mdn.github.io/simple-web-worker/
 
 ## Performance 面板
 > 此章节请使用**Chrome的隐身模式**打开 [/devtools/jank/index.html](https://justwe7.github.io/devtools/jank/index.html) 一起食用
-> 隐身模式可以保证Chrome在一个相对干净的环境下运行。比如说，你安装了许多chrome插件，这些插件可能会影响我们分析性能表现。
+> 隐身模式可以保证Chrome在一个相对干净的环境下运行。比如说，你安装了许多chrome插件，这些插件可能会影响分析性能表现。
 > 
-> 在 Performance 面板可以查看页面加载过程中的详细信息，比如在什么时间开始做什么事情，耗时多久等等。
-> 
-> 有人会问，这个跟前面的 Network 有什么区别呢，上面也能显示耗时信息。在 Performance 面板中，你不仅可以看到通过网络加载资源的信息，还能看到解析 JS、计算样式、重绘等页面加载的方方面面的信息
+> 在 Performance 面板可以查看页面加载过程中的详细信息，比如在什么时间开始做什么事情，耗时多久等等。相较于 Network 面板，不仅可以看到通过网络加载资源的信息，还能看到解析 JS、计算样式、重绘等页面加载的方方面面的信息
 
 ### 面板主要的区域划分：
 
 ![imagef4dfb.png](https://img.lihx.top/images/2020/07/07/imagef4dfb.png)
 
-1. controls。开始记录，停止记录和配置记录期间捕获的信息
-2. overview。页面性能的高级汇总
-3. Flame Chart [火焰图(线程面板)]。CPU 堆叠追踪的可视化在火焰图上看到一到三条垂直的虚线：
+1. `controls` - 开始记录，停止记录和配置记录期间捕获的信息
+2. `overview` - 页面性能的汇总
+3. `Flame Chart` - [火焰图(线程面板)]。在火焰图上看到三条（绿色的有好几条）垂直的虚线：
    - 蓝线代表 `DOMContentLoaded` 事件
    - 绿线代表首次绘制的时间
    - 红线代表 `load` 事件
-4. Details。在Flame Chart中，选择了某一事件后，这部分会展示与这个事件相关的更多信息；
+4. `Details` - 在Flame Chart中，选择了某一事件后，这部分会展示与这个事件相关的更多信息；
    > 如果选择了某一帧，这部分会展示与选中帧相关的信息。如果既没有选中事件也没有选中帧，则这部分会展示当前记录时间段内的相关信息。
 
 
@@ -642,9 +619,9 @@ http://mdn.github.io/simple-web-worker/
 > 在"开发工具"中，单击"性能"选项卡。
 > 确保启用"屏幕截图"复选框。
 > 单击"捕获设置"。 Capture SettingsDevTools 揭示了与如何捕获性能指标相关的设置。
-> 对于CPU，选择2 倍减速。DevTools 会限制您的 CPU，因此其速度比平时慢 2 倍
+> 对于CPU，选择 2 倍减速。DevTools 会限制CPU使其速度比平时慢 2 倍
 
-> 注意：在测试其他页面时，如果您想要确保它们在低端移动设备上运行良好，请将 CPU 限制设置为20 倍减速。此演示在 20 倍减速时不能很好地工作，因此它仅使用 2 倍减速作为教学目的。
+> 注意：如果想要确保它们在低端移动设备上运行良好，请将 CPU 限制设置为 20 倍减速。
 
 ### (1)controls 控制条区域
 - 上半区域
@@ -663,7 +640,7 @@ http://mdn.github.io/simple-web-worker/
 #### FPS
 绿色竖线越高，FPS 越高。 FPS 图表上的红色块(上图刚开始的部分)表示长时间帧，很可能会出现卡顿。经常打游戏肯定知道这个指标代表什么，`120FPS` 代表流畅（手动滑稽） 
 
-下面火焰图的 `FPS` 可以量化这项参数
+火焰图的 `FPS` 可以量化这项参数
 
 > FPS（frames per second）是用来分析动画的一个主要性能指标。能保持在60的FPS的话，那么用户体验就是不错的
 >
@@ -732,6 +709,8 @@ JS：黄色
 看下主线程，Devtools展示了主线程运行状况
 - X轴代表着时间。每个长条代表着一个event。长条越长就代表这个event花费的时间越长。
 - Y轴代表了调用栈（call stack）。在栈里，上面的event调用了下面的event
+
+Google官方文档的例子：
 
 ![image.png](https://img.lihx.top/images/2020/07/08/image.png)
 
@@ -872,7 +851,7 @@ performance.navigation负责纪录用户行为信息，只有两个属性:
 ```
 
 ##### performance.timing
-`timing` 内包含了几乎所有时间节点
+`timing` 内包含了几乎所有时序的时间节点
 
 ```js
 function getTiming() {
