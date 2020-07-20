@@ -3,11 +3,13 @@
 >
 > 一方面用来记录页面在执行过程中的信息（一般通过各种 console 语句来实现），另一方面用来当做 shell 窗口来执行脚本以及与页面文档、DevTools等进行交互
 
+组合快捷键按键:  
+Windows: `Control` + `Shift` + `J`  
+Mac: `Command` + `Option` + `J`
+
 首先看一下console对象下面都有哪些方法:  
 ![image.png](https://img.lihx.top/images/2020/06/28/image.png)
 
-`Control` + `Shift` + `J`
-`Command` + `Option` + `J`
 
 ### console.clear()
 顾名思义，清空控制台
@@ -34,8 +36,8 @@ console.log(1, '2', +'3')
 console.log('今晚%s老虎', '打', '？？？')
 // %c 
 console.log('今晚%s%c老虎', '打', 'color: red', '？？？')
+// 带有占位符的参数之后的若干参数属于占位符的配置参数
 ```
-带有占位符的参数之后的若干参数属于占位符的配置参数
 
 ![image.png](https://img.lihx.top/images/2020/07/19/image.png)
 
@@ -205,8 +207,9 @@ copy(temp1)
 >
 > 在 Elements 面板中可以通过 DOM 树的形式查看所有页面元素，同时也能对这些页面元素进行所见即所得的编辑
 
-`Control` + `Shift` + `C`
-`Command` + `Option` + `C`
+组合快捷键按键:  
+Windows: `Control` + `Shift` + `C`  
+Mac: `Command` + `Option` + `C`
 
 ### css 调试
 #### style
@@ -269,8 +272,9 @@ copy(temp1)
 ## Network 面板
 > 可以查看通过网络请求的资源的相关详细信息
 
-`Control` + `Shift` + `I`
-`Command` + `Option` + `I`
+组合快捷键按键:  
+Windows: `Control` + `Shift` + `I`   
+Mac: `Command` + `Option` + `I`
 
 按区域划分大概分为如下几个区域：  
 ![QQ20200719120526.png](https://img.lihx.top/images/2020/07/19/QQ20200719120526.png)
@@ -278,8 +282,8 @@ copy(temp1)
 1. `Controls` - 控制 Network 功能选项，以及一些展示外观
 2. `Filters` - 控制在 Requests Table 中显示哪些类型的资源
    > tips：按住 Cmd (Mac) 或 Ctrl (Windows/Linux) 并点击筛选项可以同时选择多个筛选项
-3. `Overview` - 此图表显示了资源检索时间的时间线。如果您看到多条竖线堆叠在一起，则说明这些资源被同时检索。
-4. `Requests Table` - 此表格列出了检索的每一个资源。 默认情况下，此表格按时间顺序排序，最早的资源在顶部。点击资源的名称可以显示更多信息。 提示：右键点击 Timeline 以外的任何一个表格标题可以添加或移除信息列。
+3. `Overview` - 此图表显示了资源检索时间的时间线。如果看到多条竖线堆叠在一起，则说明这些资源被同时检索
+4. `Requests Table` - 此表格列出了检索的每一个资源。 默认情况下，此表格按时间顺序排序，最早的资源在顶部。点击资源的名称可以显示更多信息。 提示：右键点击 Timeline 以外的任何一个表格标题可以添加或移除信息列
 5. `Summary` - 可以一目了然地看到页面的请求总数、传输的数据总量、加载时间
 
 
@@ -288,7 +292,7 @@ copy(temp1)
 
 Filters 控制的展示：
 - **使用大请求行** - 默认情况下，`Requests Table`一个资源只显示很小的一行。选中`Use large resource rows`(使用大资源行)按钮可以显示两个文本字段：主要字段和次要字段。
-- **捕获屏幕截图** - 将鼠标悬停在某个屏幕截图上的时候，Timeline(时间轴)会显示一条垂直的黄线，指示该帧是何时被捕获的
+- **捕获屏幕截图** - 将鼠标悬停在某个屏幕截图上的时候，Timeline/Waterfall(时间轴)会显示一条垂直的黄线，指示该帧是何时被捕获的
 - **显示概述** - 展示页面整个生命周期的各个阶段（Overview区域）的耗时（蓝色绿色的那些横杠）
 
 ### （3） Overview区域
@@ -307,16 +311,17 @@ Filters 控制的展示：
   - `Script`**(脚本)**: 脚本启动了请求。
   - `Other`**(其他)**: 一些其他进程或动作发起请求，例如用户点击链接跳转到页面，或在地址栏中输入网址。
 - `Size`**(大小)**: 响应头的大小（通常是几百字节）加上响应数据，由服务器提供。
-- `Time`**(时间)**: 总持续时间，从请求的开始到接收响应中的最后一个字节。
-- `Timeline/Waterfall`**(时间轴)**: `Timeline`列显示所有网络请求的视觉瀑布
+- `Time`**(时间)**: 总持续时间，从请求的开始到接收响应中的最后一个字节
+- `Timeline/Waterfall`**(时间轴)**: 显示所有网络请求的可视化统计信息
 
-> 在标题栏如(Name上)右键，可以添加或删除信息列，比如多加一个 Response Header 的 Content-Encoding 选项来总览页面资源的gzip压缩情况:
+> 在标题栏如(Name上)右键，可以添加或删除信息列。比如可以多加一列 Response Header => Content-Encoding 选项来总览页面资源的gzip压缩情况:
 
 ![image11f8b.png](https://img.lihx.top/images/2020/07/05/image11f8b.png)
 
 #### 重新发起`xhr`请求
-在平时和后端联调时，我们用的最多的可能就是`Network`面板了。但是每次想重新查看一个请求，我们往往都是通过刷新页面、点击按钮等方式去触发`xhr`请求，这种方式有时显得会比较麻烦，我们可以通过`Replay XHR`的方式去发起一条新的请求，这样对于我们开发效率的提升是有所帮助的：
-![](https://img.lihx.top/images/2020/07/05/640wx_fmtgif.gif)
+在平时和后端联调时，我们用的最多的可能就是`Network`面板了。但是每次想重新查看一个请求通过刷新页面、点击按钮等方式去触发`xhr`请求，这种方式有时显得会比较麻烦，可以通过`Replay XHR`的方式去发起一条新的请求：
+
+![20200720_143313.gif](https://img.lihx.top/images/2020/07/20/20200720_143313.gif)
 
 
 #### 查看HTTP相关信息
@@ -347,7 +352,7 @@ Filters 控制的展示：
 
 **需要注意的点：**
 
-`gzip`压缩只会压缩`响应体`内容，所以适用于返回数据量大的时候，如果数据量太小的话，有可能会导致数据**传输时**的大小比**实际**大小要大(*例如加入一些额外的响应头*)
+`gzip`压缩只会压缩`响应体`内容，所以适用于返回数据量大的时候，如果数据量太小的话，有可能会导致数据**传输时**的大小比**实际**大小要大(*加入了一些额外的响应头*)
 
 ##### 关于Time列
 Time有两行：
@@ -391,7 +396,7 @@ Time有两行：
 - `Receiving Push` - 浏览器正在通过 HTTP/2 服务器推送接收此响应的数据
 - `Reading Push` - 浏览器正在读取之前收到的本地数据
 
-<!-- ![image7dd79.png](https://img.lihx.top/images/2020/07/05/image7dd79.png) -->
+![image7dd79.png](https://img.lihx.top/images/2020/07/05/image7dd79.png)
 
 
 ### (5) Summary 区域
@@ -422,61 +427,17 @@ Time有两行：
 
 
 ### 使用Network面板进行网络优化
-> 了解以上的信息可以针对Network进行一些优化
-
-`Network` (网络)面板中查看完整时序信息：
-- 将鼠标悬停在时间轴列下的时间图表上会显示一个弹出窗口，显示完整的时序数据
-- 点击任何 `Requests Table` (请求列表)中的资源，并打开该资源的 `Timing` (时序)标签页
-- 使用 `Resource Timing API` (资源时序API)从JavaScript中检索原始数据
-
-
-#### 了解资源加载时序 
-了解网络下载资源的阶段至关重要。这是修复加载问题的基础
-
-![资源时序API图](https://img.lihx.top/images/2020/07/05/image.png)
-
-- 了解资源时序的阶段
-- 知道每个阶段提供给`Resource Timing`(资源时序)API
-- 在时间轴图表中识别性能问题的不同指示。如连续的透明条或大块绿色
-
-所有网络请求都被视为资源。当它们通过网络检索时，分为不同的生命周期。`Network`(网络)面板使用的[Resource Timing API](http://www.w3.org/TR/resource-timing)和提供给开发者的API是一样的。
-
-> 当使用跨源资源的`Resource Timing API`时， 请确保所有资源都有CORS头信息。
-
-Resource Timing API提供了关于每个单独资源接收时间的详细信息。 请求生命周期的主要阶段是：
-- `Redirect` (重定向)
-  - 立即开始`startTime`
-  - 如果发生重定向, `redirectStart`也会开始计时。
-  - 如果重定向发生在此阶段结束时，那么 `redirectEnd` 将被采用。
-- `App Cache` (应用程序缓存)
-  - 如果浏览器有缓存，将采用 `fetchStart` 时间
-- `DNS`
-  - `domainLookupStart` 记录DNS请求开始的时间。
-  - `domainLookupEnd` 记录DNS请求结束的时间。
-- `TCP`
-  - `connectStart` 记录开始连接到服务器的时间。
-  - 如果用了TLS或SSL，`secureConnectionStart` 记录开始连接时间。
-  - `connectEnd` 记录连接完毕时间。
-- `Request` (请求)
-  - `requestStart` 记录请求发送到服务器的时间。
-- `Response` (响应)
-  - `responseStart` 记录最开始的响应时间。
-  - `responseEnd` 记录响应结束时间。
-
-
-#### 诊断网络问题 
-
-通过`Network`(网络)面板可以发现许多可能的问题。要找到这些问题需要很好地了解客户端和服务端之间的通信以及协议的限制。
+> 参考Network面板可以针对Network提出一些优化建议
 
 #### 排队或停止阻塞 
 
-最常见的问题是很多个请求排队或被阻塞。这表示从单个客户端检索的资源太多。在HTTP 1.0/1.1连接协议中，Chrome限制每个域名最多执行6个TCP连接。如果您一次请求十二个资源，前6个将开始，后6个将排队。一旦其中一个请求完成，队列中的第一个请求项目将开始其请求过程。
+最常见的问题是很多个请求排队或被阻塞。这表示从单个客户端检索的资源太多。在HTTP 1.0/1.1连接协议中，Chrome限制每个域名最多执行6个TCP连接。如果一次请求十二个资源，前6个将开始，后6个将排队。一旦其中一个请求完成，队列中的第一个请求项目将开始其请求过程。
 
 ![一系列被阻塞的请求](https://img.lihx.top/images/2020/07/05/imageef7ae.png)
 
 要解决传统HTTP 1的此问题，需要用多个子域名提供服务资源，将资源拆分到多个子域中，均匀分配。
 
-> 上面说的修复HTTP 1连接数问题，不适用于HTTP 2连接，反而有害。如果您已部署HTTP 2，不要对您的资源进行域划分，因为它会影响HTTP 2的工作原理。在HTTP 2中，TCP连接多路复用连接的。这消除了HTTP 1的6个连接限制，并且可以通过单个连接同时传输多个资源。
+> 上面说的修复HTTP 1连接数问题，不适用于HTTP 2连接，如果已部署HTTP 2，不要对资源进行域划分，因为它会影响HTTP 2的工作原理（在HTTP 2中TCP连接多路复用连接的）。取消了HTTP 1的6个连接限制，并且可以通过单个连接同时传输多个资源。
 
 #### 接收到第一个字节的时间很慢 
 
@@ -486,10 +447,10 @@ Resource Timing API提供了关于每个单独资源接收时间的详细信息�
 
 TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下情况可能会导致高TTFB:
 
-1. 客户端和服务器之间的网络条件差，
-2. 要么，服务器端程序响应很慢。
+1. 客户端和服务器之间的网络条件差
+2. 要么，服务器端程序响应很慢
 
-> 为了解决高TTFB，首先去除尽可能多的网络连接。理想情况下，在本地托管应用程序（部署在本地），并查看是否仍有一个大的TTFB。如果有，那么需要优化应用程序针的响应速度。这可能意味着优化数据库查询，为内容的某些部分实现高速缓存，或修改Web服务器配置。后端可能很慢的原因有很多。您需要对您的程序进行研究，并找出不符合您预期的内容。
+> 为了解决高TTFB，首先去排除尽可能多的网络连接。理想情况下，在本地托管应用程序（部署在本地），并查看是否仍有一个大的TTFB。如果有，那么需要优化应用程序针的响应速度。这可能意味着优化数据库查询，为内容的某些部分实现高速缓存，或修改Web服务器配置。后端可能很慢的原因有很多。您需要对您的程序进行研究，并找出不符合您预期的内容。
 >
 > 如果本地TTFB低，那么是您的客户端和服务器之间的网络问题。网络传输可能被很多种事情干扰阻碍。在客户端和服务器之间有很多点，每个都有自己的连接限制，可能会导致问题。测试减少这种情况的最简单的方法是将您的应用程序放在另一台主机上，看看TTFB是否改进。
 
@@ -499,7 +460,7 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 ![高TTFB示例](https://img.lihx.top/images/2020/07/05/imageae084.png)
 
-如果看到 `Content Download` (内容下载)阶段花费了很多时间，提高服务响应速度、并行下载等优化措施帮助都不大。 主要的解决方案是发送更少的字节。（比如，下载一张高质量的大图，可能是几兆，这个时候你需要优化图片。）
+如果 `Content Download` (内容下载)阶段花费了很多时间，提高服务响应速度、并行下载等优化措施帮助都不大。 主要的解决方案是发送更少的字节（比如一张高质量的大图可能几M的大小，这时可以酌情优化一下图片的宽高/清晰度）
 
 
 ## Sources 面板
@@ -543,7 +504,7 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 看代码写的判断条件有点问题，但从编译后的代码找到对应位置进行调试就相当于大海捞针了。想试试自己的设想的解决方式是否正确：   
 1. 因为列表是提拉加载，所以肯定会触发网络请求，可以在事件侦听器里面打一个 `XHR` 的断点
-2. 然后提拉加载页面触发接口请求，如预期的，代码中断执行了。但是说找不到sourcemap，暂时把js的资源映射给关掉[(相关解决方式)](https://stackoverflow.com/questions/61767538/devtools-failed-to-load-sourcemap-for-webpack-node-modules-js-map-http-e)：
+2. 然后提拉加载页面触发接口请求，如预期的，代码中断执行了。但提示找不到sourcemap，暂时把js的资源映射给关掉[(相关解决方式)](https://stackoverflow.com/questions/61767538/devtools-failed-to-load-sourcemap-for-webpack-node-modules-js-map-http-e)：
   ![imageaadd2.png](https://img.lihx.top/images/2020/07/06/imageaadd2.png)
   ![imaged604f.png](https://img.lihx.top/images/2020/07/06/imaged604f.png)
 3. 再次触发断点，发现可以查看到中断的代码了，因为肯定是页面中的业务代码将请求推入到执行堆栈的，所以可以在堆栈中找到对应的方法名：`getVideoList`
@@ -584,22 +545,16 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 #### DOM断点
 查看element 面板[DOM 断点](#dom-断点)
 
-### 调试serviceworker
-http://mdn.github.io/simple-web-worker/
-
-
 ## Performance 面板
 > 此章节请使用**Chrome的隐身模式**打开 [/devtools/jank/index.html](https://justwe7.github.io/devtools/jank/index.html) 一起食用
-> 隐身模式可以保证Chrome在一个相对干净的环境下运行。比如说，你安装了许多chrome插件，这些插件可能会影响分析性能表现。
+> 隐身模式可以保证Chrome在一个相对干净的环境下运行。假如安装了许多chrome插件，这些插件可能会影响分析性能表现
 > 
 > 在 Performance 面板可以查看页面加载过程中的详细信息，比如在什么时间开始做什么事情，耗时多久等等。相较于 Network 面板，不仅可以看到通过网络加载资源的信息，还能看到解析 JS、计算样式、重绘等页面加载的方方面面的信息
 
 ### 面板主要的区域划分：
 
-![imagef4dfb.png](https://img.lihx.top/images/2020/07/07/imagef4dfb.png)
-
-1. `controls` - 开始记录，停止记录和配置记录期间捕获的信息
-2. `overview` - 页面性能的汇总
+1. `Controls` - 开始记录，停止记录和配置记录期间捕获的信息
+2. `Overview` - 页面性能的汇总
 3. `Flame Chart` - [火焰图(线程面板)]。在火焰图上看到三条（绿色的有好几条）垂直的虚线：
    - 蓝线代表 `DOMContentLoaded` 事件
    - 绿线代表首次绘制的时间
@@ -607,13 +562,14 @@ http://mdn.github.io/simple-web-worker/
 4. `Details` - 在Flame Chart中，选择了某一事件后，这部分会展示与这个事件相关的更多信息；
    > 如果选择了某一帧，这部分会展示与选中帧相关的信息。如果既没有选中事件也没有选中帧，则这部分会展示当前记录时间段内的相关信息。
 
+![imagef4dfb.png](https://img.lihx.top/images/2020/07/07/imagef4dfb.png)
 
 ### 开始记录
-- 首先点击控制条左边的第一个圆圈，开始记录日志
-- 等待几分钟
-- 点击Stop按钮，Devtools停止录制，处理数据，然后显示性能报告
+1. 首先点击控制条左边的第一个圆圈，开始记录日志
+2. 等待几分钟(正常操作页面)
+3. 点击Stop按钮，Devtools停止录制，处理数据，然后显示性能报告
 
-然后就会出来上面一张图的内容，
+然后就会出来上图的内容
 
 > 与台式机和笔记本电脑相比移动设备的 CPU 功率要小得多。无论何时分析页面，都使用 CPU 限制来模拟页面在移动设备上的表现。
 > 在"开发工具"中，单击"性能"选项卡。
@@ -788,13 +744,13 @@ Google官方文档的例子：
       > 浏览器准备好使用HTTP请求抓取文档的时间，这发生在检查本地缓存之前
     - domainLookupStart: '时间戳'
       > DNS域名查询开始的时间，如果使用了本地缓存（即无DNS查询）或持久连接，则与fetchStart值相等
-    - domainLookupEnd:  '时间戳'
+    - domainLookupEnd: '时间戳'
       > DNS域名查询完成的时间，如果使用了本地缓存（即 无DNS查询）或持久连接，则与fetchStart值相等
-    - connectStart:  '时间戳'
+    - connectStart: '时间戳'
       > HTTP(TCP)开始建立连接的时间，如果是持久连接，则与fetchStart值相等；如果在传输层发生了错误且重新建立了连接，则这里显示的是新建立连接的时间
-    - connectEnd:  '时间戳'
+    - connectEnd: '时间戳'
       > HTTP(TCP)完成建立连接的时间（握手），如果是持久连接，则与fetchStart相等；如果是在传输层发生了错误且重新建立连接，则这里咸宁市的是新建立的连接完成的时间；这
-    - secureConnectionStart:  0
+    - secureConnectionStart: 0
       > HTTPS连接开始的时间，如果不是安全连接，则值为0;
     - requestStart: '时间戳'
       > HTTP请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存，连接错误时这里显示的是新建立的连接的时间
@@ -827,12 +783,12 @@ Google官方文档的例子：
 - 测量初始点是浏览器访问最初测量点，或者理解为在地址栏输入URL后按回车的那一瞬间。
 - 返回值是毫秒数，但带有精准的多位小数。
 
-用performance.now()检测for循环的执行时间(毫秒):
+用performance.now()检测js代码的执行时间(毫秒):
 ```js
   var st = performance.now();
-  for (var o = 0; o < 10000; o ++) console.log(o)
+  console.log(Array(9999999).fill(null).filter(v => !v).length);
   var end = performance.now();
-  console.log(`for时间${end - st}`); // for时间1155.9950000373647
+  console.log(`取值时间${end - st}ms`); // 取值时间558.7849999992759ms
 ```
 
 #### performance.navigation
@@ -841,44 +797,44 @@ performance.navigation负责纪录用户行为信息，只有两个属性:
   - 如果有重定向的话，页面通过几次重定向跳转而来
 - `type`
   - type的值：
-  - 0  即TYPE_NAVIGATENEXT 正常进入页面（非刷新、非重定向等)
-  - 1  即TYPE_RELOAD 通过window.location.reload()刷新的页面
-  - 2  即TYPE_BACK_FORWARD 通过浏览器的前进后退按钮进入的页面（历史记录）
-  - 255 即TYPE_UNDEFINED 非以上方式进入的页面
+  - 0  即 `TYPE_NAVIGATENEXT` 正常进入页面（非刷新、非重定向等)
+  - 1  即 `TYPE_RELOAD` 通过window.location.reload()刷新的页面
+  - 2  即 `TYPE_BACK_FORWARD` 通过浏览器的前进后退按钮进入的页面（历史记录）
+  - 255 即 `TYPE_UNDEFINED` 非以上方式进入的页面
 ```js
-  console.log(performance.navigation);
-  // PerformanceNavigation {type: 1, redirectCount: 0}
+  console.log(performance.navigation); // PerformanceNavigation {type: 1, redirectCount: 0}
 ```
 
 ##### performance.timing
 `timing` 内包含了几乎所有时序的时间节点
 
+可以通过此字段来统计页面相关事件的发生时长：  
 ```js
 function getTiming() {
   try {
-    var time = performance.timing;
+    var timing = performance.timing;
     var timingObj = {};
 
-    var loadTime = (time.loadEventEnd - time.loadEventStart) / 1000;
+    var loadTime = (timing.loadEventEnd - timing.loadEventStart) / 1000;
 
     if(loadTime < 0) {
       setTimeout(function() {
         getTiming();
-      }, 200);
+      }, 0);
       return;
     }
 
-    timingObj['重定向时间'] = (time.redirectEnd - time.redirectStart);
-    timingObj['DNS解析时间'] = (time.domainLookupEnd - time.domainLookupStart);
-    timingObj['TCP完成握手时间'] = (time.connectEnd - time.connectStart);
-    timingObj['HTTP请求响应完成时间'] = (time.responseEnd - time.requestStart);
-    timingObj['DOM开始加载前所花费时间'] = (time.responseEnd - time.navigationStart);
-    timingObj['DOM加载完成时间'] = ((time.domComplete || time.domLoading) - time.domLoading);
-    timingObj['DOM结构解析完成时间'] = (time.domInteractive - time.domLoading);
-    timingObj['总体网络交互耗时，即开始跳转到服务器资源下载完成时间'] = (time.responseEnd - time.navigationStart);
-    timingObj['可交互时间'] = (time.domContentLoadedEventEnd - time.domContentLoadedEventStart);
-    timingObj['首次出现内容'] = (time.domLoading - time.navigationStart);
-    timingObj['onload事件时间'] = (time.loadEventEnd - time.loadEventStart);
+    timingObj['重定向时间'] = (timing.redirectEnd - timing.redirectStart);
+    timingObj['DNS解析时间'] = (timing.domainLookupEnd - timing.domainLookupStart);
+    timingObj['TCP完成握手时间'] = (timing.connectEnd - timing.connectStart);
+    timingObj['HTTP请求响应完成时间'] = (timing.responseEnd - timing.requestStart);
+    timingObj['DOM开始加载前所花费时间'] = (timing.responseEnd - timing.navigationStart);
+    timingObj['DOM加载完成时间'] = ((timing.domComplete || timing.domLoading) - timing.domLoading);
+    timingObj['DOM结构解析完成时间'] = (timing.domInteractive - timing.domLoading);
+    timingObj['总体网络交互耗时，即开始跳转到服务器资源下载完成时间'] = (timing.responseEnd - timing.navigationStart);
+    timingObj['可交互的时间'] = (timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart);
+    timingObj['首次出现内容'] = (timing.domLoading - timing.navigationStart);
+    timingObj['onload事件时间'] = (timing.loadEventEnd - timing.loadEventStart);
     timingObj['页面完全加载时间'] = (timingObj['重定向时间'] + timingObj['DNS解析时间'] + timingObj['TCP完成握手时间'] + timingObj['HTTP请求响应完成时间'] + timingObj['DOM结构解析完成时间'] + timingObj['DOM加载完成时间']);
 
     for(item in timingObj) {
@@ -888,7 +844,6 @@ function getTiming() {
     console.log(performance.timing);
 
   } catch(e) {
-    console.log(timingObj)
     console.log(performance.timing);
   }
 }
@@ -951,7 +906,7 @@ performance
 > `DOMHighResTimeStamp` 是一个double类型，用于存储时间值。该值可以是离散的时间点或两个离散时间点之间的时间差。T单位为毫秒 ms (milliseconds) ，应准确至5微秒 µs (microseconds)。但是，如果浏览器无法提供准确到5微秒的时间值(例如,由于硬件或软件的限制), 浏览器可以以毫秒为单位的精确到毫秒的时间表示该值
 
 ## Lighthouse(Audits) 面板
-> Lighthouse 是一个开源的自动化工具，用于改进网络应用的质量。 您可以将其作为一个 Chrome 扩展程序运行，或从命令行运行。 您为 Lighthouse 提供一个您要审查的网址，它将针对此页面运行一连串的测试，然后生成一个有关页面性能的报告
+> 来自Google的描述： Lighthouse 是一个开源的自动化工具，用于改进网络应用的质量。 您可以将其作为一个 Chrome 扩展程序运行，或从命令行运行。 您为 Lighthouse 提供一个您要审查的网址，它将针对此页面运行一连串的测试，然后生成一个有关页面性能的报告
 > 
 > 会对页面的加载进行分析，然后给出提高页面性能的建议
 
@@ -989,7 +944,7 @@ performance
 
 该面板可以区分两种类型的不安全的页面：
 - 如果被请求的页面通过HTTP提供服务，那么这个主源就会被标记为不安全。
-- 如果被请求的页面是通过HTTPS获取的，但这个页面接着通过HTTP继续从其他来源检索内容，那么这个页面仍然被标记为不安全。这就是所谓的混合内容页面,混合内容页面只是部分受到保护,因为HTTP内容(非加密的内容)可以被嗅探者入侵,容易受到中间人攻击。如163，虽然证书chrome是认可的，但是页面有一部分http资源：  
+- 如果被请求的页面是通过HTTPS获取的，但这个页面接着通过HTTP继续从其他来源检索内容，那么这个页面仍然被标记为不安全。这就是所谓的混合内容页面,混合内容页面只是部分受到保护,因为HTTP内容(非加密的内容通信使用明文)可能会被窃听,容易受到中间人攻击。如163，虽然证书是有效的，但是页面有一部分http资源：  
 ![imagee8ea4.png](https://img.lihx.top/images/2020/07/08/imagee8ea4.png)
 
 
@@ -1003,8 +958,8 @@ performance
 
 ### CSS/JS 覆盖率
 - 打开调试面板，用快捷键 `shift+command+P （mac）`输入 `Show Coverage` 调出相应面板
-- 点击`reload` 按钮开始检测 ![image756cf.png](https://img.lihx.top/images/2020/07/09/image756cf.png)
-- 点击相应文件即可查看具体的覆盖情况（绿色的为用到的代码，红色表示没有用到的代码）![image3b27b.png](https://img.lihx.top/images/2020/07/09/image3b27b.png)
+- 点击`reload` 按钮开始检测 ![image1719a.png](https://img.lihx.top/images/2020/07/20/image1719a.png)  
+- 点击相应文件即可查看具体的覆盖情况（蓝色的为用到的代码，红色表示没有用到的代码）!![image.png](https://img.lihx.top/images/2020/07/20/image.png)
 
 ### 媒体查询
 媒体查询是自适应网页设计的基本部分。
