@@ -15,9 +15,9 @@ comment: false
   - [vue中v-model和sync修饰符](/基础概念/vue中v-model和sync修饰符.md)
   - [函数定义的5种方式](/基础概念/函数定义的5种方式.md)
   - [攻略chrome控制台](/基础概念/攻略chrome控制台.md)
+  - [本机配置多个gitssh](/基础概念/本机配置多个gitssh.md)
   - [模块化](/基础概念/模块化.md)
 - 深度知识
-  - [chrome性能](/深度知识/chrome性能.md)
   - [vue实现原理](/深度知识/vue实现原理.md)
   - [vue生命周期](/深度知识/vue生命周期.md)
   - [从0开始手写一个promise](/深度知识/从0开始手写一个promise.md)
