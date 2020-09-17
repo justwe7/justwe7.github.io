@@ -18,6 +18,7 @@ comment: false
   - [本机配置多个gitssh](/基础概念/本机配置多个gitssh.md)
   - [模块化](/基础概念/模块化.md)
 - 深度知识
+  - [css变量实战](/深度知识/css变量实战.md)
   - [vue实现原理](/深度知识/vue实现原理.md)
   - [vue生命周期](/深度知识/vue生命周期.md)
   - [从0开始手写一个promise](/深度知识/从0开始手写一个promise.md)
