@@ -79,18 +79,18 @@ https://codepen.io/justwe7/pen/mdPjdXy
 .box {
   width: 100px;
   height: 30px;
-  --theme: #ccc;
+  --bg-color: #ccc;
   --border-color: #777;
-  background: var(--theme) url('https://kano.guahao.cn/JsT348336686') no-repeat center / contain;
+  background: var(--bg-color) url('https://kano.guahao.cn/JsT348336686') no-repeat center / contain;
   border: 1px solid var(--border-color);
   &.success {
     margin-top: 10px;
-    --theme: #f0f9ef;
+    --bg-color: #f0f9ef;
     --border-color: #7ebb7a;
   }
   &.error {
     margin-top: 10px;
-    --theme: #fff5f5;
+    --bg-color: #fff5f5;
     --border-color: #f78b8b;
   }
 }

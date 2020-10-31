@@ -8,6 +8,7 @@ comment: false
   - [echarts地图绘制代码留用](/基础概念/echarts地图绘制代码留用.md)
   - [eslint针对文件忽略语法](/基础概念/eslint针对文件忽略语法.md)
   - [for-in遍历对象属性的顺序与定义是否相同](/基础概念/for-in遍历对象属性的顺序与定义是否相同.md)
+  - [gitcherry-pick备忘](/基础概念/gitcherry-pick备忘.md)
   - [git基本工作流程](/基础概念/git基本工作流程.md)
   - [git如何保持commit信息整洁](/基础概念/git如何保持commit信息整洁.md)
   - [git常用的分支操作](/基础概念/git常用的分支操作.md)
@@ -18,7 +19,7 @@ comment: false
   - [本机配置多个gitssh](/基础概念/本机配置多个gitssh.md)
   - [模块化](/基础概念/模块化.md)
 - 深度知识
-  - [css变量实战](/深度知识/css变量实战.md)
+  - [css variable实战](/深度知识/css variable实战.md)
   - [vue实现原理](/深度知识/vue实现原理.md)
   - [vue生命周期](/深度知识/vue生命周期.md)
   - [从0开始手写一个promise](/深度知识/从0开始手写一个promise.md)
