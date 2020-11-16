@@ -16,7 +16,9 @@
 ## 修改操作
 
 ### 重命名本地分支    
-`git branch -m <old_branch> <new_branch>`     
+`git branch -m <old_branch> <new_branch>` 
+或者直接将当前分支重命名
+`git branch -M <new_branch>` 
 
 ### 删除本地分支    
 `git branch -D <branch>`     
