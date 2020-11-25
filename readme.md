@@ -16,8 +16,8 @@ comment: false
   - [vue中v-model和sync修饰符](/基础概念/vue中v-model和sync修饰符.md)
   - [函数定义的5种方式](/基础概念/函数定义的5种方式.md)
   - [攻略chrome控制台](/基础概念/攻略chrome控制台.md)
-  - [本机配置多个gitssh](/基础概念/本机配置多个gitssh.md)
   - [模块化](/基础概念/模块化.md)
+  - [配置多个git-ssh](/基础概念/配置多个git-ssh.md)
 - 深度知识
   - [css variable实战](/深度知识/css variable实战.md)
   - [vue实现原理](/深度知识/vue实现原理.md)
