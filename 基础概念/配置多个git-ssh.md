@@ -19,12 +19,8 @@ Identity added: /c/Users/monster/.ssh/weiyi_rsa (xxxx@xxxx.com)
 可以执行 `ssh-agent bash`，然后重新执行指令
 ![image.png](https://img.lihx.top/images/2020/07/27/image.png)
 
-
 4. 修改配置文件
-.ssh目录(就是私钥所在的文件夹)创建 `config` 文件
-
-把对应的路径还有其他相关的改一下
-
+.ssh目录(就是私钥所在的文件夹)创建 `config` 文件，把对应的路径还有其他相关的改一下：
 ```
 # github
 Host github.com
