@@ -43,6 +43,7 @@ comment: false
   - [shell-疑问记录](/广度知识/shell-疑问记录.md)
   - [shell-输入输出重定向](/广度知识/shell-输入输出重定向.md)
   - [shell-运算符](/广度知识/shell-运算符.md)
+  - [vimium自用速查](/广度知识/vimium自用速查.md)
   - [vscode](/广度知识/vscode.md)
   - [web及网络基础](/广度知识/web及网络基础.md)
   - [windows快捷键](/广度知识/windows快捷键.md)
