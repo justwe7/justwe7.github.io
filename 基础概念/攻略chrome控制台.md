@@ -221,6 +221,10 @@ Mac: `Command` + `Option` + `C`
 2.  
 ![20200628_185451.gif](https://img.lihx.top/images/2020/06/28/20200628_185451.gif)
 
+#### 查看placeholder的颜色
+1. 打开开发者工具，点击右上角的`⚙`，进入 `Settings`
+2. 找到 `Preferences` -> `Elements`，勾选 `Show user agent shadow DOM`
+3. 然后在元素的 `Styles` 就能看到 `placeholder` 的颜色了
 
 #### computed
 有时候样式覆盖过多，查看起来很麻烦，`computed` 就派上用场了
