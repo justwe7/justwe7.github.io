@@ -15,6 +15,6 @@
 
 **大概操作就是**：  
 1. `event listener breakpoints` > `XHR` > 勾选`readystatechange` > 重新操作
-2. 然后找到关键代码，熟悉原生ajax对象的应该知道，不管jQuery还是axios（fetch除外），底层肯定会监听一个 `onreadystatechange` 的方法，之后就简单了： ![image893b2.png](https://img.lihx.top/images/2021/01/18/image893b2.png)
+2. 然后找到关键代码，熟悉原生ajax对象的应该知道，不管jQuery还是axios（fetch除外），底层肯定会监听一个 `onreadystatechange` 的方法，之后就简单了，依次断点可以看到内容的： ![image893b2.png](https://img.lihx.top/images/2021/01/18/image893b2.png)
 3. 控制台也会有，上一步在断点的时候也能知道接口的状态
 
