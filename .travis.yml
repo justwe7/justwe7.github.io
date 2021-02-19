@@ -13,9 +13,10 @@ before_install:
 - export TZ='Asia/Shanghai'  # 设置时区
 
 install:  # 安装依赖
-  - npm run install
+  - npm install
 
 script:  # 需要执行的脚本
+    - node ./generateMD.js
     - npm run build
     - sed -i 's/\r//' deploy.sh
     - bash ./deploy.sh
