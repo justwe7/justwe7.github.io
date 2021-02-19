@@ -14,5 +14,5 @@ $广度知识$
 
 ### 更新
 - markdown编辑，根据文章目录结构自动生成结构
-- Git Hook + Jenkins持续化构建
+- travis 持续构建
 - Git Page + Vue Press界面

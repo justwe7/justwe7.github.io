@@ -12,8 +12,9 @@
 # npm run build
 # # cp -r docs /home/temp_filder
 # # cp -f readme.md docs/
-# # echo "$MD_TEXT" > ${WORKSPACE}/docs/readme.md
 cd docs
+touch README.md
+echo ${MD} > README.md
 
 git init
 
