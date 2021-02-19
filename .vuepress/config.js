@@ -1,7 +1,7 @@
 const autoSidebar = require('vuepress-auto-sidebar.js')
 module.exports = {
   home: true,
-  title: '学习笔记',
+  title: '前端日志',
   description: '记录平时所接触到的知识点',
   dest: 'docs',
   base: '/blog/',
