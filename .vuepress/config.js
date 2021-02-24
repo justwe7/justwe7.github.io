@@ -5,6 +5,7 @@ module.exports = {
   description: '记录平时所接触到的知识点',
   dest: 'docs',
   base: '/blog/',
+  // permalink: "/:year/:month/:day/:slug",
   plugins: [
     ['@vuepress/nprogress'],
     ['@vuepress/back-to-top'],
@@ -29,9 +30,12 @@ module.exports = {
   ],
   head: [['link', { rel: 'icon', href: '/favorite.ico' }]],
   themeConfig: {
+    // sidebar: 'auto'
     repoLabel: 'GitHub',
     repo: 'https://github.com/justwe7/blog',
     lastUpdated: '最近提交',
+    // displayAllHeaders: true,
+    // activeHeaderLinks: false, //用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新
     docsDir: '',
     docsBranch: 'feature',
     editLinks: true,

@@ -1,8 +1,19 @@
 ---
 comment: false 
+home: true
+heroText: 前端日志
+tagline: Hi, jser. Enjoy It!
+features:
+- title: 前端基础
+  details: 包括且不限于git指令、chrome控制台、js基础等前端必须掌握的基础知识及备忘的记录。
+- title: 前端广度
+  details: 工程化、服务端的相关知识，网络协议，平时折腾的一些小工具或者插件的记录。
+- title: 前端深度
+  details: 包括且不限于框架源码、设计模式等个人认为值得去深刻理解并学习的知识。
+footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
 ---
 
-### 个人前端学习笔记
+### 笔记列表
 
 - 基础概念
   - [chrome-devtools加载数据失败](/基础概念/chrome-devtools加载数据失败.md)
@@ -20,7 +31,7 @@ comment: false
   - [模块化](/基础概念/模块化.md)
   - [配置多个git-ssh](/基础概念/配置多个git-ssh.md)
 - 深度知识
-  - [css variable实战](/深度知识/css variable实战.md)
+  - [css-variable实战](/深度知识/css-variable实战.md)
   - [vue实现原理](/深度知识/vue实现原理.md)
   - [vue生命周期](/深度知识/vue生命周期.md)
   - [从0开始手写一个promise](/深度知识/从0开始手写一个promise.md)
@@ -54,9 +65,3 @@ comment: false
   - [提升命令行效率的Bash快捷键](/广度知识/提升命令行效率的Bash快捷键.md)
   - [简单了解http协议](/广度知识/简单了解http协议.md)
   - [自动化部署微信小程序](/广度知识/自动化部署微信小程序.md)
-
-
-### 更新
-- markdown编辑，根据文章目录结构自动生成结构
-- Git Hook + Jenkins持续化构建
-- Git Page + Vue Press界面
