@@ -1,0 +1,36 @@
+language: node_js
+node_js: 
+  - lts/* #设置语言版本，lts表示稳定版
+branches:
+  only:
+    - feature #设置只监听哪个分支
+cache:
+  apt: true
+  yarn: true
+  directories: 
+    - node_modules #缓存依赖
+addons:
+  apt:
+    packages:
+    - sshpass
+before_install:
+- export TZ='Asia/Shanghai'  # 设置时区
+
+install:  # 安装依赖
+  - npm install
+
+script:  # 需要执行的脚本
+    # - node ./generateMD.js
+    # - npm run build
+    # - sed -i 's/\r//' deploy.sh
+    # - bash ./deploy.sh
+    - bash ./copy.sh
+
+after_success: # script 阶段成功时执行
+# - export SSHPASS=$DEP_PASS
+# 直接将产物scp到vps太慢了，国外服务器传国内服务器。
+#- sshpass -e scp  -o stricthostkeychecking=no -r ./_book/* lijun@$www.css3.io:/home/lijun/www/
+#- sshpass -e scp  -o stricthostkeychecking=no ./deploy-to-vps.sh lijun@www.css3.io:/home/lijun/
+# - sshpass -e ssh -o stricthostkeychecking=no tudou@120.53.221.250 "sh ./cp.sh"
+# - rsync -avzuP -e tudou@120.53.221.250:/www/wwwroot/chevereto/images /Users/debugger/bugfolder/www/github/blog/origin-imgF
+# - scp  -o stricthostkeychecking=no -r ./dist/* root@122.51.11.29:/home/www/blog  # 使用scp拷贝到服务
