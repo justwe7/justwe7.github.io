@@ -14,6 +14,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
 ---
 
 ### 笔记列表
+[![Build Status](https://travis-ci.com/justwe7/blog.svg?branch=feature)](https://travis-ci.com/justwe7/blog) [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/blog.svg?style=flat-square)](https://github.com/justwe7/blog/commits/master)
 
 - 基础概念
   - [chrome-devtools加载数据失败](/基础概念/chrome-devtools加载数据失败.md)

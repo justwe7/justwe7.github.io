@@ -2,7 +2,7 @@ const autoSidebar = require('vuepress-auto-sidebar.js')
 module.exports = {
   home: true,
   title: '前端日志',
-  description: '记录平时所接触到的知识点',
+  description: '土豆和土豆丝的学习记录',
   dest: 'docs',
   base: '/blog/',
   // permalink: "/:year/:month/:day/:slug",
