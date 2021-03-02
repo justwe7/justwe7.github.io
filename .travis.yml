@@ -1,8 +1,4 @@
 language: node_js
-addons:
-  apt:
-    packages:
-    - sshpass
 node_js: 
   - lts/* #设置语言版本，lts表示稳定版
 branches:
@@ -20,10 +16,10 @@ install:  # 安装依赖
   - npm install
 
 script:  # 需要执行的脚本
-    # - node ./generateMD.js
-    # - npm run build
-    - sed -i 's/\r//' copy.sh
-    - bash ./copy.sh
+    - node ./generateMD.js
+    - npm run build
+    - sed -i 's/\r//' deploy.sh
+    - bash ./deploy.sh
 
 after_success: # script 阶段成功时执行
 # - scp  -o stricthostkeychecking=no -r ./dist/* root@122.51.11.29:/home/www/blog  # 使用scp拷贝到服务
