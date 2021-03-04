@@ -299,6 +299,10 @@ Filters 控制的展示：
 - **捕获屏幕截图** - 将鼠标悬停在某个屏幕截图上的时候，Timeline/Waterfall(时间轴)会显示一条垂直的黄线，指示该帧是何时被捕获的
 - **显示概述** - 展示页面整个生命周期的各个阶段（Overview区域）的耗时（蓝色绿色的那些横杠）
 
+**only show blocked requests**
+假如遇到network抓不到任何请求，检查也不是filter和recording的原因的话，可以看看是不是因为设置了仅显示已阻止请求的勾选：  
+![2021-03-0415.04.53.gif](https://image.littl.cn/images/2021/03/04/2021-03-0415.04.53.gif)
+
 ### （3） Overview区域
 页面整个生命周期的各个阶段网络资源加载耗时信息的汇总，可以选择区域来筛选 `Requests Table` 的详细资源信息
 
