@@ -25,7 +25,10 @@ chmod +x ./helloworld.sh  #使脚本具有执行权限
 
 > 直接写 helloworld.sh，linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 helloworld.sh 是会找不到命令的，要用 ./helloworld.sh 告诉系统说，就在当前目录找。
 
-2. 作为解释器参数
+- macos报错：**Terminal error: zsh: permission denied: ./helloworld.sh**
+- 可以执行 `chmod u+x ./helloworld.sh`
+
+1. 作为解释器参数
 
 这种运行方式是，直接运行解释器，其参数就是 shell 脚本的文件名，如：
 
