@@ -1,4 +1,4 @@
-
+### ohmyzsh git快捷指令
 alias g='git'
 
 alias ga='git add'
