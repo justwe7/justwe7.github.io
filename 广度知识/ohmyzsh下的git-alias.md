@@ -1,249 +1,260 @@
-### ohmyzsh git快捷指令
-alias g='git'
-
-alias ga='git add'
-alias gaa='git add --all'
-alias gapa='git add --patch'
-alias gau='git add --update'
-alias gav='git add --verbose'
-alias gap='git apply'
-alias gapt='git apply --3way'
-
-alias gb='git branch'
-alias gba='git branch -a'
-alias gbd='git branch -d'
-alias gbda='git branch --no-color --merged | command grep -vE "^(\+|\*|\s*($(git_main_branch)|development|develop|devel|dev)\s*$)" | command xargs -n 1 git branch -d'
-alias gbD='git branch -D'
-alias gbl='git blame -b -w'
-alias gbnm='git branch --no-merged'
-alias gbr='git branch --remote'
-alias gbs='git bisect'
-alias gbsb='git bisect bad'
-alias gbsg='git bisect good'
-alias gbsr='git bisect reset'
-alias gbss='git bisect start'
-
-alias gc='git commit -v'
-alias gc!='git commit -v --amend'
-alias gcn!='git commit -v --no-edit --amend'
-alias gca='git commit -v -a'
-alias gca!='git commit -v -a --amend'
-alias gcan!='git commit -v -a --no-edit --amend'
-alias gcans!='git commit -v -a -s --no-edit --amend'
-alias gcam='git commit -a -m'
-alias gcsm='git commit -s -m'
-alias gcas='git commit -a -s'
-alias gcasm='git commit -a -s -m'
-alias gcb='git checkout -b'
-alias gcf='git config --list'
-alias gcl='git clone --recurse-submodules'
-alias gclean='git clean -id'
-alias gpristine='git reset --hard && git clean -dffx'
-alias gcm='git checkout $(git_main_branch)'
-alias gcd='git checkout develop'
-alias gcmsg='git commit -m'
-alias gco='git checkout'
-alias gcor='git checkout --recurse-submodules'
-alias gcount='git shortlog -sn'
-alias gcp='git cherry-pick'
-alias gcpa='git cherry-pick --abort'
-alias gcpc='git cherry-pick --continue'
-alias gcs='git commit -S'
-alias gcss='git commit -S -s'
-alias gcssm='git commit -S -s -m'
-
-alias gd='git diff'
-alias gdca='git diff --cached'
-alias gdcw='git diff --cached --word-diff'
-alias gdct='git describe --tags $(git rev-list --tags --max-count=1)'
-alias gds='git diff --staged'
-alias gdt='git diff-tree --no-commit-id --name-only -r'
-alias gdw='git diff --word-diff'
-
-function gdnolock() {
-  git diff "$@" ":(exclude)package-lock.json" ":(exclude)*.lock"
-}
-compdef _git gdnolock=git-diff
-
-function gdv() { git diff -w "$@" | view - }
-compdef _git gdv=git-diff
-
-alias gf='git fetch'
-# --jobs=<n> was added in git 2.8
-is-at-least 2.8 "$git_version" \
-  && alias gfa='git fetch --all --prune --jobs=10' \
-  || alias gfa='git fetch --all --prune'
-alias gfo='git fetch origin'
-
-alias gfg='git ls-files | grep'
-
-alias gg='git gui citool'
-alias gga='git gui citool --amend'
-
-function ggf() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git push --force origin "${b:=$1}"
-}
-compdef _git ggf=git-checkout
-function ggfl() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git push --force-with-lease origin "${b:=$1}"
-}
-compdef _git ggfl=git-checkout
-
-function ggl() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git pull origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git pull origin "${b:=$1}"
-  fi
-}
-compdef _git ggl=git-checkout
-
-function ggp() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git push origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git push origin "${b:=$1}"
-  fi
-}
-compdef _git ggp=git-checkout
-
-function ggpnp() {
-  if [[ "$#" == 0 ]]; then
-    ggl && ggp
-  else
-    ggl "${*}" && ggp "${*}"
-  fi
-}
-compdef _git ggpnp=git-checkout
-
-function ggu() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git pull --rebase origin "${b:=$1}"
-}
-compdef _git ggu=git-checkout
-
-alias ggpur='ggu'
-alias ggpull='git pull origin "$(git_current_branch)"'
-alias ggpush='git push origin "$(git_current_branch)"'
-
-alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
-alias gpsup='git push --set-upstream origin $(git_current_branch)'
-
-alias ghh='git help'
-
-alias gignore='git update-index --assume-unchanged'
-alias gignored='git ls-files -v | grep "^[[:lower:]]"'
-alias git-svn-dcommit-push='git svn dcommit && git push github $(git_main_branch):svntrunk'
-
-alias gk='\gitk --all --branches'
-alias gke='\gitk --all $(git log -g --pretty=%h)'
-
-alias gl='git pull'
-alias glg='git log --stat'
-alias glgp='git log --stat -p'
-alias glgg='git log --graph'
-alias glgga='git log --graph --decorate --all'
-alias glgm='git log --graph --max-count=10'
-alias glo='git log --oneline --decorate'
-alias glol="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-alias glols="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat"
-alias glod="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
-alias glods="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
-alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
-alias glog='git log --oneline --decorate --graph'
-alias gloga='git log --oneline --decorate --graph --all'
-alias glp="_git_log_prettily"
-
-alias gm='git merge'
-alias gmom='git merge origin/$(git_main_branch)'
-alias gmt='git mergetool --no-prompt'
-alias gmtvim='git mergetool --no-prompt --tool=vimdiff'
-alias gmum='git merge upstream/$(git_main_branch)'
-alias gma='git merge --abort'
-
-alias gp='git push'
-alias gpd='git push --dry-run'
-alias gpf='git push --force-with-lease'
-alias gpf!='git push --force'
-alias gpoat='git push origin --all && git push origin --tags'
-alias gpr='git pull --rebase'
-alias gpu='git push upstream'
-alias gpv='git push -v'
-
-alias gr='git remote'
-alias gra='git remote add'
-alias grb='git rebase'
-alias grba='git rebase --abort'
-alias grbc='git rebase --continue'
-alias grbd='git rebase develop'
-alias grbi='git rebase -i'
-alias grbm='git rebase $(git_main_branch)'
-alias grbo='git rebase --onto'
-alias grbs='git rebase --skip'
-alias grev='git revert'
-alias grh='git reset'
-alias grhh='git reset --hard'
-alias groh='git reset origin/$(git_current_branch) --hard'
-alias grm='git rm'
-alias grmc='git rm --cached'
-alias grmv='git remote rename'
-alias grrm='git remote remove'
-alias grs='git restore'
-alias grset='git remote set-url'
-alias grss='git restore --source'
-alias grst='git restore --staged'
-alias grt='cd "$(git rev-parse --show-toplevel || echo .)"'
-alias gru='git reset --'
-alias grup='git remote update'
-alias grv='git remote -v'
-
-alias gsb='git status -sb'
-alias gsd='git svn dcommit'
-alias gsh='git show'
-alias gsi='git submodule init'
-alias gsps='git show --pretty=short --show-signature'
-alias gsr='git svn rebase'
-alias gss='git status -s'
-alias gst='git status'
-
-# use the default stash push on git 2.13 and newer
-is-at-least 2.13 "$git_version" \
-  && alias gsta='git stash push' \
-  || alias gsta='git stash save'
-
-alias gstaa='git stash apply'
-alias gstc='git stash clear'
-alias gstd='git stash drop'
-alias gstl='git stash list'
-alias gstp='git stash pop'
-alias gsts='git stash show --text'
-alias gstu='gsta --include-untracked'
-alias gstall='git stash --all'
-alias gsu='git submodule update'
-alias gsw='git switch'
-alias gswc='git switch -c'
-
-alias gts='git tag -s'
-alias gtv='git tag | sort -V'
-alias gtl='gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'
-
-alias gunignore='git update-index --no-assume-unchanged'
-alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
-alias gup='git pull --rebase'
-alias gupv='git pull --rebase -v'
-alias gupa='git pull --rebase --autostash'
-alias gupav='git pull --rebase --autostash -v'
-alias glum='git pull upstream $(git_main_branch)'
-
-alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
-alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
-
-alias gam='git am'
-alias gamc='git am --continue'
-alias gams='git am --skip'
-alias gama='git am --abort'
-alias gamscp='git am --show-current-patch'
+## ohmyzsh git快捷指令
+### 常用指令
+| bash       | git command                                                 |                          |
+| ---------- | ----------------------------------------------------------- | ------------------------ |
+| **g**      | 'git'                                                       |                          |
+| ga         | 'git add'                                                   |                          |
+| **gaa**    | 'git add --all'                                             | 2.0版本等于 `git add .`  |
+| gapa       | 'git add --patch'                                           |                          |
+| gau        | 'git add --update'                                          |                          |
+| gav        | 'git add --verbose'                                         |                          |
+| gap        | 'git apply'                                                 |                          |
+| **gb**     | 'git branch'                                                |                          |
+| **gba**    | 'git branch -a'                                             |                          |
+| **gbd**    | 'git branch -d'                                             |                          |
+| **gbD**    | 'git branch -D'                                             |                          |
+| gbnm       | 'git branch --no-merged'                                    |                          |
+| **gbr**    | 'git branch --remote'                                       |                          |
+| gc         | 'git commit -v'                                             |                          |
+| gc         | ='git commit -v --amend'                                    |                          |
+| gcn        | ='git commit -v --no-edit --amend'                          |                          |
+| gca        | 'git commit -v -a'                                          |                          |
+| gca        | ='git commit -v -a --amend'                                 |                          |
+| gcan       | ='git commit -v -a --no-edit --amend'                       |                          |
+| gcans      | ='git commit -v -a -s --no-edit --amend'                    |                          |
+| **gcam**   | 'git commit -a -m'                                          |                          |
+| **gcmsg**  | 'git commit -m'                                             |                          |
+| **gcasm**  | 'git commit -a -s -m'                                       |                          |
+| gcsm       | 'git commit -s -m'                                          |                          |
+| gcas       | 'git commit -a -s'                                          |                          |
+| **gcb**    | 'git checkout -b'                                           |                          |
+| gcf        | 'git config --list'                                         |                          |
+| gcm        | 'git checkout $(git_main_branch)'                           |                          |
+| gco        | 'git checkout'                                              |                          |
+| **gcp**    | 'git cherry-pick'                                           |                          |
+| gcpa       | 'git cherry-pick --abort'                                   |                          |
+| gcpc       | 'git cherry-pick --continue'                                |                          |
+| gcs        | 'git commit -S'                                             |                          |
+| gcss       | 'git commit -S -s'                                          |                          |
+| gcssm      | 'git commit -S -s -m'                                       |                          |
+| gd         | 'git diff'                                                  |                          |
+| gf         | 'git fetch'                                                 |                          |
+| **gfa**    | 'git fetch --all --prune --jobs=10'                         |                          |
+| gfa        | 'git fetch --all --prune'                                   |                          |
+| gfo        | 'git fetch origin'                                          |                          |
+| **gl**     | 'git pull'                                                  | 拉取远程关联分支         |
+| **gp**     | 'git push'                                                  | 推送到远程关联分支       |
+| **ggpull** | 'git pull origin "$(git_current_branch)"'                   | 拉取指定远程分支         |
+| **ggpush** | 'git push origin "$(git_current_branch)"'                   | 推送到指定远程分支       |
+| **ggsup**  | 'git branch --set-upstream-to=origin/$(git_current_branch)' | 本地分支关联指定远程分支 |
+| gpsup      | 'git push --set-upstream origin $(git_current_branch)'      |                          |
+| ghh        | 'git help'                                                  |                          |
+| glg        | 'git log --stat'                                            |                          |
+| glgp       | 'git log --stat -p'                                         |                          |
+| **glgg**   | 'git log --graph'                                           | 查看日志概要             |
+| glgga      | 'git log --graph --decorate --all'                          |                          |
+| glgm       | 'git log --graph --max-count=10'                            |                          |
+| glo        | 'git log --oneline --decorate'                              |                          |
+| glol       | 查看日志，见下方                                            |                          |
+| **glod**   | 查看日志，见下方                                            |                          |
+| **glods**  | 查看日志，见下方                                            |                          |
+| **gm**     | 'git merge'                                                 |                          |
+| **gmom**   | 'git merge origin/$(git_main_branch)'                       |                          |
+| gmum       | 'git merge upstream/$(git_main_branch)'                     |                          |
+| gma        | 'git merge --abort'                                         |                          |
+| gpf        | 'git push --force'                                          |                          |
+| gr         | 'git remote'                                                |                          |
+| gra        | 'git remote add'                                            |                          |
+| grb        | 'git rebase'                                                |                          |
+| grba       | 'git rebase --abort'                                        |                          |
+| grbc       | 'git rebase --continue'                                     |                          |
+| grbm       | 'git rebase $(git_main_branch)'                             |                          |
+| grbo       | 'git rebase --onto'                                         |                          |
+| grbs       | 'git rebase --skip'                                         |                          |
+| grev       | 'git revert'                                                |                          |
+| grh        | 'git reset'                                                 |                          |
+| grhh       | 'git reset --hard'                                          |                          |
+| groh       | 'git reset origin/$(git_current_branch) --hard'             |                          |
+| grm        | 'git rm'                                                    |                          |
+| gru        | 'git reset --'                                              |                          |
+| grup       | 'git remote update'                                         |                          |
+| grv        | 'git remote -v'                                             |                          |
+| **gst**    | 'git status'                                                |                          |
+| gsta       | 'git stash push'                                            |                          |
+| **gsta**   | 'git stash save'                                            |                          |
+| gstaa      | 'git stash apply'                                           |                          |
+| gstc       | 'git stash clear'                                           |                          |
+| gstd       | 'git stash drop'                                            |                          |
+| gstl       | 'git stash list'                                            |                          |
+| **gstp**   | 'git stash pop'                                             |                          |
+| gsts       | 'git stash show --text'                                     |                          |
+| gstall     | 'git stash --all'                                           |                          |
+### 清单(2.24.3)
+| bash       | desc                                                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------ |
+| g          | 'git'                                                                                                                    |
+| ga         | 'git add'                                                                                                                |
+| **gaa**    | 'git add --all'                                                                                                          |
+| gapa       | 'git add --patch'                                                                                                        |
+| gau        | 'git add --update'                                                                                                       |
+| gav        | 'git add --verbose'                                                                                                      |
+| gap        | 'git apply'                                                                                                              |
+| gapt       | 'git apply --3way'                                                                                                       |
+| **gb**     | 'git branch'                                                                                                             |
+| gba        | 'git branch -a'                                                                                                          |
+| gbd        | 'git branch -d'                                                                                                          |
+| **gbD**    | 'git branch -D'                                                                                                          |
+| gbl        | 'git blame -b -w'                                                                                                        |
+| gbnm       | 'git branch --no-merged'                                                                                                 |
+| gbr        | 'git branch --remote'                                                                                                    |
+| gbs        | 'git bisect'                                                                                                             |
+| gbsb       | 'git bisect bad'                                                                                                         |
+| gbsg       | 'git bisect good'                                                                                                        |
+| gbsr       | 'git bisect reset'                                                                                                       |
+| gbss       | 'git bisect start'                                                                                                       |
+| gc         | 'git commit -v'                                                                                                          |
+| gc         | ='git commit -v --amend'                                                                                                 |
+| gcn        | ='git commit -v --no-edit --amend'                                                                                       |
+| gca        | 'git commit -v -a'                                                                                                       |
+| gca        | ='git commit -v -a --amend'                                                                                              |
+| gcan       | ='git commit -v -a --no-edit --amend'                                                                                    |
+| gcans      | ='git commit -v -a -s --no-edit --amend'                                                                                 |
+| **gcam**   | 'git commit -a -m'                                                                                                       |
+| gcsm       | 'git commit -s -m'                                                                                                       |
+| gcas       | 'git commit -a -s'                                                                                                       |
+| **gcasm**  | 'git commit -a -s -m'                                                                                                    |
+| **gcb**    | 'git checkout -b'                                                                                                        |
+| gcf        | 'git config --list'                                                                                                      |
+| gcl        | 'git clone --recurse-submodules'                                                                                         |
+| gclean     | 'git clean -id'                                                                                                          |
+| gpristine  | 'git reset --hard && git clean -dffx'                                                                                    |
+| gcm        | 'git checkout $(git_main_branch)'                                                                                        |
+| gcd        | 'git checkout develop'                                                                                                   |
+| **gcmsg**  | 'git commit -m'                                                                                                          |
+| gco        | 'git checkout'                                                                                                           |
+| gcor       | 'git checkout --recurse-submodules'                                                                                      |
+| gcount     | 'git shortlog -sn'                                                                                                       |
+| **gcp**    | 'git cherry-pick'                                                                                                        |
+| gcpa       | 'git cherry-pick --abort'                                                                                                |
+| gcpc       | 'git cherry-pick --continue'                                                                                             |
+| gcs        | 'git commit -S'                                                                                                          |
+| gcss       | 'git commit -S -s'                                                                                                       |
+| gcssm      | 'git commit -S -s -m'                                                                                                    |
+| gd         | 'git diff'                                                                                                               |
+| gdca       | 'git diff --cached'                                                                                                      |
+| gdcw       | 'git diff --cached --word-diff'                                                                                          |
+| gdct       | 'git describe --tags $(git rev-list --tags --max-count=1)'                                                               |
+| gds        | 'git diff --staged'                                                                                                      |
+| gdt        | 'git diff-tree --no-commit-id --name-only -r'                                                                            |
+| gdw        | 'git diff --word-diff'                                                                                                   |
+| gf         | 'git fetch'                                                                                                              |
+| **gfa**    | 'git fetch --all --prune --jobs=10'                                                                                      |
+| gfa        | 'git fetch --all --prune'                                                                                                |
+| gfo        | 'git fetch origin'                                                                                                       |
+| gfg        | 'git ls-files \| grep'                                                                                                   |
+| gg         | 'git gui citool'                                                                                                         |
+| gga        | 'git gui citool --amend'                                                                                                 |
+| ggpur      | 'ggu'                                                                                                                    |
+| **ggpull** | 'git pull origin "$(git_current_branch)"'                                                                                |
+| **ggpush** | 'git push origin "$(git_current_branch)"'                                                                                |
+| **ggsup**  | 'git branch --set-upstream-to=origin/$(git_current_branch)'                                                              |
+| gpsup      | 'git push --set-upstream origin $(git_current_branch)'                                                                   |
+| ghh        | 'git help'                                                                                                               |
+| gignore    | 'git update-index --assume-unchanged'                                                                                    |
+| gignored   | 'git ls-files -v \| grep "^[[:lower:]]"'                                                                                 |
+| git        | svn-dcommit-push='git svn dcommit && git push github $(git_main_branch):svntrunk'                                        |
+| gk         | '\gitk --all --branches'                                                                                                 |
+| gke        | '\gitk --all $(git log -g --pretty=%h)'                                                                                  |
+| gl         | 'git pull'                                                                                                               |
+| glg        | 'git log --stat'                                                                                                         |
+| glgp       | 'git log --stat -p'                                                                                                      |
+| glgg       | 'git log --graph'                                                                                                        |
+| glgga      | 'git log --graph --decorate --all'                                                                                       |
+| glol       | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"                 |
+| glols      | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat"          |
+| glod       | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"                 |
+| **glods**  | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"    |
+| glola      | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"           |
+| glgm       | 'git log --graph --max-count=10'                                                                                         |
+| glo        | 'git log --oneline --decorate'                                                                                           |
+| glog       | 'git log --oneline --decorate --graph'                                                                                   |
+| gloga      | 'git log --oneline --decorate --graph --all'                                                                             |
+| glp        | "_git_log_prettily"                                                                                                      |
+| **gm**     | 'git merge'                                                                                                              |
+| **gmom**   | 'git merge origin/$(git_main_branch)'                                                                                    |
+| gmt        | 'git mergetool --no-prompt'                                                                                              |
+| gmtvim     | 'git mergetool --no-prompt --tool=vimdiff'                                                                               |
+| gmum       | 'git merge upstream/$(git_main_branch)'                                                                                  |
+| gma        | 'git merge --abort'                                                                                                      |
+| **gp**     | 'git push'                                                                                                               |
+| gpd        | 'git push --dry-run'                                                                                                     |
+| gpf        | 'git push --force-with-lease'                                                                                            |
+| gpf        | ='git push --force'                                                                                                      |
+| gpoat      | 'git push origin --all && git push origin --tags'                                                                        |
+| gpr        | 'git pull --rebase'                                                                                                      |
+| gpu        | 'git push upstream'                                                                                                      |
+| gpv        | 'git push -v'                                                                                                            |
+| gr         | 'git remote'                                                                                                             |
+| gra        | 'git remote add'                                                                                                         |
+| grb        | 'git rebase'                                                                                                             |
+| grba       | 'git rebase --abort'                                                                                                     |
+| grbc       | 'git rebase --continue'                                                                                                  |
+| grbd       | 'git rebase develop'                                                                                                     |
+| grbi       | 'git rebase -i'                                                                                                          |
+| grbm       | 'git rebase $(git_main_branch)'                                                                                          |
+| grbo       | 'git rebase --onto'                                                                                                      |
+| grbs       | 'git rebase --skip'                                                                                                      |
+| grev       | 'git revert'                                                                                                             |
+| grh        | 'git reset'                                                                                                              |
+| grhh       | 'git reset --hard'                                                                                                       |
+| groh       | 'git reset origin/$(git_current_branch) --hard'                                                                          |
+| grm        | 'git rm'                                                                                                                 |
+| grmc       | 'git rm --cached'                                                                                                        |
+| grmv       | 'git remote rename'                                                                                                      |
+| grrm       | 'git remote remove'                                                                                                      |
+| grs        | 'git restore'                                                                                                            |
+| grset      | 'git remote set-url'                                                                                                     |
+| grss       | 'git restore --source'                                                                                                   |
+| grst       | 'git restore --staged'                                                                                                   |
+| grt        | 'cd "$(git rev-parse --show-toplevel                                                                                     |                                               | echo .)"' |
+| gru        | 'git reset --'                                                                                                           |
+| grup       | 'git remote update'                                                                                                      |
+| grv        | 'git remote -v'                                                                                                          |
+| gsb        | 'git status -sb'                                                                                                         |
+| gsd        | 'git svn dcommit'                                                                                                        |
+| gsh        | 'git show'                                                                                                               |
+| gsi        | 'git submodule init'                                                                                                     |
+| gsps       | 'git show --pretty=short --show-signature'                                                                               |
+| gsr        | 'git svn rebase'                                                                                                         |
+| gss        | 'git status -s'                                                                                                          |
+| **gst**    | 'git status'                                                                                                             |
+| gsta       | 'git stash push'                                                                                                         |
+| **gsta**   | 'git stash save'                                                                                                         |
+| gstaa      | 'git stash apply'                                                                                                        |
+| gstc       | 'git stash clear'                                                                                                        |
+| gstd       | 'git stash drop'                                                                                                         |
+| gstl       | 'git stash list'                                                                                                         |
+| **gstp**   | 'git stash pop'                                                                                                          |
+| gsts       | 'git stash show --text'                                                                                                  |
+| gstu       | 'gsta --include-untracked'                                                                                               |
+| gstall     | 'git stash --all'                                                                                                        |
+| gsu        | 'git submodule update'                                                                                                   |
+| gsw        | 'git switch'                                                                                                             |
+| gswc       | 'git switch -c'                                                                                                          |
+| gts        | 'git tag -s'                                                                                                             |
+| gtv        | 'git tag                                                                                                                 | sort -V'                                      |
+| gtl        | 'gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'                                                           |
+| gunignore  | 'git update-index --no-assume-unchanged'                                                                                 |
+| gunwip     | 'git log -n 1                                                                                                            | grep -q -c "\-\-wip\-\-" && git reset HEAD~1' |
+| gup        | 'git pull --rebase'                                                                                                      |
+| gupv       | 'git pull --rebase -v'                                                                                                   |
+| gupa       | 'git pull --rebase --autostash'                                                                                          |
+| gupav      | 'git pull --rebase --autostash -v'                                                                                       |
+| glum       | 'git pull upstream $(git_main_branch)'                                                                                   |
+| gwch       | 'git whatchanged -p --abbrev-commit --pretty=medium'                                                                     |
+| gwip       | 'git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"' |
+| gam        | 'git am'                                                                                                                 |
+| gamc       | 'git am --continue'                                                                                                      |
+| gams       | 'git am --skip'                                                                                                          |
+| gama       | 'git am --abort'                                                                                                         |
+| gamscp     | 'git am --show-current-patch'                                                                                            |
