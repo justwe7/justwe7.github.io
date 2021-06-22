@@ -20,12 +20,12 @@
 | gbnm       | 'git branch --no-merged'                                    |                          |
 | **gbr**    | 'git branch --remote'                                       |                          |
 | gc         | 'git commit -v'                                             |                          |
-| gc         | ='git commit -v --amend'                                    |                          |
-| gcn        | ='git commit -v --no-edit --amend'                          |                          |
+| gc         | 'git commit -v --amend'                                    |                          |
+| gcn        | 'git commit -v --no-edit --amend'                          |                          |
 | gca        | 'git commit -v -a'                                          |                          |
-| gca        | ='git commit -v -a --amend'                                 |                          |
-| gcan       | ='git commit -v -a --no-edit --amend'                       |                          |
-| gcans      | ='git commit -v -a -s --no-edit --amend'                    |                          |
+| gca        | 'git commit -v -a --amend'                                 |                          |
+| gcan       | 'git commit -v -a --no-edit --amend'                       |                          |
+| gcans      | 'git commit -v -a -s --no-edit --amend'                    |                          |
 | **gcam**   | 'git commit -a -m'                                          |                          |
 | **gcmsg**  | 'git commit -m'                                             |                          |
 | **gcasm**  | 'git commit -a -s -m'                                       |                          |
@@ -117,12 +117,12 @@
 | gbsr       | 'git bisect reset'                                                                                                       |
 | gbss       | 'git bisect start'                                                                                                       |
 | gc         | 'git commit -v'                                                                                                          |
-| gc         | ='git commit -v --amend'                                                                                                 |
-| gcn        | ='git commit -v --no-edit --amend'                                                                                       |
+| gc         | 'git commit -v --amend'                                                                                                 |
+| gcn        | 'git commit -v --no-edit --amend'                                                                                       |
 | gca        | 'git commit -v -a'                                                                                                       |
-| gca        | ='git commit -v -a --amend'                                                                                              |
-| gcan       | ='git commit -v -a --no-edit --amend'                                                                                    |
-| gcans      | ='git commit -v -a -s --no-edit --amend'                                                                                 |
+| gca        | 'git commit -v -a --amend'                                                                                              |
+| gcan       | 'git commit -v -a --no-edit --amend'                                                                                    |
+| gcans      | 'git commit -v -a -s --no-edit --amend'                                                                                 |
 | **gcam**   | 'git commit -a -m'                                                                                                       |
 | gcsm       | 'git commit -s -m'                                                                                                       |
 | gcas       | 'git commit -a -s'                                                                                                       |
@@ -166,7 +166,7 @@
 | ghh        | 'git help'                                                                                                               |
 | gignore    | 'git update-index --assume-unchanged'                                                                                    |
 | gignored   | 'git ls-files -v \| grep "^[[:lower:]]"'                                                                                 |
-| git        | svn-dcommit-push='git svn dcommit && git push github $(git_main_branch):svntrunk'                                        |
+| git        | svn-dcommit-push'git svn dcommit && git push github $(git_main_branch):svntrunk'                                        |
 | gk         | '\gitk --all --branches'                                                                                                 |
 | gke        | '\gitk --all $(git log -g --pretty=%h)'                                                                                  |
 | gl         | 'git pull'                                                                                                               |
@@ -174,11 +174,11 @@
 | glgp       | 'git log --stat -p'                                                                                                      |
 | glgg       | 'git log --graph'                                                                                                        |
 | glgga      | 'git log --graph --decorate --all'                                                                                       |
-| glol       | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"                 |
-| glols      | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat"          |
-| glod       | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"                 |
-| **glods**  | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"    |
-| glola      | "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"           |
+| glol       | "git log --graph --pretty'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"                 |
+| glols      | "git log --graph --pretty'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat"          |
+| glod       | "git log --graph --pretty'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"                 |
+| **glods**  | "git log --graph --pretty'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"    |
+| glola      | "git log --graph --pretty'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"           |
 | glgm       | 'git log --graph --max-count=10'                                                                                         |
 | glo        | 'git log --oneline --decorate'                                                                                           |
 | glog       | 'git log --oneline --decorate --graph'                                                                                   |
@@ -193,7 +193,7 @@
 | **gp**     | 'git push'                                                                                                               |
 | gpd        | 'git push --dry-run'                                                                                                     |
 | gpf        | 'git push --force-with-lease'                                                                                            |
-| gpf        | ='git push --force'                                                                                                      |
+| gpf        | 'git push --force'                                                                                                      |
 | gpoat      | 'git push origin --all && git push origin --tags'                                                                        |
 | gpr        | 'git pull --rebase'                                                                                                      |
 | gpu        | 'git push upstream'                                                                                                      |
