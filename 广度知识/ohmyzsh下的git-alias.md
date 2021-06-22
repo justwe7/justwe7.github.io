@@ -1,6 +1,10 @@
 ## ohmyzsh git快捷指令
+### 查看默认提供的指令配置表
+1. cd ~
+2. cd .oh-my-zsh/plugins/git
+3. cat git.plugin.zsh
 ### 常用指令
-| bash       | git command                                                 |                          |
+| bash       | git command                                                 | desc                     |
 | ---------- | ----------------------------------------------------------- | ------------------------ |
 | **g**      | 'git'                                                       |                          |
 | ga         | 'git add'                                                   |                          |
@@ -90,7 +94,7 @@
 | gsts       | 'git stash show --text'                                     |                          |
 | gstall     | 'git stash --all'                                           |                          |
 ### 清单(2.24.3)
-| bash       | desc                                                                                                                     |
+| bash       | git command                                                                                                              |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
 | g          | 'git'                                                                                                                    |
 | ga         | 'git add'                                                                                                                |
@@ -258,3 +262,5 @@
 | gams       | 'git am --skip'                                                                                                          |
 | gama       | 'git am --abort'                                                                                                         |
 | gamscp     | 'git am --show-current-patch'                                                                                            |
+
+![image.png](https://image.littl.cn/images/2021/06/21/image.png)
