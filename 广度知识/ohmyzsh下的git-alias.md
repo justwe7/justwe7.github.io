@@ -6,19 +6,19 @@
 ### 常用指令
 | bash       | git command                                                 | desc                     |
 | ---------- | ----------------------------------------------------------- | ------------------------ |
-| **g**      | 'git'                                                       |                          |
+| `g`      | 'git'                                                       |                          |
 | ga         | 'git add'                                                   |                          |
-| **gaa**    | 'git add --all'                                             | 2.0版本等于 `git add .`  |
+| `gaa`    | 'git add --all'                                             | 2.0版本等于 `git add .`  |
 | gapa       | 'git add --patch'                                           |                          |
 | gau        | 'git add --update'                                          |                          |
 | gav        | 'git add --verbose'                                         |                          |
 | gap        | 'git apply'                                                 |                          |
-| **gb**     | 'git branch'                                                |                          |
-| **gba**    | 'git branch -a'                                             |                          |
-| **gbd**    | 'git branch -d'                                             |                          |
-| **gbD**    | 'git branch -D'                                             |                          |
+| `gb`     | 'git branch'                                                |                          |
+| `gba`    | 'git branch -a'                                             |                          |
+| `gbd`    | 'git branch -d'                                             |                          |
+| `gbD`    | 'git branch -D'                                             |                          |
 | gbnm       | 'git branch --no-merged'                                    |                          |
-| **gbr**    | 'git branch --remote'                                       |                          |
+| `gbr`    | 'git branch --remote'                                       |                          |
 | gc         | 'git commit -v'                                             |                          |
 | gc         | 'git commit -v --amend'                                    |                          |
 | gcn        | 'git commit -v --no-edit --amend'                          |                          |
@@ -26,16 +26,16 @@
 | gca        | 'git commit -v -a --amend'                                 |                          |
 | gcan       | 'git commit -v -a --no-edit --amend'                       |                          |
 | gcans      | 'git commit -v -a -s --no-edit --amend'                    |                          |
-| **gcam**   | 'git commit -a -m'                                          |                          |
-| **gcmsg**  | 'git commit -m'                                             |                          |
-| **gcasm**  | 'git commit -a -s -m'                                       |                          |
+| `gcam`   | 'git commit -a -m'                                          |                          |
+| `gcmsg`  | 'git commit -m'                                             |                          |
+| `gcasm`  | 'git commit -a -s -m'                                       |                          |
 | gcsm       | 'git commit -s -m'                                          |                          |
 | gcas       | 'git commit -a -s'                                          |                          |
-| **gcb**    | 'git checkout -b'                                           |                          |
+| `gcb`    | 'git checkout -b'                                           |                          |
 | gcf        | 'git config --list'                                         |                          |
 | gcm        | 'git checkout $(git_main_branch)'                           |                          |
 | gco        | 'git checkout'                                              |                          |
-| **gcp**    | 'git cherry-pick'                                           |                          |
+| `gcp`    | 'git cherry-pick'                                           |                          |
 | gcpa       | 'git cherry-pick --abort'                                   |                          |
 | gcpc       | 'git cherry-pick --continue'                                |                          |
 | gcs        | 'git commit -S'                                             |                          |
@@ -43,27 +43,27 @@
 | gcssm      | 'git commit -S -s -m'                                       |                          |
 | gd         | 'git diff'                                                  |                          |
 | gf         | 'git fetch'                                                 |                          |
-| **gfa**    | 'git fetch --all --prune --jobs=10'                         |                          |
+| `gfa`    | 'git fetch --all --prune --jobs=10'                         |                          |
 | gfa        | 'git fetch --all --prune'                                   |                          |
 | gfo        | 'git fetch origin'                                          |                          |
-| **gl**     | 'git pull'                                                  | 拉取远程关联分支         |
-| **gp**     | 'git push'                                                  | 推送到远程关联分支       |
-| **ggpull** | 'git pull origin "$(git_current_branch)"'                   | 拉取指定远程分支         |
-| **ggpush** | 'git push origin "$(git_current_branch)"'                   | 推送到指定远程分支       |
-| **ggsup**  | 'git branch --set-upstream-to=origin/$(git_current_branch)' | 本地分支关联指定远程分支 |
+| `gl`     | 'git pull'                                                  | 拉取远程关联分支         |
+| `gp`     | 'git push'                                                  | 推送到远程关联分支       |
+| `ggpull` | 'git pull origin "$(git_current_branch)"'                   | 拉取指定远程分支         |
+| `ggpush` | 'git push origin "$(git_current_branch)"'                   | 推送到指定远程分支       |
+| `ggsup`  | 'git branch --set-upstream-to=origin/$(git_current_branch)' | 本地分支关联指定远程分支 |
 | gpsup      | 'git push --set-upstream origin $(git_current_branch)'      |                          |
 | ghh        | 'git help'                                                  |                          |
 | glg        | 'git log --stat'                                            |                          |
 | glgp       | 'git log --stat -p'                                         |                          |
-| **glgg**   | 'git log --graph'                                           | 查看日志概要             |
+| `glgg`   | 'git log --graph'                                           | 查看日志概要             |
 | glgga      | 'git log --graph --decorate --all'                          |                          |
 | glgm       | 'git log --graph --max-count=10'                            |                          |
 | glo        | 'git log --oneline --decorate'                              |                          |
 | glol       | 查看日志，见下方                                            |                          |
-| **glod**   | 查看日志，见下方                                            |                          |
-| **glods**  | 查看日志，见下方                                            |                          |
-| **gm**     | 'git merge'                                                 |                          |
-| **gmom**   | 'git merge origin/$(git_main_branch)'                       |                          |
+| `glod`   | 查看日志，见下方                                            |                          |
+| `glods`  | 查看日志，见下方                                            |                          |
+| `gm`     | 'git merge'                                                 |                          |
+| `gmom`   | 'git merge origin/$(git_main_branch)'                       |                          |
 | gmum       | 'git merge upstream/$(git_main_branch)'                     |                          |
 | gma        | 'git merge --abort'                                         |                          |
 | gpf        | 'git push --force'                                          |                          |
@@ -83,14 +83,14 @@
 | gru        | 'git reset --'                                              |                          |
 | grup       | 'git remote update'                                         |                          |
 | grv        | 'git remote -v'                                             |                          |
-| **gst**    | 'git status'                                                |                          |
+| `gst`    | 'git status'                                                |                          |
 | gsta       | 'git stash push'                                            |                          |
-| **gsta**   | 'git stash save'                                            |                          |
+| `gsta`   | 'git stash save'                                            |                          |
 | gstaa      | 'git stash apply'                                           |                          |
 | gstc       | 'git stash clear'                                           |                          |
 | gstd       | 'git stash drop'                                            |                          |
 | gstl       | 'git stash list'                                            |                          |
-| **gstp**   | 'git stash pop'                                             |                          |
+| `gstp`   | 'git stash pop'                                             |                          |
 | gsts       | 'git stash show --text'                                     |                          |
 | gstall     | 'git stash --all'                                           |                          |
 ### 清单(2.24.3)
