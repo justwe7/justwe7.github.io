@@ -14,7 +14,6 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
 ---
 
 ### 笔记列表
-[![Build Status](https://travis-ci.com/justwe7/blog.svg?branch=feature)](https://travis-ci.com/justwe7/blog) [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/blog.svg?style=flat-square)](https://github.com/justwe7/blog/commits/master)
 
 - 基础概念
   - [chrome-devtools加载数据失败](/基础概念/chrome-devtools加载数据失败.md)
@@ -46,6 +45,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [linux常用指令](/广度知识/linux常用指令.md)
   - [markdown](/广度知识/markdown.md)
   - [node](/广度知识/node.md)
+  - [ohmyzsh下的git-alias](/广度知识/ohmyzsh下的git-alias.md)
   - [shell-echo&printf](/广度知识/shell-echo&printf.md)
   - [shell-test验证](/广度知识/shell-test验证.md)
   - [shell-传递参数](/广度知识/shell-传递参数.md)
@@ -56,6 +56,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [shell-疑问记录](/广度知识/shell-疑问记录.md)
   - [shell-输入输出重定向](/广度知识/shell-输入输出重定向.md)
   - [shell-运算符](/广度知识/shell-运算符.md)
+  - [shell](/广度知识/shell.md)
   - [testcafe](/广度知识/testcafe.md)
   - [vimium自用速查](/广度知识/vimium自用速查.md)
   - [vscode](/广度知识/vscode.md)
@@ -63,6 +64,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [windows快捷键](/广度知识/windows快捷键.md)
   - [window超好用的终端配置](/广度知识/window超好用的终端配置.md)
   - [什么是https](/广度知识/什么是https.md)
+  - [微信公众号前后端开发](/广度知识/微信公众号前后端开发.md)
   - [提升命令行效率的Bash快捷键](/广度知识/提升命令行效率的Bash快捷键.md)
   - [简单了解http协议](/广度知识/简单了解http协议.md)
   - [自动化部署微信小程序](/广度知识/自动化部署微信小程序.md)
