@@ -9,7 +9,8 @@ ssh-keygen -t rsa -C 'email@gmail.com' -f ~/.ssh/github_rsa
 
 3. 添加私钥
 ```bash
-$ ssh-add ~/.ssh/weiyi_rsa $ ssh-add ~/.ssh/github_rsa
+$ ssh-add ~/.ssh/weiyi_rsa
+$ ssh-add ~/.ssh/github_rsa
 Identity added: /c/Users/monster/.ssh/weiyi_rsa (xxxx@xxxx.com)
 ```
 或者执行多次，依次添加私钥：`ssh-add ~/.ssh/weiyi_rsa`。
