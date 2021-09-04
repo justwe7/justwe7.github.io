@@ -3,6 +3,17 @@
 1. cd ~
 2. cd .oh-my-zsh/plugins/git
 3. cat git.plugin.zsh
+
+### 个人常规gitflow
+1. 拉取远端分支 `gfa`
+2. 基于远端master创建并切换最新dev需求分支 `gcb dev_v1.1 origin/master`
+3. 将新创建的dev分支推送到远端，并同时向远端推送一个test分支(用于mr对比) `ggpush HEAD:test_v1.1`
+4. 关联本地与远端的dev分支 `ggsup`(如果第7步使用`ggpush`推送的话可以忽略此步骤)
+5. 编码完成，提交到暂存区 `gaa` (个人习惯会在vscode先对比一下变更)
+6. 将暂存区提交到本地版本库 `gcmsg 'feat: 新增xx功能'`
+   ```自信可以直接的话可以合并56为一条指令: `gcasm 'feat: 新增xx功能'` ```
+7. 推送本地dev分支版本库到远端关联dev分支 `gp` (gitlab提交mr到test进行合并前review)
+
 ### 常用指令
 | bash       | git command                                                 | desc                     |
 | ---------- | ----------------------------------------------------------- | ------------------------ |
