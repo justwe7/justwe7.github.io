@@ -7,7 +7,7 @@ const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
   const arr = v.split('/')
   const root = arr[0]
   const name = arr[arr.length - 1].split('.')[0]
-  const item = `  - [${name}](/${v})`
+  const item = `  - [${name}](/blog/${v})`
   if (target[root]) {
     target[root].push(item)
   } else {
