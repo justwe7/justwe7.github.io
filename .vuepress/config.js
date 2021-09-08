@@ -1,36 +1,56 @@
-const autoSidebar = require('vuepress-auto-sidebar.js')
+// const autoSidebar = require('vuepress-auto-sidebar.js')
+const path = require('path');
+const getNavBar = require('./auto-sidebar');
+
 module.exports = {
+  lang: 'zh-CN',
   home: true,
   title: '前端日志',
   description: '土豆和土豆丝的学习记录',
   dest: 'docs',
   base: '/blog/',
+  // sidebar: 'auto',
   // permalink: "/:year/:month/:day/:slug",
   plugins: [
-    ['@vuepress/nprogress'],
-    ['@vuepress/back-to-top'],
+    ['@vuepress/plugin-back-to-top', {}],
+    ['@vuepress/plugin-nprogress', {}],
+    ['@vuepress/plugin-medium-zoom'],
     [
-      autoSidebar,
-      // { base: 'doc' }
-      // { titleOverflow: 20, ignoreFilder: ['doc'] }
+      '@vuepress/plugin-google-analytics',
+      { id: 'GG-KXX3D4CCYS' }
     ],
-    [
-      'vuepress-plugin-comment',
-      {
-        choosen: 'valine',
-        // options选项中的所有参数，会传给Valine的配置
-        options: {
-          el: '#valine-vuepress-comment',
-          avatar: 'monsterid',
-          appId: 'hAfrJDiMKxLmXVpSnRDIp1JT-gzGzoHsz',
-          appKey: 'uJ7s48tGgYtEqI5tSFPMTymR',
-        },
-      },
-    ],
+    // [
+    //   // 'vuepress-plugin-auto-sidebar',
+    //   path.resolve(__dirname, '../vuepress-plugin-aaa'),
+    // ],
+    // [
+    //   'vuepress-plugin-comment',
+    //   {
+    //     choosen: 'valine',
+    //     // options选项中的所有参数，会传给Valine的配置
+    //     options: {
+    //       el: '#valine-vuepress-comment',
+    //       avatar: 'monsterid',
+    //       appId: 'hAfrJDiMKxLmXVpSnRDIp1JT-gzGzoHsz',
+    //       appKey: 'uJ7s48tGgYtEqI5tSFPMTymR',
+    //     },
+    //   },
+    // ],
   ],
   head: [['link', { rel: 'icon', href: '/favorite.ico' }]],
   themeConfig: {
-    // sidebar: 'auto'
+    toggleDarkMode: '切换深色模式',
+    navbar: [
+      {
+        text: '首页',
+        link: '/'
+      },
+      ...getNavBar(),
+      {
+        text: '个人博客',
+        link: 'https://lihx.top'
+      }
+    ],
     repoLabel: 'GitHub',
     repo: 'https://github.com/justwe7/blog',
     lastUpdated: '最近提交',
