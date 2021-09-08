@@ -1,7 +1,23 @@
+const { path } = require('@vuepress/utils')
 module.exports = (options, ctx) => {
   return {
     name: 'aaa',
-    onInitialized: async (app) => {
+    clientAppSetupFiles: path.resolve(__dirname, './a.js'),
+    extendsPageOptions: ({ filePath, title }) => {
+      console.log(22, title)
+      title = '222111'
+      if (filePath?.startsWith('_posts/')) {
+        return {
+          frontmatter: {
+            permalinkPattern: '/:year/:month/:day/:slug.html',
+          },
+        }
+      }
+      return {
+        title: 999
+      }
+    },
+    /* onInitialized: async (app) => {
       console.log(1111, options, app.options)
       const sidebar = [
         {
@@ -23,6 +39,6 @@ module.exports = (options, ctx) => {
       app.options.title = 'aaaaaaa'
       // await app.init()
       return sidebar
-    }
+    } */
   }
 }

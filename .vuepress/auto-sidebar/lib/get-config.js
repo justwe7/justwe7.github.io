@@ -2,7 +2,7 @@ module.exports = (() => {
   const defaultConf = {
     ignoreRoot: true, // 隐藏base目录下的md文件
     ignoreFilder: [], // 忽略的目录
-    titleOverflow: 20, // 隐藏title
+    titleOverflow: 30, // 隐藏title
     suffix: false, // 展示后缀 xx.md
     base: '', // base路径
     gitignore: true

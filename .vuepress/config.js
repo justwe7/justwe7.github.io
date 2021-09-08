@@ -38,8 +38,9 @@ module.exports = {
     // ],
   ],
   head: [['link', { rel: 'icon', href: '/blog/favorite.ico' }]],
-  themeConfig: {
-    logo: '/blog/hero.png',
+    backToHome: '返回首页',
+    themeConfig: {
+    logo: '/hero.png',
     toggleDarkMode: '切换深色模式',
     navbar: [
       {
@@ -54,8 +55,9 @@ module.exports = {
     ],
     repoLabel: 'GitHub',
     repo: 'https://github.com/justwe7/blog',
-    lastUpdated: '最近提交',
-    // displayAllHeaders: true,
+    lastUpdatedText: '最近更新',
+    backToHome: '返回首页',
+    contributors: false, // 贡献者
     // activeHeaderLinks: false, //用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新
     docsDir: '',
     docsBranch: 'feature',

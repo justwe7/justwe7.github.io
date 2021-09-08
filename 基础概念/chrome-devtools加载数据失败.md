@@ -1,6 +1,6 @@
 ---
-title: Blogging Like a Hacker
-lang: en-US
+title: chrome控制台network查不到记录问题
+lang: zh-CN
 ---
 ## chromium 控制台 network 的 response 为 `failed to load response data`
 经常有疑问，假如一个ajax接口发生请求后，立即发生页面跳转（要记得勾选preserve log，不然连个request都没），然后控制台的响应没有任何数据，只有几个空荡荡的单词:  
