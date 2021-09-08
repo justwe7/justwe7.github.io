@@ -21,7 +21,7 @@
     "@vuepress/plugin-google-analytics": "^2.0.0-beta.25",
     "@vuepress/plugin-medium-zoom": "^2.0.0-beta.25",
     "@vuepress/plugin-nprogress": "^2.0.0-beta.25",
-    "globby": "^12.0.2",
+    "globby": "^11.0.4",
     "postcss": "^8.3.6"
   },
   "keywords": [
