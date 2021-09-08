@@ -37,7 +37,7 @@ module.exports = {
     //   },
     // ],
   ],
-  head: [['link', { rel: 'icon', href: '/favorite.ico' }]],
+  head: [['link', { rel: 'icon', href: '/blog/favorite.ico' }]],
   themeConfig: {
     toggleDarkMode: '切换深色模式',
     navbar: [
