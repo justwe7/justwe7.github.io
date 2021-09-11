@@ -1,10 +1,10 @@
-## ohmyzsh git快捷指令
+# ohmyzsh git快捷指令
 ### 查看默认提供的指令配置表
 1. cd ~
 2. cd .oh-my-zsh/plugins/git
 3. cat git.plugin.zsh
 
-### 个人常规gitflow
+### 个人gitflow流程
 1. 拉取远端分支 `gfa`
 2. 基于远端master创建并切换最新dev需求分支 `gcb dev_v1.1 origin/master`
 3. 将新创建的dev分支推送到远端，并同时向远端推送一个test分支(用于mr对比) `ggpush HEAD:test_v1.1`

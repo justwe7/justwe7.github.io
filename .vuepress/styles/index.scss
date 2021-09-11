@@ -1,4 +1,14 @@
 :root {
-  // --c-brand: #3EDBF0;
-  // --c-bg: #F0EBCC;
+  --c-brand: #00A19D;
+  --c-brand-light: #00A19D;
+  --c-bg: #FDFAF6;
+}
+
+html.dark {
+  --c-brand: #39A2DB;
+  --c-brand-light: #39A2DB;
+}
+
+.theme-default-content pre code {
+  color: var(--c-text-lighter);
 }

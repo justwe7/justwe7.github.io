@@ -48,6 +48,17 @@ module.exports = {
         link: '/'
       },
       ...getNavBar(),
+      /* {
+        text: 'Gui2de',
+        link: '/广度知识',
+        children: ['/广度知识/node.md', '/广度知识/shell.md', 
+          {
+            text: 'github',
+            link: '/广度知识/testcafe.md',
+            children: ['/markdown.md']
+          },
+        ],
+      }, */
       {
         text: '个人博客',
         link: 'https://lihx.top'

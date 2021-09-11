@@ -1,4 +1,4 @@
-定义一个对象  
+### 定义一个对象进行测试
 ```js
 var num = -1
 var o = {
@@ -58,7 +58,7 @@ for (var key in o) {
 诶...好像有点不一样😄，顺序好像也不是完全按照asc码来重排的  
 
 
-**标准参考**
+### 查阅标准
 
 根据 ECMA-262（ECMAScript）第三版中描述，for-in 语句的属性遍历的顺序是*由对象定义时属性的书写顺序决定的*。   
 > 关于 ECMA-262（ECMAScript）第三版中 for-in 语句的更多信息，请参考 [ECMA-262 3rd Edition](http://www.ecma-international.org/publications/files/ECMA-ST-ARCH/ECMA-262,%203rd%20edition,%20December%201999.pdf) 中 12.6.4 The for-in Statement。  
@@ -80,7 +80,7 @@ ES5+中的属性遍历顺序说明与早期版本不同，这将导致遵循 ECM
 其它浏览器则完全按照对象定义的顺序遍历属性  
 
 
-**解决方案**
+### 解决方案
 
 1. 使用数组进行排序
 2. 转为es6的 Map结构

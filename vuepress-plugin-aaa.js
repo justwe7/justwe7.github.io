@@ -3,7 +3,7 @@ module.exports = (options, ctx) => {
   return {
     name: 'aaa',
     clientAppSetupFiles: path.resolve(__dirname, './a.js'),
-    extendsPageOptions: ({ filePath, title }) => {
+    /* extendsPageOptions: ({ filePath, title }) => {
       console.log(22, title)
       title = '222111'
       if (filePath?.startsWith('_posts/')) {
@@ -16,7 +16,7 @@ module.exports = (options, ctx) => {
       return {
         title: 999
       }
-    },
+    }, */
     /* onInitialized: async (app) => {
       console.log(1111, options, app.options)
       const sidebar = [

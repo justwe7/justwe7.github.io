@@ -1,6 +1,8 @@
-## 代码文件内以注释配置的规则会覆盖配置文件里的规则，即优先级要更高
+# 禁用eslint校验的几种方式
+### 配置.eslintignore
+> 代码文件内以注释配置的规则会覆盖配置文件(.eslintignore)里的规则，优先级要更高
 
-> 最简单的是在项目 `.eslintignore` 加入对应的文件即可，类似 `.gitignore` [用法](https://cn.eslint.org/docs/user-guide/configuring#comments-in-configuration-files)
+最简单的是在项目 `.eslintignore` 加入对应的文件即可，类似 `.gitignore` [用法](https://cn.eslint.org/docs/user-guide/configuring#comments-in-configuration-files)
 
 ### 针对单个文件禁用 ESLint 语法校验
 在代码顶部添加注释 `/* eslint-disable */`

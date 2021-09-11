@@ -6,7 +6,6 @@ const getNavBar = (options = {}) => {
   const sidebar = []
   const { pattern, gitignore, titleOverflow, suffix } = getConfig(options)
   const aMdList = globby.sync(pattern, { gitignore })
-
   aMdList.forEach(path => {
     const pathArr = path.split('/')
     let fileName = pathArr.pop()
@@ -38,6 +37,6 @@ const getNavBar = (options = {}) => {
   return sidebar
 }
 
-// getNavBar()
+getNavBar()
 
 module.exports = getNavBar
