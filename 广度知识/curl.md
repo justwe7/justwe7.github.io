@@ -87,11 +87,13 @@ curl 默认的请求类型是`GET`，可以通过`-X`参数修改: `curl -X POST
 在http request之中，自行增加一个头信息，使用`--header`参数: 
 `curl --header "Content-Type:application/json" http://example.com`
 
-### User-Agent字段
+### 模拟UA
 模拟移动端ua发起请求: `curl --user-agent "[User Agent]" [URL]`
 
-
-`curl --user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/93.0.4577.82" www.qq.com`
+模拟ip6p:
+```
+curl --user-agent "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/93.0.4577.82" www.qq.com
+```
 
 ### referer
 指定发起请求的来源:
