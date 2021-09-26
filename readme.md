@@ -39,6 +39,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [发布订阅模式](/blog/深度知识/发布订阅模式.md)
   - [正则速查表](/blog/深度知识/正则速查表.md)
 - 广度知识
+  - [curl](/blog/广度知识/curl.md)
   - [gitpage+vuepress+jenkins静态博客](/blog/广度知识/gitpage+vuepress+jenkins静态博客.md)
   - [http报文-概念状态码](/blog/广度知识/http报文-概念状态码.md)
   - [http报文-首部](/blog/广度知识/http报文-首部.md)
@@ -57,6 +58,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [什么是https](/blog/广度知识/什么是https.md)
   - [微信公众号前后端开发](/blog/广度知识/微信公众号前后端开发.md)
   - [提升命令行效率的Bash快捷键](/blog/广度知识/提升命令行效率的Bash快捷键.md)
+  - [服务器操作速查](/blog/广度知识/服务器操作速查.md)
   - [简单了解http协议](/blog/广度知识/简单了解http协议.md)
   - [自动化部署微信小程序](/blog/广度知识/自动化部署微信小程序.md)
   - [shell-echo&printf](/blog/广度知识/shell/shell-echo&printf.md)
