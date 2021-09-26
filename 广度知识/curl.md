@@ -305,3 +305,4 @@ curl --trace - https://www.example.com
 
 ## 参考
 [curl网站开发指南](https://www.ruanyifeng.com/blog/2011/09/curl.html)
+[curl用法指南](https://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
