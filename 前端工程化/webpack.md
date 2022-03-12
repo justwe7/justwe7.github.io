@@ -1,4 +1,4 @@
-#### 初始化一个webpack工程
+# 初始化一个webpack工程
 
 ```
 npm init -y 快速创建package.json
@@ -39,9 +39,9 @@ webpack4之后的0配置原则，遵循默认的项目结构可以不用编写we
 2. 修改package.json，增加npm script: `"build": "webpack --config build/webpack.config.js"`
 3. 执行 `npm run build`，效果是一样的，只不过配置由自己掌控。看，dist目录生成的js文件已经叫bundle.js了
 
-### 完成一份支持html+css+js的配置
+## 完成一份支持html+css+js的配置
 
-#### 支持html模板
+### 支持html模板
 
 引入 `npm i --save-dev html-webpack-plugin` [插件](https://github.com/jantimon/html-webpack-plugin)，然后再修改webpack配置：
 
@@ -88,7 +88,7 @@ plugins: [
 
 此时会以index.spa.html输出两个html页面，index页面因没有指定chunks，会引入两个js，引入顺序是entry定义的顺序。beitai.html则只会引入beitai.js
 
-#### 支持css预处理器的配置
+### 支持css预处理器的配置
 
 处理文件内容是需要loader的，即使原生css都不可以，毕竟js不认识css语法。一次性都装上 `npm install --save-dev style-loader css-loader sass sass-loader` ，如果不用预处理器，去掉后面sass的就可以
 
@@ -222,7 +222,7 @@ module.exports = {
 
 打包后发现会提取一个main.css，且js文件也暂时干净多了
 
-#### 资源相关
+### 资源相关
 
 修改js，引入一个图片资源进行打包:
 
@@ -273,7 +273,7 @@ import './assets/img/avatar.jpg'
 
 
 
-#### 支持js相关
+### 支持js相关
 
 js如果自己用理论上不处理都行~ 但是毕竟还是会写一些新的es语法，这时就用到 [babel](https://babeljs.io/)
 
