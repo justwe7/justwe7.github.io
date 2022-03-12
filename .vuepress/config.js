@@ -3,6 +3,7 @@ const path = require('path');
 const getNavBar = require('./auto-sidebar');
 
 module.exports = {
+  bundler: '@vuepress/bundler-webpack',
   lang: 'zh-CN',
   home: true,
   title: '前端日志',
