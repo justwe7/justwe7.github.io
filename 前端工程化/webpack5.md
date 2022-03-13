@@ -746,3 +746,17 @@ module.exports = merge(baseConfig, {
 ```
 
 修改package.json: ` "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js"`
+
+# 优化打包
+### 美化输出
+使用[friendly-errors-webpack-plugin](https://www.npmjs.com/package/@soda/friendly-errors-webpack-plugin): `npm install @soda/friendly-errors-webpack-plugin --save-dev`
+
+新增配置
+
+```js
+const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin')
+
+plugins: [
+  new FriendlyErrorsWebpackPlugin(), // 输出美化
+]
+```
