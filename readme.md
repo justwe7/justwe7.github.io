@@ -32,6 +32,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [配置多个git-ssh](/blog/基础概念/配置多个git-ssh.md)
 - 深度知识
   - [css-variable实战](/blog/深度知识/css-variable实战.md)
+  - [vue2迁移vue3](/blog/深度知识/vue2迁移vue3.md)
   - [vue实现原理](/blog/深度知识/vue实现原理.md)
   - [vue生命周期](/blog/深度知识/vue生命周期.md)
   - [从0开始手写一个promise](/blog/深度知识/从0开始手写一个promise.md)

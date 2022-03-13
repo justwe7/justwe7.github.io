@@ -66,7 +66,7 @@ plugins: [
     'beitai': './src/index2.js',
   },
   output: {
-    filename: 'js/[name]-[chunkhash:8].js',
+    filename: 'js/[name]-[fullhash:8].js',
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
@@ -246,7 +246,7 @@ import './assets/img/avatar.jpg'
             loader: 'url-loader',
             options: {
               limit: 1024, // 限制转base64的图片为1k(1024b)，超过1k的输出文件, 设置此项需要安装依赖：file-loader
-              name: 'images/[name]-[hash:8].[ext]',
+              name: 'images/[name]-[fullhash:8].[ext]',
             }
           }
         ]
@@ -258,7 +258,7 @@ import './assets/img/avatar.jpg'
             loader: 'url-loader',
             options: {
               limit: 10240, // 10k
-              name: 'fonts/[name]-[hash:8].[ext]'
+              name: 'fonts/[name]-[fullhash:8].[ext]'
             }
           }
         ]
@@ -408,3 +408,341 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 }
 ```
 
+## 完成对vue支持
+
+首先安装vue，`npm i vue@2 -S` (不要问我为什么还装v2版本的，v3我想用vite)
+
+然后安装 `npm i vue-loader@15 vue-template-compiler vue-style-loader` 
+
+> [Vue Loader](https://vue-loader.vuejs.org/) 是一个 [webpack](https://webpack.js.org/) 的 loader，它允许你以一种名为[单文件组件 (SFCs)](https://vue-loader.vuejs.org/zh/spec.html)的格式撰写 Vue 组件
+
+修改html模板:
+
+```html
+<body>
+  <div id="app"></div>
+</body>
+```
+
+新增app.vue:
+
+```vue
+<template>
+  <div id="app">
+    vue app
+    <button @click="handleClick">bar</button>
+  </div>
+</template>
+<script type="text/ecmascript-6">
+export default {
+  data () {
+    return {
+      foo: 'vue app'
+    }
+  },
+  methods: {
+    handleClick () {
+      alert(8)
+    }
+  }
+}
+</script>
+<style lang="scss" rel="stylesheet/scss">
+#app {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
+</style>
+
+```
+
+修改main.js:
+
+```js
+import Vue from 'vue'
+import App from './app.vue'
+import './style.scss'
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+```
+
+新增webpack配置:
+
+```js
+const { VueLoaderPlugin } = require('vue-loader')
+
+module.exports = {
+  module: {
+    rules: [
+      /* vue */
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
+    ]
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+}
+```
+
+此时vue可以正常编译，并将css、js提取。接下来引入vue-router: `npm i vue-router@3 -S`
+
+新增&修改若干文件：
+
+```js
+// src/app.vue
+<template>
+  <div id="app">
+    vue app
+    <router-link to="/">首页</router-link>
+    <router-link to="/detail">详情</router-link>
+    <button @click="handleClick">bar</button>
+    <router-view></router-view>
+  </div>
+</template>
+<script type="text/ecmascript-6">
+export default {
+  data () {
+    return {
+      foo: 'vue app'
+    }
+  },
+  methods: {
+    handleClick () {
+      alert(8)
+    }
+  }
+}
+</script>
+<style lang="scss" rel="stylesheet/scss">
+#app {
+  color: peru;
+}
+</style>
+
+// src/index.js
+import Vue from 'vue'
+import App from './app.vue'
+import './style.scss'
+import router from './router'
+
+const app = new Vue({
+  el: '#app',
+  router,
+  render: h => h(App)
+})
+
+// src/views/home.vue
+<template>
+  <div class="home">
+    页面 home
+  </div>
+</template>
+<script type="text/ecmascript-6">
+export default {}
+</script>
+<style lang="scss" rel="stylesheet/scss">
+.home {
+  height: 300px;
+  background-color: yellowgreen;
+}
+</style>
+
+// src/views/detail.vue
+<template>
+  <div class="detail">
+    页面 detail
+  </div>
+</template>
+<script type="text/ecmascript-6">
+export default {}
+</script>
+<style lang="scss" rel="stylesheet/scss">
+.detail {
+  height: 300px;
+  background-color: burlywood;
+}
+</style>
+
+// src/router/index.js
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
+
+export default new Router({
+  mode: 'history',
+  routes: [
+    { path: '/', component: () => import(/* webpackChunkName: "home" */ '../views/home.vue') },
+    { path: '/detail', component: () => import(/* webpackChunkName: "detail" */ '../views/detail.vue') }
+  ]
+})
+```
+
+打包可以看到路由可以正常匹配了，但是会多一个类似 `bundle.js.LICENSE.txt`开源协议声明的文件，可以用 [terser](https://webpack.docschina.org/plugins/terser-webpack-plugin/) 压缩:
+
+```js
+const TerserPlugin = require('terser-webpack-plugin')
+module.exports = {
+  ...
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          format: {
+            comments: false,
+          }
+        }
+       }),
+    ]
+  }
+}
+```
+
+## 区分打包环境
+
+### 配置dev环境
+
+首先安装 [webpack-dev-server](https://webpack.js.org/api/webpack-dev-server/): `npm install --save-dev webpack-dev-server`
+
+因为要区分开发环境和生成环境，所以单独创建一份dev需要的配置并继承之前编写的基础配置：
+
+```js
+// build/webpack.dev.js
+const webpack = require('webpack')
+const { merge } = require('webpack-merge')
+const baseConfig = require('./webpack.config.js')
+
+module.exports = merge(baseConfig, {
+  // Set the mode to development or production
+  mode: 'development',
+  // Control how source maps are generated
+  devtool: 'inline-source-map',
+  // Spin up a server for quick development
+  devServer: {
+    host: '127.0.0.1',
+    historyApiFallback: true,
+    open: true,
+    compress: true,
+    hot: true,
+    port: 3000,
+    proxy: {
+    }
+  },
+  plugins: [
+    // Only update what has changed on hot reload
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+})
+```
+
+然后通过dev-server启动项目，有两种方式：
+
+1. 通过指令调用，修改package.json:
+
+   ```json
+   "scripts": {
+     "dev": "node build/dev-server.js",
+     "dev2": "webpack serve --config build/webpack.dev.js"
+   },
+   ```
+
+2. 单独创建一个启动服务的文件 `build/dev-server.js`:
+
+   ```js
+   const Webpack = require('webpack')
+   const WebpackDevServer = require('webpack-dev-server')
+   const webpackConfig = require('./webpack.dev.js')
+   
+   const compiler = Webpack(webpackConfig)
+   const devServerOptions = { ...webpackConfig.devServer }
+   const server = new WebpackDevServer(devServerOptions, compiler)
+   
+   const runServer = async () => {
+     console.log('Starting server...')
+     await server.start();
+   };
+   
+   runServer()
+   ```
+
+执行 `npm run dev 或者 npm run dev2` 都可以
+
+哦对了，如果想实现css的热更新需要在开发环境将 `mini-css-extract-plugin` 禁用:
+
+```js
+// webpack.config.js
+const isProd = process.env.NODE_ENV === 'production'
+module.exports = {
+  module: {
+    rules: [
+      /* css */
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          // MiniCssExtractPlugin.loader, // 提取css文件,不与style-loader共存
+          isProd ?
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: (resourcePath, context) => {
+                  return path.relative(path.dirname(resourcePath), context) + "/";
+                },
+              },
+            } :
+            'style-loader', // 打包css到style标签
+          { loader: 'css-loader', options: { esModule: false } },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ]
+      },
+      ...
+```
+
+### 顺便提取一下prod的配置
+
+与dev环境一样，创建用于生产环境配置的 `webpack.prod.js`，把 `wepack.config.js` 中相关配置提取到prod中：
+
+```js
+const { merge } = require('webpack-merge')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+
+const baseConfig = require('./webpack.config.js')
+
+module.exports = merge(baseConfig, {
+  mode: 'production',
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name]-[fullhash:8].css",
+    })
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          format: {
+            comments: false
+          }
+        }
+      })
+    ]
+  }
+})
+```
+
+修改package.json: ` "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js"`
