@@ -72,4 +72,4 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [shell-输入输出重定向](/blog/广度知识/shell/shell-输入输出重定向.md)
   - [shell-运算符](/blog/广度知识/shell/shell-运算符.md)
 - 前端工程化
-  - [webpack](/blog/前端工程化/webpack.md)
+  - [webpack5](/blog/前端工程化/webpack5.md)
