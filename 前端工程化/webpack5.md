@@ -635,10 +635,12 @@ module.exports = merge(baseConfig, {
     }
   },
   plugins: [
-    // Only update what has changed on hot reload
-    new webpack.HotModuleReplacementPlugin(),
+    // [webpack-dev-server] "hot: true" automatically applies HMR plugin, you don't have to add it manually to your webpack configuration. 
+    //new webpack.HotModuleReplacementPlugin(), // 从 v4.0.0 开始，热模块更换默认处于启用状态，如果手动调用需要设置(devServer.hot: false)
   ],
 })
+
+/*  */
 ```
 
 然后通过dev-server启动项目，有两种方式：
@@ -673,12 +675,19 @@ module.exports = merge(baseConfig, {
 
 执行 `npm run dev 或者 npm run dev2` 都可以
 
-哦对了，如果想实现css的热更新需要在开发环境将 `mini-css-extract-plugin` 禁用:
+哦对了，如果想实现css的热更新有两种方式：
+
+1. 在开发环境将 `mini-css-extract-plugin` 禁用:
 
 ```js
 // webpack.config.js
 const isProd = process.env.NODE_ENV === 'production'
 module.exports = {
+  plugins: [
+  //  new MiniCssExtractPlugin({
+  //    filename: "[name]-[fullhash:8].css",
+  //  })
+  ],
   module: {
     rules: [
       /* css */
@@ -710,6 +719,8 @@ module.exports = {
       },
       ...
 ```
+
+2. 将
 
 ### 顺便提取一下prod的配置
 
