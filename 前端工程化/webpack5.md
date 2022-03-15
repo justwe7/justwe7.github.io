@@ -771,3 +771,88 @@ plugins: [
   new FriendlyErrorsWebpackPlugin(), // 输出美化
 ]
 ```
+
+
+
+# ssr
+
+安装  
+
+```bash
+npm i vue-server-renderer -S
+npm i koa koa-router@7 -D
+```
+
+### 极简版SSR页面
+
+创建 server/index.js:
+
+```js
+const Koa = require('koa')
+const app = new Koa()
+const SSRRender = require('./ssr')
+
+SSRRender(app)
+
+app.listen(3000, '127.0.0.1', () => {
+  console.log('server started')
+})
+```
+
+创建 server/ssr/index.js:
+
+```js
+
+const fs = require('fs')
+const path = require('path')
+const Vue = require('vue')
+const Router = require('koa-router')
+const renderer = require('vue-server-renderer').createRenderer()
+const router = new Router()
+
+module.exports = app => {
+  router.get('*', async (ctx, next) => {
+    const render = async (ctx) => {
+      const vm = new Vue({
+        data: {
+          url: ctx.req.url
+        },
+        template: `<div>访问的 URL 是： {{ url }}</div>`
+      })
+      return new Promise((resolve, reject) => {
+        renderer.renderToString(vm, (err, html) => {
+          console.log(html)
+          if (err) {
+            reject(err)
+            return
+          }
+          resolve(`
+            <!DOCTYPE html>
+            <html lang="en">
+              <head><title>Hello</title></head>
+              <body>${html}</body>
+            </html>
+          `)
+        })
+      })
+    }
+
+    try {
+      const html = await render(ctx)
+      ctx.type = 'html'
+      ctx.body = html
+    } catch (err) {
+      ctx.status = 500
+      ctx.body = 'Internal Server Error'
+    }
+  })
+
+  app
+    .use(router.routes())
+    .use(router.allowedMethods())
+}
+
+```
+
+执行 `node server` 指令，然后访问 `http://localhost:3000/hello` 查看渲染后的页面，查看源码也是vue编译后直出的html页面
+
