@@ -1,9 +1,14 @@
 // const autoSidebar = require('vuepress-auto-sidebar.js')
 const path = require('path');
 const getNavBar = require('./auto-sidebar');
+const { webpackBundler } = require('@vuepress/bundler-webpack')
+const { defaultTheme } = require('@vuepress/theme-default')
 
 module.exports = {
-  bundler: '@vuepress/bundler-webpack',
+  bundler: webpackBundler({
+    postcss: {},
+    vue: {},
+  }),
   lang: 'zh-CN',
   home: true,
   title: '前端日志',
@@ -39,8 +44,7 @@ module.exports = {
     // ],
   ],
   head: [['link', { rel: 'icon', href: '/blog/favorite.ico' }]],
-    backToHome: '返回首页',
-    themeConfig: {
+  theme: defaultTheme({
     logo: '/hero.png',
     toggleDarkMode: '切换深色模式',
     navbar: [
@@ -76,5 +80,43 @@ module.exports = {
     editLinks: true,
     editLinkText: '纠正错误',
     smoothScroll: true,
-  },
+    backToHome: '返回首页',
+  }),
+  // themeConfig: {
+  //   logo: '/hero.png',
+  //   toggleDarkMode: '切换深色模式',
+  //   navbar: [
+  //     {
+  //       text: '首页',
+  //       link: '/'
+  //     },
+  //     ...getNavBar(),
+  //     /* {
+  //       text: 'Gui2de',
+  //       link: '/广度知识',
+  //       children: ['/广度知识/node.md', '/广度知识/shell.md', 
+  //         {
+  //           text: 'github',
+  //           link: '/广度知识/testcafe.md',
+  //           children: ['/markdown.md']
+  //         },
+  //       ],
+  //     }, */
+  //     {
+  //       text: '个人博客',
+  //       link: 'https://lihx.top'
+  //     }
+  //   ],
+  //   repoLabel: 'GitHub',
+  //   repo: 'https://github.com/justwe7/blog',
+  //   lastUpdatedText: '最近更新',
+  //   backToHome: '返回首页',
+  //   contributors: false, // 贡献者
+  //   // activeHeaderLinks: false, //用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新
+  //   docsDir: '',
+  //   docsBranch: 'feature',
+  //   editLinks: true,
+  //   editLinkText: '纠正错误',
+  //   smoothScroll: true,
+  // },
 }
