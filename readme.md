@@ -57,6 +57,7 @@ footer: MIT Licensed | Copyright © justwe7 （转载请注明出处）
   - [windows快捷键](/blog/广度知识/windows快捷键.md)
   - [window超好用的终端配置](/blog/广度知识/window超好用的终端配置.md)
   - [什么是https](/blog/广度知识/什么是https.md)
+  - [前端自动化测试的一些思考](/blog/广度知识/前端自动化测试的一些思考.md)
   - [微信公众号前后端开发](/blog/广度知识/微信公众号前后端开发.md)
   - [提升命令行效率的Bash快捷键](/blog/广度知识/提升命令行效率的Bash快捷键.md)
   - [服务器操作速查](/blog/广度知识/服务器操作速查.md)
