@@ -1,15 +1,6 @@
 # shell基础
 之前各个知识点都分开写，导致博客目录很乱，抽空把散乱的文章合并为一篇了。原链接已经从导航栏入口去掉：
-- [文件目录](https://github.com/justwe7/blog/tree/feature/%E5%B9%BF%E5%BA%A6%E7%9F%A5%E8%AF%86/shell)
-- [shell-基础](/blog/广度知识/shell/shell-基础.html)
-- [shell-echo&printf](/blog/广度知识/shell-echo&printf.html)
-- [shell-流程控制-if&for](/blog/广度知识/shell/shell-流程控制-if&for.html)
-- [shell-函数](/blog/广度知识/shell/shell-函数.html)
-- [shell-test验证](/blog/广度知识/shell/shell-test验证.html)
-- [shell-传递参数](/blog/广度知识/shell/shell-传递参数.html)
-- [shell-模块化](/blog/广度知识/shell/shell-模块化.html)
-- [shell-输入输出重定向](/blog/广度知识/shell/shell-输入输出重定向.html)
-- [shell-运算符](/blog/广度知识/shell/shell-运算符.html)
+- [文件目录](https://github.com/justwe7/blog/tree/feature/docs/%E5%B9%BF%E5%BA%A6%E7%9F%A5%E8%AF%86/shell)
 
 ## hello shell
 

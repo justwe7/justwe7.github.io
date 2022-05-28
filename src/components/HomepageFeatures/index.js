@@ -44,8 +44,8 @@ function Feature({ groupTitle, groupList }) {
         {
           groupList.map(item => {
             return (
-              <h4 className={styles.listItem}>
-                <Link to={item.link}>{item.title}</Link>
+              <h4 className={styles.listItem} key={item.title}>
+                <Link key={item.title} to={item.link}>{item.title}</Link>
               </h4>
             )
           })
@@ -86,7 +86,7 @@ function FeatureList({ catalog }) {
   return (
     Object.entries(catalog).map(item => {
       const [groupTitle, groupList] = item
-      return (<Feature groupTitle={groupTitle} groupList={groupList}></Feature>)
+      return (<Feature key={groupTitle} groupTitle={groupTitle} groupList={groupList}></Feature>)
       return (<section className='markdown'>
         <h2>{groupTitle}</h2>
         {

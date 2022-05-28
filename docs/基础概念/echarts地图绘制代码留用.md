@@ -1,5 +1,5 @@
 ## 地图绘制
-1. 创建echarts[画布组件](地图组件代码)，组件需确保引入绘制地图相关模块、要绘制的对应区域数据信息
+1. 创建echarts[画布组件]，组件需确保引入绘制地图相关模块、要绘制的对应区域数据信息
 2. 请求疫情数据，处理为需要绘制的疫情数据，传入画布组件
 
 
@@ -41,7 +41,7 @@
 - [GitHub](https://github.com/echarts-maps/echarts-china-cities-js)找到对应的json数据
 
 ### 如何定制地图某个城市的name样式（浙江省单独定制杭州市的样式）
-参考[天津版定制地图](天津版定制代码)，131行，formatter方法返回 `{richKey|name}`，`name`表示在地图展示的城市名，`richKey`匹配`formatter`同级的`rich`对应key的内容样式
+参考[天津版定制地图]，131行，formatter方法返回 `{richKey|name}`，`name`表示在地图展示的城市名，`richKey`匹配`formatter`同级的`rich`对应key的内容样式
 
 如果要将城市名称竖排，return城市名称以 `\n` 连接换行即可
 

@@ -2,14 +2,11 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+// const lightCodeTheme = require('prism-react-renderer/themes/ultramin');
+const darkCodeTheme = require('prism-react-renderer/themes/synthwave84');
 const globby = require('globby')
 
 const aArticles = globby.sync(['docs/**/*.md', '!*.md'], { gitignore: true })
-// aArticles.then(res => {
-//   console.log(res)
-// })
-// console.log(111, aArticles, 99)
 
 const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
   const arr = v.substring(5).split('/')
@@ -27,16 +24,6 @@ const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
   }
   return target
 }, {})
-// console.log(oArticleCatalog)
-
-// let temp = fs.readFileSync('./catalog-template.md', 'utf8')
-// for (const key in oArticleCatalog) {
-//   if (oArticleCatalog.hasOwnProperty(key)) {
-//     const list = oArticleCatalog[key]
-//     const reg = new RegExp(`\\$${key}\\$`)
-//     temp = temp.replace(reg, list.join('\n'))
-//   }
-// }
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -44,7 +31,7 @@ const config = {
   tagline: 'Hi, jser. Enjoy It!',
   url: 'https://justwe7.github.io',
   baseUrl: '/blog/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favorite.ico',
   customFields: {
@@ -63,6 +50,24 @@ const config = {
     defaultLocale: 'zh-cn',
     locales: ['zh-cn'],
   },
+  plugins: [
+    'plugin-image-zoom'
+  ],
+
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        // ... Your options.
+        // `hashed` is recommended as long-term-cache of index file is possible.
+        hashed: true,
+        // For Docs using Chinese, The `language` is recommended to set to:
+        // ```
+        // language: ["en", "zh"],
+        // ```
+      },
+    ],
+  ],
 
   presets: [
     [
@@ -93,7 +98,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [{name: 'keywords', content: '前端开发，前端开发博客，justwe7，JavaScript，html，css，js，jQuery，vue，webpack'}],
       navbar: {
+
+        hideOnScroll: true,
         title: '前端笔记 - justwe7のWiki',
         logo: {
           alt: 'My Site Logo',
@@ -159,6 +167,11 @@ const config = {
         //   },
         // ],
         copyright: `Copyright © ${new Date().getFullYear()} justwe7@<a target='_blank' href='https://github.com/justwe7/blog/tree/feature'>blog</a>, Inc. Built with Docusaurus.转载请标明来源`,
+      },
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
       },
       prism: {
         theme: lightCodeTheme,
