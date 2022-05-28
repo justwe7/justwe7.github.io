@@ -81,7 +81,6 @@ function Feature({ groupTitle, groupList }) {
 }
 
 function FeatureList({ catalog }) {
-  console.log(catalog)
 
   // return (<div>22</div>)
   return (

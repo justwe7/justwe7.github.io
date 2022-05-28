@@ -1,41 +1,4 @@
-# Website
+### 在线地址：[Git Page (https://justwe7.github.io/blog/)](https://justwe7.github.io/blog/)
+[![Build Status](https://travis-ci.com/justwe7/blog.svg?branch=master)](https://travis-ci.com/justwe7/blog)  [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/blog.svg?style=flat-square)](https://github.com/justwe7/blog/commits/master)
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
-
-### Installation
-
-```
-$ yarn
-```
-
-### Local Development
-
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+### 前端学习总结

@@ -158,7 +158,7 @@ const config = {
         //     ],
         //   },
         // ],
-        copyright: `Copyright © ${new Date().getFullYear()} justwe7@<a target='_blank' href='https://github.com/justwe7/blog/tree/feature'>blog</a>, Inc. Built with Docusaurus.转载请注明`,
+        copyright: `Copyright © ${new Date().getFullYear()} justwe7@<a target='_blank' href='https://github.com/justwe7/blog/tree/feature'>blog</a>, Inc. Built with Docusaurus.转载请标明来源`,
       },
       prism: {
         theme: lightCodeTheme,
