@@ -9,7 +9,7 @@
 fork了一个仓库有时间缕一缕加点注释[地址](https://github.com/justwe7/vue)  
 
 图片来源于网络
-![生命周期](../static/vue-lifecycle.png)  
+![生命周期](/img/vue-lifecycle.png)  
 
 
 ### Vue的声明周期各阶段
@@ -56,8 +56,8 @@ callHook(vm, 'created')//生命周期
   }
 ```
 **B代码块会转换template为render字符串:**    
-![vue-render2](../static/vue-render2.png)
-![vue-render1](../static/vue-render1.png)   
+![vue-render2](/img/vue-render2.png)
+![vue-render1](/img/vue-render1.png)   
 
 1. \$mount会执行之前的 `Vue.prototype.$mount`方法，真实执行的是mountComponent方法，把当前的vm实例传入
 mountComponent

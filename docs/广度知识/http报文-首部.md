@@ -53,7 +53,7 @@
 
 ## http报文首部
 http协议的请求报文和响应报文必定包含http首部。首部内容为**服务端和服务器**各自处理**请求和响应提供信息**(开发)。报文分为报文头部、空行和报文主体。但是**报文主体是可选**的，如一个GET请求报文中，就没有报文主体：  
-![报文结构](../static/http2.png "报文结构")  
+![报文结构](/img/http2.png "报文结构")  
 
 ### HTTP 请求报文
 > 由方法、URI、HTTP 版本、HTTP 首部字段 等部分构成。
@@ -429,4 +429,4 @@ Do Not Track 的简称，意为拒绝个人信息被收集，是表示拒绝被�
 - ETag和If-None-Match是一对  
 - Last-Modified和If-Modified-Since是一对    
 
-![浏览器请求资源](../static/huancun.jpg "浏览器请求资源")  
+![浏览器请求资源](/img/huancun.jpg "浏览器请求资源")  

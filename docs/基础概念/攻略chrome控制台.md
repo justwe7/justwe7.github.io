@@ -617,14 +617,14 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 CPU 资源。**此面积图指示消耗 CPU 资源的事件类型**。在CPU图表中的各种颜色与 `Summary` 面板里的颜色是相互对应的，`Summary` 面板就在 `Performance` 面板的下方。CPU图表中的各种颜色代表着在这个时间段内，CPU在各种处理上所花费的时间。如果你看到了某个处理占用了大量的时间，那么这可能就是一个可以找到性能瓶颈的线索
 
 ##### CPU 资源面积图颜色划分:
-| 颜色                                                                                       | 执行内容                     |
+| 颜色        | 执行内容               |
 | ------------------------------------------------------------------------------------------ | ---------------------------- |
-| <span style="background: rgb(144,183,233);color: #fff;border: 1px;">蓝色</span>(Loading)   | 网络通信和HTML解析           |
-| <span style="background: rgb(243,209,124);color: #fff;border: 1px;">黄色</span>(Scripting) | JavaScript执行               |
-| <span style="background: rgb(175,153,235);color: #fff;border: 1px;">紫色</span>(Rendering) | 样式计算和布局，即重排       |
-| <span style="background: rgb(144,193,233);color: #fff;border: 1px;">绿色</span>(Painting)  | 更改外观而不会影响布局，重绘 |
-| <span style="background: rgb(222,222,222);color: #fff;border: 1px;">灰色</span>(other)     | 其它事件花费的时间           |
-| <span style="background: #fff;color: #000;border: 1px;">白色</span>(Idle)                  | 空闲时间                     |
+| <span style={{background: 'rgb(144,183,233)', color: '#fff' }}>蓝色</span>(Loading)   | 网络通信和HTML解析           |
+| <span style={{background: 'rgb(243,209,124)', color: '#fff' }}>黄色</span>(Scripting) | JavaScript执行               |
+| <span style={{background: 'rgb(175,153,235)', color: '#fff' }}>紫色</span>(Rendering) | 样式计算和布局，即重排       |
+| <span style={{background: 'rgb(144,193,233)', color: '#fff' }}>绿色</span>(Painting)  | 更改外观而不会影响布局，重绘 |
+| <span style={{background: 'rgb(222,222,222)', color: '#fff' }}>灰色</span>(other)     | 其它事件花费的时间           |
+| <span style={{background: '#fff', color:' #000' }}>白色</span>(Idle)                  | 空闲时间                     |
 
 > 重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘
 > 回流(重排)是布局或者几何属性需要改变就称为回流
@@ -707,79 +707,80 @@ Google官方文档的例子：
 #### performance API
 
 <details>
-  <summary>performance API</summary>
+<summary>performance API</summary>
 
-  - `memory`
-    - totalJSHeapSize: '可使用内存大小' // 单位 KB
-    - usedJSHeapSize: '已使用内存大小'
-    - jsHeapSizeLimit: '内存大小限制'
-  - `navigation`
-    - redirectCount: 0 
-      > 如果有重定向的话，页面通过几次重定向跳转而来
-    - type: 0 
-      > 类似于小程序定义的场景值，type的值：
-      > 0  即TYPE_NAVIGATENEXT 正常进入页面（非刷新、非重定向等)
-      > 1  即TYPE_RELOAD 通过window.location.reload()刷新的页面
-      > 2  即TYPE_BACK_FORWARD 通过浏览器的前进后退按钮进入的页面（历史记录）
-      > 255 即TYPE_UNDEFINED 非以上方式进入的页面
-  - `onresourcetimingbufferfull` // 一个当resourcetimingbufferfull 事件触发时调用的EventHandler 这个事件当浏览器的资源时间性能缓冲区已满时会触发
-    ```js
-    // 在onresourcetimingbufferfull属性上设置一个回调函数：
-    function buffer_full(event) {
-      console.log("WARNING: Resource Timing Buffer is FULL!");
-      performance.setResourceTimingBufferSize(200);
-    }
-    function init() {
-      // Set a callback if the resource buffer becomes filled
-      performance.onresourcetimingbufferfull = buffer_full;
-    }
-    <body onload="init()">
-    ```
-  - `timeOrigin`: 1594219100175.9412 
-    > 返回性能测量开始时的时间的高精度时间戳
-  - `timing`
-    - navigationStart: '时间戳'
-      > 在同一个浏览器上下文中，前一个网页（与当前页面不一定同域）unload的时间戳，如果无前一个网页unload，则与fetchStart值相等；
-    - unloadEventStart: 0
-      > 前一个网页（与当前页面同域）unload的时间戳，如果无前一个网页unload或者前一个网页与当前页面不同域，则值为0
-    - unloadEventEnd:  0
-      >  和unloadEventStart 相对应，返回前一个网页unload事件绑定的回调函数执行王弼的时间戳
-    - redirectStart:  0
-      > 第一个HTTP重定向发生时的时间，有跳转且是同域名内部的重定向才算，否则值为0
-    - redirectEnd:  0
-      > 最后一个HTTP重定向完成时的时间，有跳转切尔是同域名内部的重定向才算，否则值为0
-    - fetchStart: '时间戳'
-      > 浏览器准备好使用HTTP请求抓取文档的时间，这发生在检查本地缓存之前
-    - domainLookupStart: '时间戳'
-      > DNS域名查询开始的时间，如果使用了本地缓存（即无DNS查询）或持久连接，则与fetchStart值相等
-    - domainLookupEnd: '时间戳'
-      > DNS域名查询完成的时间，如果使用了本地缓存（即 无DNS查询）或持久连接，则与fetchStart值相等
-    - connectStart: '时间戳'
-      > HTTP(TCP)开始建立连接的时间，如果是持久连接，则与fetchStart值相等；如果在传输层发生了错误且重新建立了连接，则这里显示的是新建立连接的时间
-    - connectEnd: '时间戳'
-      > HTTP(TCP)完成建立连接的时间（握手），如果是持久连接，则与fetchStart相等；如果是在传输层发生了错误且重新建立连接，则这里咸宁市的是新建立的连接完成的时间；这
-    - secureConnectionStart: 0
-      > HTTPS连接开始的时间，如果不是安全连接，则值为0;
-    - requestStart: '时间戳'
-      > HTTP请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存，连接错误时这里显示的是新建立的连接的时间
-    - responseStart: '时间戳'
-      > HTTP开始接收响应的时间（获取到第一个字节），包括从本地读取缓存
-    - responseEnd: 0
-      > HTTP响应全部接收完毕的时间（获取到最后一个字节），包括从本地读取的缓存
-    - domLoading: 0
-      > 开始解析渲染DOM树的时间，此时Document.readyState变为interactive，并将抛出readystatechange相关事件（这里只是DOM树解析完毕，这时候并没有开始加载网页内的
-    - dominteractive: 0
-      > 完成解析DOM树的时间，Document,readyState变为interactive,并将抛出readystatechange相关事件（这时候并没有开始加载网页资源）
-    - domContentLoadedEventStart: 0
-      > DOM解析完成后，网页内资源加载开始的时间，在DOMContentLoaded事件抛出之前发生
-    - domContentLoadedEventEnd: 0
-      > DOM解析完成后，网页内资源加载完成的时间
-    - domComplete: 0
-      > DOM树解析完成，且资源也准备就绪的时间，Document.readyState变为complete,并将抛出readystatechange相关事件
-    - loadEventStart: 0
-      > load事件发送给文档，也即load回调函数开始执行的时间，如果没有绑定load事件，值为0
-    - loadEventEnd: 0
-      > load事件的回调函数执行完毕的时间
+- `memory`
+  - totalJSHeapSize: '可使用内存大小' // 单位 KB
+  - usedJSHeapSize: '已使用内存大小'
+  - jsHeapSizeLimit: '内存大小限制'
+- `navigation`
+  - redirectCount: 0 
+    > 如果有重定向的话，页面通过几次重定向跳转而来
+  - type: 0 
+    > 类似于小程序定义的场景值，type的值：
+    > 0  即TYPE_NAVIGATENEXT 正常进入页面（非刷新、非重定向等)
+    > 1  即TYPE_RELOAD 通过window.location.reload()刷新的页面
+    > 2  即TYPE_BACK_FORWARD 通过浏览器的前进后退按钮进入的页面（历史记录）
+    > 255 即TYPE_UNDEFINED 非以上方式进入的页面
+- `onresourcetimingbufferfull` // 一个当resourcetimingbufferfull 事件触发时调用的EventHandler 这个事件当浏览器的资源时间性能缓冲区已满时会触发
+  ```js
+  function buffer_full(event) {
+  // 在onresourcetimingbufferfull属性上设置一个回调函数：
+    console.log("WARNING: Resource Timing Buffer is FULL!");
+    performance.setResourceTimingBufferSize(200);
+  }
+  function init() {
+    // Set a callback if the resource buffer becomes filled
+    performance.onresourcetimingbufferfull = buffer_full;
+  }
+  <body onload="init()">
+  ```
+- `timeOrigin`: 1594219100175.9412 
+  > 返回性能测量开始时的时间的高精度时间戳
+- `timing`
+  - navigationStart: '时间戳'
+    > 在同一个浏览器上下文中，前一个网页（与当前页面不一定同域）unload的时间戳，如果无前一个网页unload，则与fetchStart值相等；
+  - unloadEventStart: 0
+    > 前一个网页（与当前页面同域）unload的时间戳，如果无前一个网页unload或者前一个网页与当前页面不同域，则值为0
+  - unloadEventEnd:  0
+    >  和unloadEventStart 相对应，返回前一个网页unload事件绑定的回调函数执行王弼的时间戳
+  - redirectStart:  0
+    > 第一个HTTP重定向发生时的时间，有跳转且是同域名内部的重定向才算，否则值为0
+  - redirectEnd:  0
+    > 最后一个HTTP重定向完成时的时间，有跳转切尔是同域名内部的重定向才算，否则值为0
+  - fetchStart: '时间戳'
+    > 浏览器准备好使用HTTP请求抓取文档的时间，这发生在检查本地缓存之前
+  - domainLookupStart: '时间戳'
+    > DNS域名查询开始的时间，如果使用了本地缓存（即无DNS查询）或持久连接，则与fetchStart值相等
+  - domainLookupEnd: '时间戳'
+    > DNS域名查询完成的时间，如果使用了本地缓存（即 无DNS查询）或持久连接，则与fetchStart值相等
+  - connectStart: '时间戳'
+    > HTTP(TCP)开始建立连接的时间，如果是持久连接，则与fetchStart值相等；如果在传输层发生了错误且重新建立了连接，则这里显示的是新建立连接的时间
+  - connectEnd: '时间戳'
+    > HTTP(TCP)完成建立连接的时间（握手），如果是持久连接，则与fetchStart相等；如果是在传输层发生了错误且重新建立连接，则这里咸宁市的是新建立的连接完成的时间；这
+  - secureConnectionStart: 0
+    > HTTPS连接开始的时间，如果不是安全连接，则值为0;
+  - requestStart: '时间戳'
+    > HTTP请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存，连接错误时这里显示的是新建立的连接的时间
+  - responseStart: '时间戳'
+    > HTTP开始接收响应的时间（获取到第一个字节），包括从本地读取缓存
+  - responseEnd: 0
+    > HTTP响应全部接收完毕的时间（获取到最后一个字节），包括从本地读取的缓存
+  - domLoading: 0
+    > 开始解析渲染DOM树的时间，此时Document.readyState变为interactive，并将抛出readystatechange相关事件（这里只是DOM树解析完毕，这时候并没有开始加载网页内的
+  - dominteractive: 0
+    > 完成解析DOM树的时间，Document,readyState变为interactive,并将抛出readystatechange相关事件（这时候并没有开始加载网页资源）
+  - domContentLoadedEventStart: 0
+    > DOM解析完成后，网页内资源加载开始的时间，在DOMContentLoaded事件抛出之前发生
+  - domContentLoadedEventEnd: 0
+    > DOM解析完成后，网页内资源加载完成的时间
+  - domComplete: 0
+    > DOM树解析完成，且资源也准备就绪的时间，Document.readyState变为complete,并将抛出readystatechange相关事件
+  - loadEventStart: 0
+    > load事件发送给文档，也即load回调函数开始执行的时间，如果没有绑定load事件，值为0
+  - loadEventEnd: 0
+    > load事件的回调函数执行完毕的时间
+
 </details>
 
 #### 几个实用的API

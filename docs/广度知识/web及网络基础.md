@@ -29,7 +29,7 @@
 ### TCP/IP通信流
 发送端从应用层往下走，接收端从链路层往上走
 
-![TCPIP](../static/tcpip.png "TCPIP通信流")
+![TCPIP](/img/tcpip.png "TCPIP通信流")
 ## 与http相关的IP、TCP、DNS
 
 ### IP协议-负责传输
@@ -62,7 +62,7 @@ TCP处于传输层，提供可靠的字节流服务。所谓的字节流服务�
 ### DNS
 域名服务器，DNS协议通过域名查找IP地址，或者可以逆向从IP地址反查域名。
 
-![TCPIP](../static/http.png "http协议在TCP/IP运行")
+![TCPIP](/img/http.png "http协议在TCP/IP运行")
 
 
 

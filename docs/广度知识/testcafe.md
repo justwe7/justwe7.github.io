@@ -1,6 +1,7 @@
 # 简介
-
 testcafe ([官网](https://devexpress.github.io/testcafe/)) 是一个基于 nodejs 的自动化测试框架，优点就先不多说了，我们直接进入正题！
+
+[testcafe总结(原文)](https://blog.mutoe.com/2018/testcafe/)
 
 # 安装
 
@@ -78,7 +79,7 @@ testcafe chrome myFirstTestcase.js
 
 稍等片刻，我们的浏览器就会被自动打开然后运行测试脚本，最后浏览器被自动关闭，在终端上留下了测试结果。
 
-![test report](//static.mutoe.com/2018/testcafe/test-report.png)
+![test report](https://static.mutoe.com/2018/testcafe/test-report.png)
 
 ## 编写测试代码
 
@@ -164,7 +165,7 @@ t 是我们的测试用例的控制器，它又很多方法，在上面的例子
 - `eql()` 是一个断言方法，用于判断断言实例与期望值是否严格等于，它接受一个参数：期望值；  
   该类断言方法会在打印出相应的测试报告，如果相等则返回 pass，否则抛出一个 AssertionError
   
-  ![assertion error](//static.mutoe.com/2018/testcafe/assertion-error.png)
+  ![assertion error](https://static.mutoe.com/2018/testcafe/assertion-error.png)
 
 ## 小结
 
@@ -487,7 +488,7 @@ const windowsRadioButton  = Selector('.radio-button').withText('Windows');
 const selectedRadioButton = Selector('.radio-button').withAttribute('selected');
 ```
 
-如果需要在 DOM 树中查找特定元素，可以使用选择器 API 的[搜索方法]()查找它。
+如果需要在 DOM 树中查找特定元素，可以使用选择器 API 的[搜索方法]查找它。
 
 ``` js
 const buttonWrapper = Selector('.article-content').find('#share-button').parent();
@@ -502,7 +503,7 @@ Selector( init [, options] )
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | `init` | Function &vert; string &vert; Selector &vert; Snapshot &vert; Promise | 标识要选择的 DOM 节点 |
-| `options` _(可选的)_ | Object | 选项, 有关[选择器选项]() |
+| `options` _(可选的)_ | Object | 选项, 有关[选择器选项] |
 
 - 使用一个 CSS 选择器
 
@@ -659,7 +660,7 @@ Testcafe 会输出有关于测试报告运行失败时的详细信息。
 
 如果你尝试使用不匹配任何DOM元素的选择器时，测试失败并抛出一个错误。错误消息指示哪个选择器失败。
 
-![failed selector report](//static.mutoe.com/2018/testcafe/failed-selector-report.png)
+![failed selector report](https://static.mutoe.com/2018/testcafe/failed-selector-report.png)
 
 #### 选择器的方法
 
@@ -731,7 +732,7 @@ Selector('a').withAttribute('href')
 // 匹配 title 属性为‘图片’的 img 元素
 Selector('img').withAttribute('title', '图片')
 
-// 匹配任何 src 属性以 'https://static.mutoe.com' 开头的 img 元素
+// 匹配任何 src 属性以 'https:https://static.mutoe.com' 开头的 img 元素
 Selector('img').withAttribute('src', /^https?:\/\/static\.mutoe\.com/)
 ```
 
@@ -1232,7 +1233,7 @@ t.takeScreenshot( [path] )
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| `selector` | Function &vert; string &vert; Selector &vert; Snapshot &vert; Promise | selector 选择器，有关[选择目标元素]() |
+| `selector` | Function &vert; string &vert; Selector &vert; Snapshot &vert; Promise | selector 选择器，有关[选择目标元素] |
 | `path` _(可选的)_ | string | 截图文件保存的相对路径和名称，该相对路径是基于命令行制定的基本目录。 | 
 | `options` _(可选的)_ | Object | 用于定义屏幕截图截取方式的选项。详情见下文。 |
 
@@ -1264,7 +1265,7 @@ test('Take a screenshot of a fieldset', async t => {
 | `bottom` | number | 裁剪矩形的下边缘。如果传递负数，则从元素的上边缘计算坐标。 |
 | `right` | number | 裁剪矩形的右边缘。如果传递负数，则从元素的左边缘计算坐标。 |
 
-![take screenshot](//static.mutoe.com/2018/testcafe/screenshot-crop.png)
+![take screenshot](https://static.mutoe.com/2018/testcafe/screenshot-crop.png)
 
 ``` js
 test('Take a screenshot of my new avatar', async t => {

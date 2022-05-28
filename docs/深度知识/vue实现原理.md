@@ -3,7 +3,7 @@
 
 ### Vue运行机制
 
-![vue运行机制](../static/vue-2.png)
+![vue运行机制](/img/vue-2.png)
 
 1. `new Vue()`之后会执行init，初始化data、props、生命周期、methods、computed、watch等。主要通过`Object.defineProperty`监听data的数据，形成Observer
 2. compile会经过parse(解析)、optimize(优化)与generate(生成)三个阶段
@@ -21,7 +21,7 @@
 3. 需要将Compile的解析结果，与Observer所观察的对象连接起来，建立关系，在Observer观察到对象数据变化时，接收通知，同时更新DOM，称之为Watcher；
 4. 最后，需要一个公共入口对象，接收配置，协调上述三者；
 
-![vue运行机制](../static/vue-1.png)
+![vue运行机制](/img/vue-1.png)
 
 首先看下最简单的vue实例包含的配置
 ```js
