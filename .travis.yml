@@ -13,11 +13,11 @@ before_install:
 - export TZ='Asia/Shanghai'  # 设置时区
 
 install:  # 安装依赖
-  - npm cache clear --force
+  # - npm cache clear --force
   - npm install
 
 script:  # 需要执行的脚本
-    - node ./generateMD.js
+    # - node ./generateMD.js
     # - node ./replaceImg.js
     - npm run build
     - sed -i 's/\r//' deploy.sh

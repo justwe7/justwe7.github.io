@@ -1,0 +1,63 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/usr/local/sbin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.17.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.npmjs.org/@vue%2fcomponent-compiler-utils: ETIMEDOUT
+      at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:141322:19)
+      at listOnTimeout (internal/timers.js:555:17)
+      at processTimers (internal/timers.js:498:7)
+
+npm manifest: 
+  {
+    "name": "justwe7-books",
+    "description": "日常的笔记",
+    "author": "ilihuaxi@gmail.com",
+    "private": true,
+    "version": "2.0.0",
+    "scripts": {
+      "dev": "npx vuepress dev",
+      "build": "npx vuepress build",
+      "publish": "node ./generateMD.js && git pull origin feature && git add . && git commit -m 'update' && git push origin feature"
+    },
+    "dependencies": {
+      "@vue/component-compiler-utils": "^3.2.2",
+      "@vuepress/shared-utils": "^1.8.2",
+      "sass-loader": "^12.6.0",
+      "vuepress": "2.0.0-beta.45",
+      "vuepress-plugin-comment": "^0.7.3"
+    },
+    "devDependencies": {
+      "@vuepress/bundler-webpack": "2.0.0-beta.45",
+      "@vuepress/plugin-back-to-top": "2.0.0-beta.45",
+      "@vuepress/plugin-docsearch": "2.0.0-beta.45",
+      "@vuepress/plugin-google-analytics": "2.0.0-beta.45",
+      "@vuepress/plugin-medium-zoom": "2.0.0-beta.45",
+      "@vuepress/plugin-nprogress": "2.0.0-beta.45",
+      "globby": "^11.0.4",
+      "postcss": "^8.3.6"
+    },
+    "keywords": [
+      "JavaScript",
+      "前端开发",
+      "css",
+      "blog"
+    ]
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
