@@ -1,6 +1,6 @@
 # 初始化一个webpack工程
 
-```
+```bash
 npm init -y 快速创建package.json
 npm install webpack webpack-cli --save-dev
 ```
@@ -759,7 +759,206 @@ module.exports = merge(baseConfig, {
 修改package.json: ` "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js"`
 
 # 优化打包
+### 代码规范
+
+#### eslint
+
+1. 安装及初始化
+
+```bash
+> npm i eslint
+> npx eslint --init
+
+eslint 配置问答,以下是我的选项:
+✔ How would you like to use ESLint? · problems
+✔ What type of modules does your project use? · esm
+✔ Which framework does your project use? · vue
+✔ Does your project use TypeScript? · No
+✔ Where does your code run? · browser, node
+✔ What format do you want your config file to be in? · JavaScript
+
+回车后在项目根目录会生成一个 .eslintrc.js 配置文件
+```
+
+2. 定制代码风格
+
+   经过第一步的配置，项目会有一套基本的eslint规则。但是不太符合自己的代码习惯，接下来进行一些规则的定制：
+
+   - 个人不喜欢 `eslint:recommended`预设的规则，[standard](*https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md*) YYDS！`npm install standard --save-dev`
+
+   - eslint不支持最新的实验性ECMAScript标准需要 `@babel/eslint-parser`
+
+     > ESLint的**默认解析器**和**核心规则**仅支持最新的最终 ECMAScript 标准，不支持 Babel 提供的实验性（例如新功能）和非标准（例如Flow或TypeScript类型）语法。@ babel / eslint-parser 是允许 ESLint 在由 Babel 转换的源代码上运行的解析器。
+
+   - 自己添加一些配置,以下为个人配完之后的.eslintrc.js(遇到的一些坑，写在注释上了):
+
+   ```js
+   module.exports = {
+     env: {
+       browser: true,
+       es2021: true,
+       node: true
+     },
+     extends: [
+       'plugin:vue/essential',
+       'standard' // https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md#javascript-standard-style
+     ],
+     // parser: '@babel/eslint-parser', // vue-eslint和babel-parser二者有冲突。编译器配置在根节点会导致vue sfc模式eslint报错
+     parserOptions: {
+       parser: '@babel/eslint-parser',
+       ecmaVersion: 12,
+       sourceType: 'module',
+       ecmaFeatures: {
+         modules: true
+       }
+     },
+     plugins: [
+       'vue'
+     ],
+     rules: {
+       // promise强制要求reject()抛出error【禁止】
+       'prefer-promise-reject-errors': 'off',
+       // vue 组件要求定义name【禁止】
+       'vue/multi-word-component-names': ['off', {}],
+       // 箭头函数保护符() 【作为回调必要时】https://eslint.org/docs/rules/arrow-parens#arrow-parens
+       'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }]
+     }
+   }
+   
+   ```
+
+   这篇[eslint文章](https://xieyufei.com/2021/04/25/Front-Eslint.html)介绍的挺全的 
+
+3. 接入到webpack
+
+   经过1.2步的配置，eslint是加入到项目中了，npm script添加一条 `"lint": "eslint --ext .js,.vue src"`，`npm run lint`校验，或者通过`"lint:fix": "eslint --ext .js,.vue src server --fix"`进行语法修复，但是对开发时不方便。这时就用到了[`eslint-webpack-plugin]`(https://www.npmjs.com/package/eslint-webpack-plugin) :
+
+   ```js
+   const ESLintPlugin = require('eslint-webpack-plugin') // 优化编译时eslint展示
+   
+   plugins: [
+     new ESLintPlugin({
+       cache: true,
+       emitWarning: true,
+       extensions: ['js', 'vue'],
+       failOnError: false,
+       // formatter: require('eslint-friendly-formatter'),
+       // eslint-friendly-formatter
+       fix: true
+     }),
+   ]
+   ```
+
+   个人喜欢打开fix选项，这样自动修复就不受限于编辑器的配置，且协同工作的时候，可以帮助自己去“纠正”代码习惯。同时也代替了`prettier`的强制修复功能。
+
+#### stylelint
+
+1. 安装
+
+   ```bash
+   // 安装stylelint
+   npm install --save-dev stylelint stylelint-config-standard  // 核心功能
+   
+   // 添加vue，scss的插件 （使用高版本stylelint遇到了一些坑导致vue+scss校验有问题，经尝试，以下组合可用【stylelint-config-recommended-scss】）
+   npm i stylelint-config-recommended-scss stylelint-config-recommended-vue stylelint-config-standard-scss
+   
+   // 添加css样式表属性排序规则
+   npm install stylelint-order --save-dev
+   ```
+
+2. 创建配置文件 `touch .stylelintrc.js`（篇幅原因，节选了一部分关键代码）: 
+
+   > stylelint-order的排序配置， [stylelint-config-recess-order](https://github.com/stormwarning/stylelint-config-recess-order)个人更喜欢这份配置表，但是我将配置复制到本地，方便调整。用在项目中最好自己发包，保证规则复用
+
+   ```js
+   module.exports = {
+     extends: [
+       'stylelint-config-standard-scss',
+       'stylelint-config-recommended-vue/scss',
+       'stylelint-config-standard',
+     ],
+     plugins: ['stylelint-order'],
+     rules: {
+       // ...
+       'order/properties-order': [
+         [
+           // 影响元素展示且一般与设计稿样式无关联
+           'opacity',
+           'visibility',
+           'box-sizing',
+           'overflow',
+           'overflow-x',
+           'overflow-y',
+           'overflow-scrolling',
+   
+           'content',
+           'position',
+           'top',
+         ],
+         {
+           unspecified: 'bottom',
+           severity: 'warning',
+         },
+       ],
+     },
+   }
+   
+   ```
+
+3. webpack中配置
+
+   和eslint一样，其实到1.2步完成已经可以进行校验了。npm script添加一条 `"lint:css": "stylelint \"src/**/*.(vue|scss|css)\""`，同样不适用开发环境，需要新增webpack插件：[stylelint-webpack-plugin](https://www.npmjs.com/package/stylelint-webpack-plugin)
+
+   ```js
+   const StylelintPlugin = require('stylelint-webpack-plugin')
+   
+   plugins: [
+     new StylelintPlugin({
+       cache: true,
+       fix: true,
+       // failOnError: false,
+       extensions: ['scss', 'vue', 'css']
+     }),
+   ]
+   ```
+
+   两个插件配置的参数挺一致的，点赞~
+
+#### hysky
+
+约定了代码规范，假如不遵守不如不约定，加一个precommit的校验，可以保证规范的执行。使用[husky](https://www.npmjs.com/package/husky)可以更方便的定义Git Hooks：
+
+```bash
+npm install husky --save-dev
+
+npm set-script prepare "husky install"
+npm run prepare
+```
+
+添加hook:
+
+- Eslint的pre commit校验
+
+  ```bash
+  npx husky add .husky/pre-commit "npm run lint" 
+  git add .husky/pre-commit
+  ```
+
+- stylelint的pre commit校验
+
+  ```bash
+  npx husky add .husky/pre-commit "npm run lint:css" 
+  git add .husky/pre-commit
+  ```
+
+会将校验指令写入到 .husky/pre-commit 的内容中
+
+之后进行git commit提交版本库时，会依次进行eslint和stylint的校验，假如不符合规则，流程会终止
+
 ### 美化输出
+
+#### FriendlyErrorsPlugin
+
 使用[friendly-errors-webpack-plugin](https://www.npmjs.com/package/@soda/friendly-errors-webpack-plugin): `npm install @soda/friendly-errors-webpack-plugin --save-dev`
 
 新增配置
@@ -772,13 +971,183 @@ plugins: [
 ]
 ```
 
+效果：![imagec3641.png](https://image.littl.cn/images/2022/05/31/imagec3641.png)
+
+配合 node-notifier 实现编译报错通知：
+
+```js
+const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin')
+const notifier = require('node-notifier')
+
+plugins: [
+  new FriendlyErrorsWebpackPlugin({
+    onErrors: (severity, errors) => {
+        if (severity !== 'error') {
+          return;
+        }
+        const error = errors[0];
+        notifier.notify({
+          title: 'webpackError - ' + error.name,
+          message: error.file,
+          // message: error.message
+        });
+      }
+      compilationSuccessInfo: {
+        messages: ['You application is running here http://localhost:3000'],
+        notes: ['Some additional notes to be displayed upon successful compilation']
+      },
+  }), // 输出美化
+]
+```
 
 
-### 核心思路
 
-https://juejin.cn/post/6844903952140468232
+![image.png](https://image.littl.cn/images/2022/05/31/image.png)
 
-> 加缓存，搞并行，提前做，少执行
+#### webpackbar
+
+这个是nuxt团队做的美化插件，个人更喜欢它的样式（虽然感觉实用性不如上一个插件）
+
+安装 `npm i webpackbar` 
+
+如果要同时编译多个webpack入口，可以更明显的区分样式：
+
+```js
+const WebpackBar = require('webpackbar')
+
+plugins: [
+  new WebpackBar({ name: 'client', color: 'green' }),
+]
+```
+
+![imagef9362.png](https://image.littl.cn/images/2022/05/31/imagef9362.png)
+
+### 优化打包速度
+
+核心思路：
+
+> 加缓存，搞并行，提前做，少执行   https://juejin.cn/post/6844903952140468232
+
+#### thread-loader
+
+`npm install thread-loader -D` 可以将比较耗时的loader放在一个单独的worker池中运行：
+
+> 多进程打包
+
+```js
+rules: [	
+		{
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'thread-loader',
+            // 有同样配置的 loader 会共享一个 worker 池
+            options: {
+              // 产生的 worker 的数量，默认是 (cpu 核心数 - 1)，或者，. 在 require('os').cpus() 是 undefined 时回退至 1
+              workers: 2,
+              // 一个 worker 进程中并行执行工作的数量.默认为 20
+              workerParallelJobs: 50,
+              // 额外的 node.js 参数
+              workerNodeArgs: ['--max-old-space-size=2048'],
+              // 允许重新生成一个僵死的 work 池。这个过程会降低整体编译速度.并且开发环境应该设置为 false
+              poolRespawn: false,
+              // 闲置时定时删除 worker 进程。默认为 500（ms）.可以设置为无穷大，这样在监视模式(--watch)下可以保持 worker 持续存在
+              poolTimeout: 2000,
+              // 池分配给 worker 的工作数量。默认为 200 降低这个数值会降低总体的效率，但是会提升工作分布更均一
+              poolParallelJobs: 50,
+              // 池的名称.可以修改名称来创建其余选项都一样的池
+              name: 'ssr-pool'
+            },
+          },
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true // default cache directory in node_modules/.cache/babel-loader
+            }
+          }
+        ],
+        exclude: /node_modules/
+      },
+  ]
+```
+
+
+
+#### babel
+
+- 使用编译缓存
+- 使用**[@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)**，抛弃polyfill，优化公共包大小，在【js相关】章节有配置方式
+
+```js
+module.exports = function (api) {
+  api.cache(true) // 使用缓存
+  return {
+    presets: [
+      [
+        '@babel/preset-env',
+        {}
+      ]
+    ],
+    plugins: [
+      [
+        '@babel/plugin-transform-runtime',
+        {
+          absoluteRuntime: false,
+          corejs: 3,
+          helpers: true,
+          regenerator: true
+        }
+      ]
+    ]
+  }
+}
+
+```
+
+项目打包会在 node_modules/.cache/babel-loader 生成缓存文件
+
+#### webpack5-cache
+
+其实使用webpack5自带的缓存机制完全可以替代`AutoDllPlugin `和`HardSourceWebpackPlugin`且比它们更快。更重要的是比他们配置简单：
+
+```js
+module.exports = {
+  cache: {
+    type: 'filesystem', // 默认使用的是memory，空间换时间~使用磁盘缓存
+    name: 'clientCache-'
+  },
+};
+```
+
+之后打包会在 node_modules/.cache/webpack 生成缓存文件
+
+**对比**
+
+- 未配置缓存，项目三次打包时间依次为10.73、9.34、9.4
+- 配置缓存，三次打包时间分别为10.08、2.4、2.66
+
+![image-20220601181634080](https://s2.loli.net/2022/06/01/7t9yDBs2F1j3OKL.png)
+
+![image-20220601181935175](https://s2.loli.net/2022/06/01/Pt6w4VYLgGMAqrb.png)
+
+针对这个演示项目，使用缓存在打包速度上提升了400%
+
+#### 其他缓存
+
+- eslint-plugin、stylelint-plugin配置缓存
+
+  ```js
+      new ESLintPlugin({
+        cache: true,
+        ...
+      }),
+      new StylelintPlugin({
+        cache: true,
+        ...
+      }),
+  ```
+
+  
 
 # ssr
 
