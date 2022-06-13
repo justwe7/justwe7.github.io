@@ -1,9 +1,3 @@
----
-title: Blogging Like a Hacker
-lang: en-US
----
-
-
 现在css预处理器是项目的标配，感觉用不到 `css variable` 这个特性，之前对它的了解大概局限于跟 `:root{}` 有关系，但是直到看到vantui小程序文档时看到这样的介绍：
 
 ![image.png](https://image.littl.cn/images/2020/09/15/image.png)
