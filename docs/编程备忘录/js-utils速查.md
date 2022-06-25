@@ -540,3 +540,75 @@ function debounce(func) {
 ```js
 new Date().toTimeString().slice(0,8) // 12:20:40
 ```
+
+## 给url添加查询字符串
+```js
+function addQuery (url, params) {
+  let separator = url.indexOf('?') !== -1 ? '&' : '?'
+  const queryStringParameter = Object.entries(params).reduce((result, target, index) => {
+    result += separator + target[0] + '=' + target[1]
+    separator = '&'
+    return result
+  }, '')
+  return url + queryStringParameter
+}
+```
+
+## 小程序批量上传图片
+```js
+/**
+ * @param {*} wxfilelist chooseImg的图片信息
+ */
+export async function uploadWxImg (wxfilelist) {
+  return Promise.all(
+    wxfilelist.map((tempFiles, index) => {
+      wx.showLoading({ title: '图片上传中', mask: true })
+      return new Promise(function (resolve, reject) {
+        wx.uploadFile({
+          url: '/upload/uploadImg',
+          filePath: tempFiles,
+          name: 'file',
+          success: function (res) {
+            if (res.statusCode === 200) {
+              if (JSON.parse(res.data).result === 200) {
+                resolve({
+                  url: JSON.parse(res.data).data.url
+                })
+                return false
+              } else {
+                return reject(JSON.parse(res.data).msg)
+              }
+            }
+            reject(new Error('failed to upload file'))
+          },
+          fail: function () {
+            reject(new Error('failed to upload file'))
+          }
+        })
+      })
+    })
+  )
+    .then(res => {
+      wx.hideLoading()
+      return res.map(el => el.url)
+    })
+    .catch(err => {
+      wx.hideLoading()
+      wx.showToast({ title: err || '上传失败：请重新上传', icon: 'none' })
+      return []
+    })
+}
+```
+
+## 客户端获取定位
+```js
+// 1. 使用搜狐提供接口（IP）
+GET: https://pv.sohu.com/cityjson?ie=utf-8
+
+// 2. 浏览器自带api（需用户梯子）
+navigator.geolocation.getCurrentPosition(function (position) {
+  console.dir(position)
+}, function (error) {
+  console.error(error)
+})
+```

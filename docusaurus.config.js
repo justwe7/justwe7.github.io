@@ -27,7 +27,7 @@ const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '小前端的笔记 - justwe7 Wiki',
+  title: '某前端的笔记 - justwe7 Wiki',
   tagline: 'Hi, jser. Enjoy It!',
   url: 'https://justwe7.github.io',
   baseUrl: '/blog/',
