@@ -1126,7 +1126,7 @@ module.exports = {
 - 未配置缓存，项目三次打包时间依次为10.73、9.34、9.4
 - 配置缓存，三次打包时间分别为10.08、2.4、2.66
 
-![image-20220601181634080](https://s2.loli.net/2022/06/01/7t9yDBs2F1j3OKL.png)
+![](https://s2.loli.net/2022/06/25/CaLdkVjXgmucAUM.png)
 
 ![image-20220601181935175](https://s2.loli.net/2022/06/01/Pt6w4VYLgGMAqrb.png)
 
