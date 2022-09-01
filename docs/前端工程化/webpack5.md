@@ -1,4 +1,4 @@
-# 初始化一个webpack工程
+# webpack5工程化
 
 ```bash
 npm init -y 快速创建package.json
@@ -337,7 +337,7 @@ module.exports = {
 
 **[@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)**
 
-polyfill很强**大**，我选择 `npm install --save-dev @babel/plugin-transform-runtime` 
+polyfill很强(庞)大，我选择 `npm install --save-dev @babel/plugin-transform-runtime` 
 
 > 这个插件让 Babel 发现代码中使用到 Symbol、Promise、Map 等新类型时，自动且按需进行 polyfill，因为是“自动”所以非常受大家的欢迎。
 
@@ -762,12 +762,15 @@ module.exports = merge(baseConfig, {
 ### 代码规范
 
 #### eslint
+> “保证代码的一致性和避免错误” 
 
-1. 安装及初始化
+团队成员的代码风格肯定会有不同，假如每个人都按自己的风格写代码。有人写分号有人不写；有人喜欢单引号有人喜欢双引号……代码可读性差。最重要的是eslint还能帮助我们检查代码，提前发现语法错误，避免到浏览器调试时才能发现
+
+1. 安装 [eslint](https://cn.eslint.org/docs/user-guide/getting-started)及初始化
 
 ```bash
 > npm i eslint
-> npx eslint --init
+> npx eslint --init 或 npm init @eslint/config
 
 eslint 配置问答,以下是我的选项:
 ✔ How would you like to use ESLint? · problems
@@ -842,13 +845,11 @@ eslint 配置问答,以下是我的选项:
        emitWarning: true,
        extensions: ['js', 'vue'],
        failOnError: false,
-       // formatter: require('eslint-friendly-formatter'),
-       // eslint-friendly-formatter
        fix: true
      }),
    ]
    ```
-
+   
    个人喜欢打开fix选项，这样自动修复就不受限于编辑器的配置，且协同工作的时候，可以帮助自己去“纠正”代码习惯。同时也代替了`prettier`的强制修复功能。
 
 #### stylelint
@@ -860,15 +861,15 @@ eslint 配置问答,以下是我的选项:
    npm install --save-dev stylelint stylelint-config-standard  // 核心功能
    
    // 添加vue，scss的插件 （使用高版本stylelint遇到了一些坑导致vue+scss校验有问题，经尝试，以下组合可用【stylelint-config-recommended-scss】）
-   npm i stylelint-config-recommended-scss stylelint-config-recommended-vue stylelint-config-standard-scss
+   npm i stylelint-config-recommended-scss stylelint-config-recommended-vue stylelint-config-standard-scss -D
    
-   // 添加css样式表属性排序规则
+   // 添加css样式表属性排序规则（如果使用@justwe7/stylelint-order-standard可以不装，包中有依赖）
    npm install stylelint-order --save-dev
    ```
 
 2. 创建配置文件 `touch .stylelintrc.js`（篇幅原因，节选了一部分关键代码）: 
 
-   > stylelint-order的排序配置， [stylelint-config-recess-order](https://github.com/stormwarning/stylelint-config-recess-order)个人更喜欢这份配置表，但是我将配置复制到本地，方便调整。用在项目中最好自己发包，保证规则复用
+   > stylelint-order的排序配置， [stylelint-config-recess-order](https://github.com/stormwarning/stylelint-config-recess-order)个人更喜欢这份配置表，但是我将配置复制到本地，方便调整。用在项目中最好自己发包(下面有写），保证规则复用
 
    ```js
    module.exports = {
@@ -904,6 +905,24 @@ eslint 配置问答,以下是我的选项:
    }
    
    ```
+
+   以上排序规则我封装到了 [stylelint-order-standard](https://www.npmjs.com/package/@justwe7/stylelint-order-standard) ，可以直接使用以下配置：`npm i @justwe7/stylelint-order-standard -D`
+
+   .stylelintrc.js:
+
+   ```js
+   module.exports = {
+     extends: [
+       'stylelint-config-standard-scss',
+       'stylelint-config-recommended-vue/scss',
+       'stylelint-config-standard',
+       '@justwe7/stylelint-order-standard'
+     ],
+   }
+   
+   ```
+
+   
 
 3. webpack中配置
 
@@ -1032,7 +1051,13 @@ plugins: [
 
 `npm install thread-loader -D` 可以将比较耗时的loader放在一个单独的worker池中运行：
 
-> 多进程打包
+> 多进程打包，把这个 loader 放置在其他 loader 之前， 放置在这个 loader 之后的 loader 就会在一个单独的 worker 池(worker pool)中运行
+
+在 worker 池(worker pool)中运行的 loader 是受到限制的。例如：
+
+- 这些 loader 不能产生新的文件。
+- 这些 loader 不能使用定制的 loader API（也就是说，通过插件）。
+- 这些 loader 无法获取 webpack 的选项设置。
 
 ```js
 rules: [	
@@ -1149,85 +1174,5 @@ module.exports = {
 
   
 
-# ssr
 
-安装  
-
-```bash
-npm i vue-server-renderer -S
-npm i koa koa-router@7 -D
-```
-
-### 极简版SSR页面
-
-创建 server/index.js:
-
-```js
-const Koa = require('koa')
-const app = new Koa()
-const SSRRender = require('./ssr')
-
-SSRRender(app)
-
-app.listen(3000, '127.0.0.1', () => {
-  console.log('server started')
-})
-```
-
-创建 server/ssr/index.js:
-
-```js
-
-const fs = require('fs')
-const path = require('path')
-const Vue = require('vue')
-const Router = require('koa-router')
-const renderer = require('vue-server-renderer').createRenderer()
-const router = new Router()
-
-module.exports = app => {
-  router.get('*', async (ctx, next) => {
-    const render = async (ctx) => {
-      const vm = new Vue({
-        data: {
-          url: ctx.req.url
-        },
-        template: `<div>访问的 URL 是： {{ url }}</div>`
-      })
-      return new Promise((resolve, reject) => {
-        renderer.renderToString(vm, (err, html) => {
-          console.log(html)
-          if (err) {
-            reject(err)
-            return
-          }
-          resolve(`
-            <!DOCTYPE html>
-            <html lang="en">
-              <head><title>Hello</title></head>
-              <body>${html}</body>
-            </html>
-          `)
-        })
-      })
-    }
-
-    try {
-      const html = await render(ctx)
-      ctx.type = 'html'
-      ctx.body = html
-    } catch (err) {
-      ctx.status = 500
-      ctx.body = 'Internal Server Error'
-    }
-  })
-
-  app
-    .use(router.routes())
-    .use(router.allowedMethods())
-}
-
-```
-
-执行 `node server` 指令，然后访问 `http://localhost:3000/hello` 查看渲染后的页面，查看源码也是vue编译后直出的html页面
 
