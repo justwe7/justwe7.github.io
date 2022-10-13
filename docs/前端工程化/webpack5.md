@@ -389,6 +389,46 @@ module.exports = function (api) {
 
 打包代码，main.js从87k精简到39k
 
+**使用[polyfill-service](https://www.npmjs.com/package/polyfill-service)**
+
+通过cdn方式引入polyfill的cdn资源，该服务会根据ua返回需要添加语法垫片的内容，缺点是webview的ua可能会误导该服务导致代码执行失败
+
+>  使用不同的浏览器访问 https://polyfill.io/v3/polyfill.min.js 查看返回的内容
+
+使用代码示例：
+
+```html
+<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js"></script>
+```
+
+[Polyfill.io](https://polyfill.io/v3/) 通过分析请求头信息中的 UserAgent 实现自动加载浏览器所需的 polyfill。
+
+高级用法
+
+[Polyfill.io](https://polyfill.io/v3/) 有一份默认捆绑列表，包括了最常见的 HTML5 中的 `document.querySelector`、`Element.classList`、ES5、ES6、ES7 中的 `Promise`、`fetch`、`Array.from` 等等。
+
+可以通过传递 `features` 参数来自定义功能列表：
+
+```html
+<!-- 加载 Promise&fetch --><script src="https://cdn.polyfill.io/v3/polyfill.min.js?features=Promise,fetch"></script>
+<!-- 加载所有 ES5&ES6 新特性 --><script src="https://cdn.polyfill.io/v3/polyfill.min.js?features=es5,es6,es7"></script>
+```
+
+Polyfill.io 还提供了其他 API，具体请查阅官方文档：
+
+```html
+<!-- 异步加载 -->
+<script src="https://cdn.polyfill.io/v3/polyfill.min.js?callback=main" async defer></script>
+<!-- 无视 UA，始终加载 -->
+<script src="https://cdn.polyfill.io/v3/polyfill.js?features=modernizr:es5array|always"></script>
+```
+
+阿里提供的动态 Polyfill 服务：
+
+```html
+<script src="https://polyfill.alicdn.com/polyfill.min.js?features=Promise%2CArray.prototype.includes"></script>
+```
+
 扩展：
 
 - [99% 开发者没弄明白的 babel 知识](https://developer.aliyun.com/article/783477)
