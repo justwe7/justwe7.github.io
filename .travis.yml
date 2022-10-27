@@ -1,7 +1,8 @@
 language: node_js
 node_js: 
   # - lts/* #设置语言版本，lts表示稳定版
-  - node # latest stable Node.js release
+  # - node # latest stable Node.js release
+  - 16.x
 branches:
   only:
     - feature #设置只监听哪个分支
