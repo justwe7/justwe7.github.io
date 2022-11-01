@@ -13,6 +13,7 @@
 # # cp -r docs /home/temp_filder
 # # cp -f readme.md docs/
 # cp -f .README.md ./docs/README.md
+cp -f CNAME build/
 cd build
 
 git init
@@ -23,7 +24,7 @@ git config user.email 'ilihuaxi@gmail.com'
 git remote add origin https://justwe7:${GITHUB_TOKEN}@github.com/justwe7/justwe7.github.io.git
 git remote add gitee https://justwe7:${GITEE_TOKEN}@gitee.com/justwe7/justwe7.github.io.git
 
-echo "[https://j1ustwe7.github.io/](https://justwe7.github.io/)" > README.md
+echo "[https://wiki.lihx.top/](https://wiki.lihx.top/)" > README.md
 git add .
 git commit -m 'travis-ci: deploy'
 git push origin HEAD:master --force

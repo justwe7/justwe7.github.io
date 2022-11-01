@@ -26,4 +26,3 @@ script:  # 需要执行的脚本
     - bash ./deploy.sh
 
 after_success: # script 阶段成功时执行
-# - scp  -o stricthostkeychecking=no -r ./dist/* root@122.12.11.29:/home/www/blog  # 使用scp拷贝到服务

@@ -67,6 +67,7 @@ const config = {
         // ```
       },
     ],
+    '@docusaurus/theme-live-codeblock',
   ],
 
   presets: [
@@ -91,6 +92,10 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        googleAnalytics: {
+          trackingID: '339616665',
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
@@ -99,11 +104,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       metadata: [{name: 'keywords', content: '前端开发，前端开发博客，justwe7，JavaScript，html，css，js，jQuery，vue，webpack'}],
-      announcementBar: {
-        content: '🚀 如果你觉得还不错, 就给一个 ⭐️ Start 吧 ~ <a target="_blank" rel="noopener noreferrer" href="https://github.com/justwe7/justwe7.github.io/tree/feature">Click here</a> ',
-        backgroundColor: '#222831',
-        textColor: '#A7D129',
-      },
+      // announcementBar: {
+      //   content: '🚀 如果你觉得还不错, 就给一个 ⭐️ Start 吧 ~ <a target="_blank" rel="noopener noreferrer" href="https://github.com/justwe7/justwe7.github.io/tree/feature">Click here</a> ',
+      //   backgroundColor: '#222831',
+      //   textColor: '#A7D129',
+      // },
       navbar: {
 
         hideOnScroll: true,
