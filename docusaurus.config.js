@@ -3,7 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 // const lightCodeTheme = require('prism-react-renderer/themes/ultramin');
-const darkCodeTheme = require('prism-react-renderer/themes/synthwave84');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const globby = require('globby')
 
 const aArticles = globby.sync(['docs/**/*.md', '!*.md'], { gitignore: true })
@@ -15,7 +15,7 @@ const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
   // const item = `  - [${name}](/blog/${v})`
   const item = {
     title: name,
-    link: `/blog/${v.replace(/(.md)$/, '')}`
+    link: `/${v.replace(/(.md)$/, '')}`
   }
   if (target[root]) {
     target[root].push(item)
@@ -27,10 +27,10 @@ const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '某前端的笔记 - justwe7 Wiki',
+  title: '土豆和土豆丝 - justwe7 Wiki',
   tagline: 'Hi, jser. Enjoy It!',
   url: 'https://justwe7.github.io',
-  baseUrl: '/blog/',
+  baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favorite.ico',
@@ -41,7 +41,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'justwe7', // Usually your GitHub org/user name.
-  projectName: 'blog', // Usually your repo name.
+  projectName: 'justwe7.github.io', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -67,6 +67,7 @@ const config = {
         // ```
       },
     ],
+    '@docusaurus/theme-live-codeblock',
   ],
 
   presets: [
@@ -79,7 +80,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/justwe7/blog/blob/feature/',
+            'https://github.com/justwe7/justwe7.github.io/blob/feature/',
         },
         blog: {
           showReadingTime: true,
@@ -91,6 +92,10 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        googleAnalytics: {
+          trackingID: '339616665',
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
@@ -99,11 +104,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       metadata: [{name: 'keywords', content: '前端开发，前端开发博客，justwe7，JavaScript，html，css，js，jQuery，vue，webpack'}],
-      announcementBar: {
-        content: '🚀 如果你觉得还不错, 就给一个 ⭐️ Start 吧 ~ <a target="_blank" rel="noopener noreferrer" href="https://github.com/justwe7/blog/tree/feature">Click here</a> ',
-        backgroundColor: '#222831',
-        textColor: '#A7D129',
-      },
+      // announcementBar: {
+      //   content: '🚀 如果你觉得还不错, 就给一个 ⭐️ Start 吧 ~ <a target="_blank" rel="noopener noreferrer" href="https://github.com/justwe7/justwe7.github.io/tree/feature">Click here</a> ',
+      //   backgroundColor: '#222831',
+      //   textColor: '#A7D129',
+      // },
       navbar: {
 
         hideOnScroll: true,
@@ -122,7 +127,7 @@ const config = {
           // },
           {href: 'https://lihx.top', label: 'Blog', position: 'right'},
           {
-            href: 'https://github.com/justwe7/blog',
+            href: 'https://github.com/justwe7/justwe7.github.io',
             label: 'GitHub',
             position: 'right',
           },
@@ -171,10 +176,10 @@ const config = {
         //     ],
         //   },
         // ],
-        copyright: `Copyright © ${new Date().getFullYear()} justwe7@<a target='_blank' href='https://github.com/justwe7/blog/tree/feature'>blog</a>, Inc. Built with Docusaurus.转载请标明来源`,
+        copyright: `Copyright © ${new Date().getFullYear()} justwe7@<a target='_blank' href='https://github.com/justwe7/justwe7.github.io/tree/feature'>Wiki</a>, Inc. Built with Docusaurus.转载请标明来源`,
       },
       colorMode: {
-        defaultMode: 'dark',
+        // defaultMode: 'dark',
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
