@@ -21,7 +21,8 @@ git init
 echo "开始覆盖提交..."
 git config user.name 'justwe7'
 git config user.email 'ilihuaxi@gmail.com'
-git remote add origin https://justwe7:${GITHUB_TOKEN}@github.com/justwe7/justwe7.github.io.git
+# git remote add origin https://justwe7:${GITHUB_TOKEN}@github.com/justwe7/justwe7.github.io.git
+git remote add origin git@github.com:justwe7/justwe7.github.io.git
 git remote add gitee https://justwe7:${GITEE_TOKEN}@gitee.com/justwe7/justwe7.github.io.git
 
 echo "[https://wiki.lihx.top/](https://wiki.lihx.top/)" > README.md

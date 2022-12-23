@@ -14,6 +14,9 @@ cache:
 before_install:
 - export TZ='Asia/Shanghai'  # 设置时区
 
+deploy:
+  github_token: $GITHUB_ACESS  # Set in the settings page of your repository, as a secure variable
+
 install:  # 安装依赖
   # - npm cache clear --force
   - npm install
