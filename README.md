@@ -1,7 +1,8 @@
-### 在线地址：[Git Page (https://justwe7.github.io/)](https://wiki.lihx.top/)
-[![Build Status](https://travis-ci.com/justwe7/justwe7.github.io.svg?branch=master)](https://travis-ci.com/justwe7/justwe7.github.io)  [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/justwe7.github.io.svg?style=flat-square)](https://github.com/justwe7/justwe7.github.io/commits/master)
-
 ### 土豆和土豆丝的wiki
+访问地址：[(https://justwe7.github.io/)](https://wiki.lihx.top/)
+
+[![Build Status](https://travis-ci.com/justwe7/justwe7.github.io.svg?branch=feature)](https://travis-ci.com/justwe7/justwe7.github.io) [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/justwe7.github.io.svg?style=flat-square)](https://github.com/justwe7/justwe7.github.io/commits/master)
+
 
 - 基础学习
   > 前端必须知道的知识点。
