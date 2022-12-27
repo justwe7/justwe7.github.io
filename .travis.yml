@@ -15,7 +15,16 @@ before_install:
 - export TZ='Asia/Shanghai'  # 设置时区
 
 deploy:
-  github_token: $GITHUB_ACESS  # Set in the settings page of your repository, as a secure variable
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: feature
+  local_dir: build
+  target_branch: master
+  fqdn: wiki.lihx.top
+  deployment_file: true
 
 install:  # 安装依赖
   # - npm cache clear --force
@@ -25,7 +34,8 @@ script:  # 需要执行的脚本
     # - node ./generateMD.js
     # - node ./replaceImg.js
     - npm run build
-    - sed -i 's/\r//' deploy.sh
-    - bash ./deploy.sh
+    # - cp -a ./build/* ./
+    # - sed -i 's/\r//' deploy.sh
+    # - bash ./deploy.sh
 
 after_success: # script 阶段成功时执行

@@ -87,19 +87,26 @@ cp [-f] file A  复制file文件到A目录下
 -r：若给出的源文件是一个目录文件，此时将复制该目录下所有的子目录和文件。
 -l：不复制文件，只是生成链接文件。
 
-如果备份目录envbak不存在，则可以直接使用
+# 如果备份目录envbak不存在，则可以直接使用
 cp -r env envbak
-如果目标备份dir2目录已存在，则需要使用
+# 如果目标备份dir2目录已存在，则需要使用
 cp -r dir1/. dir2
+# 将folder目录内容移动到当前执行目录下
+cp -a ./folder/* ./
 ```
 
 **mv（移动）**
 ```bash
-cp /home/.bashrc bashrc //将home下的bashrc复制到当前目录中
-mkdir mvtest // 创建一个目录
-mv bashrc mvtest // 将新复制的bashrc复制到mvtest目录中
-mv bashrc mvtest // 将新复制的bashrc复制到mvtest目录中
-mv mvtest mvtest2 // 目录mvtest 更名为 mvtest2
+# 将home下的bashrc复制到当前目录中
+cp /home/.bashrc bashrc
+# 创建一个目录
+mkdir mvtest
+# 将新复制的bashrc复制到mvtest目录中
+mv bashrc mvtest
+# 目录mvtest 更名为 mvtest2
+mv mvtest mvtest2
+# 将folder目录内容移动到当前执行目录下
+mv ./folder/* ./
 ```
 
 **内容查看**
