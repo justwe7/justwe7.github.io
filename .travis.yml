@@ -12,29 +12,27 @@ cache:
   directories: 
     - node_modules #缓存依赖
 before_install:
-- export TZ='Asia/Shanghai'  # 设置时区
+- export TZ='Asia/Shanghai' # 设置时区
 
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
+  github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
+  keep_history: true # 创建增量提交而不是执行推送
   on:
     branch: feature
-  local_dir: build
-  target_branch: master
+  local_dir: build # 推送到 GitHub 页面的目录
+  target_branch: master # 强制推送的分支
   fqdn: wiki.lihx.top
-  deployment_file: true
+  deployment_file: true # 允许创建部署信息文件
 
-install:  # 安装依赖
+install: # 安装依赖
   # - npm cache clear --force
   - npm install
 
 script:  # 需要执行的脚本
-    # - node ./generateMD.js
     # - node ./replaceImg.js
     - npm run build
-    # - cp -a ./build/* ./
     # - sed -i 's/\r//' deploy.sh
     # - bash ./deploy.sh
 
