@@ -1,12 +1,12 @@
->  为方便自己查阅，观读官方文档摘录API变更(setup)而做的总结，官方有详细的升级迁移[指南](https://v3-migration.vuejs.org/zh/breaking-changes/)
+>  为方便自己查阅，阅读官方文档摘录API变更(setup)而做的总结，官方有详细的升级迁移[指南](https://v3-migration.vuejs.org/zh/breaking-changes/)
 
-### 基础变更
+## 基础变更
 
-#### 响应式
+### 响应式
 
 `ref`和`reactive`都可以完成响应式渲染，但后者返回的对象在解构之后将脱离与声明对象的响应式连接
 
-##### reactive
+#### reactive
 
 使用 [`reactive()`](https://cn.vuejs.org/api/reactivity-core.html#reactive) 函数创建一个响应式对象或数组：
 
@@ -97,7 +97,7 @@ export default {
 </template>
 ```
 
-##### ref
+#### ref
 
 `reactive()` 的种种限制归根结底是因为 JavaScript 没有可以作用于所有值类型的 “引用” 机制。为此，Vue 提供了一个 [`ref()`](https://cn.vuejs.org/api/reactivity-core.html#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**
 
@@ -145,7 +145,7 @@ callSomeFunction(obj.foo)
 const { foo, bar } = obj
 ```
 
-#### 计算属性
+### 计算属性
 
 > ```
 > `computed()` 方法期望接收一个 getter 函数，返回值为一个`计算属性 ref`。和其他一般的 ref 类似，你可以通过 `publishedBooksMessage.value` 访问计算结果。计算属性 ref 也会在模板中自动解包，因此在模板表达式中引用时无需添加 `.value
@@ -198,7 +198,7 @@ const fullName = computed({
 
 运行 `fullName.value = 'John Doe'` 时，setter 会被调用而 `firstName` 和 `lastName` 会随之更新
 
-#### 侦听器
+### 侦听器
 
 ```vue
 <script setup>
@@ -331,9 +331,9 @@ watchEffect(() => {
 
 
 
-### 组件
+## 组件
 
-#### 模板引用
+### 模板引用
 
 通过组合式 API 获得该模板引用，我们需要声明一个同名的 ref 进行访问：
 
@@ -414,7 +414,7 @@ defineExpose({
 </script>
 ```
 
-#### props传参
+### props传参
 
 `defineProps` 是一个仅 `<script setup>` 中可用的编译宏命令，并不需要显式地导入。声明的 props 会自动暴露给模板。`defineProps` 会返回一个对象，其中包含了可以传递给组件的所有 props：
 
@@ -457,7 +457,7 @@ const post = {
 <BlogPost :id="post.id" :title="post.title" />
 ```
 
-#### 事件
+### 事件
 
 组件要触发的事件可以显式地通过 [`defineEmits()`](https://cn.vuejs.org/api/sfc-script-setup.html#defineprops-defineemits) 宏来声明：
 
@@ -490,7 +490,7 @@ export default {
 }
 ```
 
-#### 自定义v-model
+### 自定义v-model
 
 之前默认的`value`变更为`modelValue`，$emit触发由`input`变更为`update:modelValue`
 
@@ -609,7 +609,7 @@ function emitValue(e) {
 </template>
 ```
 
-#### 父子组件 Attributes 透传
+### 父子组件 Attributes 透传
 
 一般情况下，父组件传给子组件的class，子组件会将其继承并渲染在根节点上：
 
@@ -672,7 +672,7 @@ export default {
 
 > 需要注意的是，虽然这里的 `attrs` 对象总是反映为最新的透传 attribute，但它并不是响应式的 (考虑到性能因素)。你不能通过侦听器去监听它的变化。如果你需要响应性，可以使用 prop。或者你也可以使用 `onUpdated()` 使得在每次更新时结合最新的 `attrs` 执行副作用。
 
-#### 插槽
+### 插槽
 
 具名插槽改动，由`slot='xx'`变更为`#xx`:
 
@@ -693,7 +693,7 @@ export default {
 </BaseLayout>
 ```
 
-#### provide/inject
+### provide/inject
 
 vue3默认就可以传入响应式数据了：
 
@@ -737,9 +737,9 @@ provide('read-only-count', readonly(count))
 </script>
 ```
 
-### 逻辑复用
+## 逻辑复用
 
-#### 自定义指令
+### 自定义指令
 
 保留了2.0的指令注册方式。在 `<script setup>` 中，任何以 `v` 开头的驼峰式命名的变量都可以被用作一个自定义指令:
 
@@ -756,7 +756,7 @@ const vFocus = {
 </template>
 ```
 
-### 原型链属性
+## 原型链属性
 
 > vue3删除了过滤器，所以也可以通过这种方式来“曲线救国”
 
