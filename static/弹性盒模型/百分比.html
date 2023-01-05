@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            .box{
+                width: 500px;
+                height: 400px;
+                background: #ee9;
+                border: 2px solid #000;
+                margin: 30px auto;
+            }
+            .item{
+                width: 70px;
+                height: 70px;
+                background-color: #e11;
+            }
+
+            .box{
+                display: flex;
+                display: -webkit-flex;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                /*flex-direction: row;
+                flex-direction: row-reverse;
+                flex-direction: column;*/
+
+            }
+            .item{
+/*flex: 1;*/
+            }
+            .b1{
+                flex: 0 0 15%;
+            }
+            .b2{
+                background-color: #dd1;
+                flex: 0 0 35%;
+            }
+            .b3{
+                background-color: #f88;
+                flex: 0 0 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="box">
+            <div class="item b1">
+                1
+            </div>
+            <div class="item b2">
+                2
+            </div>
+            <div class="item b3">
+                3
+            </div>
+            <div class="item b3">
+                4
+            </div>
+            <!-- pppppppppppppppppppppp -->
+        </section>
+    </body>
+</html>
