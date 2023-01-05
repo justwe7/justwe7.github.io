@@ -1106,6 +1106,8 @@ router.onReady(async () => {
 
 在浏览器的钩子守卫中要做两件事。除了做服务端同样的数据混合处理，还需要将服务端渲染的asyncData结果混入到客户端中，服务端渲染时会通过*renderState*注入到window数据，然后浏览器端获取并进行处理，就可以避免服务端的asyncData处理过的数据，到浏览器渲染时再去处理一遍了（*SPA与SSR数据融合操作*）
 
+> 服务端 context 包含了 req, res, userInfo 等信息，客户端的 asyncData 中的 context 为 undefined，若要在 created 钩子中访问 context，可使用 this.$ssrContext（这是 vue 自动注入的对象）
+
 ### SSR渲染失败自动降级为SPA渲染
 
 1. 假如有粗心的同事在asyncData钩子中使用了`window`，在服务端渲染时一定是异常代码，如果能遇到这种错误时自动降级为SPA模式就能保证用户至少不会访问异常

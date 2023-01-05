@@ -6,7 +6,7 @@
 
 ### Vue生命周期  
 
-fork了一个仓库有时间缕一缕加点注释[地址](https://github.com/justwe7/vue)  
+fork了一个仓库有时间捋一捋加点注释[地址](https://github.com/justwe7/vue)  
 
 图片来源于网络
 ![生命周期](/img/vue-lifecycle.png)  

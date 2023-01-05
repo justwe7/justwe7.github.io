@@ -51,7 +51,8 @@ const config = {
     locales: ['zh-cn'],
   },
   plugins: [
-    require.resolve('docusaurus-plugin-image-zoom')
+    require.resolve('docusaurus-plugin-image-zoom'),
+    [require.resolve('./plugins/baidu-analytics'), { secret: '03bd357b8e5a65d704a7acbc2ed52566' }],
   ],
 
   themes: [
@@ -93,7 +94,11 @@ const config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
         googleAnalytics: {
-          trackingID: '339616665',
+          trackingID: '4395927556',
+          anonymizeIP: true,
+        },
+        gtag: {
+          trackingID: 'G-4LKHLLWJBC',
           anonymizeIP: true,
         },
       }),
@@ -112,7 +117,7 @@ const config = {
       navbar: {
 
         hideOnScroll: true,
-        title: '前端笔记 - justwe7のWiki',
+        title: 'justwe7的Wiki',
         logo: {
           alt: 'My Site Logo',
           src: 'hero.png',
@@ -135,48 +140,22 @@ const config = {
       },
       footer: {
         // style: 'dark',
-        // links: [
-        //   {
-        //     title: 'Docs',
-        //     items: [
-        //       {
-        //         label: 'Tutorial',
-        //         to: '/docs/intro',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'Community',
-        //     items: [
-        //       {
-        //         label: 'Stack Overflow',
-        //         href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-        //       },
-        //       {
-        //         label: 'Discord',
-        //         href: 'https://discordapp.com/invite/docusaurus',
-        //       },
-        //       {
-        //         label: 'Twitter',
-        //         href: 'https://twitter.com/docusaurus',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'More',
-        //     items: [
-        //       {
-        //         label: 'Blog',
-        //         to: '/blog',
-        //       },
-        //       {
-        //         label: 'GitHub',
-        //         href: 'https://github.com/facebook/docusaurus',
-        //       },
-        //     ],
-        //   },
-        // ],
-        copyright: `Copyright © ${new Date().getFullYear()} justwe7@<a target='_blank' href='https://github.com/justwe7/justwe7.github.io/tree/feature'>Wiki</a>, Inc. Built with Docusaurus.转载请标明来源`,
+        /* links: [
+          {
+            title: 'Docs',
+            items: [
+              {
+                label: 'Tutorial',
+                to: '/docs/intro',
+              },
+              {
+                label: 'Blog',
+                to: '/blog',
+              }
+            ],
+          },
+        ], */
+        copyright: `Copyright © ${new Date().getFullYear()} justwe7@<a target='_blank' href='https://github.com/justwe7/justwe7.github.io/tree/feature'>Wiki</a>, Power by Docusaurus.`,
       },
       colorMode: {
         // defaultMode: 'dark',

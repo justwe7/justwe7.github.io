@@ -833,7 +833,7 @@ eslint 配置问答,以下是我的选项:
 
    经过第一步的配置，项目会有一套基本的eslint规则。但是不太符合自己的代码习惯，接下来进行一些规则的定制：
 
-   - 个人不喜欢 `eslint:recommended`预设的规则，[standard](*https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md*) YYDS！`npm install standard --save-dev`
+   - 个人不喜欢 `eslint:recommended`预设的规则，[standard](https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md) YYDS！`npm install standard --save-dev`
 
    - eslint不支持最新的实验性ECMAScript标准需要 `@babel/eslint-parser`
 

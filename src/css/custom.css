@@ -28,6 +28,10 @@
   --ifm-color-primary-lightest: #8fd5bf;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* 侧边 */
+  --doc-sidebar-width: 260px !important;
+  --ifm-font-size-base: 97%;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -44,7 +48,12 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2.1rem;
+}
+
 .markdown > h2 {
+  --ifm-h2-font-size: 1.5rem;
   border-left: var(--ifm-color-primary-dark) 3px solid;
   padding-left: 10px;
   line-height: 100%;
@@ -52,13 +61,18 @@
   border-radius: 1px;
 }
 .markdown > h3 {
+  --ifm-h3-font-size: 1.2rem;
   padding-left: 10px;
   line-height: 100%;
   border-left: var(--ifm-color-primary-darker) 4px solid;
   border-radius: 1px;
 }
 
-.menu__link {
+.menu__list>.menu__list-item>.menu__link {
+  font-size: 0.8em;
+}
+/* .menu__link {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+ */
