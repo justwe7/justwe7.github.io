@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>element</title>
+    <style>
+      .ul p.hover:hover {
+        background-color: red;
+      }
+      .ul p.active:active {
+        background-color: blue;
+      }
+      .ul p.visited:visited {
+        background-color: yellow;
+      }
+      .input:focus {
+        background-color: red;
+      }
+
+      .box {
+        margin: 10px;
+        padding: 20px;
+        width: 100px;
+        height: 100px;
+        border: 5px solid #000;
+        color: #fff;
+        background-color: yellowgreen;
+      }
+      .hr {
+        height: 100vh;
+      }
+      .bottom {
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>element查看器</h3>
+    <ul class="ul">
+      <li>
+        <p class="hover">hover</p>
+      </li>
+      <li>
+        <p class="active">active</p>
+      </li>
+      <li>
+        <p class="visited">visited</p>
+      </li>
+    </ul>
+    <div>
+      <input type="text" class="input" placeholder="focus" />
+    </div>
+    <div class="box">
+      宽高
+    </div>
+    <div class="hr"></div>
+    <div class="bottom">
+      我在最下面
+    </div>
+    <ol id="ol">
+      <li>值1</li>
+      <li>值2</li>
+      <li>值3</li>
+    </ol>
+    <button id="event_hook1">DOM断点。ol新增</button>
+    <button id="event_hook2">DOM断点。元素移除</button>
+    <button id="event_hook3">DOM断点。属性变更</button>
+    <script>
+      var oli = document.createElement('li')
+      var oOl = document.querySelector('#ol')
+      oli.innerHTML = '我是新来的'
+
+      document
+        .querySelector('#event_hook1')
+        .addEventListener('click', function (e) {
+          oOl.appendChild(oli)
+        })
+      document
+        .querySelector('#event_hook2')
+        .addEventListener('click', function (e) {
+          oOl.remove()
+        })
+      document
+        .querySelector('#event_hook3')
+        .addEventListener('click', function (e) {
+          oOl.setAttribute('style', 'color: red')
+        })
+    </script>
+  </body>
+</html>

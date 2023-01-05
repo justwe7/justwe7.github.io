@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>console</title>
+  </head>
+  <body>
+    <h3>打开控制台查看</h3>
+    <ul>
+      <ul>
+        <li><p>li下的p1</p></li>
+        <li><p>li下的p2</p></li>
+        <li><p>li下的p3</p></li>
+      </ul>
+    </ul>
+    <p>外面的p</p>
+    <script>
+      console.log('普通信息')
+      console.info('提示性信息')
+      console.error('错误信息')
+      console.warn('警示信息')
+
+      console.log(1, '2', +'3')
+      console.log('今晚%s产品', '打', '？？？')
+      console.log('今晚%s%c老虎', '打', 'color: red', '？？？')
+
+      console.time('t')
+      Array(900000)
+        .fill(1)
+        .forEach(() => {})
+      console.timeEnd('t')
+
+      function foo(type = '') {
+        type ? console.count(type) : console.count()
+        return 'type：' + type
+      }
+
+      foo('A') //A: 1
+      foo('B') //B: 1
+      foo() //default: 1
+      foo() //default: 2
+      foo() //default: 3
+      foo('A') //A: 2
+
+      console.trace()
+      function foo2() {
+        console.trace()
+      }
+      foo2()
+
+      var arr = [
+        { name: '梅西', qq: 10 },
+        { name: 'C罗', qq: 7 },
+        { name: '内马尔', qq: 11 },
+      ]
+      console.table(arr)
+
+      var obj = {
+        name: 'justwe7',
+        age: 26,
+        fn: function () {
+          alert('justwe7')
+        },
+      }
+      console.log(obj)
+      console.dir(obj)
+
+      var val = 1
+      console.assert(val === 1, '等于1')
+      console.assert(val !== 1, '不等于1')
+      console.log('代码往下执行呢啊')
+
+      console.group('分组1')
+      console.log('分组1-1111')
+      console.log('分组1-2222')
+      console.log('分组1-3333')
+      console.groupEnd()
+      console.group('分组2')
+      console.log('分组2-1111')
+      console.log('分组2-2222')
+      console.log('分组2-3333')
+      console.groupEnd()
+    </script>
+  </body>
+</html>
