@@ -277,6 +277,7 @@ import './assets/img/avatar.jpg'
 
 js如果自己用理论上不处理都行~ 但是毕竟还是会写一些新的es语法，这时就用到 [babel](https://babeljs.io/)
 
+**基础版：**
 先改js用来看效果:
 
 ```js
@@ -294,8 +295,28 @@ waitTime(4396).then(async () => {
   console.log(9527)
 })
 ```
-
-再改webpack配置，module.rules增加一项配置：
+1. 首先安装babel: `npm install --save-dev @babel/core @babel/cli @babel/preset-env`
+2. 在项目的根目录下创建一个命名为 babel.config.json 的配置文件（需要 v7.8.0 或更高版本）： 
+  ```json
+  {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "edge": "17",
+            "firefox": "60",
+            "chrome": "67",
+            "safari": "11.1"
+          },
+          "useBuiltIns": "usage",
+          "corejs": "3.6.5"
+        }
+      ]
+    ]
+  }
+  ```
+3. `npm install --save-dev babel-loader` 再改webpack配置，`build/webpack.config.js` module.rules增加一项配置：
 
 ```js
       { test: test: /\.(sa|sc|c)ss$/, ...},
@@ -311,7 +332,7 @@ waitTime(4396).then(async () => {
       },
 ```
 
-打包之后搜一下 `12580`，箭头函数已经被编译为ES5语法。Promise还直愣愣在结果中，还是要单独处理。
+打包之后搜一下 `12580`，箭头函数已经被编译为ES5语法。Promise还直愣愣在结果中，还是要单独处理，接下来要解决：
 
 **@babel/polyfill方式(不建议)**
 
@@ -343,22 +364,7 @@ polyfill很强(庞)大，我选择 `npm install --save-dev @babel/plugin-transfo
 
 然后结合 `npm install --save @babel/runtime-corejs3 ` 。
 
-创建babel.config.js，修改webpack配置，将babel-loader提取到该文件中:
-
-`build/webpack.config.js`
-
-```js
-/* js */
-{
-  test: /\.js$/,
-  use: {
-  	loader: 'babel-loader'
-  },
-  exclude: /node_modules/
-},
-```
-
-`babel.config.js`
+创建`babel.config.js`
 
 ```js
 module.exports = function (api) {

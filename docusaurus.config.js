@@ -125,7 +125,7 @@ const config = {
           //   position: 'left',
           //   label: 'Tutorial',
           // },
-          {href: 'https://lihx.top', label: 'Blog', position: 'right'},
+          {href: 'https://lihx.top', label: '个人博客', position: 'right'},
           {
             href: 'https://github.com/justwe7/justwe7.github.io',
             label: 'GitHub',
