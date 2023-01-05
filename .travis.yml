@@ -33,7 +33,7 @@ install: # 安装依赖
 script:  # 需要执行的脚本
     # - node ./replaceImg.js
     - npm run build
-    - cp ./README.md ./build/README.md
+    # - cp ./README.md ./build/README.md
     # - sed -i 's/\r//' deploy.sh
     # - bash ./deploy.sh
 
