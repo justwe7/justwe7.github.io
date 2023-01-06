@@ -8,6 +8,7 @@ const globby = require('globby')
 
 const aArticles = globby.sync(['docs/**/*.md', '!*.md'], { gitignore: true })
 
+/* 获取docs目录的文件及一级嵌套，用于首页大纲渲染 */
 const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
   const arr = v.substring(5).split('/')
   const root = arr[0]
@@ -134,6 +135,8 @@ const config = {
           {
             href: 'https://github.com/justwe7/justwe7.github.io',
             label: 'GitHub',
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
             position: 'right',
           },
         ],
