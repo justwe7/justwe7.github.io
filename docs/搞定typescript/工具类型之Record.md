@@ -1,3 +1,8 @@
+> Record<K, T>
+> 
+> 强制对象的键值类型，为键值创建自定义接口，确保实现复杂数据类型时的一致性
+
+[示例代码](https://codesandbox.io/s/tsgong-ju-lei-xing-pc65yr?file=/src/index.tsx)
 
 假设需要定义一个对象，需要对其value进行约束，比如这样:
 ```ts
