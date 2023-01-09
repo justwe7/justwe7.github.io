@@ -1,4 +1,4 @@
-> Required<T>
+> `Required<T>`
 > 
 > 将类型中的所有属性设置为必选（与Partial相反）
 

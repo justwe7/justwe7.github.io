@@ -1,4 +1,4 @@
-> Partial<T>
+> `Partial<T>`
 > 
 > 将类型中的所有属性设置为可选（与Required相反）
 
