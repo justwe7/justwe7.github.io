@@ -53,7 +53,7 @@ brew services restart nginx
 ### 个人常用配置
 虽然已经3202年了，作为一个前端er更应该去使用更易用的`webpack-dev-server`，而且vscode有现成的插件，但是毕竟前端最终打包的物料还是需要通过`nginx`来承载的，所以可以“模拟”一些线上场景，也方便与后端“拉扯”
 #### nginx.conf根配置
-方便自己写一些小demo访问，顺便还可以作为一个局域网类似云盘的作用，给同事分享一些大点的文件~
+本地起一个ng服务，方便自己写一些小demo访问，顺便还可以作为一个局域网类似云盘的作用，给同事分享一些大点的文件~
 
 ```conf
 worker_processes  1;
@@ -97,20 +97,37 @@ http {
 #### 搞一个子域名
 全局配置下有一行 `include servers/*;`，ng会读取servers下的配置文件，为了后续维护清晰，就在这个目录下创建子域名: `touch test.conf`
 ```conf
-# 作为单页应用1（history模式配置）
+# 作为单页应用（前端静态）
 server
 {
     listen 80;
-    server_name hhh.com;
+    server_name dist.com;
 
-    location / {
+    location / { # 如果有根路由 /h5，需要将/改为/h5
       alias /Users/debugger/bugfolder/www/gx/embed-h5-static/dist;
       index index.php index.html index.htm default.php default.htm default.html;
-      try_files $uri $uri/ /index.html;
+      try_files $uri $uri/ /index.html; （history模式配置）
+    }
+}
+# 反向代理(如node服务)
+server
+{
+    listen 80;
+    server_name serve.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+        proxy_redirect off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
 ```
-然后在host中将`127.0.0.1 hhh.com`回源到本地
+然后在host中将`127.0.0.1 dist.com serve.com`回源到本地，浏览器访问这两个域名就好了
 
 
 | 路径                   | 类型     | 介绍                                      |
