@@ -404,4 +404,4 @@ ps aux --sort -rss: 按照 rss 排序显示内容
 - `lsof -i:3000`
 - 找到PID进程号，不影响的应用直接杀掉进程: `kill -9 {PID}`
 
-![image.png](/images/2021/09/20/image.png)
+![image.png](https://image.littl.cn/images/2021/09/20/image.png)

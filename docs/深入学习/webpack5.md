@@ -1036,7 +1036,7 @@ plugins: [
 ]
 ```
 
-效果：![imagec3641.png](/images/2022/05/31/imagec3641.png)
+效果：![imagec3641.png](https://image.littl.cn/images/2022/05/31/imagec3641.png)
 
 配合 node-notifier 实现编译报错通知：
 
@@ -1067,7 +1067,7 @@ plugins: [
 
 
 
-![image.png](/images/2022/05/31/image.png)
+![image.png](https://image.littl.cn/images/2022/05/31/image.png)
 
 #### webpackbar
 
@@ -1085,7 +1085,7 @@ plugins: [
 ]
 ```
 
-![imagef9362.png](/images/2022/05/31/imagef9362.png)
+![imagef9362.png](https://image.littl.cn/images/2022/05/31/imagef9362.png)
 
 ### 优化打包速度
 
