@@ -7,7 +7,7 @@ Windows Subsystem for Linux（简称WSL）是一个为在Windows 10上能够原�
 
 
 在vscode中的效果：
-![20200101_184711.gif](https://image.littl.cn/images/2020/01/01/20200101_184711.gif)
+![20200101_184711.gif](/images/2020/01/01/20200101_184711.gif)
 
 > 本文所有的指令（安装）都在Ubuntu子系统下执行
 
@@ -17,7 +17,7 @@ Windows Subsystem for Linux（简称WSL）是一个为在Windows 10上能够原�
 依次找到：   
 控制面板 => 程序 => 程序和功能（启用或关闭windows功能） => 勾选：适用于 Linux 的 Windows 子系统
 
-![image.png](https://image.littl.cn/images/2020/01/01/image.png)
+![image.png](/images/2020/01/01/image.png)
 
 
 **安装（Ubuntu）WSL子系统**  

@@ -1,6 +1,6 @@
 现在css预处理器是项目的标配，感觉用不到 `css variable` 这个特性，之前对它的了解大概局限于跟 `:root{}` 有关系，但是直到看到vantui小程序文档时看到这样的介绍：
 
-![image.png](https://image.littl.cn/images/2020/09/15/image.png)
+![image.png](/images/2020/09/15/image.png)
 
 貌似是一座小金矿...
 
@@ -42,7 +42,7 @@ https://codepen.io/justwe7/pen/mdPjdXy
 ## 实战应用
 ### 精简代码，减少冗余
 #### 修改某些色块的不同状态
-![image14ebf.png](https://image.littl.cn/images/2020/09/15/image14ebf.png)
+![image14ebf.png](/images/2020/09/15/image14ebf.png)
 
 假如某个块有不同的状态，如果正常写css代码，可能需要样式覆盖来指定不同的颜色，单一的属性还好，要是background这种复合属性的写起来就感觉不是很语义化：
 
@@ -217,7 +217,7 @@ root.addEventListener("mousemove", e => {
 
 #### 做一个loading（与预处理器比较）
 
-![20200917_215316.gif](https://image.littl.cn/images/2020/09/17/20200917_215316.gif)
+![20200917_215316.gif](/images/2020/09/17/20200917_215316.gif)
 
 一个条形加载条通常由几条线条组成，并且**每条线条对应一个存在不同时延**的相同动画，通过时间差运行相同的动画，从而产生加载效果
 
