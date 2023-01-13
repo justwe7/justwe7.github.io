@@ -4,27 +4,6 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 // const lightCodeTheme = require('prism-react-renderer/themes/ultramin');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const globby = require('globby')
-
-const aArticles = globby.sync(['docs/**/*.md', '!*.md'], { gitignore: true })
-
-/* 获取docs目录的文件及一级嵌套，用于首页大纲渲染 */
-const oArticleCatalog = aArticles.reduce(function(target, v, currentIndex) {
-  const arr = v.substring(5).split('/')
-  const root = arr[0]
-  const name = arr[arr.length - 1].split('.')[0]
-  // const item = `  - [${name}](/blog/${v})`
-  const item = {
-    title: name,
-    link: `/${v.replace(/(.md)$/, '')}`
-  }
-  if (target[root]) {
-    target[root].push(item)
-  } else {
-    target[root] = [item]
-  }
-  return target
-}, {})
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -36,7 +15,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favorite.ico',
   customFields: {
-    homeCatalog: oArticleCatalog
+    homeCatalog: require('./getArticlesSummary') // 获取docs目录的文件及层级关系，用于首页大纲渲染
   },
 
   // GitHub pages deployment config.
