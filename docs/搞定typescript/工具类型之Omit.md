@@ -1,12 +1,12 @@
 > `Omit<T, U>`
 > 
-> 用于从类型T中剔除U中定义的属性，生成新的类型（跟Exclude功能类似）
+> 用于从类型T中剔除U中定义的属性，生成新的类型（跟Exclude功能类似<它针对联合类型>，与Pick功能相反）
 > 
 > 当我们想要复用一个对象类型/接口中的某些属性时候可以使用它
 
 [示例代码](https://codesandbox.io/s/tsgong-ju-lei-xing-pc65yr?file=/src/index.tsx)
 
-假设现有类型定义中定义了一个联合类型
+假设现有类型定义中定义了一个对象类型
 ```ts
 type OmitType = {
   name: string
