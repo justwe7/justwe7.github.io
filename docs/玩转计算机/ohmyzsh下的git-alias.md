@@ -274,4 +274,4 @@
 | gama       | 'git am --abort'                                                                                                         |
 | gamscp     | 'git am --show-current-patch'                                                                                            |
 
-![image.png](https://image.littl.cn/images/2021/06/21/image.png)
+![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2021/06/21/image.png)

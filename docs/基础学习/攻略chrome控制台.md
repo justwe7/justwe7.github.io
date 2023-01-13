@@ -8,7 +8,7 @@ Windows: `Control` + `Shift` + `J`
 Mac: `Command` + `Option` + `J`
 
 首先看一下console对象下面都有哪些方法:  
-![image.png](https://image.littl.cn/images/2020/06/28/image.png)
+![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image.png)
 
 
 ### console.clear()
@@ -24,7 +24,7 @@ console.error('错误信息')
 console.warn('警示信息')
 ```
 
-![image344c2.png](https://image.littl.cn/images/2020/06/28/image344c2.png)
+![image344c2.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image344c2.png)
 
 **使用占位符**
 
@@ -39,7 +39,7 @@ console.log('今晚%s%c老虎', '打', 'color: red', '？？？')
 // 带有占位符的参数之后的若干参数属于占位符的配置参数
 ```
 
-![image.png](https://image.littl.cn/images/2020/07/19/image.png)
+![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/19/image.png)
 
 其余的占位符列表还有：
 
@@ -89,7 +89,7 @@ function foo() {
 foo()
 ```
 
-![imagebabdf.png](https://image.littl.cn/images/2020/06/28/imagebabdf.png)
+![imagebabdf.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/imagebabdf.png)
 
 ### console.table()
 console.table()方法可以将复合类型的数据转为表格显示
@@ -101,7 +101,7 @@ var arr = [
 ]
 console.table(arr)
 ```
-![imageab741.png](https://image.littl.cn/images/2020/06/28/imageab741.png)
+![imageab741.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/imageab741.png)
 
 ### console.dir()
 按便于阅读和打印的形式将对象打印  
@@ -116,10 +116,10 @@ var obj = {
 console.log(obj)
 console.dir(obj)
 ```
-![image688f0.png](https://image.littl.cn/images/2020/06/28/image688f0.png)
+![image688f0.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image688f0.png)
 
 打印 DOM 对象区别：   
-![imagef2bad.png](https://image.littl.cn/images/2020/06/28/imagef2bad.png)
+![imagef2bad.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/imagef2bad.png)
 
 
 ### console.assert()
@@ -132,7 +132,7 @@ console.assert(val === 1, '等于1')
 console.assert(val !== 1, '不等于1')
 console.log('代码往下执行呢啊')
 ```
-![image68db1.png](https://image.littl.cn/images/2020/06/28/image68db1.png)
+![image68db1.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image68db1.png)
 
 ### console.group(), groupEnd()
 分组输出信息，可以用鼠标折叠/展开 
@@ -148,18 +148,18 @@ console.log('分组2-2222')
 console.log('分组2-3333')
 console.groupEnd()
 ```
-![image4d2c2.png](https://image.littl.cn/images/2020/06/28/image4d2c2.png)
+![image4d2c2.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image4d2c2.png)
 
 ### $ 选择器
 #### $_
 可以记录上次计算的结果，直接用于代码执行:
 
-![20200628_171742.gif](https://image.littl.cn/images/2020/06/28/20200628_171742.gif)
+![20200628_171742.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_171742.gif)
 
 #### $0,$1...$4
 代表最近5个审查元素**选中**过的DOM节点，看图（是要选中一下，我更喜欢用存储全局变量的方式玩，省的自己手残又选了一个节点）：
 
-![20200628_164937.gif](https://image.littl.cn/images/2020/06/28/20200628_164937.gif)
+![20200628_164937.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_164937.gif)
 
 #### $和$$
 - `$(selector)`是原生 document.querySelector() 的封装。
@@ -184,7 +184,7 @@ $x('//li//p') // 所有的li下的p
 $x('//li[p]') // 所有的li下的p
 ```
 
-![image538c8.png](https://image.littl.cn/images/2020/06/28/image538c8.png)
+![image538c8.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image538c8.png)
 
 #### keys(), values()
 跟ES6对象扩展方法， `Object.keys()` 和 `Object.values()` 相同
@@ -216,10 +216,10 @@ Mac: `Command` + `Option` + `C`
 选中目标节点，element面版，查看style->:hov,选择对应的状态即可
 
 1.  
-![image6a303.png](https://image.littl.cn/images/2020/06/28/image6a303.png)
+![image6a303.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image6a303.png)
 
 2.  
-![20200628_185451.gif](https://image.littl.cn/images/2020/06/28/20200628_185451.gif)
+![20200628_185451.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_185451.gif)
 
 #### 查看placeholder的颜色
 1. 打开开发者工具，点击右上角的`⚙`，进入 `Settings`
@@ -229,7 +229,7 @@ Mac: `Command` + `Option` + `C`
 #### computed
 有时候样式覆盖过多，查看起来很麻烦，`computed` 就派上用场了
 
-![image1154d.png](https://image.littl.cn/images/2020/06/28/image1154d.png)
+![image1154d.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image1154d.png)
 
 > 点击某个样式可以直接跳转至对应css定义
 
@@ -245,24 +245,24 @@ Mac: `Command` + `Option` + `C`
 #### 骚操作
 选中节点，直接按键盘 `H` 可以直接让元素显示/隐藏，不用手动敲样式了，效果等同 `visibility: hidden`，还是要占据盒模型空间的。（记得把输入法改成英文~）
 
-![20200628_191941.gif](https://image.littl.cn/images/2020/06/28/20200628_191941.gif)
+![20200628_191941.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_191941.gif)
 
 
 #### 将某个元素存储到全局临时变量中
 选中节点，右键，`Store as global variable`（在network面板中也能用，尤其是筛选接口的返回值很方便）
 
-![20200628_192801.gif](https://image.littl.cn/images/2020/06/28/20200628_192801.gif)
+![20200628_192801.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_192801.gif)
 
 #### 滚动到某个节点
 如果页面很长，想找一个文本节点的显示位置又不想手动滑动可以试试 `Scroll into view`
 
-![20200628_190729.gif](https://image.littl.cn/images/2020/06/28/20200628_190729.gif)
+![20200628_190729.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_190729.gif)
 
 
 #### Edge 专属的3D视图
 使用 chromium 后的 Edge 真的是改头换面，**3D 视图**可以帮忙定位一些定位层级还有DOM嵌套的问题，页面结构写的好不好看很直观的可以看出来(跟辅助功能里面的dom树结合使用很舒服)
 
-![20200628_194515.gif](https://image.littl.cn/images/2020/06/28/20200628_194515.gif)
+![20200628_194515.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_194515.gif)
 
 目前chrome还是没有这项功能的，Edge打开位置：控制台打开状态 => `Esc`打开抽屉 => `···`选择3D视图面板
 
@@ -270,7 +270,7 @@ Mac: `Command` + `Option` + `C`
 
 可以监听到 DOM 节点的变更(子节点变动/属性变更/元素移除)，并断点至变更 DOM 状态的 js 代码行： 
 
-![20200628_192344.gif](https://image.littl.cn/images/2020/06/28/20200628_192344.gif)
+![20200628_192344.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/20200628_192344.gif)
 
 
 ## Network 面板
@@ -281,7 +281,7 @@ Windows: `Control` + `Shift` + `I`
 Mac: `Command` + `Option` + `I`
 
 按区域划分大概分为如下几个区域：  
-![QQ20200719120526.png](https://image.littl.cn/images/2020/07/19/QQ20200719120526.png)
+![QQ20200719120526.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/19/QQ20200719120526.png)
 
 1. `Controls` - 控制 Network 功能选项，以及一些展示外观
 2. `Filters` - 控制在 Requests Table 中显示哪些类型的资源
@@ -292,7 +292,7 @@ Mac: `Command` + `Option` + `I`
 
 
 ### （1、2）Controls，Filters区域
-![imagee28b2.png](https://image.littl.cn/images/2020/07/04/imagee28b2.png)
+![imagee28b2.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/04/imagee28b2.png)
 
 Filters 控制的展示：
 - **使用大请求行** - 默认情况下，`Requests Table`一个资源只显示很小的一行。选中`Use large resource rows`(使用大资源行)按钮可以显示两个文本字段：主要字段和次要字段。
@@ -301,7 +301,7 @@ Filters 控制的展示：
 
 **only show blocked requests**
 假如遇到network抓不到任何请求，检查也不是filter和recording的原因的话，可以看看是不是因为设置了仅显示已阻止请求的勾选：  
-![2021-03-0415.04.53.gif](https://image.littl.cn/images/2021/03/04/2021-03-0415.04.53.gif)
+![2021-03-0415.04.53.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2021/03/04/2021-03-0415.04.53.gif)
 
 ### （3） Overview区域
 页面整个生命周期的各个阶段网络资源加载耗时信息的汇总，可以选择区域来筛选 `Requests Table` 的详细资源信息
@@ -324,12 +324,12 @@ Filters 控制的展示：
 
 > 在标题栏如(Name上)右键，可以添加或删除信息列。比如可以多加一列 Response Header => Content-Encoding 选项来总览页面资源的gzip压缩情况:
 
-![image11f8b.png](https://image.littl.cn/images/2020/07/05/image11f8b.png)
+![image11f8b.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image11f8b.png)
 
 #### 重新发起`xhr`请求
 在平时和后端联调时，我们用的最多的可能就是`Network`面板了。但是每次想重新查看一个请求通过刷新页面、点击按钮等方式去触发`xhr`请求，这种方式有时显得会比较麻烦，可以通过`Replay XHR`的方式去发起一条新的请求：
 
-![20200720_143313.gif](https://image.littl.cn/images/2020/07/20/20200720_143313.gif)
+![20200720_143313.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/20/20200720_143313.gif)
 
 
 #### 查看HTTP相关信息
@@ -337,18 +337,18 @@ Filters 控制的展示：
 
 可以通过点击 `query string parameters` (查询字符串参数)旁边的 `view URL encoded` (查看URL编码)或 `view decoded` (查看解码)链接，查看URL编码或解码格式的 `query string parameters` (查询字符串参数)。在使用postman复制相关入参时尤其实用。
 
-![image85eb1.png](https://image.littl.cn/images/2020/07/05/image85eb1.png)
+![image85eb1.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image85eb1.png)
 
 
 **查看HTTP响应内容**
 点击Response(响应)标签页可以查看该资源未格式化的HTTP响应内容
 
 > 接口的返回值(在preview中）同样也可以 `Save global variable` 存储一个全局变量  
-![20200705_111751.gif](https://image.littl.cn/images/2020/07/05/20200705_111751.gif)
+![20200705_111751.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/20200705_111751.gif)
 
 
 #### Size 和 Time 为什么有两行参数？
-![image08194.png](https://image.littl.cn/images/2020/07/05/image08194.png)
+![image08194.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image08194.png)
 
 ##### 关于Size列
 `Size`有两行：
@@ -380,9 +380,9 @@ Time有两行：
 
 #### Waterfall
 点击某个资源会展示出详细的网络加载信息：
-<!-- ![image2e1ab.png](https://image.littl.cn/images/2020/07/05/image2e1ab.png) -->
+<!-- ![image2e1ab.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image2e1ab.png) -->
 
-![image143a7.png](https://image.littl.cn/images/2020/07/19/image143a7.png)
+![image143a7.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/19/image143a7.png)
 
 相关字段描述:
 
@@ -404,12 +404,12 @@ Time有两行：
 - `Receiving Push` - 浏览器正在通过 HTTP/2 服务器推送接收此响应的数据
 - `Reading Push` - 浏览器正在读取之前收到的本地数据
 
-![image7dd79.png](https://image.littl.cn/images/2020/07/05/image7dd79.png)
+![image7dd79.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image7dd79.png)
 
 
 ### (5) Summary 区域
 
-![imagef7b67.png](https://image.littl.cn/images/2020/07/09/imagef7b67.png)
+![imagef7b67.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/09/imagef7b67.png)
 
 `requests` 查看请求的总数量 | `transferred` 查看请求的总大小 | `resources` 资源 | `Finish` 所有http请求响应完成的时间 | DOMContentLoaded时间 | load时间  
 
@@ -417,13 +417,13 @@ Time有两行：
 - 在 Overview (概览)窗格中的蓝色垂直线表示这个事件。
 - 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
 - 在 Summary (概要)窗格中，您可以查看事件的确切时间。
-![image4af35.png](https://image.littl.cn/images/2020/07/05/image4af35.png)
+![image4af35.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image4af35.png)
 
 当页面完全加载时触发 `load` 事件。 它显示也显示在：
 - 在 Overview (概览)窗格的红色垂直线表示这个事件。
 - 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
 - 在 Summary (概要)中，可以查看改事件的确切时间
-![imagee4d7e.png](https://image.littl.cn/images/2020/07/05/imagee4d7e.png)
+![imagee4d7e.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/imagee4d7e.png)
 
 > DOMContentLoaded 会比 Load 时间小，两者时间差大致等于外部资源加载（一般是图片/字体）的时间
 >
@@ -441,7 +441,7 @@ Time有两行：
 
 最常见的问题是很多个请求排队或被阻塞。这表示从单个客户端检索的资源太多。在HTTP 1.0/1.1连接协议中，Chrome限制每个域名最多执行6个TCP连接。如果一次请求十二个资源，前6个将开始，后6个将排队。一旦其中一个请求完成，队列中的第一个请求项目将开始其请求过程。
 
-![一系列被阻塞的请求](https://image.littl.cn/images/2020/07/05/imageef7ae.png)
+![一系列被阻塞的请求](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/imageef7ae.png)
 
 要解决传统HTTP 1的此问题，需要用多个子域名提供服务资源，将资源拆分到多个子域中，均匀分配。
 
@@ -451,7 +451,7 @@ Time有两行：
 
 绿色的块占据比例很高：
 
-![高TTFB示例](https://image.littl.cn/images/2020/07/05/image23444.png)
+![高TTFB示例](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image23444.png)
 
 TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下情况可能会导致高TTFB:
 
@@ -466,7 +466,7 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 蓝色的块占据比例很高：
 
-![高TTFB示例](https://image.littl.cn/images/2020/07/05/imageae084.png)
+![高TTFB示例](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/imageae084.png)
 
 如果 `Content Download` (内容下载)阶段花费了很多时间，提高服务响应速度、并行下载等优化措施帮助都不大。 主要的解决方案是发送更少的字节（比如一张高质量的大图可能几M的大小，这时可以酌情优化一下图片的宽高/清晰度）
 
@@ -481,15 +481,15 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 如图所示，在 `Sources` 这个`tab`栏下，有个 `Snippets` 标签，在里面可以添加一些常用的代码片段。（当个小笔记本）
 
-![20200705_114001.gif](https://image.littl.cn/images/2020/07/05/20200705_114001.gif)
+![20200705_114001.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/20200705_114001.gif)
 
 ### 设置断点
 
 #### 断点的面板
 
-![image.png](https://image.littl.cn/images/2020/07/07/image.png)
+![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/07/image.png)
 
-![image0187f.png](https://image.littl.cn/images/2020/07/06/image0187f.png)
+![image0187f.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/image0187f.png)
 
 
 #### 指定位置的中断
@@ -497,36 +497,36 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 找到源代码，点击要中断代码执行的位置，点击红色按钮的位置。然后再触发该方法执行，因为已知点击按钮可以触发，精准的定位到代码行就可以了:
 
-![20200709_225251.gif](https://image.littl.cn/images/2020/07/09/20200709_225251.gif)
+![20200709_225251.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/09/20200709_225251.gif)
 
 
 #### 全局事件中断
 假如不知道代码执行的位置，如以下场景：
 
-![imagee7a93.png](https://image.littl.cn/images/2020/07/06/imagee7a93.png)
+![imagee7a93.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imagee7a93.png)
 
 看接口返回的列表总数应该是20条，但是页面到15条就显示到底部了
 
 
-![imagecc38e.png](https://image.littl.cn/images/2020/07/06/imagecc38e.png)
+![imagecc38e.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imagecc38e.png)
 
 看代码写的判断条件有点问题，但从编译后的代码找到对应位置进行调试就相当于大海捞针了。想试试自己的设想的解决方式是否正确：   
 1. 因为列表是提拉加载，所以肯定会触发网络请求，可以在事件侦听器里面打一个 `XHR` 的断点
 2. 然后提拉加载页面触发接口请求，如预期的，代码中断执行了。但提示找不到sourcemap，暂时把js的资源映射给关掉[(相关解决方式)](https://stackoverflow.com/questions/61767538/devtools-failed-to-load-sourcemap-for-webpack-node-modules-js-map-http-e)：
-  ![imageaadd2.png](https://image.littl.cn/images/2020/07/06/imageaadd2.png)
-  ![imaged604f.png](https://image.littl.cn/images/2020/07/06/imaged604f.png)
+  ![imageaadd2.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imageaadd2.png)
+  ![imaged604f.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imaged604f.png)
 3. 再次触发断点，发现可以查看到中断的代码了，因为肯定是页面中的业务代码将请求推入到执行堆栈的，所以可以在堆栈中找到对应的方法名：`getVideoList`
    
-   ![image003b6.png](https://image.littl.cn/images/2020/07/06/image003b6.png)
+   ![image003b6.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/image003b6.png)
 4. 点击方法名可以跳转到对应的源码，可以看到圈起来的代码和所猜想的问题代码应该是同一处
-  ![imageb8ea4.png](https://image.littl.cn/images/2020/07/06/imageb8ea4.png)
+  ![imageb8ea4.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imageb8ea4.png)
 5. 回过来看下问题原因： 页面请求完新数据后直接 `pageNum` 自增，然后直接就用于是否结束的判断了，有点不够严谨，不如直接比对当前的列表长度与接口返回的数据总数来判断: 
-   ![imaged4077.png](https://image.littl.cn/images/2020/07/06/imaged4077.png)
+   ![imaged4077.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imaged4077.png)
 6. 记住要修改的代码，在这个文件开头，也就是 `191.xxx.js` 
-   1. 第一行先打个断点，push 方法之前再打一个断点: ![image.png](https://image.littl.cn/images/2020/07/09/image.png) (如果没有再刷新一下(也不清楚为什么可能会没有))
+   1. 第一行先打个断点，push 方法之前再打一个断点: ![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/09/image.png) (如果没有再刷新一下(也不清楚为什么可能会没有))
    2. 然后刷新页面，找到刚刚想要修改的代码: 用 `t.recommendList.length` 替换掉 `n.pageSize*t.pageNo`（前两步是为了避免js开始解析问题代码，先阻塞一下运行: [stackoverflow](https://stackoverflow.com/questions/6657229/how-can-i-edit-javascript-in-my-browser-like-i-can-use-firebug-to-edit-css-html)）
 7. 再`Ctrl + S`，保存一下，然后看下页面效果，列表可以全部加载出来了:
-![imagea80ad.png](https://image.littl.cn/images/2020/07/06/imagea80ad.png)
+![imagea80ad.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imagea80ad.png)
 
 > 在美化代码的面板中是不支持直接修改页面代码的
 
@@ -534,10 +534,10 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 把脚本文件放入Blackbox(黑盒)，可以忽略来自第三方库的调用堆栈
 
 默认（不开启黑盒）：  
-![image70101.png](https://image.littl.cn/images/2020/07/06/image70101.png)
+![image70101.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/image70101.png)
 
 开启黑盒：  
-![imagec7749.png](https://image.littl.cn/images/2020/07/06/imagec7749.png)
+![imagec7749.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/06/imagec7749.png)
 
 - 打开方式①  
   1. 打开 DevTools `Settings` (设置)
@@ -570,7 +570,7 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 4. `Details` - 在Flame Chart中，选择了某一事件后，这部分会展示与这个事件相关的更多信息；
    > 如果选择了某一帧，这部分会展示与选中帧相关的信息。如果既没有选中事件也没有选中帧，则这部分会展示当前记录时间段内的相关信息。
 
-![imagef4dfb.png](https://image.littl.cn/images/2020/07/07/imagef4dfb.png)
+![imagef4dfb.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/07/imagef4dfb.png)
 
 ### 开始记录
 1. 首先点击控制条左边的第一个圆圈，开始记录日志
@@ -599,7 +599,7 @@ TTFB就是等待第一个响应字节的时间，建议在200ms以下，以下�
 
 
 ### (2)overview 总览区域
-![imagee53ec.png](https://image.littl.cn/images/2020/07/07/imagee53ec.png)
+![imagee53ec.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/07/imagee53ec.png)
 
 #### FPS
 绿色竖线越高，FPS 越高。 FPS 图表上的红色块(上图刚开始的部分)表示长时间帧，很可能会出现卡顿。经常打游戏肯定知道这个指标代表什么，`120FPS` 代表流畅（手动滑稽） 
@@ -650,10 +650,10 @@ JS：黄色
 ### (3)Flame Chart 火焰图（线程面板）
 详细的分析某些任务的详细耗时，从而定位问题
 
-![image10bff.png](https://image.littl.cn/images/2020/07/07/image10bff.png)
+![image10bff.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/07/image10bff.png)
 
 #### 看到的几条虚线：
-![20200708_184105.gif](https://image.littl.cn/images/2020/07/08/20200708_184105.gif)
+![20200708_184105.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/08/20200708_184105.gif)
 
 - 蓝线代表 `DOMContentLoaded` 事件
 - 绿线代表首次绘制的时间
@@ -676,14 +676,14 @@ JS：黄色
 
 Google官方文档的例子：
 
-![image.png](https://image.littl.cn/images/2020/07/08/image.png)
+![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/08/image.png)
 
 如上图：click事件触发了 `script_foot_closure.js` 第53行的函数调用。
 再看下面，Function Call 可以看到一个匿名函数被调用，然后调用 Me() 函数，然后调用 Se()，依此类推。
 
 > DevTools为脚本分配随机颜色。在上图中，来自一个脚本的函数调用显示为浅绿色。来自另一个脚本的调用被渲染成米色。较深的黄色表示脚本活动，而紫色的事件表示渲染活动。这些较暗的黄色和紫色事件在所有记录中都是一致的。
 
-![20200708_191952.gif](https://image.littl.cn/images/2020/07/08/20200708_191952.gif)
+![20200708_191952.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/08/20200708_191952.gif)
 
 1. 在性能报告中，有很多的数据。可以通过双击，拖动等等动作来放大缩小报告范围，从各种时间段来观察分析报告
 2. 在事件长条的右上角处，如果出现了红色小三角，说明这个事件是存在问题的，需要特别注意
@@ -921,7 +921,7 @@ performance
 
 懒人专用👍
 
-![imagee4183.png](https://image.littl.cn/images/2020/07/09/imagee4183.png)
+![imagee4183.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/09/imagee4183.png)
 
 有5个指标:
 - `Performance` 性能
@@ -935,7 +935,7 @@ performance
 
 开始录制前先点击下垃圾回收 -> 点击开始录制。如果JS堆内存动态分配时间线，结束之前要再点击下垃圾回收，再结束录制
 
-![image258e7.png](https://image.littl.cn/images/2020/07/09/image258e7.png)
+![image258e7.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/09/image258e7.png)
 
 ## Application 面板
 > 记录网页加载的所有资源，包括存储信息、缓存信息以及页面用到的图片、字体、脚本、样式等信息
@@ -954,7 +954,7 @@ performance
 该面板可以区分两种类型的不安全的页面：
 - 如果被请求的页面通过HTTP提供服务，那么这个主源就会被标记为不安全。
 - 如果被请求的页面是通过HTTPS获取的，但这个页面接着通过HTTP继续从其他来源检索内容，那么这个页面仍然被标记为不安全。这就是所谓的混合内容页面,混合内容页面只是部分受到保护,因为HTTP内容(非加密的内容通信使用明文)可能会被窃听,容易受到中间人攻击。如163，虽然证书是有效的，但是页面有一部分http资源：  
-![imagee8ea4.png](https://image.littl.cn/images/2020/07/08/imagee8ea4.png)
+![imagee8ea4.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/08/imagee8ea4.png)
 
 
 ## Command 终极大招
@@ -967,15 +967,15 @@ performance
 
 ### CSS/JS 覆盖率
 - 打开调试面板，用快捷键 `shift+command+P （mac）`输入 `Show Coverage` 调出相应面板
-- 点击`reload` 按钮开始检测 ![image1719a.png](https://image.littl.cn/images/2020/07/20/image1719a.png)  
-- 点击相应文件即可查看具体的覆盖情况（蓝色的为用到的代码，红色表示没有用到的代码）!![image.png](https://image.littl.cn/images/2020/07/20/image.png)
+- 点击`reload` 按钮开始检测 ![image1719a.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/20/image1719a.png)  
+- 点击相应文件即可查看具体的覆盖情况（蓝色的为用到的代码，红色表示没有用到的代码）!![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/20/image.png)
 
 ### 媒体查询
 媒体查询是自适应网页设计的基本部分。
 在Chrome Devtools中的设备模式下，在三圆点菜单点击, `Show Media queries` 即可启用：
 > 右键点击某个条形，查看媒体查询在 CSS 中何处定义并跳到源代码中的定义
 
-![20200709_171307.gif](https://image.littl.cn/images/2020/07/09/20200709_171307.gif)
+![20200709_171307.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/09/20200709_171307.gif)
 
 
 ## 参考

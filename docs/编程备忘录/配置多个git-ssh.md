@@ -17,7 +17,7 @@ Identity added: /c/Users/monster/.ssh/weiyi_rsa (xxxx@xxxx.com)
 出现诸如 `Identity added: `的提示说明成功
 
 > 假如遇到报错，`Could not open a connection to your authentication agent.` 可以执行 `ssh-agent bash`，然后重新执行指令
-![image.png](https://image.littl.cn/images/2020/07/27/image.png)
+![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/27/image.png)
 
 ### 4. 修改配置文件
 .ssh目录(就是私钥所在的文件夹)创建 `config` 文件，把对应的路径还有其他相关的改一下：

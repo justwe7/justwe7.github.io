@@ -18,7 +18,7 @@ curl 'https://lihx.top'
 curl -o a.html 'https://justwe7.github.io/%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B/%E5%9C%A3%E6%9D%AF.html'
 ```
 
-![image1ff37.png](https://image.littl.cn/images/2021/09/26/image1ff37.png)
+![image1ff37.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2021/09/26/image1ff37.png)
 
 ### 自动跳转(-L)
 使用`-L`参数，curl就会跳转到新的网址: `curl -L url`
