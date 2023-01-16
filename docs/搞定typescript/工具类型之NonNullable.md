@@ -1,21 +1,11 @@
-> `Parameters<TArea>`
+> `NonNullable<T>`(`NonNullable<T extends null | undefined ? never : T>`)
 > 
-> 获取函数的形参参数类型，并基于它构造一个类型（与ReturnType类似）
-> 
-> 在我们知道函数的接收的形参符合某种类型想要复用时非常有用
+> 根据现有的联合类型剔除null、undefined，返回一个新的类型
 
 [示例代码](https://codesandbox.io/s/tsgong-ju-lei-xing-pc65yr?file=/src/index.tsx)
 
-`Parameters`返回的参数为数组类型
+假如现有的联合类型可以满足新的变量类型约束，但是并不存在可选和null，可以使用它:
 ```ts
-function logCatInfo(name: string, age: number) {
-  console.log({ name, age })
-}
-function logDogInfo({ name = '', age = 0 }) {
-  console.log({ name, age })
-}
-type ParametersType = Parameters<typeof logCatInfo>; // [string, number]
-type ParametersType2 = Parameters<typeof logDogInfo>[0]; // [{ name: string|undefined, age: number|undefined }]
-const ParametersCat:ParametersType = ['喵喵', 6]
-const ParametersDog:ParametersType2 = { name: '汪汪', age: 1 }
+type TypeNonNullable = string | number | null | undefined
+type TypeNoNulls = NonNullable<TypeNonNullable> // 排除null和undefined，只剩下string | number
 ```
