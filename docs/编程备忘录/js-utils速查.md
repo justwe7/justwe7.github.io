@@ -409,8 +409,20 @@ function formatDate(date, fmt) {
 ```
 
 ## 上传图片
+方法暂未支持多选
 ```js
-export async function uploadImg () {
+/**
+ * @param {*} [{
+ *   max = 1000,
+ *   accept = 'image/jpg,image/jpeg,image/png,image/gif'
+ * }={}]
+ * @return {Promise<{file: Blob, base64: string}>} 
+ */
+export async function uploadImg ({
+  multiple = false,
+  max = 1000,
+  accept = 'image/jpg,image/jpeg,image/png,image/gif'
+} = {}) {
   return new Promise((resolve, reject) => {
     const input = document.createElement('input')
     input.setAttribute('style', 'opacty:0;height: 0;display: none;')
@@ -423,28 +435,29 @@ export async function uploadImg () {
     input.onchange = function () {
       const files = this.files
       const file = files[0]
-      const maxsize = 20000 * 1024
-      if (!/\/(?:jpeg|jpg|png|gif)/i.test(file.type)) {
-        // Vue.$vux.toast.text('请选择图片格式')
+      const maxsize = max * 1024
+      if (!/\/(?:jpeg|jpg|png|gif|webp)/i.test(file.type)) {
         oBody.removeChild(input)
-        return false
+        return reject('请选择正确的图片格式')
       }
       const reader = new FileReader()
       reader.onload = function () {
         // const baseStr = this.result
-        // 如果图片大于 10m，不传
+        // 默认如果图片大于 1m，不传
         if (file.size >= maxsize) {
           oBody.removeChild(input)
-          return
+          return reject('请选择小于' + max + 'kb的文件')
         }
         compressFileToBase64(file).then(base64 => {
           resolve({ file: dataURLtoBlobAsFile(base64, file.name || 'temp1.jpg'), base64: base64 })
-        oBody.removeChild(input) // 上传完成移除input
+          oBody.removeChild(input) // 上传完成移除input
+        })
       }
       reader.readAsDataURL(file)
     }
   })
 }
+
 export function compressFileToBase64 (file, compressQuality = 0.8, maxLength = 1500) {
   // 图片压缩
   return new Promise(resolve => {
@@ -471,7 +484,7 @@ export function compressFileToBase64 (file, compressQuality = 0.8, maxLength = 1
           canvas.height = height
           ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
           resolve(canvas.toDataURL('image/jpeg', compressQuality))
-          /* getFileExif(file).then(orientation => {
+          /* getFileExif(file).then(orientation => { // https://github.com/exif-js/exif-js
             if (orientation !== '' && orientation !== 1 && orientation !== undefined && orientation !== 0) {
               switch (orientation) {
                 case 6:// 需要顺时针（向左）90度旋转
@@ -505,12 +518,13 @@ export function compressFileToBase64 (file, compressQuality = 0.8, maxLength = 1
     }
   })
 }
+
 function dataURLtoBlobAsFile (dataurl, fileName) {
-  var arr = dataurl.split(',')
-  var mime = arr[0].match(/:(.*?);/)[1]
-  var bstr = atob(arr[1])
-  var n = bstr.length
-  var u8arr = new Uint8Array(n)
+  const arr = dataurl.split(',')
+  const mime = arr[0].match(/:(.*?);/)[1]
+  const bstr = atob(arr[1])
+  let n = bstr.length
+  const u8arr = new Uint8Array(n)
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n)
   }
@@ -519,6 +533,15 @@ function dataURLtoBlobAsFile (dataurl, fileName) {
   file.name = fileName
   return file
 }
+
+export function genUuid () {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    let r = Math.random() * 16 | 0,
+      v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 ```
 
 ## 防抖
