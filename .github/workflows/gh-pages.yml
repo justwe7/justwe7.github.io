@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: '16.x'
 
+      - name: Add README
+        run: |
+          cp -f ./readme.md ./static/README.md
+
       - name: Build Project
         run: |
           npm install
@@ -28,7 +32,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          publish_branch: main
+          publish_branch: master
 
       # - name: SSH Deploy
       #   uses: easingthemes/ssh-deploy@v2.2.11
