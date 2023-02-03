@@ -1,7 +1,8 @@
 ---
-tags: ['开发工具']
-keywords: ['开发工具']
-date: 2021-12-22
+title: '攻略chrome控制台'
+tags: ['开发工具', 'tech']
+keywords: ['开发工具', 'tech']
+date: 2020-05-30
 toc_max_heading_level: 3
 ---
 
