@@ -1,8 +1,18 @@
+---
+title: '基于webpack5+vue2搭建企业SSR应用'
+tags: ['webpack', 'vue']
+keywords: ['webpack', 'vue']
+date: 2022-09-01
+toc_max_heading_level: 3
+---
+
 ## 导读
 
 本文章配合[官方Vue-SSR指南](https://v2.ssr.vuejs.org/zh/)食用更香~
 
 官方指南有详细的SSR应用介绍及搭建教程，但按其搭建下来的应用在实际开发过程中还是有很多不完善的地方。在此文章记录一下从0开始改造SPA应用为SSR应用的过程，并期望在官方指南的基础上要完善的功能：
+
+<!-- truncate -->
 
 - 本地开发环境热更新支持
 - 根据配置，支持SPA模式的渲染（便于开发调试接口）

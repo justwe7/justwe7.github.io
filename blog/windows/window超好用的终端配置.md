@@ -1,7 +1,15 @@
+---
+title: '为windows配置好用的终端配置'
+tags: ['效率']
+keywords: ['效率']
+date: 2020-01-05
+toc_max_heading_level: 3
+---
 ### 什么是WSL
 Windows Subsystem for Linux（简称WSL）是一个为在Windows 10上能够原生运行Linux二进制可执行文件（ELF格式）的兼容层。
 说白了，意思就是，Windows10里可以用Linux的终端了
 
+<!-- truncate -->
 
 如果你是mac用户，可以跳过前两步，直接执行第三步操作
 

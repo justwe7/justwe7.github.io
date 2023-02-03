@@ -1,3 +1,13 @@
+---
+title: 'ohmyzsh的git-alias快捷键'
+tags: ['git', '效率']
+keywords: ['git', '效率']
+date: 2021-06-21
+toc_max_heading_level: 3
+---
+
+<!-- truncate -->
+
 # ohmyzsh git快捷指令
 ### 查看默认提供的指令配置表
 1. cd ~

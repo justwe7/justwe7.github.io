@@ -168,14 +168,14 @@ function BlogListPageContent(props: Props) {
       {/* {!isPaginated && isBlogOnlyMode && <BlogRecommend isPaginated={isPaginated} isCardView={isCardView} />} */}
 
 
-      {/* 最新博客 */}
+      {/* 最近博客 */}
       <div className="container-wrapper">
         <div
           className="container padding-vert--sm"
           style={!isCardView ? { maxWidth: 1200 } : {}}>
           {!isPaginated && (
             <h2 className='blog__section-title'>
-              <Translate id="theme.blog.title.new">最新博客</Translate>
+              <Translate id="theme.blog.title.new">最近博客</Translate>
             </h2>
           )}
           <div className="row">

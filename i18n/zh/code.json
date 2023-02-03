@@ -21,7 +21,7 @@
     "description": "hero text"
   },
   "homepage.hero.look":{
-    "message": "可以看看我的{note}、{project}、{link}。",
+    "message": "可以看看我的{note}、{idea}、{project}以及{link}。",
     "description": "hero look"
   },
   "hompage.hero.note": {
@@ -37,7 +37,7 @@
     "description": "Link link label"
   },
   "hompage.hero.idea": {
-    "message": "想法感悟",
+    "message": "历史博文",
     "description": "Idea label"
   },
   "自我介绍": {
@@ -85,11 +85,11 @@
     "description": "The title of the 404 page"
   },
   "theme.NotFound.p1": {
-    "message": "找不到你要访问的页面，要不点点别处看看？",
+    "message": "找不到你要访问的页面，要不右上角搜索关键词看看？",
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "可能是个 Bug🐛，也可能是作者偷懒还没写😴",
+    "message": "可能是个 Bug🐛，也可能是作者迁移了该页面😴",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.AnnouncementBar.closeButtonAriaLabel": {
@@ -156,7 +156,7 @@
     "message": "推荐阅读"
   },
   "theme.blog.title.new":{
-    "message": "最新博客"
+    "message": "最近博客"
   },
   "theme.blog.tagTitle": {
     "message": "{nPosts} 含有标签「{tagName}」",

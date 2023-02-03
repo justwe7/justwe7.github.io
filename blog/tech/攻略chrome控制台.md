@@ -1,3 +1,11 @@
+---
+title: '攻略chrome控制台'
+tags: ['开发工具', 'tech']
+keywords: ['开发工具', 'tech']
+date: 2020-05-30
+toc_max_heading_level: 3
+---
+
 ## Console 面板
 > 此章节请打开 [devtools/console/console.html](https://justwe7.github.io/devtools/console/console.html) 一起食用
 >
@@ -6,6 +14,8 @@
 组合快捷键按键:  
 Windows: `Control` + `Shift` + `J`  
 Mac: `Command` + `Option` + `J`
+
+<!-- truncate -->
 
 首先看一下console对象下面都有哪些方法:  
 ![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image.png)

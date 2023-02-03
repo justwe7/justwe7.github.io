@@ -46,6 +46,11 @@ function Hero() {
                   <Translate id="hompage.hero.note">技术笔记</Translate>
                 </Link>
               ),
+              idea: (
+                <Link to="/archive">
+                  <Translate id="hompage.hero.idea">历史博文</Translate>
+                </Link>
+              ),
               project: (
                 <Link to="/project">
                   <Translate id="hompage.hero.project">个人项目</Translate>
@@ -56,11 +61,6 @@ function Hero() {
                   <Translate id="hompage.hero.link">网址收藏</Translate>
                 </Link>
               ),
-              // idea: (
-              //   <Link to="/tags/随笔">
-              //     <Translate id="hompage.hero.idea">想法感悟</Translate>
-              //   </Link>
-              // ),
             }}
           >
             {`你可以随处逛逛，查看{note}、{project}、{link}。`}
@@ -71,6 +71,9 @@ function Hero() {
         <animated.div style={trails[3]}>
           <a className={styles.intro} href={'./docs'}>
             <Translate id="hompage.hero.introduce">我的笔记</Translate>
+          </a>
+          <a className={styles.intro} style={{marginLeft: '12px'}} href={'./archive'}>
+            博客归档
           </a>
         </animated.div>
         {/* <animated.div style={trails[3]}>

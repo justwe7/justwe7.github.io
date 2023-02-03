@@ -1,3 +1,12 @@
+---
+title: '提升命令行效率的Bash快捷键'
+tags: ['tech', 'linux']
+keywords: ['tech', 'linux']
+date: 2019-11-23
+toc_max_heading_level: 3
+---
+<!-- truncate -->
+
 ### 编辑命令
 - `Ctrl + a`: **移到命令行首**
 - `Ctrl + e`: **移到命令行尾**

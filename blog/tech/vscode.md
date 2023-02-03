@@ -1,3 +1,12 @@
+---
+title: 'vscode快捷键速查'
+tags: ['效率']
+keywords: ['效率']
+date: 2019-11-23
+toc_max_heading_level: 3
+---
+<!-- truncate -->
+
 ### 忽略目录/文件(setting中设置)
 ```json
 // 文件目录展示忽略

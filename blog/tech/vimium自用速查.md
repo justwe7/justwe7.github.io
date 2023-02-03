@@ -1,4 +1,14 @@
+---
+title: 'vimium快捷键速查'
+tags: ['效率']
+keywords: ['效率']
+date: 2021-01-07
+toc_max_heading_level: 3
+---
+
 Chrome 原生自带大量快捷键，Vimium 在原生的基础上又增加了大量网页操作。结合两者，完全能摆脱鼠标。
+
+<!-- truncate -->
 
 ### 页面滚动
 ```

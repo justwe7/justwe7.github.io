@@ -1,9 +1,18 @@
+---
+title: 'markdown语法整理'
+tags: ['markdown']
+keywords: ['markdown']
+date: 2019-11-20
+toc_max_heading_level: 3
+---
+
 # markdown是什么
 其设计灵感主要来源于纯文本电子邮件的格式，目标是让人们能够使用易读、易写的纯文本格式编写文档，而且这些文档可以转换为 HTML（Hyper Text Markup Language，超文本标记语言）文档。
 简单点说，Markdown 就是由一些简单的符号（如*/-> [] （）#）组成的用于排版的标记语言，其最重要的特点就是可读性强
 
 目前最流行的扩展语法是 GitHub Flavored Markdown，简称 GFM，毕竟 GitHub 是全球最大的程序员「交友」网站
 
+<!-- truncate -->
 
 ## 标题
 

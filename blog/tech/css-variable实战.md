@@ -1,4 +1,14 @@
+---
+title: 'css-variable实战'
+tags: ['tech', 'css']
+keywords: ['tech', 'css']
+date: 2020-09-17
+toc_max_heading_level: 3
+---
+
 现在css预处理器是项目的标配，感觉用不到 `css variable` 这个特性，之前对它的了解大概局限于跟 `:root{}` 有关系，但是直到看到vantui小程序文档时看到这样的介绍：
+
+<!-- truncate -->
 
 ![image.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/09/15/image.png)
 

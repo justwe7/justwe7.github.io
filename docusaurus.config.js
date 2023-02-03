@@ -49,29 +49,29 @@ const config = {
       },
       hideOnScroll: true,
       items: [
-        {
+        /* {
           label: '笔记',
           position: 'right',
           to: 'docs'
-        },
-        /* {
+        }, */
+        {
           label: '写作',
           position: 'right',
           items: [
-            // {
-            //   label: '标签',
-            //   to: 'tags',
-            // },
+            {
+              label: '笔记',
+              to: 'docs'
+            },
             {
               label: '归档',
               to: 'archive',
             },
             {
-              label: '笔记',
-              to: 'docs',
-            }
+              label: '标签',
+              to: 'tags',
+            },
           ],
-        }, */
+        },
         {
           label: '项目',
           position: 'right',
