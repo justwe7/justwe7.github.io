@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[1576],{5824:function(s){s.exports=JSON.parse('{"label":"markdown","permalink":"/tags/markdown","allTagsPath":"/tags","count":1}')}}]);

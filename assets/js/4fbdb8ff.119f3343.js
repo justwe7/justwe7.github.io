@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[4695],{671:function(s){s.exports=JSON.parse('{"label":"git","permalink":"/tags/git","allTagsPath":"/tags","count":1}')}}]);
