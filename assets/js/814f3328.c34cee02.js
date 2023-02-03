@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[2535],{5641:function(e){e.exports=JSON.parse('{"title":"\u8fd1\u671f\u6587\u7ae0","items":[{"title":"\u653b\u7565chrome\u63a7\u5236\u53f0","permalink":"/\u653b\u7565chrome\u63a7\u5236\u53f0"}]}')}}]);

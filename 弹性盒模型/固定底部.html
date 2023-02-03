@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            body{
+                margin: 0;
+                width: 100%;
+                min-height: 100vh;
+                background: #ee9;
+                display: flex;
+                display: -webkit-flex;
+                flex-direction: column;
+                align-content: flex-start;
+            }
+            .item{
+                background-color: #e11;
+            }
+            .footer{
+                background-color: #447;
+                height: 100px;
+            }
+            .con{
+                flex: 3;
+                background-color: #f88;
+            }
+
+            @media (max-width: 768px) {
+              .con {
+                flex-direction: column;
+                flex: 1;
+              }
+              .item {
+                flex: auto;
+              }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">header</header>
+        <div class="con">
+            内容
+        </div>
+        <footer class="footer">
+            footer
+        </footer>
+    </body>
+</html>

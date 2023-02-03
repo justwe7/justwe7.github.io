@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            .box{
+                width: 500px;
+                height: 400px;
+                background: #ee9;
+                border: 2px solid #000;
+                margin: 30px auto;
+
+                display: flex;
+                display: -webkit-flex;
+                align-content: flex-start;
+                flex-wrap: wrap;
+                flex-direction: column;
+            }
+            .item{
+                background-color: #af1;
+                border: 1px solid #f11;
+                box-sizing: border-box;
+                width: 30%;
+                height: 25%;
+                /*flex: 0 0 25%;*/
+            }
+            .key{
+                width: 300px;
+                height: 40px;
+                line-height: 40px;
+                border: 1px solid #ff1;
+                animation:1s change infinite;
+            }
+            p{
+                margin: 0;
+            }
+            .cursor{
+                display: inline-block;
+                width: 2px;
+                height: 30px;
+                background-color: #aaa;
+                animation:1s flash infinite;
+            }
+            @keyframes change {
+            0%{ text-shadow: 0 0 4px #f00}
+            50%{ text-shadow: 0 0 40px #f00}
+            100%{ text-shadow: 0 0 4px #f00}
+        }
+            @keyframes flash{
+                0%{
+                    opacity: 0;
+                }
+                50%{
+                    opacity: 0;
+                }
+                100%{
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="key">
+            <p>
+            <span>1</span>
+            <span>1</span>
+            <span>1</span>
+            <span>1</span>
+            <b class="cursor"></b>
+            </p>
+        </div>
+        <section class="box">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+            <div class="item">6</div>
+            <div class="item">6</div>
+            <div class="item">6</div>
+            <div class="item" style="flex: 3">6</div>
+        </section>
+    </body>
+</html>

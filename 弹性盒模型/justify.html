@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            .box{
+                width: 500px;
+                height: 400px;
+                background: #ee9;
+                border: 2px solid #000;
+                margin: 30px auto;
+            }
+            .item{
+                width: 70px;
+                height: 70px;
+                background-color: #e11;
+            }
+
+            .box{
+                display: flex;
+                display: -webkit-flex;
+
+                /*flex-direction: row-reverse;*/
+                /*flex-direction: column;*/
+                /*flex-wrap: nowrap;*/
+                flex-wrap: wrap;
+
+                justify-content: flex-start;
+                justify-content: flex-end;
+                justify-content: center;
+                /*justify-content: space-between;*/
+                /*justify-content: space-around;*/
+
+                /*flex-start（默认值）：左对齐 / flex-end：右对齐 / center： 居中 / space-between：两端对齐，项目之间的间隔都相等。 / space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。*/
+            }
+            .item{
+
+            }
+        </style>
+    </head>
+    <body>
+        <section class="box">
+            <div class="item">
+                1
+            </div>
+            <div class="item">
+                2
+            </div>
+            <div class="item">
+                3
+            </div>
+            <div class="item">
+                4
+            </div>
+        </section>
+    </body>
+</html>
