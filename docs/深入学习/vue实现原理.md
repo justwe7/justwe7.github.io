@@ -410,6 +410,12 @@ var compileUtil = {
 以上。。。基本实现简易版的vue  
 
 ## 核心知识点
+<!-- 
+### vue是如何收集依赖的
+
+在实例化 Vue 时，依赖收集的相关过程如下∶ 初 始 化 状 态 initState ， 这 中 间 便 会 通 过 defineReactive 将数据变成响应式对象，其中的 getter 部分便是用来依赖收集的。 初始化最终会走 mount 过程，其中会实例化 Watcher （定义进入 Watcher 中，便会执行 this.get() 方法）
+
+通过watch触发了数据的getter，在getter中dep.depend()会将数据添加到 -->
 
 ### 虚拟DOM
 
@@ -686,6 +692,10 @@ key 是为 Vue 中 vnode 的唯一标记，通过这个 key，diff 操作可以�
 1. 影响到节点内容错误的更新
 2. 影响节点顺序变更，元素无法复用
 3. 用 v-if 来实现元素切换的时候，如果切换前后含有相同类型的元素，那么这个元素就会被复用
+
+### template解析
+
+
 
 ## 参考文章
 
