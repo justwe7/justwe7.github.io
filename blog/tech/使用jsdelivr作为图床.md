@@ -1,5 +1,15 @@
+---
+title: '使用jsdelivr作为图床'
+tags: ['tech']
+keywords: ['tech']
+date: 2023-02-11
+toc_max_heading_level: 3
+---
+
 ## jsdelivr cdn加速仓库
 > `2023`了，`jsdelivr`的域名也挂的差不多了，但是鉴于我的自建图床的图床存在不稳定因素~ 需要在保留目录结构的情况下将资源迁移到一个免费的节点，况且`testingcf`访问速度还挺快
+
+<!-- truncate -->
 
 ### 如何访问资源
 > 项目可参考 https://github.com/justwe7/cdn
