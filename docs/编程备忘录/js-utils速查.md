@@ -413,51 +413,82 @@ function formatDate(date, fmt) {
 ```js
 /**
  * @param {*} [{
- *   max = 1000,
+ *   multiple = false,
+ *   max = 1000,(kb)
+ *   compress = false // 是否压缩（仅对图片生效）
+ *   extReg = 'png|jpe?g|webp' // 文件格式(正则)
  *   accept = 'image/jpg,image/jpeg,image/png,image/gif'
  * }={}]
- * @return {Promise<{file: Blob, base64: string}>} 
+ * @return {Promise<{file: File|Blob, base64: string}[]>}
  */
-export async function uploadImg ({
+export async function chooseImg ({
   multiple = false,
   max = 1000,
+  compress,
+  extReg = 'png|jpe?g|webp',
   accept = 'image/jpg,image/jpeg,image/png,image/gif'
 } = {}) {
   return new Promise((resolve, reject) => {
-    const input = document.createElement('input')
-    input.setAttribute('style', 'opacty:0;height: 0;display: none;')
-    input.setAttribute('hidden', 'hidden')
-    input.setAttribute('type', 'file')
-    input.setAttribute('accept', 'image/jpg,image/jpeg,image/png,image/gif')
-    const oBody = document.getElementsByTagName('body')[0]
-    oBody.appendChild(input)
-    input.click()
-    input.onchange = function () {
+    const elInputfile = document.createElement('input')
+    elInputfile.setAttribute('style', 'display:none;opacty:0;width:0;height:0;')
+    elInputfile.setAttribute('hidden', 'hidden')
+    elInputfile.setAttribute('type', 'file')
+    elInputfile.setAttribute('multiple', multiple)
+    elInputfile.setAttribute('accept', accept)
+    const oBody = document.body
+    oBody.appendChild(elInputfile)
+    elInputfile.click()
+    const maxsize = max * 1024 // kb
+    const reg = new RegExp(`\\/(${extReg})$`, 'i')
+    elInputfile.onchange = function () {
+      const promises = []
       const files = this.files
-      const file = files[0]
-      const maxsize = max * 1024
-      if (!/\/(?:jpeg|jpg|png|gif|webp)/i.test(file.type)) {
-        oBody.removeChild(input)
-        return reject('请选择正确的图片格式')
-      }
-      const reader = new FileReader()
-      reader.onload = function () {
-        // const baseStr = this.result
-        // 默认如果图片大于 1m，不传
+      for (let index = 0, len = files.length; index < len; index++) {
+        const file = files[index]
+        if (!reg.test(file.type)) {
+          return reject('请选择正确的文件类型')
+        }
         if (file.size >= maxsize) {
-          oBody.removeChild(input)
           return reject('请选择小于' + max + 'kb的文件')
         }
-        compressFileToBase64(file).then(base64 => {
-          resolve({ file: dataURLtoBlobAsFile(base64, file.name || 'temp1.jpg'), base64: base64 })
-          oBody.removeChild(input) // 上传完成移除input
-        })
+        promises.push(fileDataHandler(file, compress))
       }
-      reader.readAsDataURL(file)
+      Promise.all(promises).then(resolve).catch(reject).finally(() => {
+        oBody.removeChild(elInputfile)
+      })
     }
   })
 }
 
+/**
+ * @param {*} file File
+ * @param {*} compress 是否压缩图片
+ * @returns {Promise<{file: File|Blob, base64: string}>}
+ */
+export function fileDataHandler (file, compress) {
+  return new Promise(resolve => {
+    const reader = new FileReader()
+    reader.onload = function () {
+      if (compress) { // 图片压缩
+        compressFileToBase64(file).then(base64 => {
+          // console.log(base64, 88)
+          resolve({ file: dataURLtoBlobAsFile(base64, file.name || getFileName(file)), base64: base64 })
+        })
+      } else {
+        resolve({ file, base64: this.result })
+      }
+    }
+    reader.readAsDataURL(file)
+  })
+}
+
+/**
+ * 压缩File为base64字符串
+ * @param {*} file File|Blob
+ * @param {*} compressQuality
+ * @param {*} maxLength
+ * @returns {Promise<base64>}
+ */
 export function compressFileToBase64 (file, compressQuality = 0.8, maxLength = 1500) {
   // 图片压缩
   return new Promise(resolve => {
@@ -484,32 +515,6 @@ export function compressFileToBase64 (file, compressQuality = 0.8, maxLength = 1
           canvas.height = height
           ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
           resolve(canvas.toDataURL('image/jpeg', compressQuality))
-          /* getFileExif(file).then(orientation => { // https://github.com/exif-js/exif-js
-            if (orientation !== '' && orientation !== 1 && orientation !== undefined && orientation !== 0) {
-              switch (orientation) {
-                case 6:// 需要顺时针（向左）90度旋转
-                  canvas.width = height
-                  canvas.height = width
-                  ctx.rotate(Math.PI / 2)
-                  ctx.drawImage(image, 0, -height, width, height)
-                  break
-                case 8:// 需要逆时针（向右）90度旋转
-                  canvas.width = height
-                  canvas.height = width
-                  ctx.rotate(-90 * Math.PI / 180)
-                  ctx.drawImage(image, -width, 0, width, height)
-                  break
-                case 3:// 需要180度旋转
-                  ctx.rotate(Math.PI)
-                  ctx.drawImage(image, -width, -height, width, height)
-                  break
-                default: ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
-              }
-            } else {
-              ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
-            }
-            resolve(canvas.toDataURL('image/jpeg', this.compressQuality))
-          }) */
         } else {
           resolve(e.target.result)
         }
@@ -519,6 +524,11 @@ export function compressFileToBase64 (file, compressQuality = 0.8, maxLength = 1
   })
 }
 
+/**
+ * @param {*} dataurl base64
+ * @param {*} fileName blob属性的文件名
+ * @return {*}
+ */
 function dataURLtoBlobAsFile (dataurl, fileName) {
   const arr = dataurl.split(',')
   const mime = arr[0].match(/:(.*?);/)[1]
@@ -528,7 +538,7 @@ function dataURLtoBlobAsFile (dataurl, fileName) {
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n)
   }
-  const file = new Blob([u8arr], { type: mime }) // 将blob转换为file
+  const file = new Blob([u8arr], { type: mime }) // 生成blob数据
   file.lastModifiedDate = new Date()
   file.name = fileName
   return file
@@ -542,6 +552,13 @@ export function genUuid () {
   });
 }
 
+function getFileName (file, ext = 'jpeg') {
+  let fileExt
+  if (fileExt = /(?=\/(\S+))/.exec(file.type)?.[1]) {
+    ext = fileExt
+  }
+  return genUuid() + '.' + ext
+}
 ```
 
 ## 防抖
