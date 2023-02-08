@@ -2,7 +2,7 @@ import React from 'react';
 
 const DataLog = (props) => {
   let { children: data } = props
-  console.log(location.pathname.split('/').pop() + ' LiveCode:', data)
+  console.log('-' + decodeURIComponent(location.pathname.split('/').pop()) + 'LiveCode:', data)
   const type = Object.prototype.toString.call(data).slice(8, -1)
   if (type === 'Object') {
     data = JSON.stringify(data)

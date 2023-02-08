@@ -1,0 +1,45 @@
+name: ghPages
+
+on:
+  push:
+    branches:
+      - feature
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Add README
+        run: |
+          cp -f ./readme.md ./static/README.md
+
+      - name: Build Project
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3 # 使用第三方 Action 把构建完成的 Artifact 部署到指定分支
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: master
+
+      # - name: SSH Deploy
+      #   uses: easingthemes/ssh-deploy@v2.2.11
+      #   env:
+      #     SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      #     ARGS: '-avzr --delete'
+      #     SOURCE: 'build'
+      #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+      #     REMOTE_USER: 'root'
+      #     TARGET: '/www/wwwroot/blog'
