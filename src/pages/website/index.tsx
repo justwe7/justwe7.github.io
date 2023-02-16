@@ -66,8 +66,8 @@ function CategoryList() {
 }
 
 export default function Websites() {
-  const title = '网址导航';
-  const description = '整合日常开发常用，推荐的网站导航页';
+  const title = '网站收藏';
+  const description = '整合开发常用，推荐的网站导航页';
 
   return (
     <>

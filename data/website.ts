@@ -14,7 +14,7 @@ export interface WebsiteCategory {
 
 export const websiteData: WebsiteCategory[] = [
   {
-    name: '每周必刷🔥',
+    name: '涨知识🔥',
     websites: [
       {
         name: "稀土掘金",
@@ -45,6 +45,30 @@ export const websiteData: WebsiteCategory[] = [
         desc: '周周尝鲜，人工筛选前端圈每周最新资讯。—— 由 童欧巴 创作',
         logo: '/img/website/zhubai.png',
         href: 'https://hungryturbo.zhubai.love/',
+      },
+      {
+        name: 'CSS-Tricks',
+        desc: '前端技术实现的技巧分享',
+        logo: 'https://css-tricks.com/favicon.svg',
+        href: 'https://css-tricks.com/',
+      },
+      {
+        name: '美团技术团队',
+        desc: '美团技术团队的分享',
+        logo: 'https://awps-assets.meituan.net/mit/blog/v20190629/asset/icon/favicon.ico',
+        href: 'https://tech.meituan.com/',
+      },
+      {
+        name: 'JavaScript编程技巧',
+        desc: '查找满足您所有开发需求的简短代码片段',
+        logo: 'https://www.30secondsofcode.org/assets/icons/favicon-32x32.png?v=305c210420234555',
+        href: 'https://www.30secondsofcode.org/',
+      },
+      {
+        name: 'ChatGPT',
+        desc: '你懂的',
+        logo: '/img/website/chatgpt.png',
+        href: 'https://chat.openai.com/chat',
       }
     ],
   },
@@ -112,6 +136,13 @@ export const websiteData: WebsiteCategory[] = [
         tags: ['文档'],
       },
       {
+        name: '现代 JavaScript 教程',
+        desc: '以最新的 JavaScript 标准为基准。通过简单但足够详细的内容，为你讲解从基础到高阶的 JavaScript 相关知识。',
+        logo: 'https://zh.javascript.info/img/favicon/apple-touch-icon-precomposed.png',
+        href: 'https://zh.javascript.info/',
+        tags: ['文档'],
+      },
+      {
         name: '深入理解 TypeScript',
         desc: '《TypeScript Deep Dive》 是一本很好的开源书，从基础到深入，很全面的阐述了 TypeScript 的各种魔法，不管你是新手，还是老鸟，它都将适应你',
         logo: 'https://jkchao.github.io//typescript-book-chinese/logo.png',
@@ -130,6 +161,13 @@ export const websiteData: WebsiteCategory[] = [
   {
     name: '工具🛠️',
     websites: [
+      {
+        name: 'FeHelper在线',
+        desc: 'FeHelper在线版本',
+        logo: 'https://www.baidufe.com/fehelper/static/img/favicon.ico',
+        href: 'https://www.baidufe.com/fehelper/index/index.html',
+        tags: ['工具'],
+      },
       {
         name: '在线工具',
         desc: '在线工具,开发人员工具,代码格式化、压缩、加密、解密,下载链接转换,ico图标制作,字帖生成',
@@ -158,7 +196,6 @@ export const websiteData: WebsiteCategory[] = [
         href: 'https://www.terminalgif.com',
         tags: [],
       },
-
       {
         name: 'AST Explorer',
         desc: '一个 Web 工具，用于探索由各种解析器生成的 AST 语法树',
@@ -194,6 +231,27 @@ export const websiteData: WebsiteCategory[] = [
         href: 'https://www.apifox.cn/',
         tags: ['工具'],
       },
+      {
+        name: 'Tinypng',
+        desc: '图片压缩（大熊猫）',
+        logo: 'https://tinypng.com/images/favicon.ico',
+        href: 'https://tinypng.com/',
+        tags: ['工具', '图像'],
+      },
+      {
+        name: 'docsmall图片、pdf压缩',
+        desc: '在线图片压缩 - docsmall 在线图片压缩工具（大熊猫备选）',
+        logo: 'https://docsmall.com/favicon.png',
+        href: 'https://docsmall.com/image-compress',
+        tags: ['工具', '图像'],
+      },
+      {
+        name: 'remove.bg',
+        desc: '在线抠图 - 图片去除背景',
+        logo: 'https://www.remove.bg/favicon.ico',
+        href: 'https://www.remove.bg/',
+        tags: ['工具', '图像'],
+      },
     ],
   },
   {
@@ -208,7 +266,7 @@ export const websiteData: WebsiteCategory[] = [
       },
       {
         name: 'Gitee',
-        desc: '蚂蚁集团全新一代数据可视化解决方案',
+        desc: '码云',
         logo: '/img/website/gitee.ico',
         href: 'https://gitee.com/',
         tags: ['代码托管'],
@@ -274,6 +332,13 @@ export const websiteData: WebsiteCategory[] = [
         href: 'https://railway.app/',
         tags: ['网站托管'],
       },
+      {
+        name: 'Heroku',
+        desc: '云服务托管平台 ',
+        logo: 'https://www.herokucdn.com/favicon.ico',
+        href: 'https://www.heroku.com/',
+        tags: ['网站托管'],
+      },
 
     ],
   },
@@ -326,6 +391,20 @@ export const websiteData: WebsiteCategory[] = [
         logo: 'https://vuejs.org/logo.svg',
         href: 'https://vuejs.org',
         tags: ['前端', 'Vue', '框架'],
+      },
+      {
+        name: 'Vue技术揭秘',
+        desc: 'Vue源码解读',
+        logo: 'https://vuejs.org/logo.svg',
+        href: 'https://ustbhuangyi.github.io/vue-analysis/',
+        tags: ['前端', 'Vue', '源码'],
+      },
+      {
+        name: 'Vue源码解读',
+        desc: '逐行剖析Vue源码',
+        logo: 'https://vuejs.org/logo.svg',
+        href: 'https://nlrx-wjc.github.io/Learn-Vue-Source-Code/',
+        tags: ['前端', 'Vue', '源码'],
       },
       {
         name: 'Nuxt',
@@ -444,7 +523,7 @@ export const websiteData: WebsiteCategory[] = [
       },
       {
         name: 'CSS-Inspiration',
-        desc: 'CSS灵感',
+        desc: '让你寻找到使用或者是学习 CSS 的灵感，以分类的形式，展示不同 CSS 属性或者不同的课题使用 CSS 来解决的各种方法。',
         logo: '/img/website/css-inspiration.png',
         href: 'https://csscoco.com/inspiration',
         tags: ['Css', '样式'],
@@ -519,6 +598,13 @@ export const websiteData: WebsiteCategory[] = [
         href: 'https://uiverse.io',
         tags: ['Css'],
       },
+      {
+        name: '你不知道的CSS',
+        desc: 'Web开发者应该掌握的CSS tricks',
+        logo: 'https://lhammer.cn/You-need-to-know-css/static/favicon.ico',
+        href: 'https://lhammer.cn/You-need-to-know-css/#/zh-cn/',
+        tags: ['Css'],
+      },
     ],
   },
   {
@@ -583,7 +669,7 @@ export const websiteData: WebsiteCategory[] = [
     ]
   },
   {
-    name: 'Frontend',
+    name: 'Frontend效率',
     websites: [
       {
         name: "Component party",
@@ -596,8 +682,15 @@ export const websiteData: WebsiteCategory[] = [
         name: 'Lodash',
         desc: '一个 JavaScript 的实用工具库, 表现一致性, 模块化, 高性能, 以及可扩展',
         logo: 'https://lodash.com/icons/favicon-32x32.png',
-        href: 'https://lodash.net',
-        tags: ['Nodejs'],
+        href: 'https://www.lodashjs.com/',
+        tags: ['Nodejs', 'JavaScript'],
+      },
+      {
+        name: 'Ramda',
+        desc: '一款实用的 JavaScript 函数式编程库。',
+        logo: 'https://ramdajs.com/ramdaFilled_200x235.png',
+        href: 'https://ramda.cn/docs/',
+        tags: ['JavaScript', '类库'],
       },
       {
         name: 'WebAssembly',
@@ -611,6 +704,13 @@ export const websiteData: WebsiteCategory[] = [
         desc: "超强大h5动画库",
         logo: "https://greensock.com/favicon.ico",
         href: "https://greensock.com/docs/",
+        tags: ["前端", "css", "动画"],
+      },
+      {
+        name: "Pixi.js",
+        desc: "基于Javascript的2D绘图引擎",
+        logo: "https://pixijs.com/images/favicon.png",
+        href: "https://pixijs.com/",
         tags: ["前端", "css", "动画"],
       },
       {
@@ -640,6 +740,20 @@ export const websiteData: WebsiteCategory[] = [
         logo: '/img/website/playwright.svg',
         href: 'https://playwright.dev/',
         tags: ['自动化测试'],
+      },
+      {
+        name: 'Day.js',
+        desc: 'Moment.js 的 2kB 轻量化方案，拥有同样强大的 API',
+        logo: 'https://dayjs.gitee.io/img/logo.png',
+        href: 'https://dayjs.gitee.io/zh-CN/',
+        tags: ['前端', 'JavaScript', '类库'],
+      },
+      {
+        name: 'momentjs',
+        desc: 'JavaScript 日期处理类库',
+        logo: 'http://momentjs.cn/static/img/moment-favicon.png',
+        href: 'http://momentjs.cn/',
+        tags: ['前端', 'JavaScript', '类库'],
       },
     ]
   },
@@ -842,7 +956,7 @@ export const websiteData: WebsiteCategory[] = [
     ],
   },
   {
-    name: '字体图标',
+    name: '网站素材',
     websites: [
       {
         name: 'iconify',
@@ -880,6 +994,13 @@ export const websiteData: WebsiteCategory[] = [
         tags: ['插画', 'svg'],
       },
       {
+        name: 'DOTOWN|無料の素材サイト',
+        desc: '无版权可商用的像素风素材',
+        logo: 'https://dotown.maeda-design-room.net/wp-content/uploads/2022/01/favicon.png',
+        href: 'https://dotown.maeda-design-room.net/',
+        tags: ['图像', 'svg'],
+      },
+      {
         name: 'igoutu',
         desc: '图标、插图、照片、音乐和设计工具',
         logo: '/img/website/igoutu.png',
@@ -906,6 +1027,13 @@ export const websiteData: WebsiteCategory[] = [
         logo: '/img/website/google_fonts.ico',
         href: 'https://googlefonts.cn/',
         tags: ['字体'],
+      },
+      {
+        name: '快速配色卡',
+        desc: '一个快速生成色彩组合的网站',
+        logo: 'https://colorhunt.co/img/colorhunt-favicon.svg?2',
+        href: 'https://colorhunt.co/',
+        tags: ['配色'],
       },
     ],
   },
@@ -1013,6 +1141,13 @@ export const websiteData: WebsiteCategory[] = [
   {
     name: 'Github',
     websites: [
+      {
+        name: '我的收藏',
+        desc: '我星标的github仓库',
+        logo: '/img/website/github.ico',
+        href: 'https://github.com/justwe7?tab=stars',
+        tags: [],
+      },
       {
         name: 'Gitstar Ranking',
         desc: '针对用户、组织和存储库的非官方 GitHub 星级排名',
