@@ -104,7 +104,7 @@ server
     server_name dist.com;
 
     location / { # 如果有根路由 /h5，需要将/改为/h5
-      alias /Users/debugger/bugfolder/www/gx/embed-h5-static/dist;
+      alias /Users/debugger/bugfolder/www/gx/embed-h5-static/dist/; # alias末尾需要有 / 否则在mac下资源会无法正确匹配导致类似403的错误码
       index index.php index.html index.htm default.php default.htm default.html;
       try_files $uri $uri/ /index.html; （history模式配置）
     }
