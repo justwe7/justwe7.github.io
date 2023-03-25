@@ -9,7 +9,8 @@
 <p align="center">
 <br>
 <a href="https://wiki.lihx.top">🖥 Online Preview</a>
-<br><br> 
+<br><br>
+</p>
 
 [![Build Status](https://travis-ci.com/justwe7/justwe7.github.io.svg?branch=feature)](https://travis-ci.com/justwe7/justwe7.github.io) [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/justwe7.github.io.svg?style=flat-square)](https://github.com/justwe7/justwe7.github.io/commits/master)
 
@@ -56,3 +57,5 @@
 
 - [MIT](./LICENSE)
 - 主题基于愧怍同学[博客](https://github.com/kuizuo/blog)修改
+
+![image.png](https://s2.loli.net/2023/03/23/ha7lzxPyJWbHuN3.png)

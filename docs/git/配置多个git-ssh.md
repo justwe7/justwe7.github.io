@@ -37,3 +37,40 @@ PreferredAuthentications publickey
 IdentityFile C:/Users/monster/.ssh/weiyi_rsa
 User email
 ```
+
+
+### QA
+#### 0644警告 WARNING: UNPROTECTED PRIVATE KEY FILE!
+```bash
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for '/Users/xx/.ssh/work_rsa.pub' are too open.
+```
+修改权限: `chmod 600 /Users/xx/.ssh/work_rsa.pub`
+
+#### 拉取远端代码报错 warning: Pulling without 
+```bash
+warning: Pulling without specifying how to reconcile divergent branches is
+discouraged. You can squelch this message by running one of the following
+commands sometime before your next pull:
+
+  git config pull.rebase false  # merge (the default strategy)
+  git config pull.rebase true   # rebase
+  git config pull.ff only       # fast-forward only
+
+You can replace "git config" with "git config --global" to set a default
+preference for all repositories. You can also pass --rebase, --no-rebase,
+or --ff-only on the command line to override the configured default per
+invocation
+```
+> 原因: 在默认模式下，git pull是git fetch的简写，后面跟着git merge fetch HEAD。
+> https://stackoverflow.com/questions/62653114/how-can-i-deal-with-this-git-warning-pulling-without-specifying-how-to-reconci
+**一劳永逸的解法** 
+```bash
+git config --global pull.ff only
+```
+**单次拉取时添加参数**
+```bash
+git pull --ff-only
+```

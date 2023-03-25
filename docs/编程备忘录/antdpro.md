@@ -24,17 +24,23 @@
 } />
 ```
 
-
-### 隐藏表格右上角的工具栏（刷新，设置）
-5.2.3版本展示有问题，设置css覆盖掉滚动条: 
-  ```js
-  <ProTable options={false} />
-```
-```css
-.ant-pro-table-list-toolbar-left {
-  // overflow-y: hidden;
-  min-height: 32px;
-}
+### 表单查询项配置为必填
+使用 `formItemProps` 传递给 Form.Item 的配置可以配置 rules，但是默认的查询表单 rules 是不生效的。需要通过`form`配置 ignoreRules
+```js
+<ProTable form={{ ignoreRules: false }} columns={
+  {
+    title: '标题',
+    dataIndex: 'title',
+    formItemProps: {
+      rules: [
+        {
+          required: true,
+          message: '此项为必填项',
+        },
+      ]
+    }
+  }
+} />
 ```
 
 ### 隐藏表格右上角的工具栏（刷新，设置）
