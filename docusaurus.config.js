@@ -13,7 +13,7 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'justwe7',
   projectName: 'blog',
-  tagline: '行到水穷处，坐看云起时',
+  tagline: '会当凌绝顶，一览众山小',
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   themeConfig: {
     image: 'img/logo.png',
