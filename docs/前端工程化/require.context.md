@@ -4,7 +4,6 @@ requirePlugin.keys().forEach(requirePlugin);
 ```
 上面代码中，require.context有三个参数：
 - 第一个参数：指定要搜索的目录。
-- 第二个参数：是否还应该搜索它的子目录。
 - 第三个参数：指定要加载的文件的扩展名。
 
 require.context方法会生成一个上下文对象，该对象的keys方法会返回一个数组，包含所有匹配的文件名。
