@@ -646,9 +646,24 @@ export async function uploadWxImg (wxfilelist) {
 GET: https://pv.sohu.com/cityjson?ie=utf-8
 
 // 2. 浏览器自带api（需用户梯子）
+// 域名方式部署需要https，默认支持localhost
+// https://stackoverflow.com/questions/41373166/why-am-i-seeing-error-only-secure-origins-are-allowed-for-my-service-worker
 navigator.geolocation.getCurrentPosition(function (position) {
   console.dir(position)
 }, function (error) {
   console.error(error)
 })
+```
+
+## css高度slide动画
+通过`min-height`控制(`height`无特效)
+```css
+.plateChecker {
+  max-height: 0;
+  overflow: hidden;
+  transition: all .1s linear;
+  &Show {
+    max-height: 200px;
+  }
+}
 ```

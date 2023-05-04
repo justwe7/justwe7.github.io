@@ -204,7 +204,7 @@ toc_max_heading_level: 3
 | glo        | 'git log --oneline --decorate'                                                                                           |
 | glog       | 'git log --oneline --decorate --graph'                                                                                   |
 | gloga      | 'git log --oneline --decorate --graph --all'                                                                             |
-| glp        | "_git_log_prettily"                                                                                                      |
+| glp        | `"_git_log_prettily" `                                                                                                     |
 | **gm**     | 'git merge'                                                                                                              |
 | **gmom**   | 'git merge origin/$(git_main_branch)'                                                                                    |
 | gmt        | 'git mergetool --no-prompt'                                                                                              |
@@ -268,7 +268,7 @@ toc_max_heading_level: 3
 | gswc       | 'git switch -c'                                                                                                          |
 | gts        | 'git tag -s'                                                                                                             |
 | gtv        | 'git tag                                                                                                                 | sort -V'                                      |
-| gtl        | 'gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'                                                           |
+| gtl        | `'gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'`                                                           |
 | gunignore  | 'git update-index --no-assume-unchanged'                                                                                 |
 | gunwip     | 'git log -n 1                                                                                                            | grep -q -c "\-\-wip\-\-" && git reset HEAD~1' |
 | gup        | 'git pull --rebase'                                                                                                      |
