@@ -241,6 +241,13 @@ export const websiteData: WebsiteCategory[] = [
         href: 'https://any-rule.vercel.app/',
         tags: [''],
       },
+      {
+        name: 'AI导航',
+        desc: 'AI工具集',
+        logo: '/img/website/any-rule.ico',
+        href: 'https://ai-bot.cn/',
+        tags: ['AI'],
+      },
     ],
   },
   {
@@ -490,6 +497,13 @@ export const websiteData: WebsiteCategory[] = [
         logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
         href: 'https://umijs.org',
         tags: ['前端', 'React', '脚手架'],
+      },
+      {
+        name: 'Motion Design',
+        desc: '使用 Ant Motion 能够快速在 React 框架中使用动画',
+        logo: 'https://zos.alipayobjects.com/rmsportal/TOXWfHIUGHvZIyb.svg',
+        href: 'https://motion.ant.design/index-cn',
+        tags: ['前端', 'React', '动画'],
       },
     ],
   },
