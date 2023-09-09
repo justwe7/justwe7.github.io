@@ -560,6 +560,13 @@ export const websiteData: WebsiteCategory[] = [
         tags: ['Css', '框架'],
       },
       {
+        name: 'daisyui',
+        desc: 'daisyUI将组件类名添加到Tailwind CSS这样你就可以比以往更快地创建漂亮的网站。',
+        logo: 'https://www.tailwindcss.cn/favicon-32x32.png',
+        href: 'https://daisyui.com/',
+        tags: ['Css', '组件库'],
+      },
+      {
         name: 'WindiCSS',
         desc: 'Windi CSS 是下一代工具优先的 CSS 框架',
         logo: 'https://windicss.org/assets/logo.svg',
@@ -675,6 +682,20 @@ export const websiteData: WebsiteCategory[] = [
         logo: '/img/website/vben-admin.png',
         href: 'https://vvbin.cn/doc-next/',
         tags: ['前端', 'Vue', '后台', '项目'],
+      },
+      {
+        name: 'nextui',
+        desc: '美观、快速、现代的Reaction UI库',
+        logo: 'https://nextui.org/favicon-32x32.png',
+        href: 'https://nextui.org/',
+        tags: ['前端', 'React', '组件库'],
+      },
+      {
+        name: 'chakra-ui',
+        desc: '快速构建可访问的React应用程序',
+        logo: 'https://avatars.githubusercontent.com/u/54212428?s=48&v=4',
+        href: 'https://github.com/chakra-ui/chakra-ui',
+        tags: ['前端', 'React', '组件库', '快速高效'],
       }
     ]
   },
