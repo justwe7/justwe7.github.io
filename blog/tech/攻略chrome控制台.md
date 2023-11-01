@@ -1,7 +1,11 @@
 ---
-title: '攻略chrome控制台'
-tags: ['开发工具', 'tech']
-keywords: ['开发工具', 'tech']
+title: 攻略chrome控制台
+tags:
+  - 开发工具
+  - tech
+keywords:
+  - 开发工具
+  - tech
 date: 2020-05-30
 toc_max_heading_level: 3
 ---
@@ -341,7 +345,24 @@ Filters 控制的展示：
 
 ![20200720_143313.gif](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/20/20200720_143313.gif)
 
+#### 基于devtools实现mock请求
+1. 在需要mock的接口行点击右键->替换内容
+![image.png](https://s2.loli.net/2023/11/01/n4hJwXgikEOaADB.png)
+2. 浏览器会让我们选择一个文件夹用于保存mock的数据，选择文件夹后，会继续询问是否要授权浏览器更高的访问权限，我们点击允许
+![image.png](https://s2.loli.net/2023/11/01/j13X7g8VJpyBowQ.png)
+之后会控制台回自动跳转至`源面板`；同时磁盘中会将本次请求的数据保存在之前指定的目录下，并以接口路径创建一个目录，保存一个名称为接口参数名的文件：
 
+![image.png](https://s2.loli.net/2023/11/01/HeYoXBfRpN7Tqy8.png)
+我们可以用两种方式编辑文件：
+1. 直接在控制台里面编辑
+2. 修改保存的接口文件
+![image.png](https://s2.loli.net/2023/11/01/FAMYhukcxyOtrLC.png)
+
+再次请求我们可以看到mock的接口会出现一个标记，且network面板会有一个感叹号，看下效果：
+![image.png](https://s2.loli.net/2023/11/01/FumW7ZHSb4IPCc9.png)
+
+**如何关闭mock?**
+打开 `源代码` 面板，取消勾选 `启用本地替换` 或者直接点击`清除`图标清除，如果常用mock可以取消勾选方便后续再使用
 #### 查看HTTP相关信息
 **查看网络请求的参数**
 
@@ -446,7 +467,7 @@ Time有两行：
 
 ### 使用Network面板进行网络优化
 > 参考Network面板可以针对Network提出一些优化建议
-
+[Queued Series Example](https://wiki.lihx.top/devtools/network/queue.html)
 #### 排队或停止阻塞 
 
 最常见的问题是很多个请求排队或被阻塞。这表示从单个客户端检索的资源太多。在HTTP 1.0/1.1连接协议中，Chrome限制每个域名最多执行6个TCP连接。如果一次请求十二个资源，前6个将开始，后6个将排队。一旦其中一个请求完成，队列中的第一个请求项目将开始其请求过程。
