@@ -58,4 +58,3 @@
 - [MIT](./LICENSE)
 - 主题基于愧怍同学[博客](https://github.com/kuizuo/blog)修改
 
-![image.png](https://s2.loli.net/2023/03/23/ha7lzxPyJWbHuN3.png)

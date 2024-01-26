@@ -401,7 +401,7 @@ Time有两行：
 
 > 第一行的时间代表了所有项目：例如`解析dns`，`建立连接`，`等待服务器返回数据`，`传输数据`等
 > 
-> 第二行的时间是 `总时间 - 数据传输`的时间
+> 第二行的时间是 `总时间 - TTFB`(客户端发送请求到服务器响应 再到客户端接收到第一个字符串)的时间
 
 
 从上面的分析中我们看到 从**客户端请求到服务器处理结束准备返回数据**花了`55ms`，但是在进行**传输数据**的时候花费了`471ms`
@@ -420,9 +420,9 @@ Time有两行：
 - `Queuing` (排队)
   > 浏览器在以下情况下对请求排队
   > 1. 存在更高优先级的请求,请求被渲染引擎推迟，这经常发生在 images（图像）上,因为它被认为比关键资源（如脚本/样式）的优先级低。
-  > 2. 此源已打开六个 TCP 连接，达到限值，仅适用于 HTTP/1.0 和 HTTP/1.1。在等待一个即将被释放的不可用的TCP socket
+  > 2. 此域名已打开六个 TCP 连接，达到限值，仅适用于 HTTP/1.0 和 HTTP/1.1。在等待一个即将被释放的不可用的TCP socket
   > 3. 浏览器正在短暂分配磁盘缓存中的空间，生成磁盘缓存条目（通常非常快）
-- `Stalled` (停滞) - 发送请求之前等待的时间。它可能因为进入队列的任意原因而被阻塞，这个时间包括代理协商的时间。请求可能会因 Queueing 中描述的任何原因而停止。
+- `Stalled` (停滞) - 发送请求之前等待的时间。它可能因为进入队列的任意原因而被阻塞，这个时间包括代理协商的时间。请求可能会因 Queueing 中描述的任何原因而停止：如请求队列已满 - 无法立即处理新的请求，这可能会导致请求进入"Stalled"状态或者如果服务器响应较慢
 - `DNS lookup` (DNS查找) - 浏览器正在解析请求IP地址，页面上的每个新域都需要完整的往返(roundtrip)才能进行DNS查找
 - `Proxy Negotiation` - 浏览器正在与代理服务器协商请求
 - `initial connection` (初始连接) - 建立连接所需的时间，包括TCP握手/重试和协商SSL。
@@ -435,26 +435,14 @@ Time有两行：
 - `Receiving Push` - 浏览器正在通过 HTTP/2 服务器推送接收此响应的数据
 - `Reading Push` - 浏览器正在读取之前收到的本地数据
 
-![image7dd79.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image7dd79.png)
-
-
 ### (5) Summary 区域
 
 ![imagef7b67.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/09/imagef7b67.png)
 
 `requests` 查看请求的总数量 | `transferred` 查看请求的总大小 | `resources` 资源 | `Finish` 所有http请求响应完成的时间 | DOMContentLoaded时间 | load时间  
 
-当页面的初始的标记被解析完时，会触发 `DOMContentLoaded`。 它在Network(网络)面板上的显示：
-- 在 Overview (概览)窗格中的蓝色垂直线表示这个事件。
-- 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
-- 在 Summary (概要)窗格中，您可以查看事件的确切时间。
-![image4af35.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/image4af35.png)
-
-当页面完全加载时触发 `load` 事件。 它显示也显示在：
-- 在 Overview (概览)窗格的红色垂直线表示这个事件。
-- 在 Requests Table (请求列表)中的红色垂直线也表示这个事件。
-- 在 Summary (概要)中，可以查看改事件的确切时间
-![imagee4d7e.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/07/05/imagee4d7e.png)
+当页面的初始化的钩子执行不同的生命周期，会触发 `DOMContentLoaded`和`onload`。 它在Network(网络)面板上的显示：蓝色垂直线表示`DOMContentLoaded`，红色代表`onLoad`，分别在:  Overview (概览)窗格中、Requests Table (请求列表)中、 Summary (概要)窗格中展示：
+![image.png](https://s2.loli.net/2023/11/07/CSDtIzJVEw3ZpGA.png)
 
 > DOMContentLoaded 会比 Load 时间小，两者时间差大致等于外部资源加载（一般是图片/字体）的时间
 >
