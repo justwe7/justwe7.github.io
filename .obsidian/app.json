@@ -1,0 +1,24 @@
+{
+  "userIgnoreFilters": [
+    "blog/i18n/",
+    "blog/src/",
+    "blog/node_modules/*",
+    "blog/node_modules/"
+  ],
+  "attachmentFolderPath": "static/docs",
+  "promptDelete": false,
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": false,
+  "showInlineTitle": false,
+  "showLineNumber": false,
+  "foldIndent": false,
+  "newFileLocation": "current",
+  "pdfExportSettings": {
+    "includeName": false,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
+}

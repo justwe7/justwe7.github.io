@@ -1,0 +1,9 @@
+{
+  "hidden": true,
+  "hiddenList": [
+    "node_modules",
+    "src",
+    "data",
+    "zimgs"
+  ]
+}

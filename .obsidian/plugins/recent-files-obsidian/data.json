@@ -1,0 +1,89 @@
+{
+  "recentFiles": [
+    {
+      "basename": "catalog-template",
+      "path": "catalog-template.md"
+    },
+    {
+      "basename": "readme",
+      "path": "readme.md"
+    },
+    {
+      "basename": "Home",
+      "path": "Home.md"
+    },
+    {
+      "basename": "会员营销",
+      "path": "canva/会员营销.canvas"
+    },
+    {
+      "basename": "会员流程",
+      "path": "canva/会员流程.canvas"
+    },
+    {
+      "basename": "未命名 1",
+      "path": "canva/未命名 1.canvas"
+    },
+    {
+      "basename": "a-index",
+      "path": "docs/a-index.md"
+    },
+    {
+      "basename": "logo-1024px",
+      "path": "static/devtools/network/gs/logo-1024px.png"
+    },
+    {
+      "basename": "logo",
+      "path": "static/devtools/network/gs/logo.svg"
+    },
+    {
+      "basename": "unicorn",
+      "path": "static/devtools/imgs/unicorn.gif"
+    },
+    {
+      "basename": "车花",
+      "path": "work/车花.md"
+    },
+    {
+      "basename": "curl",
+      "path": "docs/服务端基础/curl.md"
+    },
+    {
+      "basename": "后端扫盲",
+      "path": "docs/服务端基础/后端扫盲.md"
+    },
+    {
+      "basename": "访问ssl证书错误的网站",
+      "path": "docs/编程备忘录/访问ssl证书错误的网站.md"
+    },
+    {
+      "basename": "微信xweb真机调试",
+      "path": "docs/编程备忘录/微信xweb真机调试.md"
+    },
+    {
+      "basename": "antdpro",
+      "path": "docs/编程备忘录/antdpro.md"
+    },
+    {
+      "basename": "正则速查表",
+      "path": "docs/编程备忘录/正则速查表.md"
+    },
+    {
+      "basename": "Snipaste_2023-03-30_18-23-21",
+      "path": "zimgs/snipaste/Snipaste_2023-03-30_18-23-21.png"
+    },
+    {
+      "basename": "iShot_2023-11-16_11.05.33",
+      "path": "zimgs/snipaste/iShot_2023-11-16_11.05.33.png"
+    },
+    {
+      "basename": "iShot_2023-11-16_11.04.03",
+      "path": "zimgs/snipaste/iShot_2023-11-16_11.04.03.png"
+    }
+  ],
+  "omittedPaths": [
+    ""
+  ],
+  "maxLength": 20,
+  "openType": "tab"
+}
