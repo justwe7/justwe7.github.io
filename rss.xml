@@ -4,7 +4,7 @@
         <title>土豆和土豆丝</title>
         <link>https://wiki.lihx.top/</link>
         <description>土豆和土豆丝写字的地方 Blog</description>
-        <lastBuildDate>Fri, 26 Jan 2024 11:51:07 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 26 Jan 2024 11:56:29 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh</language>
@@ -13,7 +13,7 @@
             <title><![CDATA[tech/AI绘图]]></title>
             <link>https://wiki.lihx.top/tech/AI绘图</link>
             <guid>https://wiki.lihx.top/tech/AI绘图</guid>
-            <pubDate>Fri, 26 Jan 2024 11:51:07 GMT</pubDate>
+            <pubDate>Fri, 26 Jan 2024 11:56:29 GMT</pubDate>
             <description><![CDATA[Midjourney]]></description>
             <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="midjourney">Midjourney<a href="#midjourney" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h2><p><a href="https://learningprompt.wiki/zh-Hans/docs/midjourney/mj-tutorial-text-prompt/text-prompt-cautions" target="_blank" rel="noopener noreferrer">撰写 Text Prompt 注意事项 | Learning Prompt</a></p><p>使用 Prompt 快速生成一张图片: </p><blockquote><p>The cat sleeping at the entrance of the coffee shop.  (在咖啡店门口睡觉的猫)
 <img loading="lazy" src="https://s2.loli.net/2024/01/11/o6wAYZg3SUntE49.png" alt="image.png" class="img_ev3q"></p></blockquote><p>官方教程中，最简单的Prompt结构就是一段文本描述：
