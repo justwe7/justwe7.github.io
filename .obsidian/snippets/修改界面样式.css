@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.cm-content >.cm-line:not( /* 应用于所有正文中的段落 */
+.HyperMD-codeblock,
+.HyperMD-header) /* 不应用于代码块和标题 */
+
+
+/*以下是样式代码，em代表相对于字号的大小，例如0.5em表示字体的一半大*/
+/*可更换为其他单位，例如px，rem等 */ {
+padding-top: 0.25em; /* 段前间距（内边距） */
+padding-bottom: 0.25em; /* 段后间距（内边距） */
+line-height: 1.5em;
+font-weight: 350;
+letter-spacing: 0.03em;
+}
+
+.cm-content > .HyperMD-header {
+padding-top: 0.5em !important;  /* 段前间距（内边距） */
+padding-bottom: 0.25em !important; /* 段后间距（内边距） */
+/*line-height: 1.5em;*/
+font-weight: 450;
+}

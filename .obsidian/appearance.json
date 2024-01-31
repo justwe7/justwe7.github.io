@@ -5,6 +5,9 @@
   "monospaceFontFamily": "Cascadia Code",
   "translucency": false,
   "theme": "system",
-  "enabledCssSnippets": [],
-  "showViewHeader": false
+  "enabledCssSnippets": [
+    "修改界面样式"
+  ],
+  "showViewHeader": false,
+  "nativeMenus": true
 }

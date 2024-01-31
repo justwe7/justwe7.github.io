@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "3bcad05d41ef22a8",
+        "id": "0dda12672a170f0b",
         "type": "tabs",
         "children": [
           {
-            "id": "91dcdf9d08ac0e8e",
+            "id": "bae3ba2414dc732a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "catalog-template.md",
+                "file": "docs/flutter/3.常用布局控件.md",
                 "mode": "source",
                 "source": false
               }
@@ -102,7 +102,6 @@
       {
         "id": "fbc24f1b7220a0b6",
         "type": "tabs",
-        "dimension": 47.43465634075508,
         "children": [
           {
             "id": "e4b2286c7e2c83ce",
@@ -110,7 +109,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "catalog-template.md"
+                "file": "docs/flutter/3.常用布局控件.md"
               }
             }
           },
@@ -131,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "catalog-template.md",
+                "file": "docs/flutter/3.常用布局控件.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "catalog-template.md",
+                "file": "docs/flutter/3.常用布局控件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -177,9 +176,8 @@
         ]
       },
       {
-        "id": "3241efa59c73c259",
+        "id": "185159d37dfdbba9",
         "type": "tabs",
-        "dimension": 52.565343659244924,
         "children": [
           {
             "id": "22fb9e05920d2389",
@@ -212,59 +210,58 @@
       "templates:插入模板": false,
       "workspaces:管理工作区布局": false,
       "daily-notes:打开/创建今天的日记": false,
-      "obsidian-memos:Memos": false,
+      "obsidian-local-images-plus:Local Images Plus  0.15.9\r\nLocalize attachments (plugin folder)": true,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-local-images-plus:Local Images Plus  0.15.9\r\nLocalize attachments (plugin folder)": true
+      "obsidian-memos:Memos": false
     }
   },
-  "active": "91dcdf9d08ac0e8e",
+  "active": "bae3ba2414dc732a",
   "lastOpenFiles": [
-    "readme.md",
-    "Home.md",
+    "docs/flutter/1.常用基础控件.md",
+    "docs/flutter/2.布局控件原理及约束.md",
+    "docs/flutter/3.常用布局控件.md",
+    "static/docs/Pasted image 20240131180041.jpeg",
+    "static/docs/Pasted image 20240131180041.png",
+    "static/docs/Pasted image 20240131175558.jpeg",
+    "static/docs/Pasted image 20240131175558.png",
+    "static/docs/Pasted image 20240131175555.png",
+    "static/docs/Pasted image 20240131173135.jpeg",
+    "static/docs/Pasted image 20240131173135.png",
+    "static/docs/Pasted image 20240131171734.jpeg",
+    "static/docs/Pasted image 20240131171734.png",
+    "static/docs/Pasted image 20240131164907.jpeg",
+    "docs/flutter/0.fultter.md",
+    "work/花鸭.md",
+    "work/项目配置/css封装.md",
+    "work/项目配置/省钱卡会员.md",
+    "work/项目配置/弹窗配置封装.md",
+    "blog/tech/攻略chrome控制台.md",
+    "blog/tech/前端自动化测试的一些思考.md",
+    "blog/tech/提升命令行效率的Bash快捷键.md",
+    "blog/tech/微信公众号前后端开发.md",
+    "blog/tech/AI绘图.md",
+    "blog/tech/vimium自用速查.md",
+    "blog/tech/ohmyzsh下的git-alias.md",
+    "blog/windows/windows快捷键.md",
+    "blog/windows/window超好用的终端配置.md",
+    "blog/windows/mac快捷键.md",
+    "blog/tech/前端性能优化.md",
+    "blog/tech/css-variable实战.md",
+    "TODO/工作.md",
+    "docs/编程备忘录/访问ssl证书错误的网站.md",
+    "work/车花.md",
+    "TODO/优化.md",
+    "TODO/未命名 1.md",
     "canva/会员营销.canvas",
     "canva/会员流程.canvas",
     "canva/未命名 1.canvas",
-    "docs/a-index.md",
-    "static/devtools/network/gs/logo-1024px.png",
-    "static/devtools/network/gs/logo.svg",
-    "static/devtools/imgs/unicorn.gif",
-    "work/车花.md",
-    "docs/服务端基础/curl.md",
-    "docs/服务端基础/后端扫盲.md",
-    "docs/编程备忘录/访问ssl证书错误的网站.md",
-    "data/wb.md",
-    "docs/编程备忘录/微信xweb真机调试.md",
-    "docs/编程备忘录/antdpro.md",
-    "docs/编程备忘录/正则速查表.md",
-    "zimgs/snipaste/Snipaste_2023-03-30_18-23-21.png",
-    "zimgs/snipaste/iShot_2023-11-16_11.05.33.png",
-    "zimgs/snipaste/iShot_2023-11-16_11.04.03.png",
-    "未命名.md",
-    "日记/2024-01-26.md",
-    "docs/服务端基础/linux常用指令.md",
-    "static/docs/bfe8c47a5041cf8bc02308791bda3991_MD5.png",
-    "static/docs/Pasted image 20240126172702.jpeg",
-    "static/docs/Pasted image 20240126172702.png",
-    "static/docs/Pasted image 20240126172621.jpeg",
     "static/docs",
     "_resources/a-index",
     "_resources",
-    "blog/tech/攻略chrome控制台.md",
     "temp/siyuan.log",
     "temp/blocktree",
     "temp",
-    "blog/tech/基于webpack5+vue2搭建企业SSR应用.md",
-    "blog/tech/使用jsdelivr作为图床.md",
-    "blog/tech/AI绘图.md",
-    "docs/服务端基础/shell.md",
-    "docs/服务端基础/shell-疑问记录.md",
-    "docs/服务端基础/编程思想.md",
-    "docs/服务端基础/备份-服务器ng.md",
-    "docs/服务端基础/HTTP2常见问题.md",
-    "docs/编程备忘录/chrome-devtools加载数据失败.md",
-    "catalog-template.md",
     "canva/未命名 1 1.canvas",
-    "docs/编程备忘录/mac查看端口占用.md",
     "data/storage/local.json",
     "data/storage",
     "data/20210808180117-czj9bvb/assets/website-20240126163705-ooocpbb.ts",

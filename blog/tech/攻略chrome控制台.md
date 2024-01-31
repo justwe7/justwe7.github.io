@@ -216,7 +216,6 @@ copy(temp1)
 与 `Save global variable` 结合使用神器
 
 ## Element 面板
-
 > 此章节请打开 [devtools/element/element.html](https://justwe7.github.io/devtools/element/element.html) 一起食用
 >
 > 在 Elements 面板中可以通过 DOM 树的形式查看所有页面元素，同时也能对这些页面元素进行所见即所得的编辑
@@ -246,7 +245,7 @@ Mac: `Command` + `Option` + `C`
 ![image1154d.png](https://testingcf.jsdelivr.net/gh/justwe7/cdn/images/2020/06/28/image1154d.png)
 
 > 点击某个样式可以直接跳转至对应css定义
-
+2222
 #### 调整某个元素的数值
 选中想要更改的值，按方向键上下就可以 `+ / -` 1个单位的值
 

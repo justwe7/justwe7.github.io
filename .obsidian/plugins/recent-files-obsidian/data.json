@@ -1,84 +1,84 @@
 {
   "recentFiles": [
     {
-      "basename": "catalog-template",
-      "path": "catalog-template.md"
+      "basename": "3.常用布局控件",
+      "path": "docs/flutter/3.常用布局控件.md"
     },
     {
-      "basename": "readme",
-      "path": "readme.md"
+      "basename": "1.常用基础控件",
+      "path": "docs/flutter/1.常用基础控件.md"
     },
     {
-      "basename": "Home",
-      "path": "Home.md"
+      "basename": "2.布局控件原理及约束",
+      "path": "docs/flutter/2.布局控件原理及约束.md"
     },
     {
-      "basename": "会员营销",
-      "path": "canva/会员营销.canvas"
+      "basename": "hero",
+      "path": "static/hero.png"
     },
     {
-      "basename": "会员流程",
-      "path": "canva/会员流程.canvas"
+      "basename": "0.fultter",
+      "path": "docs/flutter/0.fultter.md"
     },
     {
-      "basename": "未命名 1",
-      "path": "canva/未命名 1.canvas"
+      "basename": "Pasted image 20240130101705",
+      "path": "static/docs/Pasted image 20240130101705.jpeg"
     },
     {
-      "basename": "a-index",
-      "path": "docs/a-index.md"
+      "basename": "Pasted image 20240130101730",
+      "path": "static/docs/Pasted image 20240130101730.jpeg"
     },
     {
-      "basename": "logo-1024px",
-      "path": "static/devtools/network/gs/logo-1024px.png"
+      "basename": "Pasted image 20240130100336",
+      "path": "static/docs/Pasted image 20240130100336.jpeg"
     },
     {
-      "basename": "logo",
-      "path": "static/devtools/network/gs/logo.svg"
+      "basename": "花鸭",
+      "path": "work/花鸭.md"
     },
     {
-      "basename": "unicorn",
-      "path": "static/devtools/imgs/unicorn.gif"
+      "basename": "css封装",
+      "path": "work/项目配置/css封装.md"
     },
     {
-      "basename": "车花",
-      "path": "work/车花.md"
+      "basename": "省钱卡会员",
+      "path": "work/项目配置/省钱卡会员.md"
     },
     {
-      "basename": "curl",
-      "path": "docs/服务端基础/curl.md"
+      "basename": "弹窗配置封装",
+      "path": "work/项目配置/弹窗配置封装.md"
     },
     {
-      "basename": "后端扫盲",
-      "path": "docs/服务端基础/后端扫盲.md"
+      "basename": "攻略chrome控制台",
+      "path": "blog/tech/攻略chrome控制台.md"
     },
     {
-      "basename": "访问ssl证书错误的网站",
-      "path": "docs/编程备忘录/访问ssl证书错误的网站.md"
+      "basename": "前端自动化测试的一些思考",
+      "path": "blog/tech/前端自动化测试的一些思考.md"
     },
     {
-      "basename": "微信xweb真机调试",
-      "path": "docs/编程备忘录/微信xweb真机调试.md"
+      "basename": "提升命令行效率的Bash快捷键",
+      "path": "blog/tech/提升命令行效率的Bash快捷键.md"
     },
     {
-      "basename": "antdpro",
-      "path": "docs/编程备忘录/antdpro.md"
+      "basename": "微信公众号前后端开发",
+      "path": "blog/tech/微信公众号前后端开发.md"
     },
     {
-      "basename": "正则速查表",
-      "path": "docs/编程备忘录/正则速查表.md"
+      "basename": "AI绘图",
+      "path": "blog/tech/AI绘图.md"
     },
     {
-      "basename": "Snipaste_2023-03-30_18-23-21",
-      "path": "zimgs/snipaste/Snipaste_2023-03-30_18-23-21.png"
+      "basename": "vimium自用速查",
+      "path": "blog/tech/vimium自用速查.md"
     },
     {
-      "basename": "iShot_2023-11-16_11.05.33",
-      "path": "zimgs/snipaste/iShot_2023-11-16_11.05.33.png"
+      "basename": "ohmyzsh下的git-alias",
+      "path": "blog/tech/ohmyzsh下的git-alias.md"
     },
     {
-      "basename": "iShot_2023-11-16_11.04.03",
-      "path": "zimgs/snipaste/iShot_2023-11-16_11.04.03.png"
+      "basename": "windows快捷键",
+      "path": "blog/windows/windows快捷键.md"
     }
   ],
   "omittedPaths": [

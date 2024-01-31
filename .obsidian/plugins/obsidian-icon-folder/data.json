@@ -6,11 +6,11 @@
     "emojiStyle": "native",
     "iconColor": null,
     "recentlyUsedIcons": [
-      "🖥",
-      "📳",
-      "✍",
-      "⚒",
-      "📂"
+      "🍞",
+      "🧐",
+      "⏰",
+      "📔",
+      "🖥"
     ],
     "recentlyUsedIconsSize": 5,
     "rules": [],
@@ -45,20 +45,20 @@
   "blog/docs/javascript": "SiJavascript",
   "blog/docs/vue": "SiVuedotjs",
   "blog/docs/a-index.md": "RiHome3Line",
-  "日记": "⏰",
+  "日记": "📔",
   "zimgs": "RiImageLine",
   "日记/obsidian教程.md": "SiObsidian",
   "TODO/工作.md": "SiTodoist",
   "TODO/优化.md": "SiGoogleoptimize",
   "work/花鸭.md": "SiDuckdb",
   "work/线上用户账号-花鸭.md": "RiAccountCircleFill",
-  "docs": "✍",
-  "TODO": "📳",
+  "docs": "📝",
+  "TODO": "⏰",
   "work": "🖥",
   "blog": "📚",
   "docs/搞定typescript": "SiTypescriptWhite",
   "docs/http": "SiAiohttp",
   "docs/flutter": "SiFlutter",
   "static": "📂",
-  "canva": "⚒"
+  "canva": "🎨"
 }

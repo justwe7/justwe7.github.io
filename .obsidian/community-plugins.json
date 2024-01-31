@@ -1,7 +1,5 @@
 [
-  "table-editor-obsidian",
   "obsidian-image-auto-upload-plugin",
-  "obsidian-image-toolkit",
   "mousewheel-image-zoom",
   "obsidian-auto-link-title",
   "OA-file-hider",
@@ -15,5 +13,6 @@
   "recent-files-obsidian",
   "editing-toolbar",
   "obsidian-local-images-plus",
-  "obsidian-icon-folder"
+  "obsidian-icon-folder",
+  "table-editor-obsidian"
 ]
