@@ -11,12 +11,8 @@
             "id": "bae3ba2414dc732a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "docs/flutter/3.常用布局控件.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -108,9 +104,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "docs/flutter/3.常用布局控件.md"
-              }
+              "state": {}
             }
           },
           {
@@ -130,7 +124,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/flutter/3.常用布局控件.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +140,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/flutter/3.常用布局控件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -217,9 +209,18 @@
   },
   "active": "bae3ba2414dc732a",
   "lastOpenFiles": [
-    "docs/flutter/1.常用基础控件.md",
-    "docs/flutter/2.布局控件原理及约束.md",
+    "docs/flutter/2)布局控件原理及约束.md",
+    "docs/flutter/1)常用基础控件.md",
+    "docs/flutter/0)fultter.md",
+    "docs/flutter/3)常用布局控件.md",
     "docs/flutter/3.常用布局控件.md",
+    "docs/flutter/(3)常用布局控件.md",
+    "docs/flutter/2.布局控件原理及约束.md",
+    "docs/flutter/(二)布局控件原理及约束.md",
+    "docs/flutter/(初)fultter.md",
+    "docs/flutter/(一)常用基础控件.md",
+    "docs/flutter/一.常用基础控件.md",
+    "docs/flutter/1.常用基础控件.md",
     "static/docs/Pasted image 20240131180041.jpeg",
     "static/docs/Pasted image 20240131180041.png",
     "static/docs/Pasted image 20240131175558.jpeg",
@@ -244,14 +245,6 @@
     "blog/tech/ohmyzsh下的git-alias.md",
     "blog/windows/windows快捷键.md",
     "blog/windows/window超好用的终端配置.md",
-    "blog/windows/mac快捷键.md",
-    "blog/tech/前端性能优化.md",
-    "blog/tech/css-variable实战.md",
-    "TODO/工作.md",
-    "docs/编程备忘录/访问ssl证书错误的网站.md",
-    "work/车花.md",
-    "TODO/优化.md",
-    "TODO/未命名 1.md",
     "canva/会员营销.canvas",
     "canva/会员流程.canvas",
     "canva/未命名 1.canvas",
