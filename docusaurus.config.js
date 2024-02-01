@@ -57,17 +57,22 @@ const config = {
         {
           label: '博客',
           position: 'right',
-          items: [
-            {
-              label: '归档',
-              to: 'archive',
-            },
-            {
-              label: '标签',
-              to: 'tags',
-            },
-          ],
+          to: 'archive',
         },
+        // {
+        //   label: '博客',
+        //   position: 'right',
+        //   items: [
+        //     {
+        //       label: '归档',
+        //       to: 'archive',
+        //     },
+        //     {
+        //       label: '标签',
+        //       to: 'tags',
+        //     },
+        //   ],
+        // },
         {
           label: '项目',
           position: 'right',
@@ -162,7 +167,7 @@ const config = {
 // const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/dracula'),
-      // additionalLanguages: ['java', 'php', 'rust', 'toml'],
+      additionalLanguages: ['java', 'php', 'rust', 'dart'],
       defaultLanguage: 'javascript',
       magicComments: [
         {

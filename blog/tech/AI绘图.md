@@ -1,10 +1,10 @@
-AI绘画属于AIGC中的一项应用场景，目前常见的绘画产品有：Midjourney、Stable Diffusion、DALL·E、Novel AI（二次元风格），最新的Midjourney和DALLE付费用户生成出的图像是有使用版权的。Stable Diffusion可以在本地部署生成图像，其它的产品在线使用更方便
+AI绘画属于AIGC中的一项应用场景，目前常见的绘画产品有：Midjourney、Stable Diffusion、DALL·E、Novel AI（二次元风格），最新的Midjourney和DALLE付费用户生成出的图像是有使用版权的。
 
 ## Midjourney
 **它都能做什么？**
 - 文生图(给一段文字生成图片)
 - 图生图(垫图，参考图片风格绘制新的图像)
-- 图生文(将喜欢的图片)
+- 图生文(将喜欢的图片拆分为AI能够识别的文字进行二次创作)
 - 融图(把我的脸和彭于晏的身体合成)
 
 官方教程中，最简单的Prompt结构就是一段文本描述：
@@ -94,9 +94,6 @@ the owner's orange cat is stretching on the sofa, In the coffee shop, Indoors, a
 ![image.png](https://s2.loli.net/2024/01/06/ts1BWdnEF4ouKeJ.png)
 
 ### 实战插画
-
-[插画实战](https://www.sohu.com/a/700420548_121124379)
-
 企业插画的魔法公式，主要基于关键词Corporate Flat Illustration（企业平面插画）构成，再结合常用的设计风格，比如孟菲斯风格，线条艺术，等距视图等关键词辅助，然后根据产品需求，融合插画色彩等组成
 企业插画魔法公式：
 > 公式：Corporate Flat Illustration  + 主题＋色彩 + 风格参考
@@ -113,6 +110,8 @@ the owner's orange cat is stretching on the sofa, In the coffee shop, Indoors, a
 > 一个贪婪的年轻人拿着金币快乐地奔跑，蓝色和金色的企业扁平图案。
 > A greedy youth running happily with gold coins, Corporate Flat Hllustration, in blue and gold. --niji 5 --aspect 1:1 --stylize 50 --quality 1 --chaos 0 --style original
 ![image.png](https://s2.loli.net/2024/01/18/kaYH5q1tMnbyWiJ.png)
+
+这里有一篇[插画实战](https://www.sohu.com/a/700420548_121124379)的文章，有更多的例子
 
 ### 相关网站推荐
 - [设计师的 Midjourney 入门真保姆级教程 - 知乎](https://zhuanlan.zhihu.com/p/617025808)
@@ -141,3 +140,20 @@ the owner's orange cat is stretching on the sofa, In the coffee shop, Indoors, a
 
 （五）在咖啡店内，店主养的橘猫正在沙发上伸懒腰，室内，旁边有两个客人在开心的聊天，下午，阴天，**赛博朋克**
 ![image.png](https://s2.loli.net/2024/01/05/2934XfpPHxguISK.png)
+
+## 总结
+目前只对更主流的Mj和DALLE进行了调研，Stable Diffusion只是浅尝辄止，只用别人的模型玩过，而且难度比另外两个更高。下面是之前用sd生成的图像：
+![](../../static/docs/Pasted%20image%2020240201123112.png)
+Stable Diffusion可以在本地部署生成图像，其它的产品在线使用更方便，个人感觉它的上限应该会更高，但也更难控制。
+
+AI生成的图像对语言的处理能力有限，尤其是中文会出现各种乱码。如果应用在工作设计中，个人理解，正确的工作流应该是：
+1. AI生成想要的插图起手，作为素材；
+2. AI生成合适的背景，作为素材；
+3. 挑选生成想要的艺术字，作为素材。可以用一些免费商业授权的字体，也可以试试阿里的绘图大模型[通义万相\_AI创意作画\_AI绘画\_人工智能-阿里云](https://tongyi.aliyun.com/wanxiang/)看下效果；
+4. 将以上三个素材在自己合成为完整的图像。
+这里有一个完整的视频例子来实现海报banner[【MJ辅助B端】仅需6步，轻松设计商业banner图\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ZM4y1H7cx/?spm_id_from=333.999.0.0&vd_source=1b521ffc97529ec801ca0ad47f6233b3)
+
+真正用在工作中的话，还需要考虑：
+- 设计一致性，一个产品应该有一套完整的设计语言。AI的话就需要自己整理一套Prompt规范来控制；
+- AI不可控，所以很容易翻车，需要不断尝试
+- 版权问题

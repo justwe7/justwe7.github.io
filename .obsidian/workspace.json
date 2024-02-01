@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "0dda12672a170f0b",
+        "id": "4dec28f5e3896d39",
         "type": "tabs",
         "children": [
           {
-            "id": "bae3ba2414dc732a",
+            "id": "7543f2a6909ddec8",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "blog/tech/AI绘图.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -104,7 +108,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "blog/tech/AI绘图.md"
+              }
             }
           },
           {
@@ -124,6 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "blog/tech/AI绘图.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,6 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "blog/tech/AI绘图.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
               }
@@ -207,12 +215,26 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "bae3ba2414dc732a",
+  "active": "7543f2a6909ddec8",
   "lastOpenFiles": [
-    "docs/flutter/2)布局控件原理及约束.md",
-    "docs/flutter/1)常用基础控件.md",
-    "docs/flutter/0)fultter.md",
-    "docs/flutter/3)常用布局控件.md",
+    "static/docs/Pasted image 20240201123112.png",
+    "blog/tech/AI绘图.md",
+    "blog/tech/markdown.md",
+    "blog/tech/css-variable实战.md",
+    "blog/tech/微信公众号前后端开发.md",
+    "docs/Flutter/4)容器组件.md",
+    "static/docs/Pasted image 20240201114031.png",
+    "static/docs/Pasted image 20240201105815.jpeg",
+    "static/docs/Pasted image 20240201105815.png",
+    "docs/Flutter/3)常用布局控件.md",
+    "Home.md",
+    "未命名.md",
+    "docs/0-home.md",
+    "docs/0-index.md",
+    "docs/0a-index.md",
+    "docs/Flutter/2)布局控件原理及约束.md",
+    "docs/Flutter/1)常用基础控件.md",
+    "docs/Flutter/0)fultter.md",
     "docs/flutter/3.常用布局控件.md",
     "docs/flutter/(3)常用布局控件.md",
     "docs/flutter/2.布局控件原理及约束.md",
@@ -228,23 +250,9 @@
     "static/docs/Pasted image 20240131175555.png",
     "static/docs/Pasted image 20240131173135.jpeg",
     "static/docs/Pasted image 20240131173135.png",
-    "static/docs/Pasted image 20240131171734.jpeg",
-    "static/docs/Pasted image 20240131171734.png",
-    "static/docs/Pasted image 20240131164907.jpeg",
     "docs/flutter/0.fultter.md",
     "work/花鸭.md",
     "work/项目配置/css封装.md",
-    "work/项目配置/省钱卡会员.md",
-    "work/项目配置/弹窗配置封装.md",
-    "blog/tech/攻略chrome控制台.md",
-    "blog/tech/前端自动化测试的一些思考.md",
-    "blog/tech/提升命令行效率的Bash快捷键.md",
-    "blog/tech/微信公众号前后端开发.md",
-    "blog/tech/AI绘图.md",
-    "blog/tech/vimium自用速查.md",
-    "blog/tech/ohmyzsh下的git-alias.md",
-    "blog/windows/windows快捷键.md",
-    "blog/windows/window超好用的终端配置.md",
     "canva/会员营销.canvas",
     "canva/会员流程.canvas",
     "canva/未命名 1.canvas",

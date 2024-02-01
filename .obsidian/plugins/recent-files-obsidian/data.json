@@ -1,6 +1,34 @@
 {
   "recentFiles": [
     {
+      "basename": "AI绘图",
+      "path": "blog/tech/AI绘图.md"
+    },
+    {
+      "basename": "markdown",
+      "path": "blog/tech/markdown.md"
+    },
+    {
+      "basename": "css-variable实战",
+      "path": "blog/tech/css-variable实战.md"
+    },
+    {
+      "basename": "微信公众号前后端开发",
+      "path": "blog/tech/微信公众号前后端开发.md"
+    },
+    {
+      "basename": "4)容器组件",
+      "path": "docs/Flutter/4)容器组件.md"
+    },
+    {
+      "basename": "3)常用布局控件",
+      "path": "docs/Flutter/3)常用布局控件.md"
+    },
+    {
+      "basename": "Home",
+      "path": "Home.md"
+    },
+    {
       "basename": "hero",
       "path": "static/hero.png"
     },
@@ -45,24 +73,12 @@
       "path": "blog/tech/提升命令行效率的Bash快捷键.md"
     },
     {
-      "basename": "微信公众号前后端开发",
-      "path": "blog/tech/微信公众号前后端开发.md"
-    },
-    {
-      "basename": "AI绘图",
-      "path": "blog/tech/AI绘图.md"
-    },
-    {
       "basename": "vimium自用速查",
       "path": "blog/tech/vimium自用速查.md"
     },
     {
       "basename": "ohmyzsh下的git-alias",
       "path": "blog/tech/ohmyzsh下的git-alias.md"
-    },
-    {
-      "basename": "windows快捷键",
-      "path": "blog/windows/windows快捷键.md"
     }
   ],
   "omittedPaths": [

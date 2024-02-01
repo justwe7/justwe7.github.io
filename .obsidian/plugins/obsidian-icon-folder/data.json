@@ -30,9 +30,6 @@
   "docs/服务端基础": "SiLinux",
   "docs/编程备忘录": "RiCodeBoxFill",
   "docs/前端工程化": "SiWebpack",
-  "docs/git": "SiGit",
-  "docs/javascript": "SiJavascript",
-  "docs/vue": "SiVuedotjs",
   "blog/docs": "RiFileWord2Fill",
   "blog/blog": "RiBookReadFill",
   "blog/static": "RiImageFill",
@@ -56,9 +53,12 @@
   "TODO": "⏰",
   "work": "🖥",
   "blog": "📚",
-  "docs/搞定typescript": "SiTypescriptWhite",
-  "docs/http": "SiAiohttp",
-  "docs/flutter": "SiFlutter",
   "static": "📂",
-  "canva": "🎨"
+  "canva": "🎨",
+  "docs/Flutter": "SiFlutter",
+  "docs/Git": "SiGit",
+  "docs/HTTP": "SiAiohttp",
+  "docs/Javascript": "SiJavascript",
+  "docs/Vue": "SiVuedotjs",
+  "docs/搞定Typescript": "SiTypescriptWhite"
 }

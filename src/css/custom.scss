@@ -177,10 +177,10 @@ html[data-theme='dark'] .theme-code-block {
 .main-wrapper h1 {
   font-size: 2.2em;
 }
-
+/* ----主题定制---- */
 .markdown {
   > h1 {
-    font-size: 2.2em;
+    font-size: 2em;
   }
 
   > h2 {
@@ -200,7 +200,10 @@ html[data-theme='dark'] .theme-code-block {
     border-left: var(--ifm-color-primary-darker) 4px solid;
     border-radius: 1px;
   }
-
+  > h4,> h5,> h6 {
+    --ifm-leading: calc(0.5rem);
+    --ifm-heading-vertical-rhythm-bottom: 1.25;
+  }
   > h4 {
     --ifm-h3-font-size: 1.2rem;
     padding-left: 10px;
@@ -227,6 +230,20 @@ html[data-theme='dark'] .theme-code-block {
     display: flex;
     margin: 0 auto;
   }
+
+  code {
+    font-size: 12px;
+  }
+  table {
+    font-size: 13px;
+  }
+  >p {
+    --ifm-leading: calc(0.6rem);
+    // --ifm-line-height-base: 1.4;
+    font-size: 14px;
+  }
+  // .theme-doc-markdown.markdown {
+  // }
 }
 
 /* 首页背景 */

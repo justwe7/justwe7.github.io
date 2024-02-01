@@ -19,7 +19,7 @@
   "removeMediaFolder": true,
   "removeOrphansCompl": false,
   "PngToJpeg": false,
-  "PngToJpegLocal": true,
+  "PngToJpegLocal": false,
   "JpegQuality": 50,
   "DoNotCreateObsFolder": false
 }
