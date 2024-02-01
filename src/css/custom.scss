@@ -237,7 +237,7 @@ html[data-theme='dark'] .theme-code-block {
   table {
     font-size: 13px;
   }
-  >p {
+  >p,>pre,>ul {
     --ifm-leading: calc(0.6rem);
     // --ifm-line-height-base: 1.4;
     font-size: 14px;
