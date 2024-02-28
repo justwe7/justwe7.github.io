@@ -34,12 +34,12 @@ jobs:
           publish_dir: ./build
           publish_branch: master
 
-      # - name: SSH Deploy
-      #   uses: easingthemes/ssh-deploy@v2.2.11
-      #   env:
-      #     SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-      #     ARGS: '-avzr --delete'
-      #     SOURCE: 'build'
-      #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-      #     REMOTE_USER: 'root'
-      #     TARGET: '/www/wwwroot/blog'
+      - name: SSH Deploy
+        uses: easingthemes/ssh-deploy@v4.1.10
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: '-avzr --delete'
+          SOURCE: 'build'
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: 'root'
+          TARGET: '/www/wwwroot/wiki.lihx.top'
