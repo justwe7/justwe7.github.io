@@ -34,12 +34,34 @@ jobs:
           publish_dir: ./build
           publish_branch: master
 
-      - name: SSH Deploy
-        uses: easingthemes/ssh-deploy@v4.1.10
-        env:
+      - name: ssh deploy
+        # You may pin to the exact commit or the version.
+        # uses: easingthemes/ssh-deploy@01a39e33483634cbd7ac99020c55b72ca7f098fe
+        uses: easingthemes/ssh-deploy@v5.0.3
+        with:
+          # Private key part of an SSH key pair
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: '-avzr --delete'
-          SOURCE: 'build'
+          # Remote host
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # Remote user
           REMOTE_USER: 'root'
+          # Remote port
+          REMOTE_PORT: # optional, default is 22
+          # Source directory, path relative to `$GITHUB_WORKSPACE` root, eg: `dist/`
+          SOURCE: 'build'
+          # Target directory
           TARGET: '/www/wwwroot/wiki.lihx.top'
+          # Arguments to pass to rsync
+          ARGS: '-avzr --delete ' # optional, default is -rlgoDzvc -i
+          # An array of ssh arguments, they must be prefixed with -o and separated by a comma, for example: -o SomeArgument=no, -o SomeOtherArgument=5
+          # SSH_CMD_ARGS: # optional, default is -o StrictHostKeyChecking=no
+          # # paths to exclude separated by `,`, ie: `/dist/, /node_modules/`
+          # EXCLUDE: # optional, default is
+          # # Script to run on host machine before rsync
+          # SCRIPT_BEFORE: # optional, default is
+          # # If not an empty string, the action will fail if the before script fails. Note: The string 'false' will be treated as true
+          # SCRIPT_BEFORE_REQUIRED: # optional, default is
+          # # Script to run on host machine after rsync
+          # SCRIPT_AFTER: # optional, default is
+          # # If not an empty string, the action will fail if the after script fails. Note: The string 'false' will be treated as true
+          # SCRIPT_AFTER_REQUIRED: # optional, default is
