@@ -1,84 +1,84 @@
 {
   "recentFiles": [
     {
-      "basename": "AI绘图",
-      "path": "blog/tech/AI绘图.md"
+      "basename": "Edge浏览器点击会有光标闪烁",
+      "path": "docs/编程备忘录/Edge浏览器点击会有光标闪烁.md"
     },
     {
-      "basename": "markdown",
-      "path": "blog/tech/markdown.md"
+      "basename": "7.七、数据共享",
+      "path": "docs/Flutter/7.七、数据共享.md"
     },
     {
-      "basename": "css-variable实战",
-      "path": "blog/tech/css-variable实战.md"
+      "basename": "9.九、事件机制",
+      "path": "docs/Flutter/9.九、事件机制.md"
     },
     {
-      "basename": "微信公众号前后端开发",
-      "path": "blog/tech/微信公众号前后端开发.md"
+      "basename": "工作",
+      "path": "TODO/工作.md"
     },
     {
-      "basename": "4)容器组件",
-      "path": "docs/Flutter/4)容器组件.md"
+      "basename": "2024-02-22",
+      "path": "日记/2024-02-22.md"
     },
     {
-      "basename": "3)常用布局控件",
-      "path": "docs/Flutter/3)常用布局控件.md"
+      "basename": "2024-01-26",
+      "path": "日记/2024-01-26.md"
     },
     {
-      "basename": "Home",
-      "path": "Home.md"
+      "basename": "2023-12-21",
+      "path": "日记/2023-12-21.md"
     },
     {
-      "basename": "hero",
-      "path": "static/hero.png"
+      "basename": "2023-12-12",
+      "path": "日记/2023-12-12.md"
     },
     {
-      "basename": "Pasted image 20240130101705",
-      "path": "static/docs/Pasted image 20240130101705.jpeg"
+      "basename": "屏蔽域名",
+      "path": "work/屏蔽域名.md"
     },
     {
-      "basename": "Pasted image 20240130101730",
-      "path": "static/docs/Pasted image 20240130101730.jpeg"
+      "basename": "2023-12-07",
+      "path": "日记/2023-12-07.md"
     },
     {
-      "basename": "Pasted image 20240130100336",
-      "path": "static/docs/Pasted image 20240130100336.jpeg"
+      "basename": "未命名",
+      "path": "work/未命名.md"
+    },
+    {
+      "basename": "未命名 1",
+      "path": "work/未命名 1.md"
+    },
+    {
+      "basename": "合规迁移",
+      "path": "work/合规迁移.md"
+    },
+    {
+      "basename": "合作方接入",
+      "path": "work/合作方接入.md"
     },
     {
       "basename": "花鸭",
       "path": "work/花鸭.md"
     },
     {
-      "basename": "css封装",
-      "path": "work/项目配置/css封装.md"
+      "basename": "1.一、常用基础控件",
+      "path": "docs/Flutter/1.一、常用基础控件.md"
     },
     {
-      "basename": "省钱卡会员",
-      "path": "work/项目配置/省钱卡会员.md"
+      "basename": "6.六、常用滚动组件",
+      "path": "docs/Flutter/6.六、常用滚动组件.md"
     },
     {
-      "basename": "弹窗配置封装",
-      "path": "work/项目配置/弹窗配置封装.md"
+      "basename": "8.八、弹窗Alert",
+      "path": "docs/Flutter/8.八、弹窗Alert.md"
     },
     {
-      "basename": "攻略chrome控制台",
-      "path": "blog/tech/攻略chrome控制台.md"
+      "basename": "0.Fultter",
+      "path": "docs/Flutter/0.Fultter.md"
     },
     {
-      "basename": "前端自动化测试的一些思考",
-      "path": "blog/tech/前端自动化测试的一些思考.md"
-    },
-    {
-      "basename": "提升命令行效率的Bash快捷键",
-      "path": "blog/tech/提升命令行效率的Bash快捷键.md"
-    },
-    {
-      "basename": "vimium自用速查",
-      "path": "blog/tech/vimium自用速查.md"
-    },
-    {
-      "basename": "ohmyzsh下的git-alias",
-      "path": "blog/tech/ohmyzsh下的git-alias.md"
+      "basename": "0.简单效果实现",
+      "path": "docs/Flutter/0.简单效果实现.md"
     }
   ],
   "omittedPaths": [
