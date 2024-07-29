@@ -52,6 +52,7 @@ brew services restart nginx
 
 ### 个人常用配置
 虽然已经3202年了，作为一个前端er更应该去使用更易用的`webpack-dev-server`，而且vscode有现成的插件，但是毕竟前端最终打包的物料还是需要通过`nginx`来承载的，所以可以“模拟”一些线上场景，也方便与后端“拉扯”
+> 本机的ng配置目录在： /opt/homebrew/etc/nginx/servers/
 #### nginx.conf根配置
 本地起一个ng服务，方便自己写一些小demo访问，顺便还可以作为一个局域网类似云盘的作用，给同事分享一些大点的文件~
 

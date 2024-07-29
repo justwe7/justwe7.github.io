@@ -1,28 +1,60 @@
 {
   "recentFiles": [
     {
-      "basename": "Edge浏览器点击会有光标闪烁",
-      "path": "docs/编程备忘录/Edge浏览器点击会有光标闪烁.md"
+      "basename": "iosFlutter排期",
+      "path": "work/客户端/iosFlutter排期.md"
     },
     {
-      "basename": "7.七、数据共享",
-      "path": "docs/Flutter/7.七、数据共享.md"
+      "basename": "nginx控制",
+      "path": "docs/服务端基础/nginx控制.md"
     },
     {
-      "basename": "9.九、事件机制",
-      "path": "docs/Flutter/9.九、事件机制.md"
+      "basename": "2024-07-23",
+      "path": "日记/2024-07-23.md"
     },
     {
-      "basename": "工作",
-      "path": "TODO/工作.md"
+      "basename": "Gpts提示词攻防",
+      "path": "docs/AI/Gpts提示词攻防.md"
     },
     {
-      "basename": "2024-02-22",
-      "path": "日记/2024-02-22.md"
+      "basename": "IOS本地证书创建及使用",
+      "path": "docs/Flutter/IOS本地证书创建及使用.md"
     },
     {
-      "basename": "2024-01-26",
-      "path": "日记/2024-01-26.md"
+      "basename": "flutterSdk升级降级",
+      "path": "docs/Flutter/flutterSdk升级降级.md"
+    },
+    {
+      "basename": "Flutter中的class",
+      "path": "docs/Flutter/Flutter中的class.md"
+    },
+    {
+      "basename": "权限申请",
+      "path": "docs/Flutter/权限申请.md"
+    },
+    {
+      "basename": "运行项目报错",
+      "path": "docs/Flutter/运行项目报错.md"
+    },
+    {
+      "basename": "Future和Completer的区别",
+      "path": "docs/Flutter/Future和Completer的区别.md"
+    },
+    {
+      "basename": "getx",
+      "path": "docs/Flutter/getx.md"
+    },
+    {
+      "basename": "ios项目构建",
+      "path": "docs/Flutter/ios项目构建.md"
+    },
+    {
+      "basename": "10.十、接入原生插件",
+      "path": "docs/Flutter/10.十、接入原生插件.md"
+    },
+    {
+      "basename": "2023-03-27",
+      "path": "日记/2023-03-27.md"
     },
     {
       "basename": "2023-12-21",
@@ -33,52 +65,20 @@
       "path": "日记/2023-12-12.md"
     },
     {
-      "basename": "屏蔽域名",
-      "path": "work/屏蔽域名.md"
-    },
-    {
       "basename": "2023-12-07",
       "path": "日记/2023-12-07.md"
     },
     {
-      "basename": "未命名",
-      "path": "work/未命名.md"
+      "basename": "2024-01-26",
+      "path": "日记/2024-01-26.md"
     },
     {
-      "basename": "未命名 1",
-      "path": "work/未命名 1.md"
+      "basename": "模型区别",
+      "path": "docs/AI/模型区别.md"
     },
     {
-      "basename": "合规迁移",
-      "path": "work/合规迁移.md"
-    },
-    {
-      "basename": "合作方接入",
-      "path": "work/合作方接入.md"
-    },
-    {
-      "basename": "花鸭",
-      "path": "work/花鸭.md"
-    },
-    {
-      "basename": "1.一、常用基础控件",
-      "path": "docs/Flutter/1.一、常用基础控件.md"
-    },
-    {
-      "basename": "6.六、常用滚动组件",
-      "path": "docs/Flutter/6.六、常用滚动组件.md"
-    },
-    {
-      "basename": "8.八、弹窗Alert",
-      "path": "docs/Flutter/8.八、弹窗Alert.md"
-    },
-    {
-      "basename": "0.Fultter",
-      "path": "docs/Flutter/0.Fultter.md"
-    },
-    {
-      "basename": "0.简单效果实现",
-      "path": "docs/Flutter/0.简单效果实现.md"
+      "basename": "机器人",
+      "path": "docs/AI/机器人.md"
     }
   ],
   "omittedPaths": [

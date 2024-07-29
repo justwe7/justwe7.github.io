@@ -19,3 +19,7 @@ node    2268 debugger   51u  IPv6 0x1e3974784205794b      0t0  TCP *:irdmi (LIST
 -   右键点击Finder标题栏：一个弹出菜单，显示从根目录到当前目录的路径，在这里可以选择任何一个上一级文件夹
 -   Command + 上箭头：到上一级目录
 
+
+### mysql操作
+启动mysql
+mysql.server start
