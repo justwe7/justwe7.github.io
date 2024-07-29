@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[2045],{4949:function(s){s.exports=JSON.parse('{"label":"\u6e38\u620f","permalink":"/tags/\u6e38\u620f","allTagsPath":"/tags","count":1}')}}]);

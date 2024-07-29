@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            .box{
+                width: 900px;
+                height: 400px;
+                background: #ee9;
+                border: 2px solid #000;
+                margin: 30px auto;
+            }
+            .item{
+                width: 100px;
+                height: 100px;
+                background-color: #e11;
+            }
+
+            .box{
+                display: flex;
+                display: -webkit-flex;
+
+                /*flex-direction: row;
+                flex-direction: row-reverse;
+                flex-direction: column;*/
+
+            }
+            .item{
+
+            }
+            .o1{
+                /*order: 4;*/
+                /*flex-grow: 1;*/
+                /*flex-shrink: 1;*/
+                /*flex-grow: 1;*/
+                flex: 1;
+            }
+            .o2{
+                /*order: 3;*/
+                /*flex-grow: 1;*/
+                /*flex-shrink: 1;*/
+                /*width: 0;*/
+                /*flex-basis: 200px;*/
+                background-color: #f88;
+                /*height: auto;*/
+                align-self: flex-end;
+
+                /*flex: auto;*/
+                /*flex-grow: 3;*/
+                flex: 1;
+
+                /*align-self: auto | flex-start | flex-end | center | baseline | stretch;*/
+            }
+            .o3{
+                /*order: 6;*/
+                /*flex-grow: 1;*/
+                /*flex-shrink: 1;*/
+                /*flex-grow: 1;*/
+                background-color: #dd1;
+                /* 如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
+                负值对该属性无效。 */
+            }
+        </style>
+    </head>
+    <body>
+        <section class="box">
+            <div class="item o1">
+                1
+            </div>
+            <div class="item o2">
+                2
+            </div>
+            <div class="item o3">
+                3
+            </div>
+            <!-- pppppppppppppppppppppp -->
+        </section>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            .box{
+                width: 300px;
+                height: 70px;
+                background: #ee9;
+                border: 2px solid #000;
+                margin: 30px auto;
+            }
+            .item{
+                width: 70px;
+                height: 70px;
+                background-color: #e11;
+            }
+
+            .box{
+                display: flex;
+                display: -webkit-flex;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                /*flex-direction: row;
+                flex-direction: row-reverse;
+                flex-direction: column;*/
+
+            }
+            .item{
+/*flex: 1;*/
+            }
+            .b1{
+                /*flex: 0 0 15%;*/
+            }
+            .b2{
+                background-color: #dd1;
+                flex: 1;
+                border: none;
+            }
+            .b3{
+                background-color: #f88;
+                /*flex: 0 0 50%;*/
+            }
+        </style>
+    </head>
+    <body>
+        <section class="box">
+            <div class="item b1">
+                1
+            </div>
+            <input class="item b2" type="text" name="" value="222" placeholder="">
+            <div class="item b3">
+                3
+            </div>
+        </section>
+    </body>
+</html>
