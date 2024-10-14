@@ -8,6 +8,10 @@
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh</language>
+        <follow_challenge>
+    <feedId>68542610182122496</feedId>
+    <userId>67446393616666624</userId>
+</follow_challenge>
         <copyright>Copyright © 2024 土豆和土豆丝 Built with Docusaurus.&lt;p&gt;&lt;a href="http://beian.miit.gov.cn/" class="footer_lin"&gt;晋ICP备2021001641号&lt;/a&gt;&lt;/p&gt;</copyright>
         <item>
             <title><![CDATA[tech/AI绘图]]></title>
