@@ -1,84 +1,84 @@
 {
   "recentFiles": [
     {
-      "basename": "iosFlutter排期",
-      "path": "work/客户端/iosFlutter排期.md"
-    },
-    {
-      "basename": "nginx控制",
-      "path": "docs/服务端基础/nginx控制.md"
-    },
-    {
-      "basename": "2024-07-23",
-      "path": "日记/2024-07-23.md"
-    },
-    {
-      "basename": "Gpts提示词攻防",
-      "path": "docs/AI/Gpts提示词攻防.md"
-    },
-    {
-      "basename": "IOS本地证书创建及使用",
-      "path": "docs/Flutter/IOS本地证书创建及使用.md"
-    },
-    {
-      "basename": "flutterSdk升级降级",
-      "path": "docs/Flutter/flutterSdk升级降级.md"
-    },
-    {
-      "basename": "Flutter中的class",
-      "path": "docs/Flutter/Flutter中的class.md"
-    },
-    {
-      "basename": "权限申请",
-      "path": "docs/Flutter/权限申请.md"
-    },
-    {
-      "basename": "运行项目报错",
-      "path": "docs/Flutter/运行项目报错.md"
-    },
-    {
-      "basename": "Future和Completer的区别",
-      "path": "docs/Flutter/Future和Completer的区别.md"
-    },
-    {
-      "basename": "getx",
-      "path": "docs/Flutter/getx.md"
-    },
-    {
-      "basename": "ios项目构建",
-      "path": "docs/Flutter/ios项目构建.md"
+      "basename": "flutter原生android插件aar资源引入问题",
+      "path": "docs/Flutter/flutter原生android插件aar资源引入问题.md"
     },
     {
       "basename": "10.十、接入原生插件",
       "path": "docs/Flutter/10.十、接入原生插件.md"
     },
     {
-      "basename": "2023-03-27",
-      "path": "日记/2023-03-27.md"
+      "basename": "getx",
+      "path": "docs/Flutter/getx.md"
     },
     {
-      "basename": "2023-12-21",
-      "path": "日记/2023-12-21.md"
+      "basename": "Flutter中的class",
+      "path": "docs/Flutter/Flutter中的class.md"
     },
     {
-      "basename": "2023-12-12",
-      "path": "日记/2023-12-12.md"
+      "basename": "flutter自动构建ipa",
+      "path": "docs/Flutter/flutter自动构建ipa.md"
     },
     {
-      "basename": "2023-12-07",
-      "path": "日记/2023-12-07.md"
+      "basename": "2024-11-11",
+      "path": "日记/2024-11-11.md"
     },
     {
-      "basename": "2024-01-26",
-      "path": "日记/2024-01-26.md"
+      "basename": "IOS本地证书创建及使用",
+      "path": "docs/Flutter/IOS本地证书创建及使用.md"
     },
     {
-      "basename": "模型区别",
-      "path": "docs/AI/模型区别.md"
+      "basename": "iOS企业开发者账号申请",
+      "path": "docs/技术杂项/iOS企业开发者账号申请.md"
     },
     {
-      "basename": "机器人",
-      "path": "docs/AI/机器人.md"
+      "basename": "APP备案流程",
+      "path": "TODO/APP备案流程.md"
+    },
+    {
+      "basename": "合规迁移",
+      "path": "work/合规迁移.md"
+    },
+    {
+      "basename": "合作方接入",
+      "path": "work/合作方接入.md"
+    },
+    {
+      "basename": "花鸭",
+      "path": "work/花鸭.md"
+    },
+    {
+      "basename": "花鸭贷款app备案",
+      "path": "work/花鸭贷款app备案.md"
+    },
+    {
+      "basename": "Android打包及签名配置",
+      "path": "docs/Flutter/Android打包及签名配置.md"
+    },
+    {
+      "basename": "广告接入相关",
+      "path": "docs/技术杂项/广告接入相关.md"
+    },
+    {
+      "basename": "使用msw结合faker创建mock服务",
+      "path": "docs/前端工程化/使用msw结合faker创建mock服务.md"
+    },
+    {
+      "basename": "2024-11-21",
+      "path": "日记/2024-11-21.md"
+    },
+    {
+      "basename": "2024-11-18",
+      "path": "日记/2024-11-18.md"
+    },
+    {
+      "basename": "2024-12-16",
+      "path": "日记/2024-12-16.md"
+    },
+    {
+      "basename": "2024-12-09",
+      "path": "日记/2024-12-09.md"
     }
   ],
   "omittedPaths": [

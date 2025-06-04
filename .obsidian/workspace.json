@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "49e3dbfc552fe1fc",
+        "id": "b3b5c2b3264523f6",
         "type": "tabs",
         "children": [
           {
-            "id": "a4c1b192f48a08a0",
+            "id": "8f63f793901ba0e1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "work/客户端/iosFlutter排期.md",
+                "file": "docs/Flutter/flutter原生android插件aar资源引入问题.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "flutter原生android插件aar资源引入问题"
             }
           }
         ]
@@ -39,8 +41,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
             }
           },
           {
@@ -49,13 +54,15 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "苹果",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
             }
           },
           {
@@ -63,7 +70,9 @@
             "type": "leaf",
             "state": {
               "type": "starred",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           },
           {
@@ -71,7 +80,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
             }
           }
         ]
@@ -86,14 +97,16 @@
             "type": "leaf",
             "state": {
               "type": "recent-files",
-              "state": {}
+              "state": {},
+              "icon": "clock",
+              "title": "Recent Files"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 229.50247192382812
+    "width": 401.5024719238281
   },
   "right": {
     "id": "63efcdc8d53d522b",
@@ -109,8 +122,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "work/客户端/iosFlutter排期.md"
-              }
+                "file": "docs/Flutter/flutter原生android插件aar资源引入问题.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "flutter原生android插件aar资源引入问题 的大纲"
             }
           },
           {
@@ -121,7 +139,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
             }
           },
           {
@@ -130,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "work/客户端/iosFlutter排期.md",
+                "file": "docs/Flutter/Android打包及签名配置.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -138,7 +158,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Android打包及签名配置 的反向链接列表"
             }
           },
           {
@@ -147,10 +169,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "work/客户端/iosFlutter排期.md",
+                "file": "docs/Flutter/Android打包及签名配置.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": false
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Android打包及签名配置 的出链列表"
             }
           },
           {
@@ -158,7 +182,9 @@
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
-              "state": {}
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           },
           {
@@ -170,7 +196,9 @@
                 "sortOrder": "frequency",
                 "showSearch": false,
                 "searchQuery": ""
-              }
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
             }
           }
         ]
@@ -184,7 +212,9 @@
             "type": "leaf",
             "state": {
               "type": "calendar",
-              "state": {}
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
             }
           },
           {
@@ -192,7 +222,9 @@
             "type": "leaf",
             "state": {
               "type": "memos_view",
-              "state": {}
+              "state": {},
+              "icon": "Memos",
+              "title": "Memos"
             }
           }
         ]
@@ -215,60 +247,60 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "a4c1b192f48a08a0",
+  "active": "6966633609091334",
   "lastOpenFiles": [
+    "package-lock.json",
     "build/sw.js.map",
     "build/sw.js",
-    "build/feed.json",
-    "build/atom.xml",
     "build/search-index.json",
+    "build/atom.xml",
     "build/rss.xml",
+    "build/feed.json",
     "build/sitemap.xml",
     "build/index.html",
-    "build/docs/编程备忘录/访问ssl证书错误的网站/index.html",
-    "build/docs/编程备忘录/vscode主题色/index.html",
-    "build/docs/编程备忘录/微信xweb真机调试/index.html",
-    "build/docs/Pasted image 20240718145116.png",
-    "build/docs/Pasted image 20240718145114.png",
-    "build/docs/Pasted image 20240718144727.png",
-    "build/docs/Pasted image 20240718143629.png",
-    "build/docs/Pasted image 20240718144504.png",
-    "build/docs/Pasted image 20240718104858.png",
-    "build/docs/Pasted image 20240718104856.png",
-    "build/docs/Pasted image 20240718104654.png",
-    "build/docs/Pasted image 20240718102453.png",
-    "build/docs/Pasted image 20240628110350.png",
-    "docs/服务端基础/nginx控制.md",
-    "日记/2024-07-23.md",
-    "work/客户端/iosFlutter排期.md",
-    "docs/AI/Gpts提示词攻防.md",
-    "docs/Flutter/IOS本地证书创建及使用.md",
-    "docs/Flutter/flutterSdk升级降级.md",
-    "docs/Flutter/Flutter中的class.md",
-    "docs/Flutter/权限申请.md",
-    "docs/Flutter/运行项目报错.md",
-    "docs/Flutter/Future和Completer的区别.md",
-    "docs/Flutter/getx.md",
-    "docs/Flutter/ios项目构建.md",
+    "build/windows/window超好用的终端配置/index.html",
+    "build/windows/windows快捷键/index.html",
+    "build/devtools/network/gs/logo.svg",
+    "build/devtools/network/gs/logo-1024px.png",
+    "build/devtools/imgs/unicorn.gif",
+    "build/docs/iShot_2024-01-30_10.58.33.gif",
+    "build/docs/iShot_2024-01-30_10.12.00.gif",
+    "build/docs/Pasted image 20250415152336.png",
+    "build/docs/Pasted image 20250513152752.png",
+    "build/docs/Pasted image 20250513152727.png",
+    "build/docs/Pasted image 20250415153250.png",
+    "build/docs/Pasted image 20250415153123.png",
+    "build/devtools/README.md",
+    "build/devtools/CONTRIBUTING.md",
+    "node_modules/@babel/core/node_modules/convert-source-map/README.md",
     "docs/Flutter/10.十、接入原生插件.md",
-    "日记/2023-03-27.md",
-    "日记/2023-12-21.md",
-    "日记/2023-12-12.md",
-    "日记/2023-12-07.md",
-    "日记/2024-01-26.md",
-    "docs/AI/模型区别.md",
-    "docs/AI/机器人.md",
-    "docs/Flutter/1.一、常用基础控件.md",
-    "docs/Flutter/3.三、常用布局控件.md",
-    "docs/Flutter/2.二、布局控件原理及约束.md",
-    "docs/Flutter/0.Fultter.md",
-    "docs/Flutter/7.七、数据共享.md",
-    "work/项目模块/顶部banner.canvas",
-    "canva/会员营销.canvas",
+    "docs/Flutter/getx.md",
+    "docs/Flutter/Flutter中的class.md",
+    "docs/Flutter/flutter原生android插件aar资源引入问题.md",
+    "docs/Flutter/flutter自动构建ipa.md",
+    "日记/2024-11-11.md",
+    "docs/Flutter/未命名.md",
+    "docs/Flutter/IOS本地证书创建及使用.md",
+    "docs/技术杂项/iOS企业开发者账号申请.md",
+    "TODO/APP备案流程.md",
+    "work/合规迁移.md",
+    "work/合作方接入.md",
+    "work/花鸭.md",
+    "work/花鸭贷款app备案.md",
+    "docs/Flutter/Android打包及签名配置.md",
+    "docs/技术杂项/广告接入相关.md",
+    "docs/前端工程化/使用msw结合faker创建mock服务.md",
+    "日记/2024-11-21.md",
+    "日记/2024-11-18.md",
+    "日记/2024-12-16.md",
+    "日记/2024-12-09.md",
+    "日记/2025-01-15.md",
     "canva/会员流程.canvas",
-    "canva/未命名 1.canvas",
     "canva/未命名 1 1.canvas",
     "canva/未命名.canvas",
+    "canva/未命名 1.canvas",
+    "canva/会员营销.canvas",
+    "work/项目模块/顶部banner.canvas",
     "未命名.canvas"
   ]
 }
