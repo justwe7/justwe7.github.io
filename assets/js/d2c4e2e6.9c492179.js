@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[5097],{36086:function(s){s.exports=JSON.parse('{"label":"vue","permalink":"/tags/vue","allTagsPath":"/tags","count":1}')}}]);
