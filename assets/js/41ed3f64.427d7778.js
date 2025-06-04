@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[4255],{91267:function(e){e.exports=JSON.parse('{"permalink":"/tags/\u5f00\u53d1\u5de5\u5177","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

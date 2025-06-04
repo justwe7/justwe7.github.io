@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wiki.lihx.top/</id>
     <title>土豆和土豆丝</title>
-    <updated>2025-06-04T07:35:57.000Z</updated>
+    <updated>2025-06-04T09:35:41.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wiki.lihx.top/"/>
     <subtitle>土豆和土豆丝写字的地方 Blog</subtitle>
@@ -12,7 +12,7 @@
         <title type="html"><![CDATA[tech/AI绘图]]></title>
         <id>https://wiki.lihx.top/tech/AI绘图</id>
         <link href="https://wiki.lihx.top/tech/AI绘图"/>
-        <updated>2025-06-04T07:35:57.000Z</updated>
+        <updated>2025-06-04T09:35:41.000Z</updated>
         <summary type="html"><![CDATA[AI绘画属于AIGC中的一项应用场景，目前常见的绘画产品有：Midjourney、Stable Diffusion、DALL·E、Novel AI（二次元风格），最新的Midjourney和DALLE付费用户生成出的图像是有使用版权的。]]></summary>
         <content type="html"><![CDATA[<p>AI绘画属于AIGC中的一项应用场景，目前常见的绘画产品有：Midjourney、Stable Diffusion、DALL·E、Novel AI（二次元风格），最新的Midjourney和DALLE付费用户生成出的图像是有使用版权的。</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="midjourney">Midjourney<a href="#midjourney" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h2><p><strong>它都能做什么？</strong></p><ul><li>文生图(给一段文字生成图片)</li><li>图生图(垫图，参考图片风格绘制新的图像)</li><li>图生文(将喜欢的图片拆分为AI能够识别的文字进行二次创作)</li><li>融图(把我的脸和彭于晏的身体合成)</li></ul><p>官方教程中，最简单的Prompt结构就是一段文本描述：
 <img loading="lazy" src="https://s2.loli.net/2024/01/05/w3ZC1lHhiXKagRs.png" alt="image.png" class="img_ev3q"></p><p>以下是官方解释：</p><blockquote><p>Prompt是一个简短的文本短语，Midjourney Bot 会解释该短语以生成图像。Midjourney Bot 将提示中的单词和短语分解为更小的部分，称为标记，可以与其训练数据进行比较，然后用于生成图像。准确的Prompt可以帮助制作独特而令人兴奋的图像。</p></blockquote><p>使用 Prompt 快速生成一张图片: </p><blockquote><p>The cat sleeping at the entrance of the coffee shop.  (在咖啡店门口睡觉的猫)

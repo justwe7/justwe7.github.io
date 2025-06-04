@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[2160],{36219:function(s){s.exports=JSON.parse('{"label":"webpack","permalink":"/tags/webpack","allTagsPath":"/tags","count":1}')}}]);
