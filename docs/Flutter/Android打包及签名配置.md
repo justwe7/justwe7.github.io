@@ -74,6 +74,8 @@ flutter {
 flutter build apk --release
 或
 flutter build appbundle --release
+指定兼容arm架构的fat APK包
+flutter build apk --dart-define=ENV=dev --target-platform android-arm,android-arm64  
 ```
 
 签名后的 APK 或 AAB 文件将位于 `build/app/outputs/flutter-apk/` 或 `build/app/outputs/bundle/` 目录下
@@ -202,3 +204,4 @@ adb -s emulator-5554 install /path/app-debug.apk
 - [Android平台签名证书(.keystore)生成指南 - DCloud问答](https://ask.dcloud.net.cn/article/35777)
 - [Flutter Android 打包保姆式全流程 2023 版 这是一份 2023 完整的最新版的 Flutter An - 掘金](https://juejin.cn/post/7207078219215929402)
 - [Flutter 应用混淆（包体积优化实践） | Joker's Blog](https://meandni.com/2020/11/04/obfuscating-the-flutter-app/)
+- [ICP 备案 APP 备案特征信息填写参考规范\_腾讯云](https://cloud.tencent.com/document/product/243/97789)

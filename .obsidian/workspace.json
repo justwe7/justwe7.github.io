@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b3b5c2b3264523f6",
+        "id": "361d8d36f93537f0",
         "type": "tabs",
         "children": [
           {
-            "id": "8f63f793901ba0e1",
+            "id": "e8fcbe4561e85a8e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/Flutter/flutter原生android插件aar资源引入问题.md",
+                "file": "docs/技术杂项/模块化权衡原则.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "flutter原生android插件aar资源引入问题"
+              "title": "模块化权衡原则"
             }
           }
         ]
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "苹果",
+                "query": "备案",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -106,7 +106,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 401.5024719238281
+    "width": 359.5024719238281
   },
   "right": {
     "id": "63efcdc8d53d522b",
@@ -122,13 +122,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/Flutter/flutter原生android插件aar资源引入问题.md",
+                "file": "docs/技术杂项/模块化权衡原则.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "flutter原生android插件aar资源引入问题 的大纲"
+              "title": "模块化权衡原则 的大纲"
             }
           },
           {
@@ -247,8 +247,44 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "6966633609091334",
+  "active": "e8fcbe4561e85a8e",
   "lastOpenFiles": [
+    "docs/技术杂项/iOS企业开发者账号申请.md",
+    "docs/技术杂项/iOS4.3a被拒自审清单.md",
+    "docs/技术杂项/模块化权衡原则.md",
+    "docs/技术杂项/广告接入相关.md",
+    "日记/2025-07-03.md",
+    "docs/Flutter/0.Fultter.md",
+    "docs/Flutter/0.简单效果实现.md",
+    "docs/编程备忘录/vscode主题色.md",
+    "docs/编程备忘录/unicloud.md",
+    "static/docs/Pasted image 20250717211500.png",
+    "docs/Flutter/Android打包及签名配置.md",
+    "docs/Flutter/flutter通过插件对接旷视原生sdk.md",
+    "docs/Flutter/10.十、接入原生插件.md",
+    "docs/Flutter/flutter原生android插件aar资源引入问题.md",
+    "docs/生活/Google登录多个账号后，移除指定账号.md",
+    "static/docs/Pasted image 20250716154355.png",
+    "static/docs/Pasted image 20250716151800.png",
+    "static/docs/Pasted image 20250716151512.png",
+    "static/docs/Pasted image 20250716151101.png",
+    "static/docs/Pasted image 20250716145257.png",
+    "static/docs/Pasted image 20250715182816.png",
+    "docs/Flutter/Flutter中的class.md",
+    "docs/Flutter/安卓真机开启wifi调试.md",
+    "static/docs/Pasted image 20250715114722.png",
+    "static/docs/Pasted image 20250715105446.png",
+    "static/docs/Pasted image 20250715101717.png",
+    "docs/Flutter/Future和Completer的区别.md",
+    "docs/Flutter/flutterSdk升级降级.md",
+    "docs/Flutter/flutter自动构建ipa.md",
+    "docs/Flutter/ios项目构建.md",
+    "work/客户端/iosFlutter排期.md",
+    "work/花鸭贷款app备案.md",
+    "docs/Flutter/IOS本地证书创建及使用.md",
+    "work/车花.md",
+    "docs/Git/git常用的分支操作.md",
+    "docs/Git/git基本工作流程.md",
     "package-lock.json",
     "build/sw.js.map",
     "build/sw.js",
@@ -259,42 +295,6 @@
     "build/sitemap.xml",
     "build/index.html",
     "build/windows/window超好用的终端配置/index.html",
-    "build/windows/windows快捷键/index.html",
-    "build/devtools/network/gs/logo.svg",
-    "build/devtools/network/gs/logo-1024px.png",
-    "build/devtools/imgs/unicorn.gif",
-    "build/docs/iShot_2024-01-30_10.58.33.gif",
-    "build/docs/iShot_2024-01-30_10.12.00.gif",
-    "build/docs/Pasted image 20250415152336.png",
-    "build/docs/Pasted image 20250513152752.png",
-    "build/docs/Pasted image 20250513152727.png",
-    "build/docs/Pasted image 20250415153250.png",
-    "build/docs/Pasted image 20250415153123.png",
-    "build/devtools/README.md",
-    "build/devtools/CONTRIBUTING.md",
-    "node_modules/@babel/core/node_modules/convert-source-map/README.md",
-    "docs/Flutter/10.十、接入原生插件.md",
-    "docs/Flutter/getx.md",
-    "docs/Flutter/Flutter中的class.md",
-    "docs/Flutter/flutter原生android插件aar资源引入问题.md",
-    "docs/Flutter/flutter自动构建ipa.md",
-    "日记/2024-11-11.md",
-    "docs/Flutter/未命名.md",
-    "docs/Flutter/IOS本地证书创建及使用.md",
-    "docs/技术杂项/iOS企业开发者账号申请.md",
-    "TODO/APP备案流程.md",
-    "work/合规迁移.md",
-    "work/合作方接入.md",
-    "work/花鸭.md",
-    "work/花鸭贷款app备案.md",
-    "docs/Flutter/Android打包及签名配置.md",
-    "docs/技术杂项/广告接入相关.md",
-    "docs/前端工程化/使用msw结合faker创建mock服务.md",
-    "日记/2024-11-21.md",
-    "日记/2024-11-18.md",
-    "日记/2024-12-16.md",
-    "日记/2024-12-09.md",
-    "日记/2025-01-15.md",
     "canva/会员流程.canvas",
     "canva/未命名 1 1.canvas",
     "canva/未命名.canvas",

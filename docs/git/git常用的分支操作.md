@@ -42,3 +42,27 @@
 ## 本地仓库与远端仓库建立关联
 1. `git remote add origin httpxxx` 关联远程仓库
 2. `git push -u origin master` 将最新的修改推送到远程仓库,在第一次进行push时,我们加上-u参数,后期push时就不用再加-u参数
+
+
+## 标签tag
+### 为当前的commit节前添加tag
+`git tag ios_v1.1.1`
+
+### 为指定的commit添加
+`git tag ios_v1.1.1 6c84aa3`
+
+### 推送
+```bash
+# 推送单个标签：
+git push origin <标签名>
+
+# 推送所有本地标签：
+git push origin --tags
+```
+
+### 删除
+```bash
+# 删除错误标签
+git tag -d <标签名>
+git push origin --delete <标签名>  # 同步删除远程标签
+```
