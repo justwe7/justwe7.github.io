@@ -636,6 +636,8 @@ flutter打包时release会启用代码混淆（Proguard），以保护代码：
 
 ```
 
+### 遇到的问题
+管理器出现多个相同进程
 > 删除主工程android的AndroidManifest.xml， android:taskAffinity="" 避免任务管理器出现多个相同进程
 
 ## ios端

@@ -200,6 +200,38 @@ emulator-5554	device
 adb -s emulator-5554 install /path/app-debug.apk
 ```
 
+### 9. **apk备案获取公钥**
+1. 打开终端，运行 `brew install jadx` 命令安装 jadx
+2. 安装成功后 `jadx-gui` 运行程序，单击 **Open file**，打开 APK 包
+![](../../static/docs/Pasted%20image%2020250806103640.png)
+3. 打开 APK 包后，找到并单击 **APK signature**，查看**平台公钥**和**签名 MD5 值**
+![](../../static/docs/Pasted%20image%2020250806103711.png)
+4. 找到并单击 **Resources**，找到并单击 **AndroidManifest.xml**，确认 **APP 包名**
+![](../../static/docs/Pasted%20image%2020250806103837.png)
+
+### 10. 构建问题
+#### The server may not support the client's requested TLS protocol versions: (TLSv1.2, TLSv1.3)
+运行或者打包出现诸如：
+```
+AILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':shared_preferences_android:generateReleaseLintModel'.
+> Could not resolve all files for configuration ':shared_preferences_android:releaseRuntimeClasspath'.
+   > Could not download datastore-preferences-external-protobuf-1.1.7.jar (androidx.datastore:datastore-preferences-external-protobuf:1.1.7)
+      > Could not get resource 'https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-external-protobuf/1.1.7/datastore-preferences-external-protobuf-1.1.7.jar'.
+         > Could not GET 'https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-external-protobuf/1.1.7/datastore-preferences-external-protobuf-1.1.7.jar'.
+            > The server may not support the client's requested TLS protocol versions: (TLSv1.2, TLSv1.3). You may need to configure the client to allow other protocols to be used. For more on this, please refer to https://docs.gradle.org/8.4/userguide/build_environment.html#sec:gradle_system_properties in the Gradle documentation.
+```
+android/gradle.properties 添加代理的忽略
+```
+systemProp.http.proxyHost=127.0.0.1
+systemProp.http.proxyPort=7890
+systemProp.https.proxyHost=127.0.0.1
+systemProp.https.proxyPort=7890
+systemProp.jdk.tls.client.protocols=TLSv1,TLSv1.1,TLSv1.2,TLSv1.3
+```
+
 ### 参考链接
 - [Android平台签名证书(.keystore)生成指南 - DCloud问答](https://ask.dcloud.net.cn/article/35777)
 - [Flutter Android 打包保姆式全流程 2023 版 这是一份 2023 完整的最新版的 Flutter An - 掘金](https://juejin.cn/post/7207078219215929402)
