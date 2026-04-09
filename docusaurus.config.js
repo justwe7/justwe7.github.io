@@ -90,7 +90,7 @@ const config = {
           position: 'right',
           to: 'website',
         },
-        { href: 'https://lihx.top', label: '个人博客', position: 'right' },
+        // { href: 'https://lihx.top', label: '个人博客', position: 'right' },
         {
           href: 'https://github.com/justwe7/justwe7.github.io',
           label: 'GitHub',
@@ -228,8 +228,8 @@ const config = {
         docs: {
           path: 'docs',
           editUrl: 'https://github.com/justwe7/justwe7.github.io/blob/feature/',
-          showLastUpdateTime: true,
-          showLastUpdateAuthor: true,
+          // showLastUpdateTime: true,
+          // showLastUpdateAuthor: true,
           sidebarPath: require.resolve('./sidebars.js'),
         },
         blog: false,
@@ -283,7 +283,7 @@ const config = {
         routeBasePath: 'life',
         sidebarPath: require.resolve('./sidebarsLife.js'),
         include: ['**/*.md', '**/*.mdx'],
-        showLastUpdateTime: true,
+
       },
     ],
     [
