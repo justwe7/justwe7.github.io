@@ -7,7 +7,6 @@ import Link from '@docusaurus/Link';
 
 import HeroMain from './img/hero_main.svg';
 
-import JuejinIcon from '@site/static/svg/juejin.svg';
 import { Icon } from '@iconify/react';
 
 import styles from './styles.module.scss';
@@ -46,9 +45,9 @@ function Hero() {
                   <Translate id="hompage.hero.note">技术笔记</Translate>
                 </Link>
               ),
-              idea: (
-                <Link to="/archive">
-                  <Translate id="hompage.hero.idea">历史博文</Translate>
+              life: (
+                <Link to="/life">
+                  <Translate id="hompage.hero.life">生活日常</Translate>
                 </Link>
               ),
               project: (
@@ -63,18 +62,21 @@ function Hero() {
               ),
             }}
           >
-            {`你可以随处逛逛，查看{note}、{project}、{link}。`}
+            {`你可以随处逛逛，查看{note}、{life}、{project}、{link}。`}
           </Translate>
-            {/* {`你可以随处逛逛，查看{note}、{project}、{link}、以及我的{idea}。`} */}
         </animated.p>
         <SocialLinks style={trails[2]} />
         <animated.div style={trails[3]}>
-          <a className={styles.intro} href={'./docs'}>
+          <Link className={styles.intro} to="/docs">
             <Translate id="hompage.hero.introduce">我的笔记</Translate>
-          </a>
-          <a className={styles.intro} style={{marginLeft: '12px'}} href={'./archive'}>
-            博客归档
-          </a>
+          </Link>
+          <Link
+            className={styles.intro}
+            style={{ marginLeft: '12px' }}
+            to="/life"
+          >
+            <Translate id="hompage.hero.life">生活日常</Translate>
+          </Link>
         </animated.div>
         {/* <animated.div style={trails[3]}>
           <a className={styles.intro} href={'./about'}>

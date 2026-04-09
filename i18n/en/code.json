@@ -12,11 +12,14 @@
     "description": "hero text"
   },
   "homepage.hero.look": {
-    "message": "You can take a look at it casually and check {note}, {project}, {link}. I will also share {idea} for programming learning",
-    "description": "hero need"
+    "message": "Browse around: {note}, {life}, {project}, and {link}.",
+    "description": "hero intro links"
   },
   "hompage.hero.note": {
     "message": "Note"
+  },
+  "hompage.hero.life": {
+    "message": "Life & daily"
   },
   "hompage.hero.project": {
     "message": "Project"

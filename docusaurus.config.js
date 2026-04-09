@@ -50,9 +50,16 @@ const config = {
       hideOnScroll: true,
       items: [
         {
-          label: '笔记',
+          label: '开发笔记',
           position: 'right',
           to: 'docs'
+        },
+        {
+          label: '生活日常',
+          position: 'right',
+          type: 'docSidebar',
+          sidebarId: 'lifeSidebar',
+          docsPluginId: 'life',
         },
         // {
         //   label: '博客',
@@ -223,7 +230,7 @@ const config = {
           editUrl: 'https://github.com/justwe7/justwe7.github.io/blob/feature/',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          // sidebarPath: 'sidebars.js',
+          sidebarPath: require.resolve('./sidebars.js'),
         },
         blog: false,
         theme: {
@@ -268,6 +275,17 @@ const config = {
     'docusaurus-plugin-sass',
     [require.resolve('./src/plugin/baidu-analytics'), { secret: '03bd357b8e5a65d704a7acbc2ed52566' }],
     path.resolve(__dirname, './src/plugin/plugin-baidu-push'),
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'life',
+        path: 'life',
+        routeBasePath: 'life',
+        sidebarPath: require.resolve('./sidebarsLife.js'),
+        include: ['**/*.md', '**/*.mdx'],
+        showLastUpdateTime: true,
+      },
+    ],
     [
       path.resolve(__dirname, './src/plugin/plugin-content-blog'), {
         path: 'blog',

@@ -1043,12 +1043,12 @@ div[class^='announcementBar_'] {
     font-size: 0.85em; /* 错开正文尺寸，实现键盘按键感 */
   }
 
-  /* 扩大多行代码区块 (``` code block) 的呼吸感和内部留白 */
+  /* 扩大多行代码区块 (``` code block) 的视觉增强 */
   pre {
-    padding: 1.25rem 1.4rem !important; /* 彻底放开上下左右的内边距 */
     border-radius: 8px !important; /* 更加圆滑的整体棱角 */
     margin: 1.5em 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* 代码块背后的极浅微光 */
+    /* 注：去除了强行的 padding !important 覆盖，因为 react-live 实时组件需要依赖默认的内边距来同步光标对齐 */
     
     /* 强行清洗掉任何误入其中的 inline code 样式残余 */
     code {
@@ -1105,4 +1105,80 @@ div[class^='announcementBar_'] {
   width: auto;
   height: auto;
   transform: none !important; /* 清除原有箭头可能的旋转形变 */
+}
+
+/* ==================================================== */
+/* 实时代码编辑器 (Playground / React-Live) 深度美化语境设定 */
+/* ==================================================== */
+
+/* 外侧大容器圈地：给它一个柔和但显著的科技主色调边框，凸显与普通代码块的不同 */
+div[class*="playgroundContainer"] {
+  border: 1px solid var(--ifm-color-primary-light) !important;
+  border-radius: 8px;
+  overflow: hidden; /* 防止内部板块溢出圆角 */
+  box-shadow: 0 4px 20px rgba(83, 191, 157, 0.08);
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  
+  /* 聚焦状态全域高亮，营造沉浸式开发感 */
+  &:focus-within {
+    box-shadow: 0 6px 30px rgba(83, 191, 157, 0.2);
+    border-color: var(--ifm-color-primary) !important;
+  }
+}
+
+/* 编辑区 (Editor) 修饰 */
+div[class*="playgroundEditor"] {
+  position: relative;
+  cursor: text;
+  background-color: rgba(0, 0, 0, 0.02); /* 给输入区垫薄底色 */
+  
+  html[data-theme='dark'] & {
+    background-color: rgba(255, 255, 255, 0.03); 
+  }
+
+  /* 植入非常直观的 “可实时编辑徽章” */
+  &::before {
+    content: "可实时编辑 ⚡️";
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 11px;
+    color: var(--ifm-color-primary-dark);
+    background: rgba(83, 191, 157, 0.15);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    pointer-events: none; /* 防止遮挡光标点击 */
+    z-index: 10;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* 用户输入时，徽章半透明隐退免打扰 */
+  &:focus-within::before {
+    opacity: 0.15;
+  }
+}
+
+/* 预览区 (Preview) 修饰 */
+div[class*="playgroundPreview"] {
+  border-top: 1px dashed var(--ifm-color-primary-light); /* 与上方代码区做虚线切割 */
+  background-color: var(--card-background) !important; 
+  padding: 1.5rem;
+  position: relative;
+  
+  /* 左上角印制极简水印 */
+  &::before {
+    content: "Live Preview";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 10px;
+    color: var(--ifm-color-emphasis-400);
+    background: var(--ifm-color-emphasis-100);
+    padding: 2px 8px;
+    border-bottom-right-radius: 8px;
+    pointer-events: none;
+  }
 }

@@ -20,13 +20,17 @@
     "message": "在这里我会分享自己平时总结的一些认为“有用”的知识",
     "description": "hero text"
   },
-  "homepage.hero.look":{
-    "message": "可以看看我的{note}、{idea}、{project}以及{link}。",
-    "description": "hero look"
+  "homepage.hero.look": {
+    "message": "你可以随处逛逛，查看{note}、{life}、{project}、{link}。",
+    "description": "hero look（笔记均在开发笔记中维护，不再单独维护博客）"
   },
   "hompage.hero.note": {
     "message": "技术笔记",
     "description": "Note link label"
+  },
+  "hompage.hero.life": {
+    "message": "生活日常",
+    "description": "Life docs link label"
   },
   "hompage.hero.project": {
     "message": "个人项目",
