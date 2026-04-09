@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[3237],{61620:(t,e,s)=>{s.r(e),s.d(e,{default:()=>c});s(67294);var n=s(58493),i=s(39962),u=s(37996),o=s(35944);function c(){const{siteConfig:t}=(0,i.Z)();return(0,o.tZ)(n.Z,{title:"\u9996\u9875",description:t.tagline,children:(0,o.tZ)(u.Z,{})})}}}]);

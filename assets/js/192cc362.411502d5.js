@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjustwe7_books=self.webpackChunkjustwe7_books||[]).push([[6223],{40455:e=>{e.exports=JSON.parse('[{"label":"\u6e38\u620f","permalink":"/life/tags/\u6e38\u620f","count":1},{"label":"switch","permalink":"/life/tags/switch","count":1}]')}}]);
