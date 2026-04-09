@@ -54,11 +54,11 @@ const config = {
           position: 'right',
           to: 'docs'
         },
-        {
-          label: '博客',
-          position: 'right',
-          to: 'archive',
-        },
+        // {
+        //   label: '博客',
+        //   position: 'right',
+        //   to: 'archive',
+        // },
         // {
         //   label: '博客',
         //   position: 'right',
@@ -109,10 +109,10 @@ const config = {
               label: '个人项目',
               to: 'project',
             },
-            {
-              label: '博客归档',
-              to: 'archive',
-            },
+            // {
+            //   label: '博客归档',
+            //   to: 'archive',
+            // },
             {
               label: '标签',
               to: 'tags',
