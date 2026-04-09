@@ -1,84 +1,80 @@
 {
   "recentFiles": [
     {
-      "basename": "模块化权衡原则",
-      "path": "docs/技术杂项/模块化权衡原则.md"
+      "basename": "cc是什么",
+      "path": "docs/AI/Claude Code/cc是什么.md"
     },
     {
-      "basename": "iOS企业开发者账号申请",
-      "path": "docs/技术杂项/iOS企业开发者账号申请.md"
+      "basename": "基于webpack5+vue2搭建企业SSR应用",
+      "path": "docs/前端工程化/基于webpack5+vue2搭建企业SSR应用.md"
     },
     {
-      "basename": "iOS4.3a被拒自审清单",
-      "path": "docs/技术杂项/iOS4.3a被拒自审清单.md"
+      "basename": "前端性能优化",
+      "path": "docs/前端工程化/前端性能优化.md"
     },
     {
-      "basename": "广告接入相关",
-      "path": "docs/技术杂项/广告接入相关.md"
+      "basename": "使用msw结合faker创建mock服务",
+      "path": "docs/前端工程化/使用msw结合faker创建mock服务.md"
     },
     {
-      "basename": "2025-07-03",
-      "path": "日记/2025-07-03.md"
+      "basename": "微信公众号前后端开发",
+      "path": "docs/前端工程化/微信公众号前后端开发.md"
     },
     {
-      "basename": "0.Fultter",
-      "path": "docs/Flutter/0.Fultter.md"
+      "basename": "gitpage+vuepress+jenkins静态博客",
+      "path": "docs/前端工程化/gitpage+vuepress+jenkins静态博客.md"
     },
     {
-      "basename": "0.简单效果实现",
-      "path": "docs/Flutter/0.简单效果实现.md"
+      "basename": "目录约束",
+      "path": "docs/前端框架/Next.js/目录约束.md"
     },
     {
-      "basename": "vscode主题色",
-      "path": "docs/编程备忘录/vscode主题色.md"
+      "basename": "花鸭",
+      "path": "work/花鸭.md"
     },
     {
-      "basename": "unicloud",
-      "path": "docs/编程备忘录/unicloud.md"
+      "basename": "2026-03-28",
+      "path": "日记/2026-03-28.md"
     },
     {
-      "basename": "Android打包及签名配置",
-      "path": "docs/Flutter/Android打包及签名配置.md"
+      "basename": "未命名",
+      "path": "work/AI客服/未命名.md"
     },
     {
-      "basename": "flutter通过插件对接旷视原生sdk",
-      "path": "docs/Flutter/flutter通过插件对接旷视原生sdk.md"
+      "basename": "预算",
+      "path": "work/AI客服/预算.md"
     },
     {
-      "basename": "10.十、接入原生插件",
-      "path": "docs/Flutter/10.十、接入原生插件.md"
+      "basename": "key",
+      "path": "work/AI客服/key.md"
     },
     {
-      "basename": "flutter原生android插件aar资源引入问题",
-      "path": "docs/Flutter/flutter原生android插件aar资源引入问题.md"
+      "basename": "概念",
+      "path": "work/AI客服/概念.md"
     },
     {
-      "basename": "Google登录多个账号后，移除指定账号",
-      "path": "docs/生活/Google登录多个账号后，移除指定账号.md"
+      "basename": "iosFlutter排期",
+      "path": "work/客户端/iosFlutter排期.md"
     },
     {
-      "basename": "Flutter中的class",
-      "path": "docs/Flutter/Flutter中的class.md"
+      "basename": "css封装",
+      "path": "work/项目配置/css封装.md"
     },
     {
-      "basename": "安卓真机开启wifi调试",
-      "path": "docs/Flutter/安卓真机开启wifi调试.md"
+      "basename": "APP备案流程",
+      "path": "TODO/APP备案流程.md"
     },
     {
-      "basename": "Future和Completer的区别",
-      "path": "docs/Flutter/Future和Completer的区别.md"
+      "basename": "AndroidFlutter",
+      "path": "work/客户端/AndroidFlutter.md"
     },
     {
-      "basename": "flutterSdk升级降级",
-      "path": "docs/Flutter/flutterSdk升级降级.md"
+      "basename": "远程",
+      "path": "work/客户端/远程.md"
     },
     {
-      "basename": "flutter自动构建ipa",
-      "path": "docs/Flutter/flutter自动构建ipa.md"
-    },
-    {
-      "basename": "ios项目构建",
-      "path": "docs/Flutter/ios项目构建.md"
+      "basename": "AI 客服系统",
+      "path": "work/AI客服/AI 客服系统.md"
     }
   ],
   "omittedPaths": [

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "work/花鸭.md",
+                "file": "docs/AI/Claude Code/cc是什么.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "花鸭"
+              "title": "cc是什么"
             }
           }
         ]
@@ -122,13 +122,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "work/花鸭.md",
+                "file": "docs/AI/Claude Code/cc是什么.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "花鸭 的大纲"
+              "title": "cc是什么 的大纲"
             }
           },
           {
@@ -248,8 +248,19 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "6966633609091334",
+  "active": "361f3a2093dcb60f",
   "lastOpenFiles": [
+    "docs/AI/Claude Code/skill技巧.md",
+    "docs/AI/Claude Code/cc是什么.md",
+    "CLAUDE.md",
+    "docs/前端工程化/基于webpack5+vue2搭建企业SSR应用.md",
+    "docs/AI/Claude Code",
+    "docs/前端工程化/前端性能优化.md",
+    "docs/前端工程化/使用msw结合faker创建mock服务.md",
+    "docs/前端工程化/微信公众号前后端开发.md",
+    "docs/前端工程化/gitpage+vuepress+jenkins静态博客.md",
+    "docs/前端框架/Next.js/目录约束.md",
+    "work/花鸭.md",
     "docs/工具与环境/快捷键/vimium自用速查.md",
     "docs/工具与环境/快捷键/提升命令行效率的Bash快捷键.md",
     "docs/工具与环境/快捷键/windows快捷键.md",
@@ -266,7 +277,6 @@
     "src/plugins/plugin-recent-notes",
     "src/plugins",
     "src/pages/index.tsx",
-    "build/assets/css/styles.ed09e051.css",
     "build/assets/images/Pasted image 20240221110012-67e89aa8438bfab13c9fcfdf54d6597e.png",
     "build/assets/images/httpsguopcheng-556aa1ad2c53cbe06ca2079a2ceeb3ca.png",
     "build/assets/images/Pasted image 20240221111143-f33740bc0fee838a2b8e3046b790d53a.png",
@@ -286,16 +296,6 @@
     "docs/工具与环境/Git/配置多个git-ssh.md",
     "docs/工具与环境/Git/rebase.md",
     "docs/工具与环境/Git/git常用的分支操作.md",
-    "docs/工具与环境/Git/git如何保持commit信息整洁.md",
-    "docs/工具与环境/Git/git基本工作流程.md",
-    "docs/工具与环境/Git/gitcherry-pick备忘.md",
-    "docs/服务端基础/http/什么是https.md",
-    "docs/服务端基础/http/简单了解http协议.md",
-    "docs/服务端基础/http/web及网络基础.md",
-    "docs/服务端基础/http/http报文-首部.md",
-    "docs/服务端基础/http/http报文-概念状态码.md",
-    "docs/前端框架/Next.js/目录约束.md",
-    "docs/前端基础/JavaScript/模块化.md",
     "canva/会员流程.canvas",
     "canva/未命名 1 1.canvas",
     "canva/未命名.canvas",
