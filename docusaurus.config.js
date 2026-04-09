@@ -24,7 +24,7 @@ const config = {
     metadata: [
       {
         name: 'keywords',
-        content:'土豆和土豆丝'
+        content: '土豆和土豆丝'
       },
       {
         name: 'keywords',
@@ -83,7 +83,7 @@ const config = {
           position: 'right',
           to: 'website',
         },
-        {href: 'https://lihx.top', label: '个人博客', position: 'right'},
+        { href: 'https://lihx.top', label: '个人博客', position: 'right' },
         {
           href: 'https://github.com/justwe7/justwe7.github.io',
           label: 'GitHub',
@@ -143,28 +143,23 @@ const config = {
         {
           title: '更多',
           items: [
-          {
-            label: '网址收藏',
-            position: 'right',
-            to: 'website',
-          },
-          {
-            label: '基于愧怍博客修改',
-            position: 'right',
-            href: 'https://github.com/kuizuo/blog',
-          },
-          {
-            html: `<a href="https://docusaurus.io/zh-CN/" target="_blank"><img style="height:50px;margin-top:0.5rem" src="/img/buildwith.png" /><a/>`
-          },
-        ],
+            {
+              label: '网址收藏',
+              position: 'right',
+              to: 'website',
+            },
+            {
+              html: `<a href="https://docusaurus.io/zh-CN/" target="_blank"><img style="height:50px;margin-top:0.5rem" src="/img/buildwith.png" /><a/>`
+            },
+          ],
         },
       ],
       copyright: `<p><a href="http://beian.miit.gov.cn/" >${beian}</a></p><p>Copyright © ${new Date().getFullYear()} - PRESENT 土豆和土豆丝 Built with Docusaurus.</p>`,
     },
     prism: {
-//       const lightCodeTheme = require('prism-react-renderer/themes/github');
-// // const lightCodeTheme = require('prism-react-renderer/themes/ultramin');
-// const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+      //       const lightCodeTheme = require('prism-react-renderer/themes/github');
+      // // const lightCodeTheme = require('prism-react-renderer/themes/ultramin');
+      // const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/dracula'),
       additionalLanguages: ['java', 'php', 'rust', 'dart'],
@@ -173,7 +168,7 @@ const config = {
         {
           className: 'theme-code-block-highlighted-line',
           line: 'highlight-next-line',
-          block: {start: 'highlight-start', end: 'highlight-end'},
+          block: { start: 'highlight-start', end: 'highlight-end' },
         },
         {
           className: 'code-block-error-line',
@@ -226,6 +221,8 @@ const config = {
         docs: {
           path: 'docs',
           editUrl: 'https://github.com/justwe7/justwe7.github.io/blob/feature/',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
           // sidebarPath: 'sidebars.js',
         },
         blog: false,

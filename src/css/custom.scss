@@ -9,6 +9,11 @@
 
 
   --ifm-code-font-size: 95%;
+  /* 优化折叠侧栏箭头，使用更为精致的线条箭头代替笨重的三角 */
+  /* 使用 UP 箭头基础图形。Docusaurus 在未展开时旋转90度即向右，展开时旋转180度即向下 */
+  /* 通过缩小 SVG 内部的绝对坐标轴来确保箭头缩小绝对生效：原来宽度为12，现缩小为6（50%尺寸） */
+  --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="%23888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="9 13 12 10 15 13"></polyline></svg>');
+  
   --ifm-font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system,
     'Segoe UI', 'Helvetica Neue', 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
@@ -88,8 +93,14 @@ html :is(h1, h2, h3, h4, h5, h6) {
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: hsl(214deg 100% 60%);
-  --ifm-color-primary-light: hsl(214deg 100% 75%);
+  --ifm-color-primary: #21e6c1;
+  --ifm-color-primary-dark: #18d5b1;
+  --ifm-color-primary-darker: #17c9a7;
+  --ifm-color-primary-darkest: #13a58a;
+  --ifm-color-primary-light: #39e9c8;
+  --ifm-color-primary-lighter: #44eacb;
+  --ifm-color-primary-lightest: #68eed5;
+  
   --post-title-color: rgb(255 255 255);
   --post-pub-date-color: var(--ifm-color-gray-100);
   --divider-color: #353535;
@@ -103,13 +114,7 @@ html[data-theme='dark'] {
   --ifm-menu-color: #eceef1;
 
   --ifm-footer-background-color: var(--ifm-color-emphasis-100);
-  --ifm-color-primary: #21e6c1;
-  --ifm-color-primary-dark: #18d5b1;
-  --ifm-color-primary-darker: #17c9a7;
-  --ifm-color-primary-darkest: #13a58a;
-  --ifm-color-primary-light: #39e9c8;
-  --ifm-color-primary-lighter: #44eacb;
-  --ifm-color-primary-lightest: #68eed5;
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
   color: hsl(214deg 15% 85%);
@@ -185,20 +190,22 @@ html[data-theme='dark'] .theme-code-block {
 
   > h2 {
     --ifm-h2-font-size: 1.5rem;
-    border-left: var(--ifm-color-primary-dark) 3px solid;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid var(--ifm-color-primary);
     padding-left: 10px;
-    line-height: 100%;
-    border-left: var(--ifm-color-primary-dark) 7px solid;
-    border-radius: 1px;
-
+    line-height: 1.2;
+    border-radius: 2px;
   }
 
   > h3 {
-    --ifm-h3-font-size: 1.2rem;
+    --ifm-h3-font-size: 1.25rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
     padding-left: 10px;
-    line-height: 100%;
-    border-left: var(--ifm-color-primary-darker) 4px solid;
-    border-radius: 1px;
+    line-height: 1.2;
+    border-left: 4px solid var(--ifm-color-primary-light);
+    border-radius: 2px;
   }
   > h4,> h5,> h6 {
     --ifm-leading: calc(0.5rem);
@@ -213,12 +220,13 @@ html[data-theme='dark'] .theme-code-block {
   }
 
   > a {
-    transition: all 0.1s;
+    transition: all 0.3s ease;
     display: inline-block;
 
     &:focus,
     &:hover {
-      color: #db2828;
+      color: var(--ifm-color-primary-light);
+      text-shadow: 0 0 8px var(--post-shadow-color);
     }
   }
 
@@ -237,9 +245,9 @@ html[data-theme='dark'] .theme-code-block {
   table {
     font-size: 13px;
   }
-  >p,>pre,>ul {
-    --ifm-leading: calc(0.6rem);
-    // --ifm-line-height-base: 1.4;
+  >p,>pre,>ul,>ol {
+    margin-bottom: 1rem;
+    line-height: 1.6;
     font-size: 14px;
   }
   // .theme-doc-markdown.markdown {
@@ -349,13 +357,16 @@ html[data-theme='dark'] .theme-code-block {
   align-items: center;
   padding: 1em 1.2em;
   background: var(--card-background);
-  border-radius: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(150, 150, 150, 0.1);
+  backdrop-filter: blur(8px);
   position: relative;
+  transition: all 0.3s ease;
 
   &:hover {
     box-sizing: border-box;
-    box-shadow: var(--blog-item-shadow);
-    transition: all 0.5s;
+    box-shadow: 0 10px 40px var(--post-shadow-color);
+    transform: translateY(-4px);
   }
 
   .post__list-title {
@@ -484,11 +495,46 @@ html[data-theme='dark'] .post__tags {
 // }
 
 /* 文档侧栏字体大小 */
-.menu__list-item > .menu__link[tabindex] {
-  font-size: 0.875rem;
-  font-weight: normal;
-  letter-spacing: 1.2px;
-  line-height: 1.5em;
+/* 侧边栏和主容器边距区隔 */
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--divider-color);
+}
+
+
+
+/* 分层侧边栏划分线 */
+.theme-doc-sidebar-menu > .menu__list-item:not(:last-child) {
+  border-bottom: 1px solid var(--divider-color);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.theme-doc-sidebar-menu .menu__list-item .menu__list-item {
+  border-bottom: none; /* 子元素不加线 */
+  padding-bottom: 0px;
+  margin-bottom: 0.2rem;
+}
+
+/* 文档侧栏字体大小 */
+.menu__list-item {
+  margin-bottom: 0.2rem;
+}
+
+.menu__link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.4em;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* 调整侧栏高亮背景，尽量精简 */
+.menu__link--active {
+  background-color: var(--ifm-menu-color-background-active) !important;
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600;
 }
 
 .blog__section-title{
@@ -504,9 +550,17 @@ html[data-theme='dark'] .post__tags {
   padding: 0;
 
   li {
-    border-radius: 5px;
+    border-radius: 12px;
     background: var(--blog-item-background-color);
     box-shadow: var(--blog-item-shadow);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(150, 150, 150, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px var(--post-shadow-color);
+    }
   }
 
   .card__image {
@@ -647,11 +701,19 @@ code {
   border-radius: 12px;
   background: var(--blog-item-background-color);
   box-shadow: var(--blog-item-shadow);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(150, 150, 150, 0.1);
   padding: 0.8em 1em;
   margin: 0;
   position: relative;
   display: block;
   text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px var(--post-shadow-color);
+  }
 
   a {
     text-decoration: none;
@@ -816,4 +878,231 @@ div[class^='announcementBar_'] {
 
 .transition {
   transition: all 0.3s ease;
+}
+
+/* 侧边栏折叠箭头优化：移除 background-size 写法，直接由 SVG points 控制精准尺寸 */
+.menu__caret {
+  opacity: 0.5 !important;
+  filter: grayscale(100%);
+}
+.menu__link:hover .menu__caret {
+  opacity: 1 !important;
+}
+
+
+/* ==================================================== */
+/* 右侧章节指引 (Table of Contents) 节点点缀设计 (无竖线仅圆点) */
+/* ==================================================== */
+.theme-doc-toc-desktop {
+  .table-of-contents {
+    /* 恢复主内容区和目录的整体分割线，并提供安全内边距 */
+    border-left: 1px solid var(--divider-color) !important;
+    padding-left: 1rem !important;
+    
+    &, ul {
+      list-style: none;
+      margin-left: 0;
+    }
+    
+    /* 子列表由于没有竖线，使用 margin-left 产生阶梯缩进即可 */
+    ul {
+      border-left: none !important;
+      padding-left: 0;
+      margin-left: 0.8rem; 
+      margin-top: 0.4rem;
+    }
+
+    li {
+      margin: 0.4rem 0;
+      padding-left: 0;
+    }
+
+    .table-of-contents__link {
+      display: block;
+      border-left: none !important;   /* 去除原生粗边框高亮 */
+      padding-left: 1.2rem;           /* 仅在文字左侧给点留出专属空位 */
+      position: relative;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--text-color);
+      
+      /* 小圆环设计 */
+      &::before {
+        content: "";
+        position: absolute;
+        left: 2px; /* 设置绝对位置为大于等于 0，结合 padding-left 不会超出由于 border 导致的限定边界 */
+        /* 使用 em 单位结合 line-height 精准垂直居中挂靠首行，再根据要求向上微调 1px */
+        top: calc(0.55em - 1px); 
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        border: 1.5px solid var(--divider-color);
+        background-color: transparent;
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+      
+      /* Hover 触碰加深 */
+      &:hover {
+        opacity: 1;
+        color: var(--ifm-color-primary) !important;
+        &::before {
+          border-color: var(--ifm-color-primary);
+        }
+      }
+    }
+
+    /* Active 选中态：圆环被点亮并填充 */
+    .table-of-contents__link--active {
+      opacity: 1;
+      font-weight: 600;
+      color: var(--ifm-color-primary) !important;
+      
+      &::before {
+        border-color: var(--ifm-color-primary);
+        background-color: var(--ifm-color-primary);
+        box-shadow: 0 0 4px rgba(83, 191, 157, 0.4);
+      }
+    }
+  }
+}
+
+/* ==================================================== */
+/* 文章正文 (Markdown) 排版深度优化 */
+/* ==================================================== */
+.theme-doc-markdown, .markdown {
+  p, ul, ol, li {
+    font-size: 15.5px; /* 提升阅读字号 */
+    line-height: 1.75;
+    letter-spacing: 0.02em;
+  }
+  
+  p {
+    margin-bottom: 1.5em; /* 增大段距，分离内容块 */
+  }
+
+  /* 二级标题重塑：去掉侧边框，改为底部留白全宽分割线 */
+  h2 {
+    border-left: none !important;
+    padding-left: 0 !important;
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: 0.4em;
+    margin-top: 2.2em;
+    margin-bottom: 1.2em;
+    font-weight: 600;
+  }
+
+  /* 三级标题重塑：科技感胶囊饰边 */
+  h3 {
+    border-left: 4px solid var(--ifm-color-primary) !important;
+    border-radius: 4px;
+    background: rgba(83, 191, 157, 0.08); /* 点缀主色系极浅底色 */
+    padding: 0.3em 0.8em !important;
+    display: block; 
+    margin-top: 1.8em;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+  }
+
+  /* 引用块 (Blockquote) 弱化重构：作为纯辅助内容展示，与 H3 产生明显视觉级差 */
+  blockquote {
+    border-left: 4px solid var(--ifm-color-emphasis-300) !important; /* 中性弱灰色竖线 */
+    background-color: var(--ifm-color-emphasis-100); /* 中立的极浅背景色 */
+    border-radius: 0 6px 6px 0; /* 仅保留右侧圆角，左侧贴紧竖线 */
+    padding: 1rem 1.2rem;
+    margin: 1.5em 0;
+    color: var(--ifm-color-emphasis-700); /* 调低对比度产生退避感 */
+    box-shadow: none; /* 去除卡片高光 */
+    font-size: 0.95em; /* 字体稍微收缩，体现从属地位 */
+    
+    p {
+      margin-bottom: 0; /* 修正单段落的冗余底距 */
+    }
+  }
+
+  /* 图片展示优化：现代弥散阴影与圆角 */
+  img {
+    border-radius: 8px; /* 消除锋利边缘 */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06); 
+    margin: 1.2em 0;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 鼠标悬停微微浮起 */
+      transform: translateY(-2px);
+    }
+  }
+
+  /* 行内代码片段 (Inline Code) 去生硬化，精准规避多行代码块 */
+  :not(pre) > code {
+    border: 1px solid var(--divider-color);
+    border-radius: 6px;
+    padding: 0.1em 0.4em;
+    font-size: 0.85em; /* 错开正文尺寸，实现键盘按键感 */
+  }
+
+  /* 扩大多行代码区块 (``` code block) 的呼吸感和内部留白 */
+  pre {
+    padding: 1.25rem 1.4rem !important; /* 彻底放开上下左右的内边距 */
+    border-radius: 8px !important; /* 更加圆滑的整体棱角 */
+    margin: 1.5em 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* 代码块背后的极浅微光 */
+    
+    /* 强行清洗掉任何误入其中的 inline code 样式残余 */
+    code {
+      padding: 0 !important;
+      border: none !important;
+      background: transparent !important;
+    }
+  }
+}
+
+/* ==================================================== */
+/* Header 导航栏与 Breadcrumbs 面包屑骨架美化 */
+/* ==================================================== */
+
+
+
+/* 面包屑导航 Breadcrumbs 层级体系美化 */
+.breadcrumbs {
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+/* 去掉当前项自带的灰色激活背景色块，以纯净的主色和粗体文字展现 current 状态 */
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: transparent !important;
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600;
+}
+
+/* 普通面包屑层级 */
+.breadcrumbs__link {
+  color: var(--ifm-color-emphasis-500);
+  background-color: transparent !important; /* 去除任何继承的原生背景 */
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(83, 191, 157, 0.08) !important; /* 鼠标经过产生微光 */
+    color: var(--ifm-color-primary) !important;
+    text-decoration: none;
+  }
+}
+
+/* 改造分隔符：去除原生宽大的矢量箭头，替换为优雅的程序员斜杠 '/' */
+.breadcrumbs__item:not(:last-child)::after {
+  content: "/"; 
+  background: none !important; /* 清除默认渲染的 svg 箭头遮罩 */
+  display: inline-block;
+  margin: 0 0.5rem;
+  color: var(--ifm-color-emphasis-300);
+  font-size: 0.9em;
+  opacity: 0.8;
+  width: auto;
+  height: auto;
+  transform: none !important; /* 清除原有箭头可能的旋转形变 */
 }
