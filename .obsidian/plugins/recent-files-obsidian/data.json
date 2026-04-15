@@ -1,80 +1,84 @@
 {
   "recentFiles": [
     {
-      "basename": "cc是什么",
-      "path": "docs/AI/Claude Code/cc是什么.md"
+      "basename": "需复习",
+      "path": "docs/前端基础/面试/需复习.md"
     },
     {
-      "basename": "基于webpack5+vue2搭建企业SSR应用",
-      "path": "docs/前端工程化/基于webpack5+vue2搭建企业SSR应用.md"
-    },
-    {
-      "basename": "前端性能优化",
-      "path": "docs/前端工程化/前端性能优化.md"
-    },
-    {
-      "basename": "使用msw结合faker创建mock服务",
-      "path": "docs/前端工程化/使用msw结合faker创建mock服务.md"
-    },
-    {
-      "basename": "微信公众号前后端开发",
-      "path": "docs/前端工程化/微信公众号前后端开发.md"
-    },
-    {
-      "basename": "gitpage+vuepress+jenkins静态博客",
-      "path": "docs/前端工程化/gitpage+vuepress+jenkins静态博客.md"
-    },
-    {
-      "basename": "目录约束",
-      "path": "docs/前端框架/Next.js/目录约束.md"
-    },
-    {
-      "basename": "花鸭",
-      "path": "work/花鸭.md"
+      "basename": "vue",
+      "path": "docs/前端基础/面试/vue.md"
     },
     {
       "basename": "2026-03-28",
       "path": "日记/2026-03-28.md"
     },
     {
-      "basename": "未命名",
-      "path": "work/AI客服/未命名.md"
+      "basename": "javascript基础",
+      "path": "docs/前端基础/面试/javascript基础.md"
     },
     {
-      "basename": "预算",
-      "path": "work/AI客服/预算.md"
+      "basename": "codex实践",
+      "path": "docs/AI/codex实践.md"
+    },
+    {
+      "basename": "cc是什么",
+      "path": "docs/AI/Claude Code/cc是什么.md"
+    },
+    {
+      "basename": "前端性能优化",
+      "path": "docs/前端工程化/前端性能优化.md"
+    },
+    {
+      "basename": "http报文-概念状态码",
+      "path": "docs/服务端基础/http/http报文-概念状态码.md"
+    },
+    {
+      "basename": "http报文-首部",
+      "path": "docs/服务端基础/http/http报文-首部.md"
+    },
+    {
+      "basename": "http报文-首部",
+      "path": "docs/广度知识/http报文-首部.md"
+    },
+    {
+      "basename": "手写面试题",
+      "path": "docs/前端基础/JavaScript/手写面试题.md"
     },
     {
       "basename": "key",
       "path": "work/AI客服/key.md"
     },
     {
-      "basename": "概念",
-      "path": "work/AI客服/概念.md"
+      "basename": "未命名",
+      "path": "work/AI客服/未命名.md"
     },
     {
-      "basename": "iosFlutter排期",
-      "path": "work/客户端/iosFlutter排期.md"
+      "basename": "架构调研",
+      "path": "work/AI客服/架构调研.md"
     },
     {
-      "basename": "css封装",
-      "path": "work/项目配置/css封装.md"
+      "basename": "未命名 2",
+      "path": "TODO/未命名 2.md"
     },
     {
-      "basename": "APP备案流程",
-      "path": "TODO/APP备案流程.md"
+      "basename": "codex使用教程",
+      "path": "docs/AI/codex使用教程.md"
     },
     {
-      "basename": "AndroidFlutter",
-      "path": "work/客户端/AndroidFlutter.md"
+      "basename": "项目",
+      "path": "work/项目.md"
     },
     {
-      "basename": "远程",
-      "path": "work/客户端/远程.md"
+      "basename": "iterm2使用技巧",
+      "path": "docs/工具与环境/iterm2使用技巧.md"
     },
     {
-      "basename": "AI 客服系统",
-      "path": "work/AI客服/AI 客服系统.md"
+      "basename": "vite",
+      "path": "docs/前端工程化/vite.md"
+    },
+    {
+      "basename": "gitpage+vuepress+jenkins静态博客",
+      "path": "docs/前端工程化/gitpage+vuepress+jenkins静态博客.md"
     }
   ],
   "omittedPaths": [

@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e3da113e36234c44",
+        "id": "38cba8ba14c2c138",
         "type": "tabs",
         "children": [
           {
-            "id": "361f3a2093dcb60f",
+            "id": "dc267bd54d7a8f12",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/AI/Claude Code/cc是什么.md",
+                "file": "docs/前端基础/面试/需复习.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "cc是什么"
+              "title": "需复习"
             }
           }
         ]
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "协商缓存",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -122,13 +122,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/AI/Claude Code/cc是什么.md",
+                "file": "docs/前端基础/面试/需复习.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "cc是什么 的大纲"
+              "title": "需复习 的大纲"
             }
           },
           {
@@ -248,54 +248,54 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "361f3a2093dcb60f",
+  "active": "dc267bd54d7a8f12",
   "lastOpenFiles": [
-    "docs/AI/Claude Code/skill技巧.md",
+    "docs/前端基础/面试/vue.md",
+    "docs/前端基础/面试/需复习.md",
+    "日记/2026-03-28.md",
+    "docs/前端基础/面试/javascript基础.md",
+    "docs/AI/codex实践.md",
+    "static/htmls",
+    "static/docs/Pasted image 20260414105343.png",
+    "static/docs/Pasted image 20260414105320.png",
+    "static/docs/Pasted image 20260414105311.png",
+    "static/docs/Pasted image 20260414105209.png",
+    "static/docs/Pasted image 20260414105100.png",
+    "static/docs/Pasted image 20260414104932.png",
     "docs/AI/Claude Code/cc是什么.md",
-    "CLAUDE.md",
-    "docs/前端工程化/基于webpack5+vue2搭建企业SSR应用.md",
-    "docs/AI/Claude Code",
     "docs/前端工程化/前端性能优化.md",
-    "docs/前端工程化/使用msw结合faker创建mock服务.md",
-    "docs/前端工程化/微信公众号前后端开发.md",
+    "docs/服务端基础/http/http报文-概念状态码.md",
+    "docs/前端基础/面试",
+    "docs/服务端基础/http/http报文-首部.md",
+    "docs/广度知识/http报文-首部.md",
+    "docs/广度知识",
+    "docs/前端基础/JavaScript/手写面试题.md",
+    "work/AI客服/key.md",
+    "work/AI客服/未命名.md",
+    "work/AI客服/架构调研.md",
+    "TODO/未命名 2.md",
+    "static/docs/Pasted image 20260410185148.png",
+    "static/docs/Pasted image 20260410181208.png",
+    "static/docs/Pasted image 20260410173515.png",
+    "static/docs/Pasted image 20260410172905.png",
+    "docs/AI/codex使用教程.md",
+    "work/项目.md",
+    "docs/工具与环境/iterm2使用技巧.md",
+    "docs/前端工程化/vite.md",
     "docs/前端工程化/gitpage+vuepress+jenkins静态博客.md",
-    "docs/前端框架/Next.js/目录约束.md",
-    "work/花鸭.md",
-    "docs/工具与环境/快捷键/vimium自用速查.md",
-    "docs/工具与环境/快捷键/提升命令行效率的Bash快捷键.md",
-    "docs/工具与环境/快捷键/windows快捷键.md",
-    "docs/工具与环境/快捷键/window超好用的终端配置.md",
-    "docs/工具与环境/快捷键/ohmyzsh下的git-alias.md",
-    "docs/工具与环境/快捷键/mac快捷键.md",
+    "docs/前端工程化/微信公众号前后端开发.md",
+    "docs/前端工程化/基于webpack5+vue2搭建企业SSR应用.md",
+    "docs/前端工程化/攻略chrome控制台.md",
+    "docs/前端工程化/使用msw结合faker创建mock服务.md",
+    "docs/前端工程化/webpack打包library.md",
+    "docs/前端工程化/webpack-loader.md",
+    "docs/AI/Claude Code",
     "docs/工具与环境/快捷键",
     "src/components/Hero/CanvasParticles.tsx",
-    "blog/hold.md",
     "src/components/RecentNotesSection/styles.module.scss",
     "src/components/RecentNotesSection/index.tsx",
     "src/components/RecentNotesSection",
     "src/plugins/plugin-recent-notes/index.js",
-    "src/plugins/plugin-recent-notes",
-    "src/plugins",
-    "src/pages/index.tsx",
-    "build/assets/images/Pasted image 20240221110012-67e89aa8438bfab13c9fcfdf54d6597e.png",
-    "build/assets/images/httpsguopcheng-556aa1ad2c53cbe06ca2079a2ceeb3ca.png",
-    "build/assets/images/Pasted image 20240221111143-f33740bc0fee838a2b8e3046b790d53a.png",
-    "build/assets/images/Pasted image 20250717211500-f16ab2b357539c9585b201db91aefc02.png",
-    "build/assets/images/vue-lifecycle-1a5722657e1a091efe12853cbfdec74e.png",
-    "build/assets/images/gongkaimiyao-eea0a4fe4c01aee09e81a9685d614144.png",
-    "build/assets/images/hunhejiami-3380770b5afdd10335b893574579e23b.png",
-    "build/assets/images/httpstongxin-2df1866432e23e8fbf0acbe441bf0e44.png",
-    "build/assets/images/httpsliucheng-82f576853a7d465743db44936a7af812.png",
-    "build/assets/images/vue-render2-b979d53fa101c17d7fe878612be0bcb2.png",
-    "blog/1.md",
-    "docs/AI/copilot备忘录.md",
-    "docs/应用上架与生态/ios项目构建.md",
-    "docs/应用上架与生态/IOS本地证书创建及使用.md",
-    "docs/应用上架与生态/Android打包及签名配置.md",
-    "docs/工具与环境/clashverge内网域名绕过代理.md",
-    "docs/工具与环境/Git/配置多个git-ssh.md",
-    "docs/工具与环境/Git/rebase.md",
-    "docs/工具与环境/Git/git常用的分支操作.md",
     "canva/会员流程.canvas",
     "canva/未命名 1 1.canvas",
     "canva/未命名.canvas",
