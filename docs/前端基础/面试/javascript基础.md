@@ -223,6 +223,58 @@ arr = [];     // ❌ TypeError
 
 ### 什么是作用域链？什么是闭包？闭包会带来什么问题？
 
+#### 什么是作用域
+
+**作用域（Scope）** 是变量和函数的**可访问范围**，决定了代码中哪些地方可以引用某个变量。超出作用域访问变量会报 `ReferenceError`。
+
+作用域的作用是**隔离变量**，防止不同区域的同名变量互相干扰：
+
+```js
+function a() { let x = 1; }
+function b() { let x = 2; }
+// 两个 x 在各自作用域内，互不影响
+```
+
+#### 作用域的分类
+
+**作用域**决定变量在哪里可以被访问，JS 中有四种：
+
+**1. 全局作用域**：在所有函数和块之外声明的变量，整个程序都能访问。浏览器中挂在 `window` 上（`var` 声明）：
+
+```js
+var globalVar = 'global';
+console.log(window.globalVar); // "global"
+```
+
+**2. 函数作用域（局部作用域）**：`var` 声明的变量只在所在函数内可访问，函数外不可见：
+
+```js
+function fn() {
+  var local = 'only here';
+}
+console.log(local); // ReferenceError
+```
+
+**3. 块级作用域**：`let` / `const` 声明的变量只在 `{}` 块内有效，出了块就不可访问：
+
+```js
+{
+  let blockVar = 'block';
+  const blockConst = 'block';
+}
+console.log(blockVar); // ReferenceError
+
+if (true) {
+  let x = 1;
+}
+console.log(x); // ReferenceError
+
+for (let i = 0; i < 3; i++) { ... }
+console.log(i); // ReferenceError（用 var 则不会报错）
+```
+
+**4. 模块作用域**：ES Module 中，每个文件有自己独立的作用域，不会污染全局，需要显式 `export` 才能被外部使用。
+
 #### 词法作用域与作用域链
 
 JS 使用**词法作用域**（静态作用域）：变量的作用域在**代码书写时**就已确定，与函数在哪里调用无关。
@@ -1662,3 +1714,91 @@ ul.addEventListener('click', (e) => {
   if (li) handleClick(li);
 });
 ```
+
+## 十八、调用栈与执行上下文
+
+### 什么是调用栈？执行上下文是什么？栈溢出怎么发生的？
+
+#### 调用栈（Call Stack）
+
+调用栈是 JS 引擎追踪函数调用的数据结构，遵循**先入后出（LIFO）**原则：
+
+- 调用函数 → 压栈（push）
+- 函数返回 → 弹栈（pop）
+
+```js
+function c() { console.log('c'); }
+function b() { c(); }
+function a() { b(); }
+a();
+
+// 调用栈变化过程：
+// [] → [a] → [a, b] → [a, b, c] → [a, b] → [a] → []
+```
+
+#### 执行上下文（Execution Context）
+
+每次函数调用，引擎都会创建一个**执行上下文**并压入调用栈。执行上下文包含三部分：
+
+| 组成 | 内容 |
+|------|------|
+| 变量环境 | 当前函数的变量、函数声明（var 提升发生在这里） |
+| 词法环境 | let/const、作用域链（指向外层上下文） |
+| this 绑定 | 当前的 this 值 |
+
+有三种执行上下文：
+- **全局执行上下文**：程序启动时创建，只有一个，this 是 `window`/`global`
+- **函数执行上下文**：每次函数调用创建一个
+- **eval 执行上下文**：`eval()` 调用时创建（不常用）
+
+```js
+let x = 1;           // 全局执行上下文
+
+function foo() {
+  let y = 2;         // foo 的执行上下文
+  function bar() {
+    let z = 3;       // bar 的执行上下文
+    console.log(x, y, z); // 通过作用域链向上查找 x、y
+  }
+  bar();
+}
+foo();
+```
+
+#### 栈溢出（Stack Overflow）
+
+调用栈大小有限（浏览器一般约 10000 层）。递归没有终止条件时，栈帧持续压入而不弹出，超出限制报错：
+
+```
+RangeError: Maximum call stack size exceeded
+```
+
+```js
+// 错误：无终止条件
+function infinite() {
+  return infinite();
+}
+infinite(); // RangeError
+
+// 正确：有终止条件
+function countdown(n) {
+  if (n <= 0) return;
+  countdown(n - 1);
+}
+```
+
+**解决方法：**
+
+1. 确保递归有终止条件
+2. 深递归改为迭代（循环 + 手动栈模拟）
+3. 用 `setTimeout` 将递归拆成异步，让调用栈在每次执行之间清空：
+
+```js
+function processLargeTree(node) {
+  setTimeout(() => {
+    if (node.children) node.children.forEach(processLargeTree);
+  }, 0);
+}
+```
+
+> 浏览器 DevTools 的 Call Stack 面板实时展示当前调用栈，断点调试时可以看到每一层的执行上下文。
