@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>尾调用 / 伪尾调用优化 Demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: Canvas;
+        --fg: CanvasText;
+        --muted: color-mix(in oklab, var(--fg) 65%, transparent);
+        --border: color-mix(in oklab, var(--fg) 18%, transparent);
+        --card: color-mix(in oklab, var(--fg) 4%, transparent);
+        --btn: color-mix(in oklab, var(--fg) 8%, transparent);
+        --btnHover: color-mix(in oklab, var(--fg) 12%, transparent);
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--fg);
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 28px auto;
+        padding: 0 16px 32px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 8px;
+      }
+      p {
+        margin: 8px 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 14px;
+      }
+      @media (min-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+          align-items: start;
+        }
+      }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px;
+        background: var(--card);
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin: 10px 0;
+      }
+      label {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      input[type="number"] {
+        width: 140px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--fg);
+        outline: none;
+      }
+      button {
+        padding: 9px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--btn);
+        color: var(--fg);
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        background: var(--btnHover);
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .hint {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 12.5px;
+        line-height: 1.45;
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--fg) 6%, transparent);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .sep {
+        height: 1px;
+        background: var(--border);
+        margin: 12px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>尾调用优化 Demo（可在 DevTools 观察调用栈）</h1>
+      <p>
+        说明：大多数现代 JS 引擎<strong>并没有实现</strong>规范里提到的“严格模式尾调用优化
+        (TCO / PTC)”。
+        所以「普通递归」和「尾递归写法」通常都会随着 <span class="mono">n</span> 增大而栈溢出；
+        但「trampoline / 迭代」能真正避免调用栈增长。
+      </p>
+      <div class="row">
+        <span class="badge"
+          >建议：打开 DevTools → Performance 录制 → 点下面按钮运行</span
+        >
+        <span class="badge"
+          >也可在 Console 里看 <span class="mono">console.profile</span> 结果</span
+        >
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="row">
+            <label
+              >n（建议从 1e4 开始试）：
+              <input id="n" type="number" min="1" step="1000" value="20000" />
+            </label>
+            <button id="btnRec">普通递归（易溢出）</button>
+            <button id="btnTail">尾递归写法（多数引擎仍会溢出）</button>
+            <button id="btnTramp">Trampoline（不会溢出）</button>
+            <button id="btnClear">清空日志</button>
+          </div>
+          <div class="hint">
+            观察点：递归两种一般会抛 <span class="mono">Maximum call stack size exceeded</span>；
+            trampoline 会成功返回结果且调用栈不会随着 n 成比例增长。
+          </div>
+          <div class="sep"></div>
+          <div class="row">
+            <button id="btnStackRec">看调用栈：普通递归</button>
+            <button id="btnStackTail">看调用栈：尾递归写法</button>
+            <button id="btnStackTramp">看调用栈：Trampoline</button>
+            <span class="hint"
+              >会抓取一次 <span class="mono">new Error().stack</span>（建议先把 n 调小，比如 50）</span
+            >
+          </div>
+          <div class="row">
+            <button id="btnDbgRec">debug：普通递归（会暂停）</button>
+            <button id="btnDbgTail">debug：尾递归写法（会暂停）</button>
+            <button id="btnDbgTramp">debug：Trampoline（会暂停）</button>
+            <span class="hint"
+              >点击后会触发 <span class="mono">debugger;</span>，在 DevTools → Sources 查看 Call Stack</span
+            >
+          </div>
+          <div class="row">
+            <button id="btnProfileAll">profile：依次跑三种（自动）</button>
+            <span class="hint"
+              >会用 <span class="mono">console.profile()</span> 标记三段执行</span
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <pre id="out"></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      "use strict";
+
+      const $ = (id) => document.getElementById(id);
+      const out = $("out");
+      const nInput = $("n");
+
+      function log(line) {
+        out.textContent += `${line}\n`;
+      }
+
+      function clearLog() {
+        out.textContent = "";
+      }
+
+      // 用一个简单的求和任务：sum(1..n)
+      // 普通递归：会堆栈增长
+      function sumRec(n) {
+        if (n <= 0) return 0;
+        return n + sumRec(n - 1);
+      }
+
+      // 尾递归写法：形式上是尾调用，但多数引擎仍不会做 TCO，因此仍可能溢出
+      function sumTail(n, acc = 0) {
+        if (n <= 0) return acc;
+        return sumTail(n - 1, acc + n);
+      }
+
+      // trampoline：把“下一步”变成 thunk（无参函数），用 while 迭代执行，避免真实递归
+      function sumTailThunk(n, acc = 0) {
+        if (n <= 0) return acc;
+        return () => sumTailThunk(n - 1, acc + n);
+      }
+      function trampoline(thunkOrValue) {
+        let v = thunkOrValue;
+        while (typeof v === "function") v = v();
+        return v;
+      }
+
+      function stackNow(label) {
+        const e = new Error(label);
+        return e && typeof e.stack === "string" ? e.stack : String(e);
+      }
+
+      // 在递归/尾递归的“中间层”采样一次 stack（避免在最深层采样导致字符串巨大）
+      function sampleStackRec(n, sampleAt = Math.max(1, Math.floor(n / 2))) {
+        if (n === sampleAt) return stackNow(`sampleStackRec @ n=${n}`);
+        if (n <= 0) return "reached base case (no sample)";
+        return sampleStackRec(n - 1, sampleAt);
+      }
+
+      function sampleStackTail(n, sampleAt = Math.max(1, Math.floor(n / 2))) {
+        if (n === sampleAt) return stackNow(`sampleStackTail @ n=${n}`);
+        if (n <= 0) return "reached base case (no sample)";
+        return sampleStackTail(n - 1, sampleAt);
+      }
+
+      function sampleStackTailThunk(
+        n,
+        sampleAt = Math.max(1, Math.floor(n / 2))
+      ) {
+        if (n === sampleAt) return stackNow(`sampleStackTrampoline @ n=${n}`);
+        if (n <= 0) return "reached base case (no sample)";
+        return () => sampleStackTailThunk(n - 1, sampleAt);
+      }
+
+      function debugHere(label) {
+        // 让 Sources 的暂停点更好识别
+        // eslint-disable-next-line no-debugger
+        debugger;
+        return stackNow(label);
+      }
+
+      function debugRec(n, sampleAt = Math.max(1, Math.floor(n / 2))) {
+        if (n === sampleAt) return debugHere(`debugRec @ n=${n}`);
+        if (n <= 0) return "reached base case (no debug)";
+        return debugRec(n - 1, sampleAt);
+      }
+
+      function debugTail(n, sampleAt = Math.max(1, Math.floor(n / 2))) {
+        if (n === sampleAt) return debugHere(`debugTail @ n=${n}`);
+        if (n <= 0) return "reached base case (no debug)";
+        return debugTail(n - 1, sampleAt);
+      }
+
+      function debugTailThunk(n, sampleAt = Math.max(1, Math.floor(n / 2))) {
+        if (n === sampleAt) return debugHere(`debugTrampoline @ n=${n}`);
+        if (n <= 0) return "reached base case (no debug)";
+        return () => debugTailThunk(n - 1, sampleAt);
+      }
+
+      function fmtMs(ms) {
+        return `${ms.toFixed(2)}ms`;
+      }
+
+      async function runCase(name, fn) {
+        const n = Number(nInput.value);
+        log(`\n[${name}] n=${n}`);
+        const t0 = performance.now();
+        try {
+          const result = fn(n);
+          const t1 = performance.now();
+          log(`结果: ${result}`);
+          log(`耗时: ${fmtMs(t1 - t0)}`);
+        } catch (err) {
+          const t1 = performance.now();
+          log(`报错: ${err && err.message ? err.message : String(err)}`);
+          log(`耗时(到报错): ${fmtMs(t1 - t0)}`);
+        }
+        // 让 UI/Performance trace 更容易分段
+        await new Promise((r) => setTimeout(r, 30));
+      }
+
+      $("btnRec").addEventListener("click", () =>
+        runCase("普通递归", (n) => sumRec(n))
+      );
+      $("btnTail").addEventListener("click", () =>
+        runCase("尾递归写法", (n) => sumTail(n, 0))
+      );
+      $("btnTramp").addEventListener("click", () =>
+        runCase("Trampoline", (n) => trampoline(sumTailThunk(n, 0)))
+      );
+      $("btnClear").addEventListener("click", clearLog);
+
+      function logStack(title, stackText) {
+        log(`\n[调用栈采样] ${title}`);
+        log(stackText);
+        log("（提示：在 DevTools Console 里点 stack 帧可跳转到源码位置）");
+      }
+
+      $("btnStackRec").addEventListener("click", () => {
+        const n = Number(nInput.value);
+        const stack = sampleStackRec(n);
+        logStack("普通递归", stack);
+      });
+      $("btnStackTail").addEventListener("click", () => {
+        const n = Number(nInput.value);
+        const stack = sampleStackTail(n);
+        logStack("尾递归写法", stack);
+      });
+      $("btnStackTramp").addEventListener("click", () => {
+        const n = Number(nInput.value);
+        const stack = trampoline(sampleStackTailThunk(n));
+        logStack("Trampoline", stack);
+      });
+
+      $("btnDbgRec").addEventListener("click", () => {
+        const n = Number(nInput.value);
+        const stack = debugRec(n);
+        logStack("debug：普通递归（暂停后继续会看到这个 stack）", stack);
+      });
+      $("btnDbgTail").addEventListener("click", () => {
+        const n = Number(nInput.value);
+        const stack = debugTail(n);
+        logStack("debug：尾递归写法（暂停后继续会看到这个 stack）", stack);
+      });
+      $("btnDbgTramp").addEventListener("click", () => {
+        const n = Number(nInput.value);
+        const stack = trampoline(debugTailThunk(n));
+        logStack("debug：Trampoline（暂停后继续会看到这个 stack）", stack);
+      });
+
+      $("btnProfileAll").addEventListener("click", async () => {
+        clearLog();
+        const n = Number(nInput.value);
+        log(`开始 profile（n=${n}）...`);
+
+        console.profile("1) 普通递归");
+        await runCase("普通递归", (x) => sumRec(x));
+        console.profileEnd("1) 普通递归");
+
+        console.profile("2) 尾递归写法");
+        await runCase("尾递归写法", (x) => sumTail(x, 0));
+        console.profileEnd("2) 尾递归写法");
+
+        console.profile("3) Trampoline");
+        await runCase("Trampoline", (x) => trampoline(sumTailThunk(x, 0)));
+        console.profileEnd("3) Trampoline");
+
+        log("profile 完成：去 DevTools 的 Profiler/Performance 查看三段差异。");
+      });
+
+      // 初始提示
+      clearLog();
+      log("准备就绪。打开 DevTools → Performance 录制 → 点击按钮运行。");
+    </script>
+  </body>
+</html>
