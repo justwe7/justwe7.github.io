@@ -336,6 +336,13 @@ const config = {
     ],
   ],
   stylesheets: [],
+  scripts: [
+    {
+      src: 'https://static.cloudflareinsights.com/beacon.min.js',
+      defer: true,
+      'data-cf-beacon': '{"token": "1e38779c7e05409dadde35ad20a3d1df"}',
+    },
+  ],
   i18n: {
     defaultLocale: 'zh',
     locales: [/* 'en',  */'zh'],
