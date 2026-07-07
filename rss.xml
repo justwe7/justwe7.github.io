@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>土豆和土豆丝</title>
-        <link>https://wiki.lihx.top/</link>
+        <link>https://lihx.top/</link>
         <description>土豆和土豆丝写字的地方 Blog</description>
-        <lastBuildDate>Tue, 07 Jul 2026 11:54:19 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 07 Jul 2026 12:14:26 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh</language>
         <copyright>Copyright © 2026 土豆和土豆丝 Built with Docusaurus.&lt;p&gt;&lt;a href="http://beian.miit.gov.cn/" class="footer_lin"&gt;晋ICP备2021001641号&lt;/a&gt;&lt;/p&gt;</copyright>
         <item>
             <title><![CDATA[hold]]></title>
-            <link>https://wiki.lihx.top/hold</link>
-            <guid>https://wiki.lihx.top/hold</guid>
-            <pubDate>Tue, 07 Jul 2026 11:54:19 GMT</pubDate>
+            <link>https://lihx.top/hold</link>
+            <guid>https://lihx.top/hold</guid>
+            <pubDate>Tue, 07 Jul 2026 12:14:26 GMT</pubDate>
             <description><![CDATA[占位文件]]></description>
             <content:encoded><![CDATA[<p>占位文件</p>]]></content:encoded>
         </item>

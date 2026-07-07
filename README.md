@@ -3,12 +3,12 @@
 </h2><br>
 
 <pre align="center">
- Build with 🦖<a href="https://wiki.lihx.top">Docusaurus</a> 
+ Build with 🦖<a href="https://lihx.top">Docusaurus</a> 
 </pre>
 
 <p align="center">
 <br>
-<a href="https://wiki.lihx.top">🖥 Online Preview</a>
+<a href="https://lihx.top">🖥 Online Preview</a>
 <br><br>
 </p>
 
