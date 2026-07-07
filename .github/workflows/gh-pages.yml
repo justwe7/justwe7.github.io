@@ -50,7 +50,7 @@ jobs:
           # Source directory, path relative to `$GITHUB_WORKSPACE` root, eg: `dist/`
           SOURCE: 'build'
           # Target directory
-          TARGET: '/www/wwwroot/wiki.lihx.top'
+          TARGET: '/www/wwwroot/lihx.top'
           # Arguments to pass to rsync
           ARGS: '-avzr --delete ' # optional, default is -rlgoDzvc -i
           # An array of ssh arguments, they must be prefixed with -o and separated by a comma, for example: -o SomeArgument=no, -o SomeOtherArgument=5

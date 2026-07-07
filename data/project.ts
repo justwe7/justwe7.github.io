@@ -29,7 +29,7 @@ export const projects: Project[] = [
     title: '土豆和土豆丝小站',
     description: '基于Docusaurus v2 静态网站生成器实现个人博客',
     // preview: '/img/project/blog.png',
-    website: 'https://wiki.lihx.top',
+    website: 'https://lihx.top',
     source: 'https://github.com/justwe7/justwe7.github.io',
     tags: ['opensource', 'design', 'favorite'],
     type: 'web',

@@ -25,7 +25,7 @@ git config user.email 'ilihuaxi@gmail.com'
 git remote add origin git@github.com:justwe7/justwe7.github.io.git
 git remote add gitee https://justwe7:${GITEE_TOKEN}@gitee.com/justwe7/justwe7.github.io.git
 
-echo "[https://wiki.lihx.top/](https://wiki.lihx.top/)" > README.md
+echo "[https://lihx.top/](https://lihx.top/)" > README.md
 git add .
 git commit -m 'travis-ci: deploy'
 git push origin HEAD:master --force

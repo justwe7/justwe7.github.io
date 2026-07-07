@@ -7,7 +7,7 @@ const announcementBarContent = `🚀 如果你觉得还不错, 就给一个 ⭐�
 const config = {
   title: '土豆和土豆丝写字的地方',
   titleDelimiter: '-',
-  url: 'https://wiki.lihx.top',
+  url: 'https://lihx.top',
   // url: 'https://justwe7.github.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',

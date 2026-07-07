@@ -1,5 +1,5 @@
 language: node_js
-node_js: 
+node_js:
   # - lts/* #设置语言版本，lts表示稳定版
   # - node # latest stable Node.js release
   - 16
@@ -9,7 +9,7 @@ branches:
 cache:
   apt: false
   yarn: false
-  directories: 
+  directories:
     - node_modules #缓存依赖
 before_install:
 - export TZ='Asia/Shanghai' # 设置时区
@@ -23,7 +23,7 @@ deploy:
     branch: feature
   local_dir: build # 推送到 GitHub 页面的目录
   target_branch: master # 强制推送的分支
-  fqdn: wiki.lihx.top
+  fqdn: lihx.top
   deployment_file: true # 允许创建部署信息文件
 
 install: # 安装依赖

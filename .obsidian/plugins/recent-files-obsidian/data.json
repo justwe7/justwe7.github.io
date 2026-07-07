@@ -1,84 +1,84 @@
 {
   "recentFiles": [
     {
-      "basename": "需复习",
-      "path": "docs/前端基础/面试/需复习.md"
+      "basename": "Prisma、Node.js 与数据库入门教程",
+      "path": "docs/编程备忘录/Prisma、Node.js 与数据库入门教程.md"
     },
     {
-      "basename": "vue",
-      "path": "docs/前端基础/面试/vue.md"
+      "basename": "npmrc配置",
+      "path": "docs/编程备忘录/npmrc配置.md"
     },
     {
-      "basename": "2026-03-28",
-      "path": "日记/2026-03-28.md"
-    },
-    {
-      "basename": "javascript基础",
-      "path": "docs/前端基础/面试/javascript基础.md"
-    },
-    {
-      "basename": "codex实践",
-      "path": "docs/AI/codex实践.md"
-    },
-    {
-      "basename": "cc是什么",
-      "path": "docs/AI/Claude Code/cc是什么.md"
-    },
-    {
-      "basename": "前端性能优化",
-      "path": "docs/前端工程化/前端性能优化.md"
-    },
-    {
-      "basename": "http报文-概念状态码",
-      "path": "docs/服务端基础/http/http报文-概念状态码.md"
-    },
-    {
-      "basename": "http报文-首部",
-      "path": "docs/服务端基础/http/http报文-首部.md"
-    },
-    {
-      "basename": "http报文-首部",
-      "path": "docs/广度知识/http报文-首部.md"
-    },
-    {
-      "basename": "手写面试题",
-      "path": "docs/前端基础/JavaScript/手写面试题.md"
+      "basename": "2026-07-03",
+      "path": "日记/2026-07-03.md"
     },
     {
       "basename": "key",
       "path": "work/AI客服/key.md"
     },
     {
-      "basename": "未命名",
-      "path": "work/AI客服/未命名.md"
+      "basename": "部署",
+      "path": "work/mz/部署.md"
     },
     {
-      "basename": "架构调研",
-      "path": "work/AI客服/架构调研.md"
+      "basename": "资料",
+      "path": "work/mz/资料.md"
     },
     {
-      "basename": "未命名 2",
-      "path": "TODO/未命名 2.md"
+      "basename": "工时",
+      "path": "work/mz/工时.md"
     },
     {
-      "basename": "codex使用教程",
-      "path": "docs/AI/codex使用教程.md"
+      "basename": "huhu-app",
+      "path": "work/huhu-app.md"
     },
     {
-      "basename": "项目",
-      "path": "work/项目.md"
+      "basename": "国内安卓应用市场上架指南",
+      "path": "docs/应用上架与生态/国内安卓应用市场上架指南.md"
     },
     {
-      "basename": "iterm2使用技巧",
-      "path": "docs/工具与环境/iterm2使用技巧.md"
+      "basename": "跳板",
+      "path": "work/mz/跳板.md"
     },
     {
-      "basename": "vite",
-      "path": "docs/前端工程化/vite.md"
+      "basename": "02-root-和-首次渲染入口",
+      "path": "docs/前端框架/React源码/01-start/02-root-和-首次渲染入口.md"
     },
     {
-      "basename": "gitpage+vuepress+jenkins静态博客",
-      "path": "docs/前端工程化/gitpage+vuepress+jenkins静态博客.md"
+      "basename": "01-jsx-到-reactelement",
+      "path": "docs/前端框架/React源码/01-start/01-jsx-到-reactelement.md"
+    },
+    {
+      "basename": "vue",
+      "path": "docs/前端基础/面试/vue.md"
+    },
+    {
+      "basename": "需复习",
+      "path": "docs/前端基础/面试/需复习.md"
+    },
+    {
+      "basename": "javascript基础",
+      "path": "docs/前端基础/面试/javascript基础.md"
+    },
+    {
+      "basename": "2026-06-11",
+      "path": "日记/2026-06-11.md"
+    },
+    {
+      "basename": "hold",
+      "path": "blog/hold.md"
+    },
+    {
+      "basename": "2222",
+      "path": "work/2222.md"
+    },
+    {
+      "basename": "cc是什么",
+      "path": "docs/AI/Claude Code/cc是什么.md"
+    },
+    {
+      "basename": "AI编程最佳实践",
+      "path": "docs/AI/Claude Code/AI编程最佳实践.md"
     }
   ],
   "omittedPaths": [

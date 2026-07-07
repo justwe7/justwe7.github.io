@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/前端基础/面试/需复习.md",
+                "file": "docs/编程备忘录/Prisma、Node.js 与数据库入门教程.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "需复习"
+              "title": "Prisma、Node.js 与数据库入门教程"
             }
           }
         ]
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "协商缓存",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -122,13 +122,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/前端基础/面试/需复习.md",
+                "file": "docs/编程备忘录/Prisma、Node.js 与数据库入门教程.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "需复习 的大纲"
+              "title": "Prisma、Node.js 与数据库入门教程 的大纲"
             }
           },
           {
@@ -150,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/Flutter/flutter通过插件对接旷视原生sdk.md",
+                "file": "docs/编程备忘录/Prisma、Node.js 与数据库入门教程.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -160,7 +160,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "flutter通过插件对接旷视原生sdk 的反向链接列表"
+              "title": "Prisma、Node.js 与数据库入门教程 的反向链接列表"
             }
           },
           {
@@ -250,52 +250,52 @@
   },
   "active": "dc267bd54d7a8f12",
   "lastOpenFiles": [
+    "build/sw.js.map",
+    "build/sw.js",
+    "build/search-index.json",
+    "build/feed.json",
+    "build/rss.xml",
+    "build/atom.xml",
+    "build/sitemap.xml",
+    "build/index.html",
+    "build/website/index.html",
+    "build/website",
+    "build/search/index.html",
+    "build/devtools/network/gs/logo-1024px.png",
+    "build/devtools/network/gs/logo.svg",
+    "build/devtools/imgs/unicorn.gif",
+    "build/svg/juejin.svg",
+    "build/img/website/zhubai.png",
+    "build/img/website/vben-admin.png",
+    "build/img/website/webpack.png",
+    "build/img/website/webgradients.png",
+    "build/img/website/uiverse.png",
+    "build/img/website/turborepo.svg",
+    "build/devtools/README.md",
+    "build/devtools/CONTRIBUTING.md",
+    "docs/编程备忘录/npmrc配置.md",
+    "docs/编程备忘录/Prisma、Node.js 与数据库入门教程.md",
+    "日记/2026-07-03.md",
+    "work/AI客服/key.md",
+    "work/mz/部署.md",
+    "work/mz/资料.md",
+    "work/mz/工时.md",
+    "work/huhu-app.md",
+    "docs/应用上架与生态/国内安卓应用市场上架指南.md",
+    "work/mz/跳板.md",
+    "docs/前端框架/React源码/01-start/02-root-和-首次渲染入口.md",
+    "AGENTS.md",
+    "docs/前端框架/React源码/01-start/01-jsx-到-reactelement.md",
     "docs/前端基础/面试/vue.md",
     "docs/前端基础/面试/需复习.md",
-    "日记/2026-03-28.md",
     "docs/前端基础/面试/javascript基础.md",
-    "docs/AI/codex实践.md",
-    "static/htmls",
-    "static/docs/Pasted image 20260414105343.png",
-    "static/docs/Pasted image 20260414105320.png",
-    "static/docs/Pasted image 20260414105311.png",
-    "static/docs/Pasted image 20260414105209.png",
-    "static/docs/Pasted image 20260414105100.png",
-    "static/docs/Pasted image 20260414104932.png",
+    "日记/2026-06-11.md",
+    "blog/hold.md",
+    "work/2222.md",
     "docs/AI/Claude Code/cc是什么.md",
-    "docs/前端工程化/前端性能优化.md",
-    "docs/服务端基础/http/http报文-概念状态码.md",
-    "docs/前端基础/面试",
-    "docs/服务端基础/http/http报文-首部.md",
-    "docs/广度知识/http报文-首部.md",
-    "docs/广度知识",
-    "docs/前端基础/JavaScript/手写面试题.md",
-    "work/AI客服/key.md",
-    "work/AI客服/未命名.md",
-    "work/AI客服/架构调研.md",
-    "TODO/未命名 2.md",
-    "static/docs/Pasted image 20260410185148.png",
-    "static/docs/Pasted image 20260410181208.png",
-    "static/docs/Pasted image 20260410173515.png",
-    "static/docs/Pasted image 20260410172905.png",
-    "docs/AI/codex使用教程.md",
-    "work/项目.md",
-    "docs/工具与环境/iterm2使用技巧.md",
-    "docs/前端工程化/vite.md",
-    "docs/前端工程化/gitpage+vuepress+jenkins静态博客.md",
-    "docs/前端工程化/微信公众号前后端开发.md",
-    "docs/前端工程化/基于webpack5+vue2搭建企业SSR应用.md",
-    "docs/前端工程化/攻略chrome控制台.md",
-    "docs/前端工程化/使用msw结合faker创建mock服务.md",
-    "docs/前端工程化/webpack打包library.md",
-    "docs/前端工程化/webpack-loader.md",
-    "docs/AI/Claude Code",
-    "docs/工具与环境/快捷键",
-    "src/components/Hero/CanvasParticles.tsx",
-    "src/components/RecentNotesSection/styles.module.scss",
-    "src/components/RecentNotesSection/index.tsx",
-    "src/components/RecentNotesSection",
-    "src/plugins/plugin-recent-notes/index.js",
+    "docs/AI/Claude Code/AI编程最佳实践.md",
+    "docs/工具与环境/快捷键/提升命令行效率的Bash快捷键.md",
+    "work/AI客服/概念.md",
     "canva/会员流程.canvas",
     "canva/未命名 1 1.canvas",
     "canva/未命名.canvas",

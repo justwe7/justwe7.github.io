@@ -4,7 +4,7 @@
   "author": "ilihuaxi@gmail.com",
   "private": true,
   "version": "3.1.0",
-  "homepage": "https://wiki.lihx.top",
+  "homepage": "https://lihx.top",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
