@@ -1,109 +1,210 @@
-.showcaseCard {
+.cardWrapper {
   position: relative;
-  box-shadow: 0 10px 30px -5px rgb(0 0 0 / 30%);
-  transition: box-shadow 0.5s, opacity 0.5s;
-  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
   overflow: hidden;
-  touch-action: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s;
+  animation: cardCascade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
-.showcaseCard::before {
+html[data-theme='dark'] .cardWrapper {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes cardCascade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.cardWrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='dark'] .cardWrapper:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cardGlow, .cardGlowDark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s;
+}
+
+.cardGlow { display: none; }
+.cardGlowDark { display: block; }
+
+html[data-theme='dark'] .cardGlow { display: block; }
+html[data-theme='dark'] .cardGlowDark { display: none; }
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardImageLink {
+  position: relative;
   display: block;
-  font-weight: bold;
-  height: 0;
   overflow: hidden;
-  visibility: hidden;
+  aspect-ratio: 16 / 9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.showcaseCardImage {
-  overflow: hidden;
-  height: 150px;
-  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+html[data-theme='dark'] .cardImageLink {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.showcaseCardHeader {
+.cardImageWrapper, .cardPlaceholder {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cardWrapper:hover .cardImageWrapper,
+.cardWrapper:hover .cardPlaceholder {
+  transform: scale(1.05);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.cardPlaceholder {
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  justify-content: center;
+  background-size: 200% 200% !important;
+  animation: gradientFlow 20s ease infinite;
 }
 
-.showcaseCardTitle {
-  margin-bottom: 0;
-  flex: 1 1 auto;
+.placeholderIcon {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.showcaseCardTitle a {
-  text-decoration: none;
-  background: linear-gradient(
-    var(--ifm-color-primary),
-    var(--ifm-color-primary)
-  )
-    0% 100% / 0% 1px no-repeat;
-  transition: background-size ease-out 200ms;
+.cardBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111827;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.showcaseCardTitle a:not(:focus):hover {
-  background-size: 100% 1px;
+html[data-theme='dark'] .cardBadge {
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.showcaseCardTitle,
-.showcaseCardHeader .svgIconFavorite {
-  margin-right: 0.25rem;
+.cardWrapper:hover .cardBadge {
+  background: #4F8CFF;
+  color: #ffffff;
+  border-color: #4F8CFF;
 }
 
-.showcaseCardHeader .svgIconFavorite {
-  color: var(--site-color-svg-icon-favorite);
+.cardBody {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.showcaseCardSrcBtn {
-  margin-left: 6px;
-  padding-left: 12px;
-  padding-right: 12px;
-  border: none;
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
-.showcaseCardSrcBtn:focus-visible {
-  background-color: var(--ifm-color-secondary-dark);
+.cardTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
 }
 
-html[data-theme='dark'] .showcaseCardSrcBtn {
-  background-color: var(--ifm-color-emphasis-200) !important;
+html[data-theme='dark'] .cardTitle {
+  color: #ffffff;
+}
+
+.cardTitleLink {
   color: inherit;
+  text-decoration: none !important;
 }
 
-html[data-theme='dark'] .showcaseCardSrcBtn:hover {
-  background-color: var(--ifm-color-emphasis-300) !important;
+.cardArrow {
+  color: #6b7280;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s;
+  display: flex;
 }
 
-.showcaseCardBody {
-  font-size: smaller;
-  line-height: 1.66;
+.cardWrapper:hover .cardArrow {
+  transform: translateX(4px) rotate(45deg);
+  color: #111827;
+}
+
+html[data-theme='dark'] .cardWrapper:hover .cardArrow {
+  color: #ffffff;
+}
+
+.cardDesc {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex: 1;
 }
 
 .cardFooter {
-  display: flex;
-  flex-wrap: wrap;
+  margin-top: auto;
 }
 
-.tag {
-  font-size: 0.675rem;
-  border: 1px solid var(--ifm-color-secondary-darkest);
-  cursor: default;
-  margin-right: 6px;
-  margin-bottom: 6px !important;
-  border-radius: 12px;
+.cardSourceLink {
   display: inline-flex;
   align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-decoration: none !important;
+  transition: color 0.2s;
 }
 
-.tag .textLabel {
-  margin-left: 8px;
+.cardSourceLink:hover {
+  color: #111827;
 }
 
-.tag .colorLabel {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  margin-left: 6px;
-  margin-right: 6px;
+html[data-theme='dark'] .cardSourceLink:hover {
+  color: #ffffff;
 }

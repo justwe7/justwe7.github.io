@@ -80,7 +80,7 @@ function Hero() {
               <RotatingTypewriter 
                 phrases={[
                   "你好！我是土豆和土豆丝",
-                  "一名全干前端切图仔"
+                  "前端工程师，热衷于独立开发与AI应用"
                 ]} 
               />
             </h1>
@@ -90,10 +90,10 @@ function Hero() {
             <span className={styles.systemLog}>[System]: Booting knowledge matrix... OK</span><br/>
             <span className={styles.systemLog}>[System]: Load connections... 100%</span><br/><br/>
             <Translate id="homepage.hero.text">
-              在这里我会分享平时整理与踩坑的“有用”知识。
+              这里记录我的开发实践、踩坑总结、开源项目与一些有趣的尝试。
             </Translate>
             <br />
-            欢迎您随时执行下方的系统级探测。
+            希望这些内容，也能帮你少踩几个坑。
           </animated.p>
 
           <animated.div style={trails[2]} className={styles.techStack}>

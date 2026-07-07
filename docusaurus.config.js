@@ -81,7 +81,7 @@ const config = {
         //   ],
         // },
         {
-          label: '项目',
+          label: '个人项目',
           position: 'right',
           to: 'project',
         },

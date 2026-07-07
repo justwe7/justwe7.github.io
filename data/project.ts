@@ -1,5 +1,31 @@
 export const projects: Project[] = [
   {
+    title: 'AppShots',
+    description: '一款面向开发者的 AI 橱窗图生成器。上传截图，在预设画布上调整内容，一键导出符合应用商店尺寸要求的可提交素材。',
+    website: 'https://appshots.lihx.top/',
+    tags: ['product', 'design', 'favorite'],
+    type: 'web',
+    badge: 'WEB',
+  },
+  {
+    title: 'AppPort',
+    description: '应用内测分发服务。支持上传 APK / IPA，解析应用信息，并提供应用列表、详情、下载资源和 iOS plist。',
+    website: 'https://github.com/justwe7/AppPort',
+    source: 'https://github.com/justwe7/AppPort',
+    tags: ['opensource', 'product'],
+    type: 'web',
+    badge: 'TOOL',
+  },
+  {
+    title: 'Web Session Copier',
+    description: '用于复制并应用 Web 会话数据（Cookies、LocalStorage、SessionStorage）的浏览器扩展，面向账号免密分享等场景。',
+    website: 'https://github.com/justwe7/web-session-copier',
+    source: 'https://github.com/justwe7/web-session-copier',
+    tags: ['opensource', 'product'],
+    type: 'web',
+    badge: 'PLUGIN',
+  },
+  {
     title: '土豆和土豆丝小站',
     description: '基于Docusaurus v2 静态网站生成器实现个人博客',
     // preview: '/img/project/blog.png',
@@ -7,6 +33,7 @@ export const projects: Project[] = [
     source: 'https://github.com/justwe7/justwe7.github.io',
     tags: ['opensource', 'design', 'favorite'],
     type: 'web',
+    badge: 'WEB',
   },
   {
     title: 'file-chooser',
@@ -15,6 +42,7 @@ export const projects: Project[] = [
     source: 'https://github.com/justwe7/npm-pkgs/tree/main/packages/file-chooser#readme',
     tags: ['opensource'],
     type: 'web',
+    badge: 'TOOL',
   },
   {
     title: 'jw-cli',
@@ -23,6 +51,7 @@ export const projects: Project[] = [
     source: 'https://github.com/justwe7/jw-cli',
     tags: ['opensource', 'favorite'],
     type: 'web',
+    badge: 'CLI',
   },
   {
     title: '小程序devtool增强工具',
@@ -30,6 +59,7 @@ export const projects: Project[] = [
     website: 'https://www.npmjs.com/package/@justwe7/mp-devtool-plugin',
     tags: ['opensource'],
     type: 'web',
+    badge: 'PLUGIN',
   },
   {
     title: '自用的stylelint规则',
@@ -37,6 +67,7 @@ export const projects: Project[] = [
     website: 'https://www.npmjs.com/package/@justwe7/stylelint-order-standard',
     tags: ['opensource'],
     type: 'web',
+    badge: 'TOOL',
   },
   {
     title: 'vue-ssr',
@@ -44,6 +75,7 @@ export const projects: Project[] = [
     website: 'https://github.com/justwe7/Vue-SSR',
     tags: [],
     type: 'web',
+    badge: 'WEB',
   },
   {
     title: '吃什么呢',
@@ -52,6 +84,7 @@ export const projects: Project[] = [
     website: 'https://github.com/justwe7/mp-pick',
     tags: ['opensource'],
     type: 'toy',
+    badge: 'APP',
   },
 ]
 
@@ -83,7 +116,8 @@ export type Project = {
   website: string;
   source?: string | null;
   tags: TagType[];
-  type: ProjectType
+  type: ProjectType;
+  badge?: string;
 };
 
 export const Tags: Record<TagType, Tag> = {

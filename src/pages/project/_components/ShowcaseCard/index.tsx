@@ -1,124 +1,103 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { useRef, useState, MouseEvent } from 'react';
 import clsx from 'clsx';
 import Image from '@theme/IdealImage';
 import Link from '@docusaurus/Link';
-import Translate from '@docusaurus/Translate';
-import { useSpring, animated, to } from '@react-spring/web';
-
+import { type Project } from '@site/data/project';
 import styles from './styles.module.css';
-import FavoriteIcon from '@site/src/components/svgIcons/FavoriteIcon';
-import Tooltip from '../ShowcaseTooltip';
-import {
-  Tags,
-  TagList,
-  type TagType,
-  type Project,
-  type Tag,
-} from '@site/data/project';
-import { sortBy } from '@site/src/utils/jsUtils';
-import { useGesture } from 'react-use-gesture';
 
-const TagComp = React.forwardRef<HTMLLIElement, Tag>(
-  ({ label, color, description }, ref) => (
-    <li ref={ref} className={styles.tag} title={description}>
-      <span className={styles.textLabel}>{label.toLowerCase()}</span>
-      <span className={styles.colorLabel} style={{ backgroundColor: color }} />
-    </li>
-  )
-);
+export default function ShowcaseCard({ project, index, isFeatured }: { project: Project, index: number, isFeatured?: boolean }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
-function ShowcaseCardTag({ tags }: { tags: TagType[] }) {
-  const tagObjects = tags.map((tag) => ({ tag, ...Tags[tag] }));
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
-  // Keep same order for all tags
-  const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag)
-  );
+  // Generate a predictable gradient for placeholder based on title length or char code
+  const hash = project.title.charCodeAt(0) + project.title.length;
+  const hue1 = (hash * 137) % 360;
+  const hue2 = (hash * 277) % 360;
+  
+  const animationDelay = `${index * 50}ms`;
 
   return (
-    <>
-      {tagObjectsSorted.map((tagObject, index) => {
-        const id = `showcase_card_tag_${tagObject.tag}`;
-
-        return (
-          <Tooltip
-            key={index}
-            text={tagObject.description}
-            anchorEl="#__docusaurus"
-            id={id}
-          >
-            <TagComp key={index} {...tagObject} />
-          </Tooltip>
-        );
-      })}
-    </>
+    <div
+      ref={cardRef}
+      className={clsx(styles.cardWrapper, { [styles.cardFeatured]: isFeatured })}
+      style={{ animationDelay }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div 
+        className={styles.cardGlow}
+        style={{
+          background: isHovered
+            ? `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.08), transparent 40%)`
+            : 'none'
+        }}
+      />
+      <div 
+        className={styles.cardGlowDark}
+        style={{
+          background: isHovered
+            ? `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0,0,0,0.03), transparent 40%)`
+            : 'none'
+        }}
+      />
+      
+      <div className={styles.cardContent}>
+        <Link href={project.website} className={styles.cardImageLink}>
+          {project.preview ? (
+            <div className={styles.cardImageWrapper}>
+               <Image src={project.preview} alt={project.title} className={styles.cardImage} />
+            </div>
+          ) : (
+            <div className={styles.cardPlaceholder} style={{
+               background: `linear-gradient(135deg, hsl(${hue1}, 70%, 80%), hsl(${hue2}, 70%, 90%))`
+            }}>
+              <span className={styles.placeholderIcon}>✦</span>
+            </div>
+          )}
+          {project.badge && (
+            <div className={styles.cardBadge}>{project.badge}</div>
+          )}
+        </Link>
+        
+        <div className={styles.cardBody}>
+           <div className={styles.cardHeader}>
+              <h4 className={styles.cardTitle}>
+                <Link href={project.website} className={styles.cardTitleLink}>
+                  {project.title}
+                </Link>
+              </h4>
+              <Link href={project.website} className={styles.cardArrow}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                   <line x1="7" y1="17" x2="17" y2="7"></line>
+                   <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </Link>
+           </div>
+           <p className={styles.cardDesc}>{project.description}</p>
+           
+           {project.source && (
+             <div className={styles.cardFooter}>
+               <Link href={project.source} className={styles.cardSourceLink}>
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '4px'}}>
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                 </svg>
+                 Source
+               </Link>
+             </div>
+           )}
+        </div>
+      </div>
+    </div>
   );
 }
-
-const ShowcaseCard = memo(({ project }: { project: Project }) => {
-  const domTarget = useRef(null);
-  const [{ scale, zoom }, api] = useSpring(() => ({
-    scale: 1,
-    zoom: 0,
-    config: {
-      mass: 5,
-      tension: 500,
-      friction: 40,
-    },
-  }));
-
-  useGesture(
-    {
-      onHover: ({ hovering }) =>
-        hovering ? api({ scale: 1.05 }) : api({ scale: 1 }),
-    },
-    { domTarget, eventOptions: { passive: false } }
-  );
-
-  return (
-    <animated.li
-      ref={domTarget}
-      style={{
-        transform: 'perspective(100px)',
-        scale: to([scale, zoom], (s, z) => s + z),
-      }}
-      key={project.title}
-      className={clsx('card shadow--md', styles.showcaseCard)}
-    >
-      {project.preview && (
-        <div className={clsx('card__image', styles.showcaseCardImage)}>
-          <Image src={project.preview} alt={project.title} img={project.preview} />
-        </div>
-      )}
-      <div className="card__body">
-        <div className={clsx(styles.showcaseCardHeader)}>
-          <h4 className={styles.showcaseCardTitle}>
-            <Link href={project.website} className={styles.showcaseCardLink}>
-              {project.title}
-            </Link>
-          </h4>
-          {project.tags.includes('favorite') && (
-            <FavoriteIcon svgClass={styles.svgIconFavorite} size="small" />
-          )}
-          {project.source && (
-            <Link
-              href={project.source}
-              className={clsx(
-                'button button--secondary button--sm',
-                styles.showcaseCardSrcBtn
-              )}
-            >
-              <Translate id="showcase.card.sourceLink">source</Translate>
-            </Link>
-          )}
-        </div>
-        <p className={styles.showcaseCardBody}>{project.description}</p>
-      </div>
-      <ul className={clsx('card__footer', styles.cardFooter)}>
-        <ShowcaseCardTag tags={project.tags} />
-      </ul>
-    </animated.li>
-  );
-});
-
-export default ShowcaseCard;
