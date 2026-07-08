@@ -454,7 +454,7 @@ Time有两行：
 
 ### 使用Network面板进行网络优化
 > 参考Network面板可以针对Network提出一些优化建议
-[Queued Series Example](https://wiki.lihx.top/devtools/network/queue.html)
+[Queued Series Example](https://lihx.top/devtools/network/queue.html)
 #### 排队或停止阻塞 
 
 最常见的问题是很多个请求排队或被阻塞。这表示从单个客户端检索的资源太多。在HTTP 1.0/1.1连接协议中，Chrome限制每个域名最多执行6个TCP连接。如果一次请求十二个资源，前6个将开始，后6个将排队。一旦其中一个请求完成，队列中的第一个请求项目将开始其请求过程。
