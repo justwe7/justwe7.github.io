@@ -37,7 +37,11 @@ docs/
 - 图片由 Obsidian 自动存放至 `static/docs/` 目录
 - Obsidian 粘贴图片沿用现有相对路径风格，例如 `../../static/docs/<图片文件名>`
 - AI 生成的文章配图统一放在 `static/docs/aiRender/<文章分类>/` 目录下，例如 `static/docs/aiRender/应用上架与生态/`
-- 在文章中引用 AI 生成配图时沿用现有相对路径风格，例如 `![](../../static/docs/aiRender/应用上架与生态/example.png)`；不要把这类配图放到 `static/img/` 后再用 `/img/...` 引用
+- AI 生成配图最终使用 WebP；PNG 只作为临时源图
+- 使用 ImageMagick 压缩为 WebP，默认质量 `82`，例如：`magick example.png -quality 82 example.webp`
+- WebP 生成并验证成功后删除对应 PNG 源图；只有 WebP 生成失败或需要排查问题时才保留 PNG
+- 默认不保存生图提示词或构思卡存档；只有用户明确要求保存时，才把提示词/构思卡写入文件
+- 在文章中引用 AI 生成配图时沿用现有相对路径风格，例如 `![](../../static/docs/aiRender/应用上架与生态/example.webp)`；不要把这类配图放到 `static/img/` 后再用 `/img/...` 引用
 
 ## 注意事项
 
