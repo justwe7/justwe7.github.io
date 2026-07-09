@@ -28,3 +28,6 @@ yarn-error.log*
 /会员营销.canvas
 /未命名.canvas
 /canva
+
+.agents/
+.claude/

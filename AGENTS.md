@@ -35,7 +35,9 @@ docs/
 
 - Markdown 文件通过 **Obsidian** 编辑
 - 图片由 Obsidian 自动存放至 `static/docs/` 目录
-- 在 Docusaurus 中引用图片使用路径 `/docs/<图片文件名>`（相对于 `static/` 根目录）
+- Obsidian 粘贴图片沿用现有相对路径风格，例如 `../../static/docs/<图片文件名>`
+- AI 生成的文章配图统一放在 `static/docs/aiRender/<文章分类>/` 目录下，例如 `static/docs/aiRender/应用上架与生态/`
+- 在文章中引用 AI 生成配图时沿用现有相对路径风格，例如 `![](../../static/docs/aiRender/应用上架与生态/example.png)`；不要把这类配图放到 `static/img/` 后再用 `/img/...` 引用
 
 ## 注意事项
 
