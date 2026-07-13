@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lihx.top/</id>
     <title>土豆和土豆丝</title>
-    <updated>2026-07-13T07:34:18.000Z</updated>
+    <updated>2026-07-13T10:55:48.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lihx.top/"/>
     <subtitle>土豆和土豆丝写字的地方 Blog</subtitle>
@@ -12,7 +12,7 @@
         <title type="html"><![CDATA[hold]]></title>
         <id>https://lihx.top/hold</id>
         <link href="https://lihx.top/hold"/>
-        <updated>2026-07-13T07:34:18.000Z</updated>
+        <updated>2026-07-13T10:55:48.000Z</updated>
         <summary type="html"><![CDATA[占位文件]]></summary>
         <content type="html"><![CDATA[<p>占位文件</p>]]></content>
     </entry>
