@@ -303,6 +303,8 @@ Orchestrator（主 Codex 实例）
 
 每个 Subagent 是一个独立的 `codex` 进程，运行在独立的 worktree 里，彼此不共享文件系统状态，避免写冲突。
 
+![](../../static/docs/aiRender/AI/01-codex-multi-agent-worktree.webp)
+
 ### 核心机制：git worktree 隔离
 
 worktree 是 git 内置的功能，允许同一个仓库在多个目录里同时 checkout 不同分支，互不干扰：

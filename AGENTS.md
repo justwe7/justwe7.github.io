@@ -40,7 +40,7 @@ docs/
 - AI 生成配图最终使用 WebP；PNG 只作为临时源图
 - 使用 ImageMagick 压缩为 WebP，默认质量 `82`，例如：`magick example.png -quality 82 example.webp`
 - WebP 生成并验证成功后删除对应 PNG 源图；只有 WebP 生成失败或需要排查问题时才保留 PNG
-- 默认不保存生图提示词或构思卡存档；只有用户明确要求保存时，才把提示词/构思卡写入文件
+- 默认将配图构思卡存档写入配图同目录：`static/docs/aiRender/<文章分类>/<文章名>-配图存档.md`，至少包含插图说明清单、完整生图提示词和构思卡摘要；用户明确要求时，可以不生成该存档
 - 在文章中引用 AI 生成配图时沿用现有相对路径风格，例如 `![](../../static/docs/aiRender/应用上架与生态/example.webp)`；不要把这类配图放到 `static/img/` 后再用 `/img/...` 引用
 
 ## 注意事项
