@@ -26,7 +26,7 @@ export const projects: Project[] = [
     badge: 'PLUGIN',
   },
   {
-    title: '土豆和土豆丝小站',
+    title: '土豆和土豆丝的wiki',
     description: '基于Docusaurus v2 静态网站生成器实现个人博客',
     // preview: '/img/project/blog.png',
     website: 'https://lihx.top',

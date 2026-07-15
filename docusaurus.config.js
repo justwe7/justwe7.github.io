@@ -5,7 +5,7 @@ const announcementBarContent = `🚀 如果你觉得还不错, 就给一个 ⭐�
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '土豆和土豆丝写字的地方',
+  title: '土豆和土豆丝的wiki',
   titleDelimiter: '-',
   url: 'https://lihx.top',
   // url: 'https://justwe7.github.io',
@@ -41,7 +41,7 @@ const config = {
       }
     },
     navbar: {
-      title: '土豆和土豆丝',
+      title: '土豆和土豆丝的wiki',
       logo: {
         alt: '土豆和土豆丝',
         src: 'hero.png',

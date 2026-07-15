@@ -59,7 +59,7 @@ function Hero() {
     <div className={styles.heroContainer}>
       {/* 沉浸式动态粒子背景 */}
       <CanvasParticles />
-      
+
       {/* 极客风格透明毛玻璃终端卡片 */}
       <div className={styles.glassCard}>
         {/* Fake Terminal Header */}
@@ -71,21 +71,21 @@ function Hero() {
           </div>
           <span className={styles.terminalTitle}>guest@wiki: ~</span>
         </div>
-        
+
         {/* Terminal Content */}
         <div className={styles.terminalBody}>
           <animated.div style={trails[0]}>
             <h1 className={styles.greetText}>
               <span className={styles.prompt}>$&gt; </span>
-              <RotatingTypewriter 
+              <RotatingTypewriter
                 phrases={[
-                  "你好！我是土豆和土豆丝",
+                  "你好！这里土豆和土豆丝的wiki",
                   "前端工程师，热衷于独立开发与AI应用"
-                ]} 
+                ]}
               />
             </h1>
           </animated.div>
-          
+
           <animated.p style={trails[1]} className={styles.sysOutput}>
             <span className={styles.systemLog}>[System]: Booting knowledge matrix... OK</span><br/>
             <span className={styles.systemLog}>[System]: Load connections... 100%</span><br/><br/>
@@ -115,7 +115,7 @@ function Hero() {
               <span className={styles.command}>./enter_docs.sh</span>
             </Link>
           </animated.div>
-          
+
           <div className={styles.footerSocials}>
             <SocialLinks />
           </div>
