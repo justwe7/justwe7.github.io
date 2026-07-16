@@ -11,5 +11,8 @@
 ![](../../static/docs/Pasted%20image%2020260714215931.png)
 
 
-顺手记录一下，cursor的对话框，网络问题，将网络请求协议版本换成http1.0。之前从没遇到过，可能是前段时间更新客户端，梯子没走正确的代理引发的问题，猜测如果只把代理规则匹配正确，这个http版本换不换都行
+顺手记录一下，cursor的对话框，提示： `This model provider is not supported in your region. Visit https://cursor.com/docs/account/regions for more information`
+
+将网络请求协议版本换成http1.0。之前从没遇到过，可能也是前段时间更新客户端，梯子没走正确的代理引发的问题，猜测如果只把代理规则匹配正确，这个http版本换不换都行
+
 ![](../../static/docs/Pasted%20image%2020260714220055.png)
