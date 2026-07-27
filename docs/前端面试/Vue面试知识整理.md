@@ -13,6 +13,24 @@ title: Vue 面试知识整理
 - 区分 Vue 2 与 Vue 3：Vue 2 以 `Object.defineProperty` 为核心，Vue 3 以 `Proxy` 为核心。
 - 工程题要同时说明“前端体验措施”和“后端/服务端必须兜底的安全措施”。
 
+## Vue 基础认知与常用语法
+
+**重要程度：⭐⭐⭐⭐**
+
+### Vue、MVVM 与渐进式
+
+Vue 是以响应式系统、组件化和声明式渲染为核心的渐进式 JavaScript 框架。它借鉴 MVVM 思想：开发者维护 Model（状态），Vue 作为连接状态和 View 的层，把数据变化反映到界面；但 Vue 并非严格教科书意义上的 MVVM。
+
+“渐进式”是指可以只使用核心渲染能力，也可以按需加入 Router、Pinia/Vuex、构建工具和 SSR，而不是被迫接受完整技术栈。
+
+### 常见指令与安全边界
+
+- `v-bind` / `:` 绑定属性，`v-on` / `@` 绑定事件，`v-model` 是表单双向绑定语法糖。
+- `v-once` 只渲染一次，`v-pre` 跳过编译；适合明确的静态内容，不能误用于需要响应更新的区域。
+- `v-html` 会把字符串当 HTML 插入，未经可信消毒的用户输入可能造成 XSS，默认应使用文本插值或经过专业 HTML Sanitizer 处理。
+
+Vue 3 的组件 `v-model` 是 `modelValue` prop 与 `update:modelValue` 事件；Vue 2 默认是 `value` 与 `input`，可通过 `model` 选项修改。
+
 ## 生命周期、实例创建与挂载
 
 **重要程度：⭐⭐⭐⭐⭐**
@@ -52,6 +70,8 @@ title: Vue 面试知识整理
 > **目的：** 展示初始化状态、编译/生成 render、创建渲染 Watcher、VNode 和 patch 的先后关系。  
 > **必须表达：** `data` 初始化发生在首次渲染前；首次渲染由渲染 Watcher 驱动。  
 > **避免表达：** 不要把模板编译描述为每次数据更新都执行。
+
+![](../../static/docs/aiRender/前端面试/vue2-01-instance-first-mount.webp)
 
 ## 响应式系统、依赖收集与异步更新
 
@@ -131,6 +151,8 @@ Vue 2 的子节点 Diff 采用双端比较：旧开始/旧结束与新开始/新
 > **目的：** 串联 setter 通知、Watcher 队列、生成新 VNode、同层 key Diff 与 DOM patch。  
 > **必须表达：** 多次同步修改会合并；`key` 用于识别同一节点。  
 > **避免表达：** 不要说 Virtual DOM 一定比直接操作 DOM 快。
+
+![](../../static/docs/aiRender/前端面试/vue2-02-reactive-diff-patch.webp)
 
 ### `v-model` 与自定义指令
 
@@ -249,6 +271,8 @@ location / {
 > **必须表达：** 缓存组件离开时不是销毁，返回时不会再次 `mounted`。  
 > **避免表达：** 不要说 keep-alive 会自动决定所有页面缓存策略。
 
+![](../../static/docs/aiRender/前端面试/vue2-03-keep-alive-lifecycle.webp)
+
 ## 请求封装与 Axios 原理
 
 **重要程度：⭐⭐⭐⭐**
@@ -345,6 +369,28 @@ export function useCounter() {
 - `Vue.set` / `this.$set` 在 Proxy 响应式系统中不再需要。
 
 Teleport 适合把弹窗、Toast 等 DOM 渲染到指定容器，但组件逻辑关系仍属于原组件树；它不是跨应用状态通信工具。
+
+## 组件设计、性能排查与项目开放题
+
+**重要程度：⭐⭐⭐⭐**
+
+### `ref`、`reactive` 与监听策略
+
+`ref` 可包装基本值或对象，在 JavaScript 中通过 `.value` 访问；`reactive` 只代理对象。模板会自动解包常见 `ref`，但解构 `reactive` 会丢失响应式连接，应使用 `toRefs()` 等方式。
+
+`watch` 显式指定监听源，可取得新旧值并控制 `immediate`、`deep`、`flush`；`watchEffect` 会立即执行并自动收集其同步执行期间访问的依赖。大对象的 `deep: true` 会递归遍历，成本高；应尽量监听真正关心的字段。
+
+### 可复用组件与复杂页面如何设计
+
+可复用组件要有清晰的 `props` 输入、`emit` 输出、职责边界与默认值；通过具名/作用域插槽提供扩展点，而非不断增加耦合业务的开关。表单体系一般需要字段配置、值与校验的统一管理、联动显示/校验、回显和重置能力。
+
+大列表和复杂表格优先分页、虚拟滚动、分块/懒加载，只更新变更行；同时注意冻结列、单元格合并与高成本 render 函数。排查重复渲染时，观察组件依赖、父组件传入的对象/函数是否频繁变化，并用 Vue Devtools 查看更新链路。
+
+### 如何回答项目开放题
+
+推荐按照“现象 → 定位 → 方案 → 结果/取舍”回答。例如首屏慢：先用网络瀑布、LCP 等指标定位首包与关键请求，再采用路由拆包、按需引入、缓存和图片优化，并说明如何验证收益。
+
+从 0 到 1 的后台项目可按以下结构表达：选定 Vue 3 + Vite + TypeScript + Router + Pinia；规划目录与模块边界；建立请求、路由、权限和布局层；沉淀组件/composable；最后接入规范、监控、测试、环境配置和发布流程。
 
 ## 面试冲刺索引
 

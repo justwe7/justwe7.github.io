@@ -92,11 +92,11 @@ console.log(obj1.name); // 'Tom'
 
 ### `typeof`、`instanceof` 与 `Object.prototype.toString`
 
-| 方法 | 适用场景 | 主要限制 |
-| --- | --- | --- |
-| `typeof` | 判断基础类型、函数 | `typeof null` 是 `"object"`，数组和普通对象都返回 `"object"` |
-| `instanceof` | 判断对象原型链上是否存在某个构造函数的 `prototype` | 不适合基础类型，跨 iframe 等执行环境可能失效 |
-| `Object.prototype.toString.call()` | 精确区分内置对象类型 | 写法较长，通常封装成工具函数 |
+| 方法                                 | 适用场景                            | 主要限制                                             |
+| ---------------------------------- | ------------------------------- | ------------------------------------------------ |
+| `typeof`                           | 判断基础类型、函数                       | `typeof null` 是 `"object"`，数组和普通对象都返回 `"object"` |
+| `instanceof`                       | 判断对象原型链上是否存在某个构造函数的 `prototype` | 不适合基础类型，跨 iframe 等执行环境可能失效                       |
+| `Object.prototype.toString.call()` | 精确区分内置对象类型                      | 写法较长，通常封装成工具函数                                   |
 
 ```js
 typeof 1; // 'number'

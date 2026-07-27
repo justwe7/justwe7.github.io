@@ -12,6 +12,8 @@
 
 **重要程度：⭐⭐⭐⭐**
 
+> **来源页码：** PDF 第 1-5 页（原题 1）
+
 ### Webpack 解决了什么问题
 
 Webpack 是一个模块打包器（module bundler）。它从一个或多个入口出发，递归分析 `import`、`export`、`require` 等依赖，按规则转换各种资源，最后输出浏览器可加载的 JavaScript、CSS、静态资源和 HTML。
@@ -52,6 +54,8 @@ module.exports = {
 
 **重要程度：⭐⭐⭐⭐⭐**
 
+> **来源页码：** PDF 第 9-15 页（原题 3）
+
 ### 一句话理解
 
 Webpack 先根据配置创建 `Compiler`，再创建一次构建对应的 `Compilation`；它从入口递归构建模块依赖图，完成代码生成、分 chunk、生成 assets，最后写入输出目录。
@@ -83,6 +87,8 @@ Webpack 先根据配置创建 `Compiler`，再创建一次构建对应的 `Compi
 > **必须表达：** Loader 在模块构建阶段转换资源；Plugin 通过生命周期钩子介入；`Compilation` 每次构建重新创建。  
 > **避免表达：** 不要画成所有文件同时、无依赖关系地直接输出。
 
+![](../../static/docs/aiRender/前端面试/webpack-01-build-pipeline.webp)
+
 ### 高频追问：为什么说 Webpack 基于依赖图
 
 入口并不是简单的“第一个被拼接的文件”。Webpack 会记录每个模块依赖了谁、被谁依赖，因而能够：识别重复依赖、支持动态 `import()`、按入口/异步边界拆分 chunk，并在生产构建中进行未使用导出的分析。
@@ -90,6 +96,8 @@ Webpack 先根据配置创建 `Compiler`，再创建一次构建对应的 `Compi
 ## 热模块替换（HMR）
 
 **重要程度：⭐⭐⭐⭐⭐**
+
+> **来源页码：** PDF 第 5-9 页（原题 2）
 
 ### HMR 与整页刷新的区别
 
@@ -127,9 +135,13 @@ if (module.hot) {
 > **必须表达：** HMR 是客户端 runtime 和开发服务器协作完成的；`accept` 边界决定能否局部更新。  
 > **避免表达：** 不要把 HMR 描述成“只重新运行某个文件”或保证永不刷新。
 
+![](../../static/docs/aiRender/前端面试/webpack-02-hmr-chain.webp)
+
 ## 开发服务器与代理
 
 **重要程度：⭐⭐⭐⭐**
+
+> **来源页码：** PDF 第 15-17 页（原题 4）
 
 ### 为什么开发时需要代理
 
@@ -158,6 +170,8 @@ module.exports = {
 ## Loader：让非 JavaScript 资源进入依赖图
 
 **重要程度：⭐⭐⭐⭐⭐**
+
+> **来源页码：** PDF 第 17-25 页（原题 5）
 
 ### Loader 是什么
 
@@ -218,6 +232,8 @@ module.exports = function bannerLoader(source) {
 
 **重要程度：⭐⭐⭐⭐⭐**
 
+> **来源页码：** PDF 第 25-33 页（原题 6）
+
 ### Plugin 是什么
 
 Plugin 是一个具有 `apply(compiler)` 方法的对象或类。它通过 Tapable hooks 订阅 Webpack 生命周期，可影响多个模块、chunks、assets 或构建过程本身，因此适合处理 Loader 无法承担的跨构建任务。
@@ -257,6 +273,8 @@ new webpack.DefinePlugin({
 
 ### Loader 与 Plugin 的区别
 
+> **来源页码：** PDF 第 33-37 页（原题 7）
+
 |维度|Loader|Plugin|
 |---|---|---|
 |作用对象|单个模块的源代码|整个构建生命周期与产物|
@@ -267,6 +285,8 @@ new webpack.DefinePlugin({
 ## 构建速度优化
 
 **重要程度：⭐⭐⭐⭐**
+
+> **来源页码：** PDF 第 37-43 页（原题 8）
 
 优化前先用 `--profile --json`、`webpack-bundle-analyzer` 或构建日志定位瓶颈。大多数项目的第一收益来自“少构建、少解析、命中缓存”，而不是堆叠插件。
 
@@ -298,6 +318,8 @@ DLL 曾用于把稳定第三方依赖预编译以减少重复构建，但配置�
 ## 生产构建：体积、缓存与加载性能
 
 **重要程度：⭐⭐⭐⭐⭐**
+
+> **来源页码：** PDF 第 43-52 页（原题 9）
 
 ### 代码压缩与资源压缩
 
@@ -349,9 +371,13 @@ module.exports = {
 > **必须表达：** 三者可协作但解决的问题不同；动态导入产生异步 chunk，`contenthash` 服务于缓存。  
 > **避免表达：** 不要把 Tree Shaking 画成网络层的按需加载。
 
+![](../../static/docs/aiRender/前端面试/webpack-03-prod-optimizations.webp)
+
 ## Webpack 与 Rollup、Parcel、Snowpack、Vite
 
 **重要程度：⭐⭐⭐**
+
+> **来源页码：** PDF 第 52-59 页（原题 10）
 
 |工具|开发期核心思路|更适合|
 |---|---|---|
@@ -359,17 +385,21 @@ module.exports = {
 |Rollup|以 ESM 库打包和 Tree Shaking 见长|组件库、工具库等发布型项目|
 |Parcel|约定优于配置，自动处理常见资源|希望快速开始、较少定制的小中型项目|
 |Snowpack|开发期直接利用原生 ESM 的早期工具|历史了解即可，主流实践已被 Vite 等取代|
-|Vite|开发期原生 ESM 按需提供模块，预构建依赖；生产期通常用 Rollup 构建|现代前端应用的快速开发体验|
+|Vite|开发期基于原生 ESM 按需提供模块并预构建依赖；当前版本默认用 Rolldown 完成生产构建|现代前端应用的快速开发体验|
 
 面试回答不应绝对化：Vite 并非“完全不打包”，它在生产构建阶段仍会打包优化；Webpack 也并非一定慢，合理缓存、增量构建和范围控制后同样可用于大型工程。选择取决于现有生态、构建定制深度、迁移成本与团队经验。
+
+> **补充说明（非原文）：** 原资料编写于 2023 年，当时 Vite 的生产构建主要依赖 Rollup；当前 Vite 已采用 Rolldown 作为默认构建器，但其插件 API 仍延续并兼容 Rollup 生态的主要约定。
 
 > [!VISUALIZATION]  
 > **类型：** comparison  
 > **优先级：** medium  
 > **标题：** Webpack 打包开发与 Vite 原生 ESM 开发的请求差异  
 > **目的：** 对比开发阶段“预先构建 bundle”和“浏览器按需请求模块、服务端按需转换”的差异。  
-> **必须表达：** Vite 仍会对依赖做预构建，并在生产阶段进行打包；两者都是构建工具链而非简单快慢对立。  
+> **必须表达：** Vite 仍会对依赖做预构建，并在生产阶段通过 Rolldown 打包；两者都是构建工具链而非简单快慢对立。
 > **避免表达：** 不要画成 Vite 完全不转换或不产出 bundle。
+
+![](../../static/docs/aiRender/前端面试/webpack-04-webpack-vite-dev.webp)
 
 ## 面试冲刺索引
 

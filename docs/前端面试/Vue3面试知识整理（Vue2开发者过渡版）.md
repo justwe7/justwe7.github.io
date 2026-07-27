@@ -185,6 +185,8 @@ watch(count, (newValue, oldValue) => {
 > **必须表达：** Composition API 的核心价值是按功能组织和显式复用，不是弃用 Options API。  
 > **避免表达：** 不要把 Options API 描绘成错误或已废弃的写法。
 
+![](../../static/docs/aiRender/前端面试/vue3-01-options-composition-composable.webp)
+
 ## Vue 3 响应式：为什么使用 Proxy
 
 **重要程度：⭐⭐⭐⭐⭐**
@@ -243,6 +245,8 @@ state.user.profile.name = 'Grace'; // 能触发依赖更新
 > **必须表达：** 依赖按“属性”关联，深层对象在访问时被代理；更新通常经过批处理调度。  
 > **避免表达：** 不要画成任意数据变化都会让整个应用立即全量重渲染。
 
+![](../../static/docs/aiRender/前端面试/vue3-02-reactivity-track-trigger.webp)
+
 ### 高频追问
 
 **Proxy 相比 `Object.defineProperty` 的缺点是什么？**
@@ -293,6 +297,8 @@ Vue 2 运行时更难直接知道模板里哪些节点会变，因此更新时�
 > **目的：** 对比模板中静态节点和动态节点，展示静态提升、Patch Flag、动态节点集合如何减少更新范围。  
 > **必须表达：** 编译阶段提供信息，运行阶段据此定向更新。  
 > **避免表达：** 不要宣称 Vue 3 完全没有 Diff 或不会创建 Virtual DOM。
+
+![](../../static/docs/aiRender/前端面试/vue3-03-compiler-patchflag.webp)
 
 ## Teleport 与程序化 Modal：从组件到工程设计
 
@@ -373,6 +379,8 @@ export default {
 > **目的：** 展示调用 `show`、创建容器和 VNode、Teleport 到 body、确认/取消回调、异步 loading、卸载清理的完整链路。  
 > **必须表达：** 关闭后要卸载 VNode 并移除容器；Teleport 不改变组件事件和状态关系。  
 > **避免表达：** 不要把 `createVNode` 画成每个普通业务弹窗都必须使用的方案。
+
+![](../../static/docs/aiRender/前端面试/vue3-04-programmatic-modal.webp)
 
 ## Tree Shaking：Vue 3 为什么更容易按需打包
 
