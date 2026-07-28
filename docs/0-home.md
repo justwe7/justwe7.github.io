@@ -9,16 +9,17 @@ slug: /
 
 ## 2026 年 7 月
 
-### 07-27 · 备用 / 虚拟信用卡 / 学习
+### 07-27 · esim / U卡 / 学习
 - giffgaff 大面积封号了，留个备用的退款地址：[Log in | giffgaff](https://support2.giffgaff.com/app/ask/Plans-Credit-and-Payment-Details/Cancelling-a-plan-or-top-up-purchase/form/)。
 - 最近做appstore的cpp需要有单独的橱窗图设计，橱窗图需要多个版本，基于之前的痛点，今天把[橱窗图平台](https://appshots.lihx.top/)新增支持了多项目切换的功能（bmad怎么越用越难受，大部分时间都在写文档了，可能codex高级模型+重型skill工作流不适合一起协作， 换5.5反而更快速实现需求）
+- gpt5.6 - 大任务用sol 小改动用terra
 
 ### 07-26 · AI / 学习 / 前端
 - GPT 目前的代码逻辑强化，前端 UI 需要使用 skill。可以参考 [Anthropic 的 frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)。
 - 需要华丽 UI 的项目，推荐直接使用官方插件 Product Design：它会先生成 3 张视觉设计稿供选择，再根据选中的风格复刻页面。
 - 如果只是简单调整 UI，就没必要使用 Product Design，纯粹浪费 Token。
 
-### 07-24 · Google Play / Claude Pro / 境外esim
+### 07-24 · Google Play / Claude Pro / esim
 - 看到 Google Play 玻利维亚区的 Claude Pro 只要 86 元，顺手开了个 [商店价格查询](https://priceradar.store/zh/app/d50af74a-7437-4f60-a895-7d3f6e82743a) 页面留存价格， https://x.com/xfengbro/status/2080489354070479088?s=46&t=LiJssSVoLQXRtm3XVz8gHA 。
 - 更换 Google Play 地区时参考这篇 [Google Play 更换教程](https://itangtalk.com/google-play/)。
 - 看到 [菲律宾dito]https://x.com/kood520/status/2080499960232149108 虚拟卡开通教程，可以顺便开通maya卡，鉴于最近Bitget半拉闸，两个48team续费告急，再囤张境外手机卡吧。
