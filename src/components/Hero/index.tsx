@@ -77,7 +77,7 @@ function Hero() {
               <span className={styles.prompt}>$&gt; </span>
               <RotatingTypewriter
                 phrases={[
-                  "你好！这里土豆和土豆丝的wiki",
+                  "你好！这里是土豆和土豆丝的Wiki",
                   "前端工程师，热衷于独立开发与AI应用"
                 ]}
               />
