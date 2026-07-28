@@ -41,6 +41,19 @@
 
   --dell-frame-width: 8px;
   --dell-border: 1px solid var(--dell-frame);
+
+  /*
+   * Neo-brutalist accent scale — used on interior content blocks (headings,
+   * cards, chips, code) for the softer, more modern feel introduced on
+   * /, /project and /website. The page-frame, top banner and ribbon stay
+   * flush/square: those are the literal brand chrome and must not round.
+   */
+  --dell-radius-sm: 6px;
+  --dell-radius-md: 10px;
+  --dell-radius-lg: 16px;
+  --dell-radius-pill: 999px;
+  --dell-shadow-soft: 0 16px 32px rgb(0 0 0 / 8%);
+  --dell-shadow-soft-lg: 0 24px 48px rgb(0 0 0 / 10%);
   --dell-content-max-width: clamp(760px, 52vw, 1080px);
   --dell-sidebar-width: clamp(240px, 14vw, 320px);
   --dell-toc-width: clamp(200px, 14vw, 300px);

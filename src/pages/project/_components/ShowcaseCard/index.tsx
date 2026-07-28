@@ -1,4 +1,4 @@
-import React, { useRef, useState, MouseEvent } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Image from '@theme/IdealImage';
 import Link from '@docusaurus/Link';
@@ -6,52 +6,13 @@ import { type Project } from '@site/data/project';
 import styles from './styles.module.css';
 
 export default function ShowcaseCard({ project, index, isFeatured }: { project: Project, index: number, isFeatured?: boolean }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  // Generate a predictable gradient for placeholder based on title length or char code
-  const hash = project.title.charCodeAt(0) + project.title.length;
-  const hue1 = (hash * 137) % 360;
-  const hue2 = (hash * 277) % 360;
-  
   const animationDelay = `${index * 50}ms`;
 
   return (
     <div
-      ref={cardRef}
       className={clsx(styles.cardWrapper, { [styles.cardFeatured]: isFeatured })}
       style={{ animationDelay }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      <div 
-        className={styles.cardGlow}
-        style={{
-          background: isHovered
-            ? `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.08), transparent 40%)`
-            : 'none'
-        }}
-      />
-      <div 
-        className={styles.cardGlowDark}
-        style={{
-          background: isHovered
-            ? `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0,0,0,0.03), transparent 40%)`
-            : 'none'
-        }}
-      />
-      
       <div className={styles.cardContent}>
         <Link href={project.website} className={styles.cardImageLink}>
           {project.preview ? (
@@ -59,17 +20,15 @@ export default function ShowcaseCard({ project, index, isFeatured }: { project: 
                <Image src={project.preview} alt={project.title} className={styles.cardImage} />
             </div>
           ) : (
-            <div className={styles.cardPlaceholder} style={{
-               background: `linear-gradient(135deg, hsl(${hue1}, 70%, 80%), hsl(${hue2}, 70%, 90%))`
-            }}>
-              <span className={styles.placeholderIcon}>✦</span>
+            <div className={styles.cardPlaceholder}>
+              <span className={styles.placeholderIcon}>&#10022;</span>
             </div>
           )}
           {project.badge && (
             <div className={styles.cardBadge}>{project.badge}</div>
           )}
         </Link>
-        
+
         <div className={styles.cardBody}>
            <div className={styles.cardHeader}>
               <h4 className={styles.cardTitle}>
@@ -85,7 +44,7 @@ export default function ShowcaseCard({ project, index, isFeatured }: { project: 
               </Link>
            </div>
            <p className={styles.cardDesc}>{project.description}</p>
-           
+
            {project.source && (
              <div className={styles.cardFooter}>
                <Link href={project.source} className={styles.cardSourceLink}>

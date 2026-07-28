@@ -16,8 +16,6 @@ const RotatingTypewriter = ({ phrases, typingSpeed = 120, deletingSpeed = 60, pa
   const [typingDelay, setTypingDelay] = useState(typingSpeed);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-
     const handleType = () => {
       const i = loopNum % phrases.length;
       const fullText = phrases[i];
@@ -35,7 +33,7 @@ const RotatingTypewriter = ({ phrases, typingSpeed = 120, deletingSpeed = 60, pa
       }
     };
 
-    timer = setTimeout(handleType, typingDelay);
+    const timer = setTimeout(handleType, typingDelay);
     return () => clearTimeout(timer);
   }, [text, isDeleting, loopNum, phrases, typingDelay, typingSpeed, deletingSpeed, pause]);
 
@@ -65,9 +63,9 @@ function Hero() {
         {/* Fake Terminal Header */}
         <div className={styles.terminalHeader}>
           <div className={styles.macButtons}>
-            <span className={styles.dot} style={{ background: '#ff5f56' }} />
-            <span className={styles.dot} style={{ background: '#ffbd2e' }} />
-            <span className={styles.dot} style={{ background: '#27c93f' }} />
+            <span className={styles.dot} />
+            <span className={styles.dot} />
+            <span className={styles.dot} />
           </div>
           <span className={styles.terminalTitle}>guest@wiki: ~</span>
         </div>

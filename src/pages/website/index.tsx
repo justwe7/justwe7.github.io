@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import { PageMetadata } from '@docusaurus/theme-common';
+import { PageMetadata, HtmlClassNameProvider } from '@docusaurus/theme-common';
 import Layout from '@theme/Layout';
 import WebsiteCard from './_components/WebsiteCard';
 import BackToTopButton from '@theme/BackToTopButton';
@@ -70,21 +70,21 @@ export default function Websites() {
   const description = '整合开发常用，推荐的网站导航页';
 
   return (
-    <>
+    <HtmlClassNameProvider className="dell1996">
       <PageMetadata title={title} description={description} />
       <Layout>
         <div className="container margin-top--md">
           <div className="row">
-            <aside className="col col--1">
+            <aside className="col col--2">
               <CategoryNav />
             </aside>
-            <main className="col col--11">
+            <main className="col col--10">
               <CategoryList />
               <BackToTopButton />
             </main>
           </div>
         </div>
       </Layout>
-    </>
+    </HtmlClassNameProvider>
   );
 }

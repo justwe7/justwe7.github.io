@@ -13,7 +13,7 @@
   /* 使用 UP 箭头基础图形。Docusaurus 在未展开时旋转90度即向右，展开时旋转180度即向下 */
   /* 通过缩小 SVG 内部的绝对坐标轴来确保箭头缩小绝对生效：原来宽度为12，现缩小为6（50%尺寸） */
   --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="%23888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="9 13 12 10 15 13"></polyline></svg>');
-  
+
   --ifm-font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system,
     'Segoe UI', 'Helvetica Neue', 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
@@ -100,7 +100,7 @@ html[data-theme='dark'] {
   --ifm-color-primary-light: #39e9c8;
   --ifm-color-primary-lighter: #44eacb;
   --ifm-color-primary-lightest: #68eed5;
-  
+
   --post-title-color: rgb(255 255 255);
   --post-pub-date-color: var(--ifm-color-gray-100);
   --divider-color: #353535;
@@ -898,17 +898,17 @@ div[class^='announcementBar_'] {
     /* 恢复主内容区和目录的整体分割线，并提供安全内边距 */
     border-left: 1px solid var(--divider-color) !important;
     padding-left: 1rem !important;
-    
+
     &, ul {
       list-style: none;
       margin-left: 0;
     }
-    
+
     /* 子列表由于没有竖线，使用 margin-left 产生阶梯缩进即可 */
     ul {
       border-left: none !important;
       padding-left: 0;
-      margin-left: 0.8rem; 
+      margin-left: 0.8rem;
       margin-top: 0.4rem;
     }
 
@@ -927,14 +927,14 @@ div[class^='announcementBar_'] {
       font-weight: 400;
       line-height: 1.5;
       color: var(--text-color);
-      
+
       /* 小圆环设计 */
       &::before {
         content: "";
         position: absolute;
-        left: 2px; /* 设置绝对位置为大于等于 0，结合 padding-left 不会超出由于 border 导致的限定边界 */
+        left: 6px; /* 设置绝对位置为大于等于 0，结合 padding-left 不会超出由于 border 导致的限定边界 */
         /* 使用 em 单位结合 line-height 精准垂直居中挂靠首行，再根据要求向上微调 1px */
-        top: calc(0.55em - 1px); 
+        top: 0.8em;
         width: 6px;
         height: 6px;
         border-radius: 50%;
@@ -943,7 +943,7 @@ div[class^='announcementBar_'] {
         transition: all 0.3s ease;
         pointer-events: none;
       }
-      
+
       /* Hover 触碰加深 */
       &:hover {
         opacity: 1;
@@ -959,7 +959,7 @@ div[class^='announcementBar_'] {
       opacity: 1;
       font-weight: 600;
       color: var(--ifm-color-primary) !important;
-      
+
       &::before {
         border-color: var(--ifm-color-primary);
         background-color: var(--ifm-color-primary);
@@ -978,7 +978,7 @@ div[class^='announcementBar_'] {
     line-height: 1.75;
     letter-spacing: 0.02em;
   }
-  
+
   p {
     margin-bottom: 1.5em; /* 增大段距，分离内容块 */
   }
@@ -1000,7 +1000,7 @@ div[class^='announcementBar_'] {
     border-radius: 4px;
     background: rgba(83, 191, 157, 0.08); /* 点缀主色系极浅底色 */
     padding: 0.3em 0.8em !important;
-    display: block; 
+    display: block;
     margin-top: 1.8em;
     margin-bottom: 0.8em;
     font-weight: 600;
@@ -1016,7 +1016,7 @@ div[class^='announcementBar_'] {
     color: var(--ifm-color-emphasis-700); /* 调低对比度产生退避感 */
     box-shadow: none; /* 去除卡片高光 */
     font-size: 0.95em; /* 字体稍微收缩，体现从属地位 */
-    
+
     p {
       margin-bottom: 0; /* 修正单段落的冗余底距 */
     }
@@ -1025,10 +1025,10 @@ div[class^='announcementBar_'] {
   /* 图片展示优化：现代弥散阴影与圆角 */
   img {
     border-radius: 8px; /* 消除锋利边缘 */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06); 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
     margin: 1.2em 0;
     transition: all 0.3s ease;
-    
+
     &:hover {
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 鼠标悬停微微浮起 */
       transform: translateY(-2px);
@@ -1049,7 +1049,7 @@ div[class^='announcementBar_'] {
     margin: 1.5em 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* 代码块背后的极浅微光 */
     /* 注：去除了强行的 padding !important 覆盖，因为 react-live 实时组件需要依赖默认的内边距来同步光标对齐 */
-    
+
     /* 强行清洗掉任何误入其中的 inline code 样式残余 */
     code {
       padding: 0 !important;
@@ -1085,7 +1085,7 @@ div[class^='announcementBar_'] {
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
   transition: all 0.2s ease;
-  
+
   &:hover {
     background-color: rgba(83, 191, 157, 0.08) !important; /* 鼠标经过产生微光 */
     color: var(--ifm-color-primary) !important;
@@ -1095,7 +1095,7 @@ div[class^='announcementBar_'] {
 
 /* 改造分隔符：去除原生宽大的矢量箭头，替换为优雅的程序员斜杠 '/' */
 .breadcrumbs__item:not(:last-child)::after {
-  content: "/"; 
+  content: "/";
   background: none !important; /* 清除默认渲染的 svg 箭头遮罩 */
   display: inline-block;
   margin: 0 0.5rem;
@@ -1119,7 +1119,7 @@ div[class*="playgroundContainer"] {
   box-shadow: 0 4px 20px rgba(83, 191, 157, 0.08);
   margin-bottom: 2rem;
   transition: all 0.3s ease;
-  
+
   /* 聚焦状态全域高亮，营造沉浸式开发感 */
   &:focus-within {
     box-shadow: 0 6px 30px rgba(83, 191, 157, 0.2);
@@ -1132,9 +1132,9 @@ div[class*="playgroundEditor"] {
   position: relative;
   cursor: text;
   background-color: rgba(0, 0, 0, 0.02); /* 给输入区垫薄底色 */
-  
+
   html[data-theme='dark'] & {
-    background-color: rgba(255, 255, 255, 0.03); 
+    background-color: rgba(255, 255, 255, 0.03);
   }
 
   /* 植入非常直观的 “可实时编辑徽章” */
@@ -1154,7 +1154,7 @@ div[class*="playgroundEditor"] {
     letter-spacing: 1px;
     transition: opacity 0.3s ease;
   }
-  
+
   /* 用户输入时，徽章半透明隐退免打扰 */
   &:focus-within::before {
     opacity: 0.15;
@@ -1164,10 +1164,10 @@ div[class*="playgroundEditor"] {
 /* 预览区 (Preview) 修饰 */
 div[class*="playgroundPreview"] {
   border-top: 1px dashed var(--ifm-color-primary-light); /* 与上方代码区做虚线切割 */
-  background-color: var(--card-background) !important; 
+  background-color: var(--card-background) !important;
   padding: 1.5rem;
   position: relative;
-  
+
   /* 左上角印制极简水印 */
   &::before {
     content: "Live Preview";

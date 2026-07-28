@@ -111,15 +111,15 @@
     height: auto;
     margin: var(--dell-space-xl) auto;
     border: var(--dell-border);
-    border-radius: 0;
-    box-shadow: 3px 3px 0 var(--dell-frame);
-    transition: none;
+    border-radius: var(--dell-radius-md);
+    box-shadow: 3px 3px 0 var(--dell-frame), var(--dell-shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .theme-doc-markdown img:hover,
   .markdown img:hover {
-    transform: none;
-    box-shadow: 3px 3px 0 var(--dell-frame);
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0 var(--dell-frame), var(--dell-shadow-soft-lg);
   }
 
   .alert {

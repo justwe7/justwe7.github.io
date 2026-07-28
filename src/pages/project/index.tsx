@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
+import {HtmlClassNameProvider} from '@docusaurus/theme-common';
 import ShowcaseCard from './_components/ShowcaseCard';
 import { projects } from '@site/data/project';
 import styles from './styles.module.css';
@@ -27,20 +28,16 @@ function HeroSection() {
         </div>
       </div>
       <div className={styles.heroVisuals}>
-         <div className={styles.heroBlurBlue}></div>
-         <div className={styles.heroBlurGreen}></div>
-         
-         {/* Floating Elements */}
-         <div className={styles.floatingCard1}>
-           <div className={styles.floatingCardHeader}>AppShots</div>
-           <div className={styles.floatingCardBody}>⭐ appshots.lihx.top</div>
-         </div>
-         <div className={styles.floatingCard2}>
-           <div className={styles.floatingTerminal}>
-              <span className={styles.termPrompt}>&gt;</span> npm i jw-cli<br/>
-              <span className={styles.termSuccess}>✔ Installed</span>
-           </div>
-         </div>
+        <div className={styles.floatingCard1}>
+          <div className={styles.floatingCardHeader}>AppShots</div>
+          <div className={styles.floatingCardBody}>appshots.lihx.top</div>
+        </div>
+        <div className={styles.floatingCard2}>
+          <div className={styles.floatingTerminal}>
+            <span className={styles.termPrompt}>&gt;</span> npm i jw-cli<br/>
+            <span className={styles.termSuccess}>Installed</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -79,7 +76,6 @@ function ShowcaseCards() {
 function FooterSection() {
   return (
     <div className={styles.pageFooter}>
-      <div className={styles.footerDivider}></div>
       <div className={styles.footerContent}>
         <span className={styles.footerTitle}>Like what you see?</span>
         <div className={styles.footerLinks}>
@@ -94,16 +90,16 @@ function FooterSection() {
 
 export default function Showcase(): JSX.Element {
   return (
-    <Layout title="个人项目" description="以下项目均由本人开发，均可自由使用，部分开源。">
-      <main className={styles.mainContainer}>
-        <div className={styles.backgroundGrid}></div>
-        <div className={styles.backgroundNoise}></div>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-           <HeroSection />
-           <ShowcaseCards />
-           <FooterSection />
-        </div>
-      </main>
-    </Layout>
+    <HtmlClassNameProvider className="dell1996">
+      <Layout title="个人项目" description="以下项目均由本人开发，均可自由使用，部分开源。">
+        <main className={styles.mainContainer}>
+          <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+            <HeroSection />
+            <ShowcaseCards />
+            <FooterSection />
+          </div>
+        </main>
+      </Layout>
+    </HtmlClassNameProvider>
   );
 }

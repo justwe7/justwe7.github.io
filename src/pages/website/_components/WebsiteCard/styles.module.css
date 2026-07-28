@@ -1,29 +1,24 @@
 .websiteCard {
-  background-color: var(--ifm-card-background-color);
-  border-radius: 8px;
-  border: 1px solid rgb(204 204 204 / 50%);
+  background-color: var(--dell-canvas);
+  border: var(--dell-border);
+  border-radius: 12px;
   height: 100%;
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .websiteCard:hover {
-  box-shadow: 0 10px 20px -10px rgb(0 0 0 / 20%);
-  transform: translateY(-5px);
-}
-
-html[data-theme='dark'] .websiteCard:hover {
-  box-shadow: 0 10px 20px -10px rgb(255 255 255 / 20%);
-  transform: translateY(-5px);
+  transform: translate(-2px, -3px);
+  box-shadow: 4px 4px 0 var(--dell-frame), 0 16px 28px rgb(0 0 0 / 10%);
 }
 
 .websiteCardImage {
   align-self: center;
-  width: 64px;
-  height: 64px;
-  min-width: 64px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
 }
 
 .websiteCardHeader {
@@ -35,15 +30,14 @@ html[data-theme='dark'] .websiteCard:hover {
 .websiteCardTitle {
   margin-bottom: 0;
   flex: 1 1 auto;
+  font-family: var(--dell-font-ui);
 }
 
 .websiteCardTitle a {
+  color: var(--dell-link);
   text-decoration: none;
-  background: linear-gradient(
-      var(--ifm-color-primary),
-      var(--ifm-color-primary)
-    )
-    0% 100% / 0% 1px no-repeat;
+  background: linear-gradient(var(--dell-link), var(--dell-link)) 0% 100% / 0% 1px
+    no-repeat;
   transition: background-size ease-out 200ms;
 }
 
@@ -52,15 +46,17 @@ html[data-theme='dark'] .websiteCard:hover {
 }
 
 .websiteCardBody {
-  padding: 0.2rem 0 0 var(--ifm-card-horizontal-spacing);
+  padding: var(--dell-space-xs, 4px) 0 0 var(--ifm-card-horizontal-spacing);
 }
 
 .websiteCardDesc {
   cursor: pointer;
+  font-family: var(--dell-font-body);
   font-size: smaller;
   line-height: 1.66;
   width: 100%;
   margin: 0;
+  color: var(--dell-ink);
   /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   overflow: hidden;

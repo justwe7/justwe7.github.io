@@ -77,7 +77,7 @@ const CanvasParticles: React.FC = () => {
 
     const draw = () => {
       // 每一帧画一个半透明的黑底，形成拖影和呼吸感，而不是死板的实心刷新
-      ctx.fillStyle = 'rgba(3, 8, 22, 0.2)'; 
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       const now = Date.now();
@@ -130,14 +130,14 @@ const CanvasParticles: React.FC = () => {
             displayText = stableText + glitch;
         }
 
-        // 以主基调色渲染文字
-        ctx.fillStyle = `rgba(83, 191, 157, ${t.alpha})`; 
+        // 以 Dell 黄渲染文字，呼应贴纸黄的品牌色
+        ctx.fillStyle = `rgba(252, 194, 15, ${t.alpha})`;
         ctx.fillText(displayText, t.x, t.y);
 
         // 【键盘打字特效】：追加那个一闪一闪的下划线方块光标
         if (Math.floor(now / 350) % 2 === 0 && t.state !== 'fading') {
           const textWidth = ctx.measureText(displayText).width;
-          ctx.fillStyle = `rgba(100, 255, 218, ${t.alpha})`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${t.alpha})`;
           ctx.fillText('_', t.x + textWidth + 2, t.y);
         }
       }
@@ -164,7 +164,7 @@ const CanvasParticles: React.FC = () => {
         height: '100%',
         zIndex: 0,
         pointerEvents: 'none',
-        background: '#030816',
+        background: '#000',
       }}
     />
   );
