@@ -1,0 +1,25 @@
+.dell1996 {
+  .navbar__search-input {
+    min-height: 36px;
+    color: var(--dell-ink);
+    background-color: var(--dell-canvas);
+    border: 2px inset var(--dell-subtle);
+    border-radius: 0;
+    font-family: var(--dell-font-body);
+  }
+
+  .navbar__search-input::placeholder {
+    color: var(--dell-muted);
+    opacity: 1;
+  }
+
+  [class*='searchBarContainer'],
+  [class*='searchBar'] {
+    border-radius: 0;
+  }
+
+  [class*='searchResultItem'] {
+    border-bottom: var(--dell-border);
+    border-radius: 0;
+  }
+}

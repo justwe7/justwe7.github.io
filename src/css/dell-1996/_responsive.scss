@@ -1,0 +1,88 @@
+@media (max-width: 996px) {
+  .dell1996 {
+    --dell-frame-width: 4px;
+    --dell-sidebar-width: 220px;
+    --dell-content-max-width: 100%;
+  }
+
+  .dell1996__content-grid {
+    grid-template-columns: minmax(0, var(--dell-sidebar-width)) minmax(0, 1fr);
+  }
+
+  .dell1996__main {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .dell1996 {
+    --dell-frame-width: 2px;
+    --dell-content-max-width: 100%;
+
+    .navbar {
+      min-height: 52px;
+      padding: var(--dell-space-xs) var(--dell-space-sm);
+    }
+
+    .navbar__toggle,
+    .navbar__search {
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    .theme-doc-markdown > h1:first-of-type,
+    .theme-doc-markdown > header:first-of-type > h1 {
+      padding: var(--dell-space-lg) var(--dell-space-md);
+      font-size: 28px;
+    }
+
+    .dell1996-doc-ribbon__collection {
+      display: none;
+    }
+
+    .theme-doc-markdown h2,
+    .markdown h2 {
+      font-size: 21px;
+    }
+
+    .theme-doc-markdown h3,
+    .markdown h3 {
+      font-size: 17px;
+    }
+
+    .theme-doc-markdown table,
+    .markdown table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .pagination-nav {
+      grid-template-columns: 1fr;
+    }
+
+    .pagination-nav__link--next {
+      grid-column: auto;
+    }
+  }
+
+  .dell1996__content-grid {
+    display: block;
+  }
+
+  .dell1996__main {
+    padding: var(--dell-space-lg);
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dell1996 *,
+  .dell1996 *::before,
+  .dell1996 *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,49 @@
+.dell1996 {
+  .dell1996-doc-ribbon {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    margin: 0;
+    color: var(--dell-ink);
+    background: var(--dell-canvas);
+    border: var(--dell-border);
+    border-bottom: 0;
+    font-family: var(--dell-font-ui);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .dell1996-doc-ribbon__category,
+  .dell1996-doc-ribbon__collection,
+  .dell1996-doc-ribbon__sticker {
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+    padding: var(--dell-space-s) var(--dell-space-md);
+  }
+
+  .dell1996-doc-ribbon__category {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .dell1996-doc-ribbon__collection {
+    color: var(--dell-canvas);
+    background: var(--dell-frame);
+    border-left: var(--dell-border);
+  }
+
+  .dell1996-doc-ribbon__sticker {
+    flex: 0 0 auto;
+    color: var(--dell-ink);
+    background: var(--dell-yellow);
+    border-left: var(--dell-border);
+    font-family: var(--dell-font-display);
+  }
+
+  .dell1996-doc-ribbon + h1,
+  .dell1996-doc-ribbon + header > h1 {
+    margin-top: 0;
+  }
+}

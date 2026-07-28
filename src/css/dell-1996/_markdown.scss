@@ -1,0 +1,133 @@
+.dell1996 {
+  .theme-doc-markdown,
+  .markdown {
+    color: var(--dell-ink);
+    font-family: var(--dell-font-body);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .theme-doc-markdown p,
+  .theme-doc-markdown ul,
+  .theme-doc-markdown ol,
+  .theme-doc-markdown li,
+  .markdown p,
+  .markdown ul,
+  .markdown ol,
+  .markdown li {
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: 0;
+  }
+
+  .theme-doc-markdown p,
+  .markdown p {
+    margin-bottom: 1.25em;
+  }
+
+  .theme-doc-markdown h2,
+  .markdown h2 {
+    padding: var(--dell-space-sm) var(--dell-space-md);
+    margin: var(--dell-space-section) 0 var(--dell-space-lg);
+    color: var(--dell-ink);
+    background: var(--dell-canvas);
+    border: var(--dell-border);
+    border-left: var(--dell-border) !important;
+    border-width: 1px 1px 3px;
+    border-radius: 0;
+    font-family: var(--dell-font-ui);
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .theme-doc-markdown h3,
+  .markdown h3 {
+    padding: var(--dell-space-s) var(--dell-space-md);
+    margin: var(--dell-space-section-sm) 0 var(--dell-space-md);
+    color: var(--dell-ink);
+    background: var(--dell-sage);
+    border: var(--dell-border);
+    border-left: var(--dell-border) !important;
+    border-radius: 0;
+    font-family: var(--dell-font-ui);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .theme-doc-markdown h4,
+  .theme-doc-markdown h5,
+  .theme-doc-markdown h6,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    padding: 0;
+    color: var(--dell-ink);
+    background: transparent;
+    border: 0;
+    font-family: var(--dell-font-ui);
+  }
+
+  .theme-doc-markdown blockquote,
+  .markdown blockquote {
+    padding: var(--dell-space-md) var(--dell-space-lg);
+    margin: var(--dell-space-xl) 0;
+    color: var(--dell-ink);
+    background: var(--dell-subtle);
+    border: var(--dell-border);
+    border-left: 6px solid var(--dell-frame) !important;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .theme-doc-markdown table,
+  .markdown table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .theme-doc-markdown th,
+  .theme-doc-markdown td,
+  .markdown th,
+  .markdown td {
+    padding: var(--dell-space-sm) var(--dell-space-md);
+    border: var(--dell-border);
+  }
+
+  .theme-doc-markdown th,
+  .markdown th {
+    background: var(--dell-sage);
+    font-family: var(--dell-font-ui);
+    font-weight: 700;
+  }
+
+  .theme-doc-markdown img,
+  .markdown img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: var(--dell-space-xl) auto;
+    border: var(--dell-border);
+    border-radius: 0;
+    box-shadow: 3px 3px 0 var(--dell-frame);
+    transition: none;
+  }
+
+  .theme-doc-markdown img:hover,
+  .markdown img:hover {
+    transform: none;
+    box-shadow: 3px 3px 0 var(--dell-frame);
+  }
+
+  .alert {
+    color: var(--dell-ink);
+    background: var(--dell-subtle);
+    border: var(--dell-border);
+    border-left-width: 8px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,65 @@
+.dell1996 {
+  .theme-doc-sidebar-container {
+    border-right: var(--dell-border);
+    background: var(--dell-canvas);
+  }
+
+  .main-wrapper .container {
+    max-width: none !important;
+  }
+
+  .theme-doc-sidebar-menu > .menu__list-item:not(:last-child) {
+    padding: 0;
+    margin: 0;
+    border-bottom: var(--dell-border);
+  }
+
+  .theme-doc-sidebar-menu .menu__list-item .menu__list-item {
+    margin: 0;
+    border: 0;
+  }
+
+  .theme-doc-toc-desktop {
+    width: auto;
+    border-left: var(--dell-border);
+    background: var(--dell-canvas);
+  }
+
+  .theme-doc-markdown {
+    width: 100%;
+    max-width: var(--dell-content-max-width);
+    margin-inline: auto;
+  }
+
+  .theme-doc-markdown > h1:first-of-type,
+  .theme-doc-markdown > header:first-of-type > h1 {
+    padding: var(--dell-space-xl) var(--dell-space-lg);
+    margin: 0 0 var(--dell-space-xxl);
+    color: var(--dell-ink);
+    background: var(--dell-sage);
+    border: var(--dell-border);
+    font-family: var(--dell-font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 900;
+    line-height: 1.05;
+  }
+
+  .theme-doc-footer {
+    max-width: var(--dell-content-max-width);
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 997px) {
+  .dell1996 {
+    .row > .col:has(+ .col--3 .theme-doc-toc-desktop) {
+      flex: 1 1 0;
+      max-width: calc(100% - var(--dell-toc-width)) !important;
+    }
+
+    .row > .col--3:has(.theme-doc-toc-desktop) {
+      flex: 0 0 var(--dell-toc-width);
+      max-width: var(--dell-toc-width) !important;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.dell1996 {
+  :not(pre) > code {
+    padding: 0.1em 0.35em;
+    color: var(--dell-ink);
+    background: var(--dell-yellow);
+    border: var(--dell-border);
+    border-radius: 0;
+    font-family: var(--dell-font-code);
+    font-size: 0.85em;
+  }
+
+  .theme-code-block,
+  pre {
+    margin: var(--dell-space-xl) 0;
+    border: var(--dell-border);
+    border-radius: 0 !important;
+    box-shadow: 3px 3px 0 var(--dell-frame);
+  }
+
+  pre code {
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+
+  div[class*='playgroundContainer'] {
+    margin-bottom: var(--dell-space-xxl);
+    overflow: hidden;
+    border: 2px solid var(--dell-frame);
+    border-radius: 0;
+    box-shadow: 3px 3px 0 var(--dell-frame);
+    transition: none;
+  }
+
+  div[class*='playgroundContainer']:focus-within {
+    border-color: var(--dell-frame);
+    box-shadow: 3px 3px 0 var(--dell-yellow);
+  }
+
+  div[class*='playgroundEditor']::before {
+    color: var(--dell-ink);
+    background: var(--dell-yellow);
+    border: var(--dell-border);
+    border-radius: 0;
+    letter-spacing: 0;
+  }
+
+  div[class*='playgroundPreview'] {
+    background: var(--dell-canvas);
+    border-top: 2px solid var(--dell-frame);
+  }
+}

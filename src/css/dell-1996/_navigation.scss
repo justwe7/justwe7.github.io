@@ -1,0 +1,182 @@
+.dell1996 {
+  .navbar,
+  .footer,
+  .menu,
+  .breadcrumbs,
+  .pagination-nav,
+  .table-of-contents {
+    font-family: var(--dell-font-ui);
+  }
+
+  .navbar {
+    height: auto;
+    min-height: 56px;
+    padding: var(--dell-space-sm) var(--dell-space-lg);
+    background: var(--dell-frame);
+    color: var(--dell-canvas);
+    border: 0;
+    box-shadow: none;
+  }
+
+  .navbar__title,
+  .navbar__link {
+    color: var(--dell-canvas);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .navbar__title:visited,
+  .navbar__link:visited {
+    color: var(--dell-canvas);
+  }
+
+  .navbar__link--active {
+    color: var(--dell-yellow);
+    text-decoration: underline;
+  }
+
+  .navbar__link--active:visited {
+    color: var(--dell-yellow);
+  }
+
+  .menu {
+    padding: var(--dell-space-md);
+  }
+
+  .menu__list-item {
+    margin: 0;
+    border-bottom: var(--dell-border);
+  }
+
+  .menu__link {
+    min-height: 44px;
+    padding: var(--dell-space-md);
+    color: var(--dell-ink);
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: none;
+  }
+
+  .menu__link:hover {
+    color: var(--dell-ink) !important;
+    background: var(--dell-sage) !important;
+    text-decoration: underline;
+  }
+
+  .menu__link--active {
+    color: var(--dell-ink) !important;
+    background: var(--dell-sage) !important;
+    text-decoration: underline;
+  }
+
+  .menu__link:visited {
+    color: var(--dell-ink);
+  }
+
+  .breadcrumbs {
+    padding: 0 0 var(--dell-space-md);
+    margin: 0 0 var(--dell-space-xl);
+    border-bottom: var(--dell-border);
+  }
+
+  .breadcrumbs__link {
+    padding: var(--dell-space-xs);
+    color: var(--dell-link);
+    background: transparent;
+    border-radius: 0;
+    text-decoration: underline;
+    transition: none;
+  }
+
+  .breadcrumbs__link:visited {
+    color: var(--dell-link);
+  }
+
+  .breadcrumbs__item--active .breadcrumbs__link {
+    color: var(--dell-ink) !important;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .table-of-contents {
+    padding: var(--dell-space-lg);
+    border: 0;
+    font-size: 12px;
+  }
+
+  .table-of-contents::before {
+    content: 'ON THIS PAGE';
+    display: block;
+    padding-bottom: var(--dell-space-sm);
+    margin-bottom: var(--dell-space-sm);
+    border-bottom: var(--dell-border);
+    font-weight: 700;
+  }
+
+  .table-of-contents__link {
+    min-height: 32px;
+    padding: var(--dell-space-xs) 0;
+    color: var(--dell-link) !important;
+    text-decoration: underline;
+    opacity: 1 !important;
+    transition: none;
+  }
+
+  .table-of-contents__link:visited {
+    color: var(--dell-link);
+  }
+
+  .table-of-contents__link--active,
+  .table-of-contents__link--active:visited {
+    color: var(--dell-ink) !important;
+    font-weight: 700;
+    background: var(--dell-yellow);
+    text-decoration: none;
+  }
+
+  .pagination-nav {
+    display: grid;
+    gap: var(--dell-space-md);
+    margin-top: var(--dell-space-section);
+  }
+
+  .pagination-nav__link {
+    min-height: 64px;
+    padding: var(--dell-space-md);
+    color: var(--dell-ink);
+    background: var(--dell-sage);
+    border: var(--dell-border);
+    border-radius: 0;
+    text-decoration: none;
+    transition: none;
+  }
+
+  .pagination-nav__link:hover {
+    color: var(--dell-ink);
+    background: var(--dell-yellow);
+  }
+
+  .footer {
+    padding: var(--dell-space-xl);
+    color: var(--dell-ink);
+    background: var(--dell-canvas);
+    border-top: var(--dell-border);
+  }
+
+  .footer__title,
+  .footer__link-item,
+  .footer__copyright {
+    color: var(--dell-ink);
+  }
+
+  .footer__link-item {
+    color: var(--dell-link);
+    text-decoration: underline;
+  }
+
+  .footer__link-item:visited {
+    color: var(--dell-link-visited);
+  }
+}

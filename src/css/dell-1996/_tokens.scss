@@ -1,0 +1,70 @@
+/*
+ * Dell 1996 theme foundation.
+ *
+ * Every token is scoped to `.dell1996` so the new visual system can be
+ * introduced one route at a time without changing the current site.
+ */
+.dell1996 {
+  color-scheme: light;
+
+  --dell-frame: #000;
+  --dell-canvas: #fff;
+  --dell-ink: #000;
+  --dell-link: #00e;
+  --dell-link-visited: #551a8b;
+  --dell-red: #e91d2a;
+  --dell-yellow: #fcc20f;
+  --dell-purple: #6a26a4;
+  --dell-sage: #b3bd95;
+  --dell-muted: #5a5a5a;
+  --dell-subtle: #efefef;
+
+  --dell-font-display: 'Arial Black', arial, 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  --dell-font-ui: helvetica, arial, 'PingFang SC', 'Microsoft YaHei',
+    sans-serif;
+  --dell-font-body: 'Times New Roman', 'Songti SC', stsong, simsun, serif;
+  --dell-font-code: consolas, monaco, 'Courier New', monospace;
+
+  --dell-space-xxs: 2px;
+  --dell-space-xs: 4px;
+  --dell-space-s: 6px;
+  --dell-space-sm: 8px;
+  --dell-space-m: 10px;
+  --dell-space-md: 12px;
+  --dell-space-lg: 16px;
+  --dell-space-xl: 20px;
+  --dell-space-xxl: 24px;
+  --dell-space-section-sm: 32px;
+  --dell-space-section: 40px;
+  --dell-space-section-lg: 48px;
+
+  --dell-frame-width: 8px;
+  --dell-border: 1px solid var(--dell-frame);
+  --dell-content-max-width: clamp(760px, 52vw, 1080px);
+  --dell-sidebar-width: clamp(240px, 14vw, 320px);
+  --dell-toc-width: clamp(200px, 14vw, 300px);
+  --doc-sidebar-width: var(--dell-sidebar-width);
+  --doc-sidebar-hidden-width: 32px;
+
+  --ifm-color-primary: var(--dell-link);
+  --ifm-color-primary-dark: #00c;
+  --ifm-color-primary-darker: #0000b8;
+  --ifm-color-primary-darkest: #00008f;
+  --ifm-color-primary-light: #2828ff;
+  --ifm-color-primary-lighter: #3d3dff;
+  --ifm-color-primary-lightest: #66f;
+  --ifm-background-color: var(--dell-canvas);
+  --ifm-font-family-base: var(--dell-font-body);
+  --ifm-font-family-monospace: var(--dell-font-code);
+  --ifm-heading-font-family: var(--dell-font-ui);
+  --ifm-heading-color: var(--dell-ink);
+  --ifm-font-color-base: var(--dell-ink);
+  --ifm-link-color: var(--dell-link);
+  --ifm-link-hover-color: var(--dell-link);
+  --ifm-border-radius: 0;
+  --ifm-global-radius: 0;
+  --ifm-global-shadow-lw: none;
+  --ifm-global-shadow-md: none;
+  --ifm-global-shadow-tl: none;
+}

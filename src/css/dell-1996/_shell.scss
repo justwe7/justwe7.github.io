@@ -1,0 +1,63 @@
+.dell1996 {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: var(--dell-frame-width);
+  background: var(--dell-frame);
+  color: var(--dell-ink);
+  font-family: var(--dell-font-body);
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  a {
+    color: var(--dell-link);
+    text-decoration: underline;
+  }
+
+  a:visited {
+    color: var(--dell-link-visited);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--dell-yellow);
+    outline-offset: 2px;
+  }
+}
+
+html.dell1996 body {
+  width: calc(100vw - (2 * var(--dell-frame-width)));
+  min-height: calc(100vh - (2 * var(--dell-frame-width)));
+  margin: 0 auto;
+  background: var(--dell-canvas);
+  border: var(--dell-border);
+}
+
+.dell1996 .main-wrapper {
+  background: var(--dell-canvas);
+}
+
+.dell1996__canvas {
+  width: calc(100vw - (2 * var(--dell-frame-width)));
+  min-height: calc(100vh - (2 * var(--dell-frame-width)));
+  margin: 0 auto;
+  background: var(--dell-canvas);
+  border: var(--dell-border);
+}
+
+.dell1996__content-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, var(--dell-sidebar-width))
+    minmax(0, 1fr)
+    minmax(0, var(--dell-toc-width));
+  min-width: 0;
+}
+
+.dell1996__main {
+  min-width: 0;
+  padding: var(--dell-space-xxl);
+  border-inline: var(--dell-border);
+}

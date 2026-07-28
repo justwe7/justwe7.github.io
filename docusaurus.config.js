@@ -228,13 +228,16 @@ const config = {
         docs: {
           path: 'docs',
           editUrl: 'https://github.com/justwe7/justwe7.github.io/blob/feature/',
-          // showLastUpdateTime: true,
+          showLastUpdateTime: true,
           // showLastUpdateAuthor: true,
           sidebarPath: require.resolve('./sidebars.js'),
         },
         blog: false,
         theme: {
-          customCss: [require.resolve('./src/css/custom.scss')],
+          customCss: [
+            require.resolve('./src/css/custom.scss'),
+            require.resolve('./src/css/dell-1996/index.scss'),
+          ],
         },
         sitemap: {
           changefreq: 'daily',
@@ -283,6 +286,7 @@ const config = {
         routeBasePath: 'life',
         sidebarPath: require.resolve('./sidebarsLife.js'),
         include: ['**/*.md', '**/*.mdx'],
+        showLastUpdateTime: true,
 
       },
     ],

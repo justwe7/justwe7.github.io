@@ -1,0 +1,145 @@
+.dell1996 {
+  .theme-doc-footer {
+    padding: 0;
+    margin-top: var(--dell-space-section);
+    overflow: hidden;
+    background: var(--dell-subtle);
+    border: var(--dell-border);
+    font-family: var(--dell-font-ui);
+  }
+
+  .theme-doc-footer::before {
+    content: 'ARCHIVE RECORD';
+    display: block;
+    padding: var(--dell-space-sm) var(--dell-space-md);
+    color: var(--dell-canvas);
+    background: var(--dell-frame);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .theme-doc-footer-tags-row {
+    padding: var(--dell-space-md);
+    margin: 0 !important;
+    border-bottom: var(--dell-border);
+  }
+
+  .theme-doc-footer-tags-row > .col {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--dell-space-sm);
+    padding: 0;
+  }
+
+  .theme-doc-footer-tags-row ul {
+    gap: var(--dell-space-xs);
+    margin: 0 !important;
+  }
+
+  .theme-doc-footer [class*='tagRegular'] {
+    padding: var(--dell-space-xs) var(--dell-space-sm);
+    color: var(--dell-ink);
+    background: var(--dell-yellow);
+    border: var(--dell-border);
+    border-radius: 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .theme-doc-footer [class*='tagRegular']:visited {
+    color: var(--dell-ink);
+  }
+
+  .theme-doc-footer-edit-meta-row {
+    align-items: center;
+    padding: var(--dell-space-md);
+    margin: 0;
+    background: var(--dell-canvas);
+    font-family: var(--dell-font-body);
+    font-size: 13px;
+    font-style: normal;
+  }
+
+  .theme-doc-footer-edit-meta-row > .col {
+    padding: 0;
+  }
+
+  .theme-edit-this-page {
+    display: inline-flex;
+    gap: var(--dell-space-xs);
+    align-items: center;
+    min-height: 32px;
+    padding: var(--dell-space-s) var(--dell-space-md);
+    color: var(--dell-canvas);
+    background: var(--dell-frame);
+    border: var(--dell-border);
+    font-family: var(--dell-font-ui);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .theme-edit-this-page:visited {
+    color: var(--dell-canvas);
+  }
+
+  .theme-last-updated {
+    color: var(--dell-ink);
+    font-style: normal;
+  }
+
+  .pagination-nav {
+    gap: var(--dell-space-md);
+  }
+
+  .pagination-nav::before {
+    content: 'CONTINUE BROWSING';
+    grid-column: 1 / -1;
+    padding: var(--dell-space-sm) var(--dell-space-md);
+    color: var(--dell-canvas);
+    background: var(--dell-frame);
+    font-family: var(--dell-font-ui);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .pagination-nav__link {
+    min-height: 72px;
+    padding: 0;
+    overflow: hidden;
+    color: var(--dell-ink);
+    background: var(--dell-canvas);
+    border: var(--dell-border);
+    text-decoration: none;
+  }
+
+  .pagination-nav__link:visited {
+    color: var(--dell-ink);
+  }
+
+  .pagination-nav__sublabel {
+    padding: var(--dell-space-s) var(--dell-space-md);
+    color: var(--dell-canvas);
+    background: var(--dell-frame);
+    font-family: var(--dell-font-ui);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .pagination-nav__label {
+    min-height: 48px;
+    padding: var(--dell-space-md);
+    background: var(--dell-sage);
+    font-family: var(--dell-font-ui);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .pagination-nav__link:hover .pagination-nav__label {
+    background: var(--dell-yellow);
+  }
+}
