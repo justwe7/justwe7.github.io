@@ -87,11 +87,9 @@ function Hero() {
           <animated.p style={trails[1]} className={styles.sysOutput}>
             <span className={styles.systemLog}>[System]: Booting knowledge matrix... OK</span><br/>
             <span className={styles.systemLog}>[System]: Load connections... 100%</span><br/><br/>
-            <Translate id="homepage.hero.text">
-              这里记录我的开发实践、踩坑总结、开源项目与一些有趣的尝试。
-            </Translate>
+            这里记录我的开发实践、踩坑总结、开源项目与一些有趣的尝试。
             <br />
-            希望这些内容，也能帮你少踩几个坑。
+            维护这份笔记，是希望自己能够保持探索和学习的热情。
           </animated.p>
 
           <animated.div style={trails[2]} className={styles.techStack}>

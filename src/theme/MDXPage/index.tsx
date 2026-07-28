@@ -23,6 +23,7 @@ export default function MDXPage(props: Props): JSX.Element {
   return (
     <HtmlClassNameProvider
       className={clsx(
+        'dell1996',
         wrapperClassName ?? ThemeClassNames.wrapper.mdxPages,
         ThemeClassNames.page.mdxPage,
       )}>
@@ -30,7 +31,7 @@ export default function MDXPage(props: Props): JSX.Element {
       <Layout>
         <main className="container container--fluid margin-vert--lg">
           <div className={clsx('row', styles.mdxPageWrapper)}>
-            <div className={clsx('col', 'col--8')}>
+            <div className={clsx('col', 'col--8', 'markdown')}>
               <MDXContent>
                 <MDXPageContent />
               </MDXContent>

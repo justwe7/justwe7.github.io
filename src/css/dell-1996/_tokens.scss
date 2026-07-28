@@ -80,4 +80,19 @@
   --ifm-global-shadow-lw: none;
   --ifm-global-shadow-md: none;
   --ifm-global-shadow-tl: none;
+
+  /*
+   * Docusaurus applies `.thin-scrollbar` to the doc sidebar menu, the
+   * right-hand TOC, and the /website category nav — all three read these
+   * vars, so overriding them here recolors all of that in one place
+   * without touching the main window scrollbar.
+   */
+  --ifm-scrollbar-size: 10px;
+  --ifm-scrollbar-track-background-color: var(--dell-subtle);
+  --ifm-scrollbar-thumb-background-color: var(--dell-frame);
+  --ifm-scrollbar-thumb-hover-background-color: var(--dell-yellow);
+}
+
+.dell1996 .thin-scrollbar {
+  scrollbar-color: var(--dell-frame) var(--dell-subtle);
 }

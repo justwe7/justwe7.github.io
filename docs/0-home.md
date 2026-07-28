@@ -20,9 +20,9 @@ slug: /
 - 如果只是简单调整 UI，就没必要使用 Product Design，纯粹浪费 Token。
 
 ### 07-24 · Google Play / Claude Pro / esim
-- 看到 Google Play 玻利维亚区的 Claude Pro 只要 86 元，顺手开了个 [商店价格查询](https://priceradar.store/zh/app/d50af74a-7437-4f60-a895-7d3f6e82743a) 页面留存价格， https://x.com/xfengbro/status/2080489354070479088?s=46&t=LiJssSVoLQXRtm3XVz8gHA 。
+- 看到 Google Play 玻利维亚区的 Claude Pro 只要 86 元，顺手开了个， 从这个 [应用商店商店价格查询](https://priceradar.store/zh/app/d50af74a-7437-4f60-a895-7d3f6e82743a) 网站可以对比价格， https://x.com/xfengbro/status/2080489354070479088?s=46&t=LiJssSVoLQXRtm3XVz8gHA 。
 - 更换 Google Play 地区时参考这篇 [Google Play 更换教程](https://itangtalk.com/google-play/)。
-- 看到 [菲律宾dito]https://x.com/kood520/status/2080499960232149108 虚拟卡开通教程，可以顺便开通maya卡，鉴于最近Bitget半拉闸，两个48team续费告急，再囤张境外手机卡吧。
+- 看到 [菲律宾dito](https://x.com/kood520/status/2080499960232149108) 虚拟卡开通教程，可以顺便开通maya卡，鉴于最近Bitget半拉闸，两个48team续费告急，再囤张境外手机卡吧。
 
 ### 07-05 · AI / skill
 - 最近在家写自己项目多，skill也用的多，管理起来很乱[宝玉 on X: "分享一下我管理 Skills 的方式，" / X](https://x.com/dotey/status/2069632132431929651?s=46)， 基于他的思路自己也整理一份自己的[Skill统一软链方案](../docs/AI/集中管理skill的方案.md)和仓库。 
@@ -57,7 +57,7 @@ slug: /
 
 ### 06-03 
 - 鉴于最近codex需要手机号二验，买了张xesim，按照[giffgaff](https://youtu.be/kcmAnZNXjsg?si=d40LM8UbaVqz2tkI)和[Clubsim / X](https://x.com/AI_Jasonyu/status/2007432863525015973)教程申请了英国卡和港卡，港卡虽然用不了gpt，但应该会稳定点吧
-- 德国沃达丰的[找不到页面 - LINUX DO](https://linux.do/t/topic/2294447/410)教程， wise转账充值的账号
+- 德国沃达丰的[申请教程 - LINUX DO](https://linux.do/t/topic/2294447/410)教程， wise转账充值的账号
 > Mein Vodafone登录不要49，号码前加0  
 企业/组织名称” Vodafone GmbH  
 BIC：DEUTDEDDXXX  
@@ -87,14 +87,14 @@ wise转账在备注49____________
 - 用字节的“Manus”[Home - AnyGen](https://www.anygen.io/home?invitation_code=NGNFVBVLCEW563X)做了一个flapybird https://www.anygen.io/share/79dlEmDNWBMyoohaRxafgU 
 
 ## 2025年 11 月
-- 看到的[# AI编码提示词工程](https://github.com/jwangkun/ai-coding-prompt-java)，后续再了解下
+- 看到的[AI编码提示词工程](https://github.com/jwangkun/ai-coding-prompt-java)，后续再了解下
 
 ## 2025年 9 月
 - https://1key.me/ 白嫖了一年的google pro学生包
 - 因为clashX代理不了gemini cli同时最近好玩的反重力也用不了，以后换梯子了[surge规则](https://github.com/Rabbit-Spec/Surge/blob/Master/Conf/Spec/Surge-CN.conf)
 
 ## 2025年 8 月
-- 申请了张港卡[app.pokepay.cc/pages/invitation/regist?r=227080](https://app.pokepay.cc/pages/invitation/regist?r=227080) ，不支持ai会员订阅，踩坑了
+- 申请了张港卡[pokepay](https://app.pokepay.cc/pages/invitation/regist?r=227080) ，不支持ai会员订阅，踩坑了
 
 <!--
 ## YYYY 年 M 月

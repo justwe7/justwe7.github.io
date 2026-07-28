@@ -122,6 +122,33 @@
     box-shadow: 3px 3px 0 var(--dell-frame), var(--dell-shadow-soft-lg);
   }
 
+  /*
+   * Badge/icon rows (e.g. the About page tech stack) shouldn't get the
+   * content-photo treatment above — reset to a plain wrapping inline row.
+   */
+  .markdown .techStackRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--dell-space-sm);
+    margin: var(--dell-space-lg) 0;
+  }
+
+  .markdown .techStackRow img {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+    transition: none;
+  }
+
+  .markdown .techStackRow img:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
   .alert {
     color: var(--dell-ink);
     background: var(--dell-subtle);
