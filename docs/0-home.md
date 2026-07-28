@@ -31,7 +31,7 @@ slug: /
 - 最近U的汇率很划算，比真实汇率都便宜，[Bybit Card](https://www.bybit.com/zh-MY/invite?ref=JR0NXJ0) 酷酷买U，100送10U奖励到手
 
 ### 07-01 · U卡 / ChatGPT
-- 今天终于上车11镑team车 https://www.notion.so/48-Team-35f66848c3f080c78393fd3c455d85fd
+- 今天终于上车11镑team车， 记一下网上看到的[开卡教程](https://www.notion.so/48-Team-35f66848c3f080c78393fd3c455d85fd)
 
 ---------
 
