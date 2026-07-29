@@ -26,6 +26,7 @@ slug: /
 - 如果只是简单调整 UI，就没必要使用 Product Design，纯粹浪费 Token。
 
 ### 07-24 · Google Play / Claude Pro / esim
+- 刷到卡兹克新上线了ai资讯网站[virxact](https://aihot.virxact.com/)
 - 看到 Google Play 玻利维亚区的 Claude Pro 只要 86 元，顺手开了个， 从这个 [应用商店商店价格查询](https://priceradar.store/zh/app/d50af74a-7437-4f60-a895-7d3f6e82743a) 网站可以对比价格， https://x.com/xfengbro/status/2080489354070479088?s=46&t=LiJssSVoLQXRtm3XVz8gHA 。
 - 更换 Google Play 地区时参考这篇 [Google Play 更换教程](https://itangtalk.com/google-play/)。
 - 看到 [菲律宾dito](https://x.com/kood520/status/2080499960232149108) 虚拟卡开通教程，可以顺便开通maya卡，鉴于最近Bitget半拉闸，两个48team续费告急，再囤张境外手机卡吧。
