@@ -9,6 +9,12 @@ slug: /
 
 ## 2026 年 7 月
 
+### 07-29 · AI / skill / 开发工作流
+- 用 `npx skills@latest add mattpocock/skills` 在项目里装了 15 个开发工作流 skills。主流程是 `grill-with-docs`（需求拷问并沉淀术语、ADR；没有代码库时用 `grill-me`）→ `to-spec`（整理规格）→ `to-tickets`（拆成可独立交付的纵向任务）→ `implement`（编码并按 `tdd` 做红→绿循环）→ `code-review`（按代码规范与需求规格两条线走查）。
+- 旧代码重构先用 `improve-codebase-architecture` 找架构摩擦，再用 `codebase-design` 设计测试接缝；疑难 Bug 用 `diagnosing-bugs`，外部需求或问题用 `triage`，不确定下一步时用 `ask-matt`。
+- 当前 [Matt Pocock skills 仓库](https://github.com/mattpocock/skills) 已没有 `to-issues`，对应能力是 `to-tickets`；`tdd` 只负责红→绿，重构被放到了 `code-review` 阶段。首次正式使用整套工程 skills 前，还要先运行一次 `setup-matt-pocock-skills`。
+- 看到一句话，记录下来以鞭策现在的状态：“具体，是一个人停止骗自己的开始。”
+
 ### 07-27 · esim / U卡 / 学习
 - giffgaff 大面积封号了，留个备用的退款地址：[Log in | giffgaff](https://support2.giffgaff.com/app/ask/Plans-Credit-and-Payment-Details/Cancelling-a-plan-or-top-up-purchase/form/)。
 - 最近做appstore的cpp需要有单独的橱窗图设计，橱窗图需要多个版本，基于之前的痛点，今天把[橱窗图平台](https://appshots.lihx.top/)新增支持了多项目切换的功能（bmad怎么越用越难受，大部分时间都在写文档了，可能codex高级模型+重型skill工作流不适合一起协作， 换5.5反而更快速实现需求）
