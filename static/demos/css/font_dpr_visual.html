@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>字体在不同 DPR 下的像素演示</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f0f4f9;
+      --text: #17202e;
+      --muted: #637087;
+      --line: #d8e0ea;
+      --primary: #276bd5;
+      --primary-soft: #e9f1ff;
+      --font-pixel: #2379c8;
+      --hairline: #e78535;
+      --grid: rgba(44, 94, 145, 0.3);
+      --shadow: 0 16px 44px rgba(32, 56, 91, 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #10151c;
+        --surface: #19202a;
+        --surface-soft: #222a36;
+        --text: #eef3fa;
+        --muted: #aab6c8;
+        --line: #354154;
+        --primary: #7aafff;
+        --primary-soft: #1e3558;
+        --font-pixel: #70b7f1;
+        --hairline: #f4ad70;
+        --grid: rgba(164, 203, 239, 0.28);
+        --shadow: 0 16px 44px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 92% 0%, rgba(75, 142, 235, 0.14), transparent 28rem),
+        var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    main {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .eyebrow {
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      margin-bottom: 8px;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      line-height: 1.25;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+      gap: 20px;
+      margin: 30px 0 42px;
+      padding: clamp(22px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .summary p:last-child {
+      margin-bottom: 0;
+    }
+
+    .summary strong {
+      color: var(--primary);
+    }
+
+    .summary-formula {
+      display: grid;
+      align-content: center;
+      padding: 20px;
+      border-radius: 18px;
+      background: var(--primary-soft);
+      text-align: center;
+    }
+
+    .summary-formula strong {
+      font-size: clamp(1.2rem, 3vw, 1.65rem);
+    }
+
+    .summary-formula span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      max-width: 670px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .toggle {
+      flex: 0 0 auto;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .toggle:hover {
+      border-color: var(--primary);
+    }
+
+    .toggle:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    .font-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .font-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: 0 8px 28px rgba(32, 58, 94, 0.08);
+    }
+
+    .font-card h3 {
+      margin-bottom: 2px;
+      font-size: 1.18rem;
+    }
+
+    .font-card > p {
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    canvas {
+      display: block;
+      width: min(100%, 240px);
+      height: auto;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface-soft);
+      image-rendering: pixelated;
+    }
+
+    .resolution {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .resolution strong {
+      color: var(--text);
+    }
+
+    .interpretation {
+      margin-top: 18px;
+      padding: 18px;
+      border-left: 4px solid var(--primary);
+      border-radius: 4px 16px 16px 4px;
+      color: var(--muted);
+      background: var(--surface);
+    }
+
+    .interpretation strong {
+      color: var(--text);
+    }
+
+    .compare {
+      margin-top: 44px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .compare-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--surface);
+    }
+
+    .compare-visual {
+      display: grid;
+      min-height: 150px;
+      place-items: center;
+      padding: 24px;
+      background: var(--surface-soft);
+    }
+
+    .line-demo {
+      width: min(360px, 90%);
+    }
+
+    .normal-line,
+    .hairline-line {
+      position: relative;
+      height: 42px;
+    }
+
+    .normal-line::after,
+    .hairline-line::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--hairline);
+      content: "";
+    }
+
+    .normal-line::after {
+      height: 1px;
+    }
+
+    .hairline-line::after {
+      height: 1px;
+      transform: scaleY(0.5);
+      transform-origin: bottom;
+    }
+
+    .line-labels {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .font-demo {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      color: var(--font-pixel);
+    }
+
+    .font-demo span:first-child {
+      font-size: 16px;
+    }
+
+    .font-demo span:last-child {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .compare-copy {
+      padding: 20px;
+    }
+
+    .compare-copy h3 {
+      margin-bottom: 7px;
+      font-size: 1.12rem;
+    }
+
+    .compare-copy p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .fact {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+
+    .fact strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .fact span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 48px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--primary);
+    }
+
+    @media (max-width: 780px) {
+      main {
+        width: min(100% - 22px, 640px);
+        padding-top: 28px;
+      }
+
+      .summary,
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .font-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .font-card {
+        display: grid;
+        grid-template-columns: minmax(0, 240px) minmax(150px, 1fr);
+        column-gap: 18px;
+        align-items: center;
+      }
+
+      .font-card h3,
+      .font-card > p,
+      .font-card .resolution {
+        grid-column: 2;
+      }
+
+      .font-card canvas {
+        grid-row: 1 / span 3;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .font-card {
+        display: block;
+      }
+
+      .font-card canvas {
+        margin-top: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Font Rasterization Lab</p>
+      <h1>为什么字体仍然用 px，也不会因为 DPR 变得突兀？</h1>
+      <p class="lead">保持 CSS 字号不变，提高物理像素采样密度：字的视觉尺寸基本不变，但轮廓会获得更多细节。</p>
+    </header>
+
+    <section class="summary" aria-labelledby="summary-title">
+      <div>
+        <h2 id="summary-title">字体与边框追求的不是同一个目标</h2>
+        <p>字体的目标是<strong>可读的视觉尺寸</strong>。例如 <code>font-size: 16px</code> 描述的是 CSS 布局中的字号；在 DPR=2 或 3 的屏幕上，浏览器用更多物理像素栅格化相同大小的字形，因此通常会更清晰。</p>
+        <p>这不代表真实设备上的 16 CSS px 永远严格等于某个固定毫米数。操作系统缩放、浏览器缩放、屏幕尺寸和观看距离都可能影响最终感知。</p>
+      </div>
+      <div class="summary-formula">
+        <strong>CSS 字号不变</strong>
+        <span>物理采样增加 → 轮廓更细腻</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="canvas-title">
+      <div class="section-head">
+        <div>
+          <h2 id="canvas-title">同样的字形，不同的像素采样</h2>
+          <p>每张卡片里的字母占据相同的展示面积。演示故意关闭平滑缩放并放大像素格，方便观察低分辨率到高分辨率的变化。</p>
+        </div>
+        <button class="toggle" id="grid-toggle" type="button" aria-pressed="true">隐藏像素网格</button>
+      </div>
+
+      <div class="font-cards">
+        <article class="font-card">
+          <h3>DPR = 1</h3>
+          <p>普通屏 · 采样点较少</p>
+          <canvas width="240" height="240" data-dpr="1" aria-label="DPR 1 下的像素字形 A"></canvas>
+          <div class="resolution"><span>演示栅格</span><strong>8 × 8</strong></div>
+        </article>
+        <article class="font-card">
+          <h3>DPR = 2</h3>
+          <p>Retina 屏 · 轮廓更完整</p>
+          <canvas width="240" height="240" data-dpr="2" aria-label="DPR 2 下的像素字形 A"></canvas>
+          <div class="resolution"><span>演示栅格</span><strong>16 × 16</strong></div>
+        </article>
+        <article class="font-card">
+          <h3>DPR = 3</h3>
+          <p>高密度屏 · 细节更丰富</p>
+          <canvas width="240" height="240" data-dpr="3" aria-label="DPR 3 下的像素字形 A"></canvas>
+          <div class="resolution"><span>演示栅格</span><strong>24 × 24</strong></div>
+        </article>
+      </div>
+
+      <p class="interpretation"><strong>如何读图：</strong>三个字母的 CSS 展示尺寸相同。DPR 越高，浏览器可用于描绘斜线、弧线和字腔的物理采样点越多，所以视觉结果是“更清晰”，而不是“字号变成三倍”。</p>
+    </section>
+
+    <section class="compare" aria-labelledby="compare-title">
+      <div class="section-head">
+        <div>
+          <h2 id="compare-title">边框为什么可能适配，字体却通常不用？</h2>
+          <p>关键不在于都写了 px，而在于设计目标不同。</p>
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <article class="compare-card">
+          <div class="compare-visual">
+            <div class="line-demo">
+              <div class="normal-line"></div>
+              <div class="hairline-line"></div>
+              <div class="line-labels"><span>普通 1 CSS px</span><span>0.5px 缩放示意</span></div>
+            </div>
+          </div>
+          <div class="compare-copy">
+            <h3>hairline 追求“尽可能细”</h3>
+            <p>如果设计明确要求接近一个物理像素，就要根据 DPR 使用小数边框或伪元素缩放。普通组件描边仍可直接使用 1px。</p>
+          </div>
+        </article>
+
+        <article class="compare-card">
+          <div class="compare-visual">
+            <div class="font-demo" aria-label="16 像素正文与 32 像素标题">
+              <span>16px 正文</span>
+              <span>32px 标题</span>
+            </div>
+          </div>
+          <div class="compare-copy">
+            <h3>字体追求“可读且层级稳定”</h3>
+            <p>DPR 增加时，字号的 CSS 视觉尺寸保持稳定，额外物理像素用来改善字形轮廓，不需要按 DPR 反向缩小。</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="facts">
+        <div class="fact">
+          <strong>DPR 适配</strong>
+          <span>解决像素密度与栅格精度问题，典型对象是 hairline 和位图资源。</span>
+        </div>
+        <div class="fact">
+          <strong>响应式字体</strong>
+          <span>解决视口或容器大小变化，常用 <code>rem</code> 与 <code>clamp()</code>。</span>
+        </div>
+        <div class="fact">
+          <strong>可访问性</strong>
+          <span>正文优先使用 <code>rem</code> 更容易尊重用户字号偏好；这与 DPR 是两条独立维度。</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <a href="/docs/前端开发/CSS/CSS像素、DPR与1px边框">返回《CSS 像素、DPR 与 1px 边框》正文</a>
+    </footer>
+  </main>
+
+  <script>
+    "use strict";
+
+    const canvases = [...document.querySelectorAll("canvas[data-dpr]")];
+    const gridToggle = document.querySelector("#grid-toggle");
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    let showGrid = true;
+
+    function getColor(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function drawGlyph(canvas) {
+      const dpr = Number(canvas.dataset.dpr);
+      const sampleSize = 8 * dpr;
+      const sample = document.createElement("canvas");
+      sample.width = sampleSize;
+      sample.height = sampleSize;
+
+      const sampleContext = sample.getContext("2d");
+      sampleContext.fillStyle = getColor("--surface-soft");
+      sampleContext.fillRect(0, 0, sampleSize, sampleSize);
+      sampleContext.fillStyle = getColor("--font-pixel");
+      sampleContext.font = `700 ${7.2 * dpr}px Arial, sans-serif`;
+      sampleContext.textAlign = "center";
+      sampleContext.textBaseline = "middle";
+      sampleContext.fillText("A", sampleSize / 2, sampleSize / 2 + 0.45 * dpr);
+
+      const context = canvas.getContext("2d");
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.imageSmoothingEnabled = false;
+      context.drawImage(sample, 0, 0, canvas.width, canvas.height);
+
+      if (!showGrid) return;
+      const step = canvas.width / sampleSize;
+      context.strokeStyle = getColor("--grid");
+      context.lineWidth = 1;
+      context.beginPath();
+      for (let index = 0; index <= sampleSize; index += 1) {
+        const coordinate = Math.round(index * step) + 0.5;
+        context.moveTo(coordinate, 0);
+        context.lineTo(coordinate, canvas.height);
+        context.moveTo(0, coordinate);
+        context.lineTo(canvas.width, coordinate);
+      }
+      context.stroke();
+    }
+
+    function drawAll() {
+      canvases.forEach(drawGlyph);
+    }
+
+    gridToggle.addEventListener("click", () => {
+      showGrid = !showGrid;
+      gridToggle.setAttribute("aria-pressed", String(showGrid));
+      gridToggle.textContent = showGrid ? "隐藏像素网格" : "显示像素网格";
+      drawAll();
+    });
+
+    darkMode.addEventListener("change", drawAll);
+    drawAll();
+  </script>
+</body>
+</html>
