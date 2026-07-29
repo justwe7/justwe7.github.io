@@ -1,60 +1,30 @@
-<h2 align="center">
-土豆和土豆丝的Wiki
-</h2><br>
+# 土豆和土豆丝
 
-<pre align="center">
- Build with 🦖<a href="https://lihx.top">Docusaurus</a> 
-</pre>
+个人知识库，记录开发笔记、日常折腾和生活碎片。
 
-<p align="center">
-<br>
-<a href="https://lihx.top">🖥 Online Preview</a>
-<br><br>
-</p>
+在线访问：[🖥 lihx.top](https://lihx.top)
 
-[![Build Status](https://travis-ci.com/justwe7/justwe7.github.io.svg?branch=feature)](https://travis-ci.com/justwe7/justwe7.github.io) [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/justwe7.github.io.svg?style=flat-square)](https://github.com/justwe7/justwe7.github.io/commits/master)
+基于 [Docusaurus](https://docusaurus.io/) 构建 [![GitHub last commit](https://img.shields.io/github/last-commit/justwe7/justwe7.github.io.svg?style=flat-square)](https://github.com/justwe7/justwe7.github.io/commits/master)。
 
-<!-- ## ✨ Features
-
--   ✍️ **Markdown** - 写作方便
--   🎨 **Beautiful** - 整洁，美观
--   🖥️ **PWA** - 支持 PWA，可安装，离线可用
--   🏞️ **i18n** - 支持国际化
--   💯 **SEO** - 搜索引擎优化，易于收录
--   📊 **谷歌分析** - 支持 Google Analytics
--   🔎 **全文搜索** - 支持 [Algolia DocSearch](https://github.com/algolia/docsearch)
--   🗃️ **博文视图** - 不同的博文视图，列表、宫格、卡片
-- 🌈 **资源导航** - 收集并分享有用、有意思的资源
-- 📦 **项目展示** - 展示你的项目，可用作于作品集 -->
-
-## 📊 Catalogue
+## 本地运行
 
 ```bash
-├── blog                           # 博客
-│   ├── first-blog.md              
-├── docs                           # 文档/笔记
-│   └── doc.md                     
-├── data                           # 项目/导航/友链数据
-│   ├── project.ts                 # 项目
-│   └── website.ts                 # 导航
-├── i18n                           # 国际化
-├── src
-│   ├── components                 # 组件
-│   ├── css                        # 自定义CSS
-│   ├── pages                      # 自定义页面
-│   ├── plugin                     # 自定义插件
-│   └── theme                      # 自定义主题组件
-├── static                         # 静态资源文件
-│   └── img                        # 静态图片
-├── docusaurus.config.js           # 站点的配置信息
-├── sidebars.js                    # 文档的侧边栏
-├── package.json
-├── tsconfig.json
-└── yarn.lock
+yarn
+yarn start
 ```
 
-## 📝License
+构建静态站点：
 
-- [MIT](./LICENSE)
-- 主题基于愧怍同学[博客](https://github.com/kuizuo/blog)修改
+```bash
+yarn build
+```
 
+## 内容位置
+
+- `docs/`：开发笔记与首页动态
+- `life/`：生活日常
+- `static/`：图片等静态资源
+
+## 版权与授权
+
+本仓库的原创内容欢迎复制、转载与使用；请保留作者署名，并注明来源为「土豆和土豆丝」及链接。详情见 [LICENSE](LICENSE)。
