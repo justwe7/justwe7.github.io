@@ -1,5 +1,3 @@
-# shell基础
-之前各个知识点都分开写，导致博客目录很乱，抽空把散乱的文章合并为一篇了。原链接已经从导航栏入口去掉：
 - [文件目录](https://github.com/justwe7/blog/tree/feature/docs/%E5%B9%BF%E5%BA%A6%E7%9F%A5%E8%AF%86/shell)
 
 ## hello shell

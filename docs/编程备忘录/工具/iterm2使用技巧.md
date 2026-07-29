@@ -27,7 +27,7 @@ iTerm2 的窗口层级是：Window → Tab → Pane（分屏）。日常操作�
 | 关闭当前 Pane | `⌘W` |
 | 在 Pane 间切换 | `⌘⌥←` / `⌘⌥→` / `⌘⌥↑` / `⌘⌥↓` |
 | 最大化当前 Pane | `⌘⇧Enter`（再按一次还原） |
-![](../../static/docs/Pasted%20image%2020260410102755.png)
+![](../../../static/docs/Pasted%20image%2020260410102755.png)
 分屏适合同时看日志 + 跑命令，或者一边编辑一边 watch 输出，不需要专门开多个窗口。
 
 ---
@@ -120,7 +120,7 @@ it2ul
 ```bash
 imgcat image.png
 ```
-![](../../static/docs/Pasted%20image%2020260410112109.png)
+![](../../../static/docs/Pasted%20image%2020260410112109.png)
 图片会直接内联渲染在终端里，不需要打开单独的预览窗口。
 
 ---
@@ -136,7 +136,7 @@ Hotkey Window 是一个全局快捷键呼出的悬浮终端，任何应用里按
 3. 设置快捷键（比如 `⌥Space` 或 `⌥\``）
 4. 可以调整窗口是否跟随当前屏幕、是否透明、是否动画滑入
 
-![](../../static/docs/Pasted%20image%2020260410102727.png)
+![](../../../static/docs/Pasted%20image%2020260410102727.png)
 
 ### 使用建议
 
