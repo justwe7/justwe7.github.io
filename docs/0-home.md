@@ -14,6 +14,7 @@ slug: /
 - 旧代码重构先用 `improve-codebase-architecture` 找架构摩擦，再用 `codebase-design` 设计测试接缝；疑难 Bug 用 `diagnosing-bugs`，外部需求或问题用 `triage`，不确定下一步时用 `ask-matt`。
 - 当前 [Matt Pocock skills 仓库](https://github.com/mattpocock/skills) 已没有 `to-issues`，对应能力是 `to-tickets`；`tdd` 只负责红→绿，重构被放到了 `code-review` 阶段。首次正式使用整套工程 skills 前，还要先运行一次 `setup-matt-pocock-skills`。
 - 看到一句话，记录下来以鞭策现在的状态：“具体，是一个人停止骗自己的开始。”
+- gg卡被封，看到一个买套餐复活的[方案](https://x.com/CryptoJHK/status/2082370965544268041)
 
 ### 07-27 · esim / U卡 / 学习
 - giffgaff 大面积封号了，留个备用的退款地址：[Log in | giffgaff](https://support2.giffgaff.com/app/ask/Plans-Credit-and-Payment-Details/Cancelling-a-plan-or-top-up-purchase/form/)。
@@ -24,6 +25,7 @@ slug: /
 - GPT 目前的代码逻辑强化，前端 UI 需要使用 skill。可以参考 [Anthropic 的 frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)。
 - 需要华丽 UI 的项目，推荐直接使用官方插件 Product Design：它会先生成 3 张视觉设计稿供选择，再根据选中的风格复刻页面。
 - 如果只是简单调整 UI，就没必要使用 Product Design，纯粹浪费 Token。
+- 从卖课手里拿了分面试题大纲https://y03l2iufsbl.feishu.cn/drive/folder/QuakfoOtZlsfffdaqKPc01Kankf
 
 ### 07-24 · Google Play / Claude Pro / esim
 - 刷到卡兹克新上线了ai资讯网站[virxact](https://aihot.virxact.com/)
@@ -49,6 +51,7 @@ slug: /
 
 ### 06-24 · cloudflare / 开发
 - [顶级白嫖指南：拥有一个域名后，Cloudflare 到底能送你多少服务？](https://blog.wildsaltlab.com/post/ultimate-cloudflare-free-tier-2026/)
+- 游戏素材站：https://github.com/wellingfeng/UltraGameStudio/blob/main/app/doc/README.zh-CN.md, https://www.bilibili.com/video/BV1NbmXYDEhB/, https://itch.io/， https://www.spriters-resource.com/
 
 ### 06-22 · 跨境
 - 今天去兴业银行办了张寰宇人生卡，配合之前申请的[英国 iFAST 开户/入金教程：大陆用户从 0 到 1 线上开户入金 - 香港境外银行 | 投资导航](https://invest-nav.com/tutorials/hk-banks/text/ifast-bank/) 以及申请的wise，可以无忧保号德国沃达丰了。
@@ -95,6 +98,7 @@ wise转账在备注49____________
 
 ## 2025年 11 月
 - 看到的[AI编码提示词工程](https://github.com/jwangkun/ai-coding-prompt-java)，后续再了解下
+- 开源白板工具： https://drawnix.com/
 
 ## 2025年 9 月
 - https://1key.me/ 白嫖了一年的google pro学生包
