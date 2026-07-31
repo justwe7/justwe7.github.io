@@ -14,7 +14,7 @@
     content: 'ARCHIVE RECORD';
     display: block;
     padding: var(--dell-space-sm) var(--dell-space-md);
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
     background: var(--dell-frame);
     font-size: 12px;
     font-weight: 700;
@@ -80,7 +80,7 @@
     align-items: center;
     min-height: 32px;
     padding: var(--dell-space-s) var(--dell-space-md);
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
     background: var(--dell-frame);
     border: var(--dell-border);
     border-radius: var(--dell-radius-sm);
@@ -92,7 +92,7 @@
   }
 
   .theme-edit-this-page:visited {
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
   }
 
   .theme-edit-this-page:hover,
@@ -114,7 +114,7 @@
     content: 'CONTINUE BROWSING';
     grid-column: 1 / -1;
     padding: var(--dell-space-sm) var(--dell-space-md);
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
     background: var(--dell-frame);
     font-family: var(--dell-font-ui);
     font-size: 12px;
@@ -145,7 +145,7 @@
 
   .pagination-nav__sublabel {
     padding: var(--dell-space-s) var(--dell-space-md);
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
     background: var(--dell-frame);
     font-family: var(--dell-font-ui);
     font-size: 11px;

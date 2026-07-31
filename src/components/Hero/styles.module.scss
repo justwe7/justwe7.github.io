@@ -17,7 +17,7 @@
   width: 90%;
   max-width: 800px;
   background: var(--dell-canvas, #fff);
-  border: 2px solid var(--dell-canvas, #fff);
+  border: 2px solid var(--dell-on-frame, #fff);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 6px 6px 0 rgb(255 255 255 / 25%), 0 30px 70px rgb(0 0 0 / 45%),
@@ -30,8 +30,8 @@
   align-items: center;
   padding: var(--dell-space-sm, 8px) var(--dell-space-lg, 16px);
   background: var(--dell-frame, #000);
-  color: var(--dell-canvas, #fff);
-  border-bottom: 1px solid var(--dell-frame, #000);
+  color: var(--dell-on-frame, #fff);
+  border-bottom: 1px solid var(--dell-border-color, #000);
 }
 
 .macButtons {
@@ -42,7 +42,7 @@
 .dot {
   width: 10px;
   height: 10px;
-  border: 1px solid var(--dell-canvas, #fff);
+  border: 1px solid var(--dell-on-frame, #fff);
   border-radius: 50%;
   display: inline-block;
 }
@@ -51,7 +51,7 @@
   flex: 1;
   text-align: center;
   font-family: var(--dell-font-code);
-  color: var(--dell-canvas, #fff);
+  color: var(--dell-on-frame, #fff);
   font-size: 13px;
   margin-left: -40px; /* Offset to perfectly center */
   pointer-events: none;
@@ -125,7 +125,7 @@
   align-items: center;
   gap: 6px;
   background: var(--dell-canvas, #fff);
-  border: 1px solid var(--dell-frame, #000);
+  border: 1px solid var(--dell-border-color, #000);
   border-radius: 999px;
   padding: 4px 12px;
   font-family: var(--dell-font-code);
@@ -157,9 +157,9 @@
   align-items: center;
   gap: 8px;
   padding: var(--dell-space-s, 6px) var(--dell-space-xl, 20px);
-  color: var(--dell-canvas, #fff);
+  color: var(--dell-on-frame, #fff);
   background: var(--dell-frame, #000);
-  border: 1px solid var(--dell-frame, #000);
+  border: 1px solid var(--dell-border-color, #000);
   border-radius: 8px;
   font-family: var(--dell-font-ui);
   font-weight: 700;
@@ -171,7 +171,7 @@
   &:hover {
     background: var(--dell-yellow, #fcc20f);
     color: var(--dell-ink, #000);
-    border-color: var(--dell-frame, #000);
+    border-color: var(--dell-border-color, #000);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgb(252 194 15 / 35%);
   }
@@ -185,7 +185,7 @@
  */
 .terminalBody .cyberButton,
 .terminalBody .cyberButton:visited {
-  color: var(--dell-canvas, #fff);
+  color: var(--dell-on-frame, #fff);
 }
 
 .terminalBody .cyberButton:hover,
@@ -201,7 +201,7 @@
 .footerSocials {
   margin-top: var(--dell-space-section, 40px);
   padding-top: var(--dell-space-lg, 16px);
-  border-top: 1px solid var(--dell-frame, #000);
+  border-top: 1px solid var(--dell-border-color, #000);
 }
 
 .socialNetworks {

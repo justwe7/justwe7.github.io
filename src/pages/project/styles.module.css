@@ -17,7 +17,11 @@
   gap: var(--dell-space-xxl, 24px);
   padding: var(--dell-space-section, 40px) var(--dell-space-xxl, 24px);
   margin: var(--dell-space-lg, 16px) 0 var(--dell-space-section, 40px);
-  background: linear-gradient(135deg, var(--dell-sage) 0%, #cfe0d8 100%);
+  background: linear-gradient(
+    135deg,
+    var(--dell-sage) 0%,
+    var(--dell-sage-soft) 100%
+  );
   border: var(--dell-border);
   border-radius: 18px;
   box-shadow: 0 24px 48px rgb(0 0 0 / 8%);
@@ -149,17 +153,17 @@
   padding: var(--dell-space-md, 12px);
   box-shadow: 4px 4px 0 var(--dell-frame), 0 16px 32px rgb(0 0 0 / 25%);
   animation: float2 7s ease-in-out infinite 1s;
-  color: var(--dell-canvas);
+  color: var(--dell-on-frame);
   font-family: var(--dell-font-code);
   font-size: 0.8rem;
 }
 
 .termPrompt {
-  color: var(--dell-yellow);
+  color: var(--dell-yellow-text);
 }
 
 .termSuccess {
-  color: var(--dell-canvas);
+  color: var(--dell-on-frame);
 }
 
 /* Sections & Grid */

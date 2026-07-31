@@ -10,12 +10,16 @@
   --dell-frame: #000;
   --dell-canvas: #fff;
   --dell-ink: #000;
+  --dell-on-frame: #fff;
+  --dell-border-color: var(--dell-frame);
   --dell-link: #00e;
   --dell-link-visited: #551a8b;
   --dell-red: #e91d2a;
   --dell-yellow: #fcc20f;
+  --dell-yellow-text: var(--dell-yellow);
   --dell-purple: #6a26a4;
   --dell-sage: #b3bd95;
+  --dell-sage-soft: #cfe0d8;
   --dell-muted: #5a5a5a;
   --dell-subtle: #efefef;
 
@@ -40,7 +44,7 @@
   --dell-space-section-lg: 48px;
 
   --dell-frame-width: 8px;
-  --dell-border: 1px solid var(--dell-frame);
+  --dell-border: 1px solid var(--dell-border-color);
 
   /*
    * Neo-brutalist accent scale — used on interior content blocks (headings,
@@ -89,10 +93,53 @@
    */
   --ifm-scrollbar-size: 10px;
   --ifm-scrollbar-track-background-color: var(--dell-subtle);
-  --ifm-scrollbar-thumb-background-color: var(--dell-frame);
-  --ifm-scrollbar-thumb-hover-background-color: var(--dell-yellow);
+  --ifm-scrollbar-thumb-background-color: var(--dell-border-color);
+  --ifm-scrollbar-thumb-hover-background-color: var(--dell-yellow-text);
+}
+
+html[data-theme='dark'].dell1996 {
+  color-scheme: dark;
+
+  --dell-canvas: #11140f;
+  --dell-ink: #edf2e8;
+  --dell-on-frame: #f7f8f4;
+  --dell-border-color: #727b64;
+  --dell-link: #8cb8ff;
+  --dell-link-visited: #d0a5ff;
+  --dell-red: #ff7c85;
+  --dell-yellow: #6f5c0d;
+  --dell-yellow-text: #ffd75a;
+  --dell-purple: #bd91e9;
+  --dell-sage: #425036;
+  --dell-sage-soft: #273121;
+  --dell-muted: #a8afa0;
+  --dell-subtle: #20251c;
+  --dell-shadow-soft: 0 16px 32px rgb(0 0 0 / 38%);
+  --dell-shadow-soft-lg: 0 24px 48px rgb(0 0 0 / 52%);
+
+  --ifm-color-primary: var(--dell-link);
+  --ifm-color-primary-dark: #78a8f6;
+  --ifm-color-primary-darker: #6a9ef0;
+  --ifm-color-primary-darkest: #417bd2;
+  --ifm-color-primary-light: #a0c5ff;
+  --ifm-color-primary-lighter: #afd0ff;
+  --ifm-color-primary-lightest: #d1e3ff;
+  --ifm-background-color: var(--dell-canvas);
+  --ifm-background-surface-color: var(--dell-subtle);
+  --ifm-font-color-base: var(--dell-ink);
+  --ifm-heading-color: var(--dell-ink);
+  --ifm-color-content: var(--dell-ink);
+  --ifm-color-content-secondary: var(--dell-muted);
+  --ifm-menu-color: var(--dell-ink);
+  --ifm-toc-border-color: var(--dell-border-color);
+  --ifm-code-background: var(--dell-subtle);
+  --divider-color: var(--dell-border-color);
+  --text-color: var(--dell-ink);
+  --card-background: var(--dell-canvas);
+  --search-local-modal-background: var(--dell-canvas);
+  --search-local-modal-shadow: 0 0 48px rgb(0 0 0 / 55%);
 }
 
 .dell1996 .thin-scrollbar {
-  scrollbar-color: var(--dell-frame) var(--dell-subtle);
+  scrollbar-color: var(--dell-border-color) var(--dell-subtle);
 }

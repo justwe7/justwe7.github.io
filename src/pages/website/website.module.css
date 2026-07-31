@@ -3,7 +3,7 @@
   overflow-y: auto;
   position: sticky;
   top: calc(var(--ifm-navbar-height) + 2rem);
-  border-right: 1px solid var(--dell-frame);
+  border-right: 1px solid var(--dell-border-color);
   padding-right: var(--dell-space-md, 12px);
 }
 
@@ -14,7 +14,7 @@
 
 .sidebarItem {
   margin: 0;
-  border-bottom: 1px solid var(--dell-frame);
+  border-bottom: 1px solid var(--dell-border-color);
 }
 
 .sidebarItemLink {

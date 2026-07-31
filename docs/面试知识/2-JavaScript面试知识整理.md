@@ -1303,6 +1303,80 @@ localStorage.clear();
 
 注意点：Web Storage 只能直接存字符串，对象需要 `JSON.stringify` 序列化；同步 API 可能阻塞主线程，不适合频繁写入大量数据；不要存储敏感信息，因为 XSS 攻击可以直接读取 Web Storage 里的内容（这一点和有 `HttpOnly` 保护的 Cookie 不同）。
 
+IndexedDB 解决的是 localStorage 解决不了的问题：数据量大、需要结构化查询、不能阻塞主线程。一个 IndexedDB 数据库（database）里有多个对象仓库（object store，相当于表），每个 object store 存键值对记录（value 可以是复杂对象），可以给某个字段建索引（index）方便查询，所有读写都要通过事务（transaction）进行：
+
+```js
+// 1. 打开（或创建）数据库，第二个参数是版本号
+const request = indexedDB.open('myDB', 1);
+
+// 2. 数据库创建/版本升级时触发，只能在这里建表、建索引
+request.onupgradeneeded = (event) => {
+  const db = event.target.result;
+  const store = db.createObjectStore('users', { keyPath: 'id' }); // 以 id 字段作为主键
+  store.createIndex('by_name', 'name', { unique: false }); // 给 name 字段建索引
+};
+
+// 3. 打开成功后拿到 db 实例
+request.onsuccess = (event) => {
+  const db = event.target.result;
+
+  const writeTx = db.transaction('users', 'readwrite');
+  writeTx.objectStore('users').add({ id: 1, name: 'Tom', age: 20 });
+
+  const readTx = db.transaction('users', 'readonly');
+  const getRequest = readTx.objectStore('users').get(1);
+  getRequest.onsuccess = () => {
+    console.log(getRequest.result); // { id: 1, name: 'Tom', age: 20 }
+  };
+};
+```
+
+几个高频追问点：`onupgradeneeded` 只在数据库第一次创建、或者 `open()` 传入的版本号比当前已存在版本号更高时触发，建表、加字段、建索引这类"结构变更"只能在这里做，这一点和关系型数据库的 migration 概念很像；原生 API 是基于事件回调的，不是 Promise，每个操作返回一个 `IDBRequest` 对象，得挂 `onsuccess`/`onerror`，实际项目里几乎都会用 [`idb`](https://github.com/jakearchibald/idb) 这类库包一层 Promise 封装；和 localStorage 最大的体验差异是读写全程异步、不会卡主线程，这也是"离线缓存大量结构化数据"场景一定选 IndexedDB 而不是 localStorage 的原因。
+
+### 浏览器 Tab 间通信
+
+localStorage 能做跨 tab 通信，靠的是 `storage` 事件：
+
+```js
+// tab A：修改 localStorage
+localStorage.setItem('message', JSON.stringify({ type: 'login', userId: 1 }));
+
+// tab B（同源的其他标签页）：监听变化
+window.addEventListener('storage', (e) => {
+  console.log(e.key);       // 'message'
+  console.log(e.oldValue);  // 修改前的值
+  console.log(e.newValue);  // 修改后的值
+  console.log(e.url);       // 触发修改的那个页面的 URL
+});
+```
+
+三个容易被追问的细节：`storage` 事件只会在"其他"同源标签页触发，发起修改的那个 tab 自己收不到，这是设计上的，避免自己给自己发消息死循环；值没有真正变化就不会触发，比如连续 `setItem('a', '1')` 两次，第二次不会触发事件，所以拿它当广播消息用时，通常会在 value 里塞一个时间戳或自增 id，保证每次都是"新值"；这是同步、覆盖式存储，不适合频繁通信，量大就该用 `BroadcastChannel`。
+
+除了这个经典手法，还有几种正经的跨 tab 通信方案：
+
+| 方案 | 特点 | 适用场景 |
+| --- | --- | --- |
+| `storage` 事件 | 依赖 localStorage 副作用，兼容性最好，但语义上是"顺带"的 | 简单场景：登录状态同步、退出登录后所有 tab 跳登录页 |
+| `BroadcastChannel` | 专门为同源多上下文通信设计的 API，语义清晰，不持久化数据 | 现代浏览器下的首选，tab 之间、tab 和 worker 之间都能用 |
+| `SharedWorker` | 多个 tab 共享同一个 worker 实例，worker 本身可以做通信中转 | 需要多个 tab 共用同一份资源时（比如共用一个 WebSocket 连接） |
+| `postMessage` | 只能用于有引用关系的窗口（`window.open` 打开的子窗口、iframe 和父页面） | 明确知道对方窗口引用时用，不适合任意两个 tab 这种没有引用关系的场景 |
+
+`BroadcastChannel` 用法（现代项目更推荐，语义比借用 `storage` 事件更直接）：
+
+```js
+// tab A
+const channel = new BroadcastChannel('app-channel');
+channel.postMessage({ type: 'logout' });
+
+// tab B
+const channel = new BroadcastChannel('app-channel');
+channel.onmessage = (e) => {
+  console.log(e.data); // { type: 'logout' }
+};
+```
+
+行为上和 `storage` 事件很像（发送方自己的 `onmessage` 不会被触发），但不依赖 localStorage 的存储副作用，专门为多上下文之间传消息设计，数据不落盘、用完即走。
+
 ### 同源策略和跨域方案有哪些？
 
 同源要求协议、域名、端口三者完全一致。浏览器限制跨源读取响应，是前端安全的基础机制，避免恶意页面读取用户在其他站点的敏感数据。
@@ -1320,6 +1394,72 @@ Access-Control-Allow-Credentials: true
 ```
 
 CORS 里有两个高频追问点：**简单请求和预检请求的区别**——简单请求（GET/HEAD/POST 且 `Content-Type` 是几种受限类型之一）会直接发送，复杂请求（比如带自定义 header、`Content-Type: application/json`）浏览器会先发一个 `OPTIONS` 预检请求，服务端确认允许后才会真正发送；**为什么不能把 `Access-Control-Allow-Origin` 设为 `*` 同时携带凭证**——因为通配符加凭证意味着任意源都能带着用户的 Cookie 发起请求并读取响应，是明显的安全漏洞，规范里明确禁止了这种组合，携带凭证时 `Allow-Origin` 必须是具体的域名。
+
+**代理具体怎么转发参数？** 代理不会对业务参数做任何加工，只是把请求原样转发到另一个目标地址，能绕开跨域是因为浏览器只关心"页面自己发起的请求目标是不是同源"——请求一旦到了代理服务器这一步，服务器和服务器之间转发请求不受浏览器同源策略约束。
+
+开发环境常见配置（以 Vite 为例）：
+
+```js
+// vite.config.js
+export default {
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api.example.com',
+        changeOrigin: true, // 把请求头里的 Host 改成目标地址的 Host，否则目标服务器可能因 Host 不匹配拒绝请求
+        rewrite: (path) => path.replace(/^\/api/, ''), // 转发前把 /api 前缀去掉
+      },
+    },
+  },
+};
+```
+
+请求链路：前端请求 `/api/user?id=1` → 和页面本身同源，浏览器完全不会触发 CORS 检查 → 开发服务器按 `rewrite` 把路径改写成 `/user?id=1`，转发到 `https://api.example.com/user?id=1` → 查询参数、请求体、大部分请求头都是原样透传，只有路径前缀（`rewrite`）和 `Host` 头（`changeOrigin`）被动了手脚 → 响应原路返回，浏览器看到的响应来自同源地址。
+
+生产环境的 Nginx 反向代理是同样的思路：
+
+```nginx
+location /api/ {
+  proxy_pass http://real-backend:3000/;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr; # 转发真实客户端 IP，否则后端看到的都是 Nginx 自己的 IP
+}
+```
+
+默认情况下代理会尽量透明地转发所有东西，需要显式声明的通常只有 `Host`（避免目标服务器基于 Host 校验拒绝请求）和 `X-Real-IP`/`X-Forwarded-For`（避免后端拿到的客户端 IP 全是代理服务器自己的）。
+
+**`postMessage` 的完整示例**（以父页面和 iframe 通信为例，关键是发送时指定目标源、接收时校验来源）：
+
+```html
+<!-- 父页面 -->
+<iframe id="child" src="https://child.example.com/page.html"></iframe>
+<script>
+  const iframe = document.getElementById('child');
+
+  iframe.onload = () => {
+    // 第二个参数是目标源，只有 iframe 当前的源匹配这个值，消息才会被送达
+    iframe.contentWindow.postMessage({ type: 'init', data: 'hello' }, 'https://child.example.com');
+  };
+
+  window.addEventListener('message', (event) => {
+    if (event.origin !== 'https://child.example.com') return; // 必须校验来源
+    console.log('收到子页面消息:', event.data);
+  });
+</script>
+```
+
+```html
+<!-- 子页面 child.example.com/page.html -->
+<script>
+  window.addEventListener('message', (event) => {
+    if (event.origin !== 'https://parent.example.com') return; // 同样要校验
+    console.log('收到父页面消息:', event.data);
+    event.source.postMessage({ type: 'ack', data: 'received' }, event.origin); // event.source 是发送方的 window 引用，直接用它回复
+  });
+</script>
+```
+
+三个高频追问点：`event.origin` 校验是硬性要求，不校验意味着任何源的页面都能往你的 `message` 监听器里塞数据，是一个真实的 XSS 攻击面；发消息时的 `targetOrigin` 参数不要在生产环境写成 `*`，写 `*` 表示不管目标窗口实际导航到了哪个源都发送，一旦目标窗口被重定向到别的域，消息就可能泄露给攻击者控制的页面；传递的数据用的是结构化克隆算法，不是 `JSON.stringify`，能传对象、数组、`Map`、`Set`，但函数、DOM 节点这类不可克隆的东西传不了。`window.open` 打开的弹窗场景用法完全一样，只是把窗口引用换成 `window.open()` 的返回值。
 
 ## 十一、Ajax、网络请求与文件上传
 
@@ -1398,6 +1538,115 @@ input.addEventListener('change', async function () {
 ```
 
 普通文件上传直接用 `FormData` 就够了，但文件很大（比如几百 MB 的视频）时，直接整体上传会有几个问题：单次请求体积过大容易超时失败；网络中断后需要从头重传；无法显示细粒度的上传进度。大文件上传的常见思路是：**前端按固定大小切片**；**计算文件 hash（通常抽样部分内容而不是整个文件，避免计算太慢），用于秒传或断点续传**——如果服务端已经存在相同 hash 的完整文件，直接返回成功，不需要真正上传；**并发上传多个分片**，加快整体速度；**服务端接收完所有分片后按顺序合并**；**上传失败时只重传失败的分片**，而不是整个文件重来。
+
+前端完整实现：
+
+```js
+// 1. 按固定大小切片
+function createChunks(file, chunkSize = 5 * 1024 * 1024) { // 5MB 一片
+  const chunks = [];
+  let start = 0;
+  while (start < file.size) {
+    chunks.push({ index: chunks.length, blob: file.slice(start, start + chunkSize) });
+    start += chunkSize;
+  }
+  return chunks;
+}
+
+// 2. 计算文件 hash：抽样而不是全量读取，避免大文件计算太慢
+//    策略：第一片和最后一片全量参与计算，中间的分片只取头尾各 2 字节
+async function calculateHashSample(file, chunkSize) {
+  const spark = new SparkMD5.ArrayBuffer();
+  const chunks = createChunks(file, chunkSize);
+
+  const buffers = await Promise.all(chunks.map((chunk, index) => new Promise((resolve) => {
+    const reader = new FileReader();
+    if (index === 0 || index === chunks.length - 1) {
+      reader.readAsArrayBuffer(chunk.blob); // 首尾分片全量
+    } else {
+      const mid = chunk.blob.size / 2;
+      const sample = new Blob([chunk.blob.slice(0, 2), chunk.blob.slice(mid, mid + 2), chunk.blob.slice(-2)]);
+      reader.readAsArrayBuffer(sample); // 中间分片只抽样
+    }
+    reader.onload = (e) => resolve(e.target.result);
+  })));
+
+  buffers.forEach((buffer) => spark.append(buffer));
+  return spark.end(); // 返回文件 hash，实际项目通常放进 Web Worker 算，避免卡主线程
+}
+
+// 3. 秒传/断点续传：先问服务端这个 hash 传过没有、传了哪些分片
+async function checkUploadStatus(hash, filename) {
+  const res = await fetch(`/upload/check?hash=${hash}&filename=${filename}`);
+  return res.json(); // { uploaded: boolean, uploadedChunks: number[] }
+}
+
+// 4. 并发上传，带并发数限制的简单任务池
+async function uploadChunks(chunks, hash, uploadedChunks, concurrency = 3) {
+  const pending = chunks.filter((c) => !uploadedChunks.includes(c.index)); // 跳过已上传的分片
+  let cursor = 0;
+  async function worker() {
+    while (cursor < pending.length) {
+      const chunk = pending[cursor++];
+      const formData = new FormData();
+      formData.append('chunk', chunk.blob);
+      formData.append('hash', hash);
+      formData.append('index', chunk.index);
+      await fetch('/upload/chunk', { method: 'POST', body: formData });
+    }
+  }
+  await Promise.all(Array.from({ length: concurrency }, worker));
+}
+
+// 5. 串起完整流程
+async function uploadLargeFile(file) {
+  const chunkSize = 5 * 1024 * 1024;
+  const chunks = createChunks(file, chunkSize);
+  const hash = await calculateHashSample(file, chunkSize);
+
+  const { uploaded, uploadedChunks } = await checkUploadStatus(hash, file.name);
+  if (uploaded) return console.log('秒传成功'); // 服务端已有完整文件，直接结束
+
+  try {
+    await uploadChunks(chunks, hash, uploadedChunks);
+  } catch (err) {
+    // 失败重传：重新拿到最新的 uploadedChunks，只补传缺的分片，而不是整个文件重来
+    const { uploadedChunks: latest } = await checkUploadStatus(hash, file.name);
+    await uploadChunks(chunks, hash, latest);
+  }
+
+  await fetch('/upload/merge', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ hash, filename: file.name, size: chunkSize }),
+  });
+}
+```
+
+服务端按分片序号排序后依次合并（Node.js 示意）：
+
+```js
+app.post('/upload/merge', async (req, res) => {
+  const { hash, filename } = req.body;
+  const chunkDir = path.resolve(UPLOAD_DIR, hash);
+  const chunkFiles = (await fs.readdir(chunkDir)).sort((a, b) => a.split('-')[1] - b.split('-')[1]); // 顺序不对文件就废了
+
+  const writeStream = fs.createWriteStream(path.resolve(UPLOAD_DIR, filename));
+  for (const file of chunkFiles) {
+    await new Promise((resolve, reject) => {
+      const readStream = fs.createReadStream(path.resolve(chunkDir, file));
+      readStream.pipe(writeStream, { end: false });
+      readStream.on('end', resolve);
+      readStream.on('error', reject);
+    });
+  }
+  writeStream.end();
+  await fs.rm(chunkDir, { recursive: true }); // 清理临时分片
+  res.json({ success: true });
+});
+```
+
+几个容易被追问到的点：抽样 hash 牺牲了一点碰撞概率上的严谨性换取速度，实际项目里可以接受，因为它的作用是"识别同一个文件"而不是密码学场景；并发数不是越高越好，受浏览器同源域名并发连接数限制（通常 6 个左右），太高反而互相抢带宽；合并时必须严格按分片序号排序，`readdir` 返回的文件名顺序不保证正确。
 
 > [!VISUALIZATION]
 > **类型：** flow
@@ -1756,6 +2005,21 @@ map.set(42, 'number key');    // ✅ 数字作为 key，不会被转成字符串
 const obj = {};
 obj[{ id: 1 }] = 'user'; // ⚠️ key 被转成了字符串 "[object Object]"
 ```
+
+用数字做 key 能更直观地看清这套转换规则，控制台里跑一遍：
+
+```js
+const o1 = {};
+o1[1] = 1;   // 1
+o1;          // {1: 1} —— 打印时省略了引号，但存的 key 其实是字符串 "1"，不是数字 1
+o1.1;        // Uncaught SyntaxError: Unexpected number
+o1[1];       // 1
+o1['1'];     // 1
+```
+
+对象属性的 key 只能是字符串或 `Symbol`，没有第三种可能。`o1[1] = 1` 执行时，引擎会先走一步 `ToPropertyKey` 转换：非 `Symbol` 的 key 一律转成字符串，数字 `1` 被转成字符串 `"1"` 后才真正存进去。控制台打印成 `{1: 1}` 只是 DevTools 对"看起来像数组下标"的字符串 key 省略了引号，方便识别类数组结构，底层存的仍然是字符串——`o1[1]` 和 `o1['1']` 结果一样，正是因为两者最终查的是同一个字符串 key `"1"`。
+
+`o1.1` 报的是**语法错误**而不是运行时错误，说明代码在解析阶段就过不去了：点语法 `obj.xxx` 里的 `xxx` 必须是一个合法标识符（IdentifierName），标识符不能以数字开头，`1` 从第一个字符就不合法，解析器直接判定这不是合法代码。这也是点语法和方括号语法最本质的区别：点语法后面接的是写死在源码里、必须在编译期就合法的标识符；方括号里可以放任意表达式，运行时求值后转成字符串再查找，所以数字、变量、函数调用结果都能放进去。
 
 **key 的顺序**：`Map` 严格按插入顺序遍历；普通对象里整数 key 会按数值升序排在最前面，字符串 key 按插入顺序排在其后，`Symbol` key 排在最后：
 

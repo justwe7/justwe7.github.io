@@ -13,30 +13,30 @@
     min-height: 56px;
     padding: var(--dell-space-sm) var(--dell-space-lg);
     background: var(--dell-frame);
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
     border: 0;
     box-shadow: none;
   }
 
   .navbar__title,
   .navbar__link {
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
     font-weight: 700;
     text-decoration: none;
   }
 
   .navbar__title:visited,
   .navbar__link:visited {
-    color: var(--dell-canvas);
+    color: var(--dell-on-frame);
   }
 
   .navbar__link--active {
-    color: var(--dell-yellow);
+    color: var(--dell-yellow-text);
     text-decoration: underline;
   }
 
   .navbar__link--active:visited {
-    color: var(--dell-yellow);
+    color: var(--dell-yellow-text);
   }
 
   .menu {
