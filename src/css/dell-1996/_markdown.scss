@@ -149,6 +149,46 @@
     box-shadow: none;
   }
 
+  .dell1996-doc-source {
+    margin: var(--dell-space-section-lg) 0 0;
+    overflow: hidden;
+    color: var(--dell-ink);
+    background: var(--dell-subtle);
+    border: var(--dell-border);
+    font-family: var(--dell-font-ui);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .dell1996-doc-source__heading {
+    display: block;
+    padding: var(--dell-space-sm) var(--dell-space-md);
+    color: var(--dell-on-frame);
+    background: var(--dell-frame);
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .dell1996-doc-source__body {
+    padding: var(--dell-space-md);
+  }
+
+  .dell1996-doc-source__body p {
+    margin: 0;
+  }
+
+  .dell1996-doc-source__body p + p {
+    margin-top: var(--dell-space-xs);
+  }
+
+  .dell1996-doc-source__author {
+    font-weight: 700;
+  }
+
+  .dell1996-doc-source a {
+    overflow-wrap: anywhere;
+  }
+
   .alert {
     color: var(--dell-ink);
     background: var(--dell-subtle);

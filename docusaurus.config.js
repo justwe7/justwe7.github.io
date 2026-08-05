@@ -14,6 +14,9 @@ const config = {
   organizationName: 'justwe7',
   projectName: 'blog',
   tagline: '会当凌绝顶，一览众山小',
+  customFields: {
+    contentAuthor: '土豆和土豆丝',
+  },
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   themeConfig: {
     image: 'img/logo.png',

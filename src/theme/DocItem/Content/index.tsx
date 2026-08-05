@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import {ThemeClassNames} from '@docusaurus/theme-common';
 import {useDoc} from '@docusaurus/theme-common/internal';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Heading from '@theme/Heading';
 import MDXContent from '@theme/MDXContent';
 import type {Props} from '@theme/DocItem/Content';
@@ -36,9 +37,28 @@ function useCatalogLabel() {
   };
 }
 
+function useSourceNotice() {
+  const {metadata} = useDoc();
+  const {siteConfig} = useDocusaurusContext();
+  const configuredAuthor = siteConfig.customFields?.contentAuthor;
+  const author =
+    typeof configuredAuthor === 'string' && configuredAuthor.trim()
+      ? configuredAuthor.trim()
+      : '土豆和土豆丝';
+  const canonicalUrl = new URL(metadata.permalink, siteConfig.url).href;
+
+  return {
+    author,
+    canonicalUrl,
+    displayUrl: decodeURI(canonicalUrl),
+    title: metadata.title,
+  };
+}
+
 export default function DocItemContent({children}: Props): JSX.Element {
   const syntheticTitle = useSyntheticTitle();
   const catalogLabel = useCatalogLabel();
+  const sourceNotice = useSourceNotice();
 
   return (
     <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>
@@ -59,6 +79,26 @@ export default function DocItemContent({children}: Props): JSX.Element {
         </header>
       )}
       <MDXContent>{children}</MDXContent>
+      <aside
+        className="dell1996-doc-source"
+        aria-label="内容声明"
+        data-page-source={sourceNotice.canonicalUrl}>
+        <strong className="dell1996-doc-source__heading">内容声明</strong>
+        <div className="dell1996-doc-source__body">
+          <p>
+            本文《{sourceNotice.title}》由{' '}
+            <span className="dell1996-doc-source__author">
+              {sourceNotice.author}
+            </span>{' '}
+            撰写。
+          </p>
+          <p>
+            原文链接：
+            <a href={sourceNotice.canonicalUrl}>{sourceNotice.displayUrl}</a>
+          </p>
+          <p>未经许可请勿转载；引用时请保留作者和原文链接。</p>
+        </div>
+      </aside>
     </div>
   );
 }

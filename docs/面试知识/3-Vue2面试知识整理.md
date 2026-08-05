@@ -341,14 +341,14 @@ Vue 2 的 Diff 只发生在同一层级的子节点之间，不会跨层级比�
 这套策略对"整体顺序变化不大、只是局部移动"的常见列表操作（如置顶、插入、删除）效率较高，但它是针对同层级列表的启发式优化，并不是通用意义上的最优编辑距离算法。
 
 > [!VISUALIZATION]
-> **类型：** flow
+> **类型：** relationship
 > **优先级：** high
-> **标题：** Vue 2 响应式更新与 Diff
-> **目的：** 串联 setter 通知、Watcher 队列、生成新 VNode、同层 key Diff 与 DOM patch。
-> **必须表达：** 多次同步修改会合并；`key` 用于识别同一节点。
-> **避免表达：** 不要说 Virtual DOM 一定比直接操作 DOM 快。
+> **标题：** Vue 2 同层子节点的双端 Diff
+> **目的：** 直观看出旧/新子节点各自的头尾指针、四种优先级匹配路径，以及未命中时的 `key` 查找分支。
+> **必须表达：** 只在同层级比较；跨端命中时复用并移动 DOM；`key` 查找只在四种匹配均失败后发生。
+> **避免表达：** 不要把它画成响应式更新全链路，也不要暗示会跨层级 Diff。
 
-![](../../static/docs/aiRender/前端面试/vue2-02-reactive-diff-patch.webp)
+![](../../static/docs/aiRender/前端面试/vue2-02-same-level-double-ended-diff.webp)
 
 ## 七、组件通信、插槽与组件/插件的区别
 

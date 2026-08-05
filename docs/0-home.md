@@ -7,6 +7,13 @@ slug: /
 
 记录最近看到的、折腾过的和想留存的小事。内容按时间倒序整理，快速回溯最近在忙什么。
 
+## 2026 年 8 月
+
+### 08-02 · AI / 职位 / 程序员
+
+- 又刷到 [FDE（Forward Deployed Engineer）指南](https://github.com/xdash/FDE-the-Guidance-Book-of-Forward-Deployed-Engineer)。最近这个职位概念又开始被跟风炒作；说得再花，很多岗位本质上还是驻场帮客户落地的外包，只是套了层 AI 叙事。
+- [AI 时代下程序员的价值](https://jt26wzz.com/posts/0017-the-value-of-programmers-in-the-ai-era/)：代码会越来越廉价，真正值钱的是定义问题、知道什么证据可信，以及为上线后的真实结果负责。
+
 ## 2026 年 7 月
 
 ### 07-31 · JS / 异步
