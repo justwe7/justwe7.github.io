@@ -1,6 +1,6 @@
 # React 面试知识整理
 
-> 本文按知识依赖关系重新组织，覆盖用法、渲染机制与 Fiber 源码层追问三个层次；每个话题尽量先说清楚"要解决什么问题"，再讲机制和代码。文中会区分 **React 的通用机制**（如 Fiber、协调、批处理）与**某个版本或库的具体 API**（如 React Router v5 的 `Switch` 与 v6 的 `Routes`），避免把两者混为一谈。
+> 本文按知识依赖关系重新组织，覆盖用法、渲染机制与 Fiber 源码层追问三个层次；每个话题尽量先说清楚"要解决什么问题"，再讲机制和代码。文中会区分 **React 的通用机制**（如 Fiber、协调、批处理）与**某个版本或库的具体 API**（如 React Router v5 的 `Switch` 与 v6 的 `Routes`），避免把两者混为一谈。用得少、容易生疏的 API（`flushSync`、`useDeferredValue`、`useSyncExternalStore`、`useImperativeHandle` 这类）都配了可以直接照着跑一遍的最小示例，不只是概念描述。
 
 ## 复习建议
 
@@ -61,6 +61,22 @@ function Cart() {
 
 React 事件采用 camelCase 命名（如 `onClick`），并接收一个合成事件对象；需要访问原生事件时可以通过 `event.nativeEvent`。事件默认沿着 React 组件树冒泡，必要时用 `event.stopPropagation()` 阻止继续传播。
 
+`event` 参数不是浏览器原生的 `Event` 对象，而是 React 包了一层的 `SyntheticEvent`——这层包装解决的是跨浏览器事件对象字段/行为不一致的问题（不同浏览器对同一个事件暴露的属性、方法有细微差异），`SyntheticEvent` 对外提供一套统一的接口屏蔽这些差异，同时把所有事件统一委托到应用挂载的根节点，而不是每个元素各自绑定原生监听器，减少内存开销。
+
+一个容易在老资料里踩到的历史坑：**React 16 及更早版本会复用（池化）`SyntheticEvent` 对象**——一个事件处理完之后，这个对象的字段会被立即清空以便复用给下一个事件，所以如果要在异步回调（比如 `setTimeout`）里访问事件对象的字段，必须先调用 `event.persist()` 阻止对象被回收，否则读到的全是 `null`：
+
+```jsx
+// React 16 及更早版本
+function handleClick(event) {
+  event.persist(); // 不调用的话，setTimeout 里 event.target 会是 null
+  setTimeout(() => {
+    console.log(event.target);
+  }, 1000);
+}
+```
+
+**React 17 起彻底移除了事件池化**，`SyntheticEvent` 不再被复用，`event.persist()` 变成了一个空操作（为了兼容旧代码保留但不再做任何事）。这是一个纯粹的历史遗留问题，现代代码完全不需要关心它，但如果面试官拿一段老代码问"这里为什么要调用 `event.persist()`"，能讲出这段版本变迁背后的原因会比较加分。
+
 类组件的普通方法默认不会自动绑定组件实例：
 
 ```jsx
@@ -92,6 +108,24 @@ setCount(c => c + 1); // 函数式更新依次基于前一次的最新结果，�
 > 不能直接修改 state，也不能把状态更新理解成同步赋值。React 会把更新放入队列并批处理；当新值依赖旧值时应该用函数式更新，React 会按顺序把每一次更新应用到最新的待处理状态上，而不是都基于渲染开始时的那个旧快照。
 
 React 18 起，自动批处理覆盖到了更多异步边界（比如 `Promise.then`、`setTimeout`、原生事件回调里的多次更新也会被合并），因此不应该再用"合成事件内异步、`setTimeout` 内同步"这种旧版本的经验去判断是否会被批处理；更准确的心智模型是"把每一次状态更新都当作可以被合并、可以被调度的请求"。
+
+### flushSync：跳过批处理，强制同步更新
+
+极少数场景需要"状态更新后立刻、同步地拿到更新后的 DOM"（比如打印前必须先把最新内容渲染出来，或者需要在同一个事件循环里手动测量刚更新完的 DOM 尺寸），这时可以用 `flushSync` 主动跳过批处理：
+
+```jsx
+import { flushSync } from 'react-dom';
+
+function handleClick() {
+  flushSync(() => {
+    setCount(c => c + 1);
+  });
+  // flushSync 回调执行完，DOM 已经同步更新完毕，这里能读到最新的 DOM
+  console.log(document.getElementById('count').textContent);
+}
+```
+
+`flushSync` 包裹的更新会被立即同步应用，不会和同一批次里的其他更新合并——这是一个逃生舱（escape hatch），只应该在明确需要"更新后立刻同步读取 DOM"的场景使用，滥用会让本该合并的多次更新又变回逐次同步渲染，抵消自动批处理带来的性能收益。
 
 ### 不要直接修改状态
 
@@ -165,7 +199,44 @@ useEffect(() => {
 - `getSnapshotBeforeUpdate` 在 DOM 实际变更**之前**读取信息（比如滚动位置），它的返回值会作为参数传给 `componentDidUpdate`。
 - `componentDidUpdate` 适合根据更新前后的 props/state 差异执行副作用，但必须包一层条件判断，否则容易在这里再次调用 `setState` 触发无限循环更新。
 
-`componentWillMount`、`componentWillReceiveProps`、`componentWillUpdate` 属于已经被标记为不安全的旧生命周期方法（在并发特性下可能被多次调用，产生副作用的代码在这些钩子里不安全），现代代码不应该继续使用。新代码优先使用函数组件配合 Hooks；类组件生命周期和 Hooks 之间不是简单的一对一映射，应该按"渲染需要的计算"和"需要和外部系统同步的副作用"重新拆分理解，而不是机械地找对应关系。
+`componentWillMount`、`componentWillReceiveProps`、`componentWillUpdate` 属于已经被标记为不安全的旧生命周期方法，现代代码不应该继续使用。新代码优先使用函数组件配合 Hooks；类组件生命周期和 Hooks 之间不是简单的一对一映射，应该按"渲染需要的计算"和"需要和外部系统同步的副作用"重新拆分理解，而不是机械地找对应关系。
+
+### 为什么并发模式下 render 阶段的方法可能被多次调用
+
+这是"三个 `UNSAFE_` 方法为什么不安全"背后更完整的原因，不只是"官方标记了不安全"这么简单。React 在并发渲染模式下，**render 阶段的工作可以被暂停、丢弃、重新开始**（见第七、八章的可中断渲染）——这意味着 `constructor`、`render`、`getDerivedStateFromProps`、`shouldComponentUpdate` 这几个属于 render 阶段的方法，在一次"逻辑上的更新"里可能会被调用不止一次：React 可能算到一半因为更高优先级的更新插进来而放弃这次计算，之后重新算一遍。
+
+如果开发者在 `componentWillReceiveProps` 或 `componentWillMount` 里发起了网络请求、订阅了外部事件源这类**有副作用**的操作，一旦这个方法被重复调用，副作用就会被重复触发——多发几次请求、重复订阅。`getDerivedStateFromProps` 是静态方法，天然拿不到组件实例（没有 `this`），也就没办法在里面直接发起请求或修改除返回值以外的任何东西，从写法上直接堵死了在这里写副作用代码的可能性——这也是它被设计成静态方法、而不是简单保留 `componentWillReceiveProps` 的原因。同样的道理，类组件在开发模式的 `StrictMode` 下 `render` 方法也会被有意双调用一次，用来提前暴露"这里是不是偷偷写了副作用"这类问题，和 Hooks 组件里 `StrictMode` 会把整个函数组件体多跑一次是同一个思路。
+
+### getSnapshotBeforeUpdate 的真实用途：保持聊天列表滚动位置
+
+一个具体、真实会用到的场景：聊天类应用里新消息到达时，如果用户正停留在历史消息区域往上翻，直接把新消息插入列表会导致用户当前正在看的内容"跳走"。做法是在 DOM 真正变更之前先记录当前的滚动位置，变更完成后再按记录的位置做补偿：
+
+```jsx
+class MessageList extends React.Component {
+  listRef = React.createRef();
+
+  getSnapshotBeforeUpdate(prevProps) {
+    // DOM 变更之前调用，此时还能读到"旧" DOM 的滚动高度
+    if (prevProps.messages.length < this.props.messages.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop; // 记录"离底部还有多远"
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // snapshot 就是 getSnapshotBeforeUpdate 的返回值
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot; // 按记录的距离补偿滚动位置
+    }
+  }
+
+  render() {
+    return <div ref={this.listRef}>{/* 消息列表 */}</div>;
+  }
+}
+```
 
 > [!VISUALIZATION]
 > **类型：** lifecycle
@@ -193,6 +264,8 @@ function Button() {
 
 Provider 的 `value` 发生变化时，所有使用了这个 Context 的消费者组件都会重新渲染——这意味着如果 `value` 是一个高频变化的巨大对象，会导致大范围不必要的重渲染，此时应该拆分成多个粒度更小的 Context，或者改用更适合频繁更新场景的状态管理方案，而不是继续往一个 Context 里塞所有东西。
 
+Context 值的传播不是靠"一层层 diff props 传下去"实现的——中间没有读取这个 Context 的组件，并不会仅仅因为 Context 变化而被迫重新渲染。React 在 Fiber 树上维护了一份 Context 值的传播机制：`Provider` 的值变化后，React 会从 Provider 开始向下查找依赖了这个 Context 的消费者节点，直接让它们重新渲染，不需要真的执行中间每一层组件的 props diff。理解这一点能纠正一个常见误解——"用 Context 会不会导致中间组件也要跟着重渲染一遍"，答案是不会，Context 的传播是绕过中间层直接触达消费者的。
+
 ### ref 的正确边界
 
 `ref` 用于命令式地访问 DOM 节点，或者保存"不需要触发渲染"的可变值，比如聚焦一个输入框、保存一个定时器 ID、集成地图或播放器这类第三方实例。不要用 `ref` 替代本该由 state 管理的、会影响渲染结果的数据——修改 `ref.current` 不会触发组件重新渲染。
@@ -205,6 +278,36 @@ function Search() {
 ```
 
 类组件用 `createRef`，函数组件用 `useRef`。跨组件传递 ref 需要目标组件显式支持（函数组件默认不能直接接 `ref`，需要 `forwardRef`）；不要依赖已经被废弃的字符串 ref 写法。
+
+### useImperativeHandle：自定义 ref 暴露的内容
+
+默认情况下，`forwardRef` 转发出去的 `ref` 直接指向底层 DOM 节点或子组件实例，父组件能拿到子组件内部的一切——这有时候暴露得太多。`useImperativeHandle` 可以让子组件自己决定"父组件通过 ref 只能调用这几个方法"，而不是把整个 DOM 节点原样交出去：
+
+```jsx
+const VideoPlayer = forwardRef((props, ref) => {
+  const videoRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    // 只暴露这两个方法，父组件拿到的 ref 上没有其他 DOM API
+    play: () => videoRef.current.play(),
+    pause: () => videoRef.current.pause(),
+  }));
+
+  return <video ref={videoRef} src={props.src} />;
+});
+
+function App() {
+  const playerRef = useRef(null);
+  return (
+    <>
+      <VideoPlayer ref={playerRef} src="a.mp4" />
+      <button onClick={() => playerRef.current.play()}>播放</button>
+    </>
+  );
+}
+```
+
+这个 Hook 用得不多，但一旦被问到"怎么限制父组件通过 ref 能操作子组件的哪些部分"，`useImperativeHandle` 就是标准答案。
 
 ### Portal：DOM 位置变了，React 树关系不变
 
@@ -387,6 +490,21 @@ React 处理完一个节点后，可以直接根据这些指针知道下一个�
 
 "可中断"这个特性只描述 render 阶段，**不代表**任意 JavaScript 代码或 DOM 提交操作都能被中断，commit 阶段是同步且不可打断的。也不是每一次被打断的低优先级任务之后都能从精确断点继续执行——当新的更新使得之前正在进行的计算已经过期时，React 可能会直接重新渲染，最终以能够被完整提交的结果为准，而不追求复用每一点已经算过的中间结果。
 
+### 子节点 Diff 算法具体怎么比较
+
+第 3 步"比较新旧子节点"具体展开，分单节点和多节点两种情况。
+
+**单节点 diff**：新的 render 只产出一个子节点时，判断能不能复用旧节点，依据是 `key` 和 `type` 是否都相同——两者都相同才复用旧 Fiber（更新它的 props），否则删除旧节点、创建一个全新的 Fiber（对应的组件 state 也会丢失，这就是第四章讲过的"类型变了 state 就会重置"的底层依据）。
+
+**多节点 diff（列表）**：React 用一个两轮遍历的策略处理，尽量减少节点的移动次数：
+
+1. **第一轮：从头开始逐个比较**。同一位置上新旧节点的 `key` 相同就复用、继续往后比；一旦遇到某个位置 `key` 对不上，第一轮立即结束（不会跳着继续比较）。
+2. **第二轮：处理剩下的部分**。把剩余的旧子节点按 `key` 存进一个 Map；遍历剩余的新子节点，去 Map 里找有没有 `key` 相同的旧节点——找到了就复用，并根据它在旧列表里的位置判断"要不要移动"（用一个"目前已处理节点在旧列表中的最大下标"作参照，如果这个节点在旧列表里的位置比这个参照小，说明它相对顺序被打乱了，需要移动；否则不用动）；Map 里找不到就创建新节点；第二轮结束后 Map 里还剩下的旧节点，说明新列表里已经不需要它们了，标记删除。
+
+> 面试回答：
+>
+> React 的子节点 diff 分单节点和多节点两种情况。单节点看 `key` 和 `type` 是否都相同来决定复用还是重建。多节点走两轮遍历：第一轮按位置顺序比较，遇到 `key` 对不上就提前结束；剩下的部分用 `key` 建一个 map，第二轮遍历新节点去 map 里找可复用的旧节点，根据它在旧列表里的位置判断需不需要移动，遍历完 map 里剩下的旧节点就是要删除的。这也是为什么列表 key 用 index 在增删排序场景下会出问题——index 本身就是"位置"，用它当 key 会让 React 没法正确判断某个节点到底是被移动了还是被替换了。
+
 ### 优先级、Lanes 与 requestIdleCallback 的常见误解
 
 早期资料常说"每个 Fiber 有一个优先级"，更准确的现代模型是：**更新本身和根节点待处理的工作**用 `lanes`（一种位掩码通道）来表示优先级和可以合并的工作集合，Fiber 及其子树会记录相关联的 lane，以便快速跳过没有对应工作的分支。高优先级的交互更新可以抢占正在进行中的低优先级渲染；被 `startTransition` 标记的更新通常就属于这类可以被延后处理的工作（见下一章）。
@@ -437,6 +555,25 @@ function onFilterChange(value) {
 > **避免表达：** 不要把 Transition 画成延迟 `setTimeout`，或用于控制文本输入。
 
 ![](../../static/docs/aiRender/前端面试/react-04-transition-priority.webp)
+
+### useDeferredValue：延迟某个值本身，而不是包裹一次状态更新
+
+`useTransition` 包裹的是"触发更新的动作"，而 `useDeferredValue` 包裹的是"某个值"，让这个值的更新可以滞后于最新输入，用在你不能直接控制状态更新触发点（比如这个值是从 props 传进来的，不是本地 state）的场景：
+
+```jsx
+function SearchResults({ query }) {
+  const deferredQuery = useDeferredValue(query); // 允许这个值滞后于最新的 query
+  const results = useMemo(() => searchExpensive(deferredQuery), [deferredQuery]);
+
+  return (
+    <div style={{ opacity: query !== deferredQuery ? 0.6 : 1 }}>
+      {results.map(r => <Result key={r.id} data={r} />)}
+    </div>
+  );
+}
+```
+
+`query` 变化后，`SearchResults` 会先用旧的 `deferredQuery` 快速渲染一次（界面不卡顿），React 随后在后台用新值重新渲染一次并替换——这段"新旧值不一致"的期间可以用来展示一个视觉上变淡的过渡效果。和 `useTransition` 的选择依据是：能直接包裹触发更新的那次调用（比如一个事件处理函数里的 `setState`），用 `useTransition`；只能拿到一个值、不能控制它是怎么被更新的（比如从父组件 props 拿到的搜索词），用 `useDeferredValue`。两者解决的是同一类"让非紧急更新不阻塞紧急更新"的问题，只是介入的层面不同。
 
 ### key：身份，不是为了消除控制台警告
 
@@ -541,6 +678,25 @@ const [state, dispatch] = useReducer(reducer, { status: 'idle' });
 
 自定义 Hook 复用的是**有状态的逻辑**，而不是 UI 本身：比如 `useOnlineStatus()`、`useDebouncedValue()`。每一个调用某个自定义 Hook 的组件都会拥有自己独立的一份状态——多个组件共享的是这段逻辑的写法，而不是共享同一份状态实例（这一点和 Vue 的 composable 概念完全一致）。自定义 Hook 的命名必须以 `use` 开头（这样 lint 工具和 React 才能识别并检查它是否遵守了顶层调用规则），并且同样要遵守"只能在顶层无条件调用"这条规则。
 
+### useSyncExternalStore：订阅 React 外部的状态源
+
+如果一个状态压根不是由 React 管理的（比如浏览器的 `window.innerWidth`、一个第三方状态管理库自己维护的 store），组件想要正确地订阅它、并且在并发渲染下不出现撕裂（同一次渲染里读到不一致的值），标准做法是 `useSyncExternalStore`：
+
+```jsx
+function useWindowWidth() {
+  return useSyncExternalStore(
+    (callback) => {
+      window.addEventListener('resize', callback); // 订阅：外部状态变化时调用 callback 通知 React 重新读取
+      return () => window.removeEventListener('resize', callback); // 返回取消订阅函数
+    },
+    () => window.innerWidth, // 每次读取当前快照值
+    () => 0, // 服务端渲染时的快照值（可选）
+  );
+}
+```
+
+这个 Hook 更常见的存在感是在**状态管理库的底层实现里**，而不是业务代码直接调用——Zustand、Jotai 这类现代轻量状态管理库，内部用它把"外部 store 的变化"接入 React 的渲染调度，保证并发模式下不会读到撕裂的状态（这也是它们不需要像老版本 Redux 那样自己手写一套订阅+强制更新逻辑的原因）。理解了这个 Hook，再看第十三章 Zustand 的实现思路会更清楚——它本质上就是一个符合 `useSyncExternalStore` 接口的极简 store。
+
 ## 十一、渲染性能、代码分割与动画
 
 ### React 的重渲染不等于 DOM 重建
@@ -568,6 +724,28 @@ const SettingsPage = lazy(() => import('./SettingsPage'));
 
 被懒加载的模块必须有默认导出；加载失败的情况还需要配合错误边界提供一个可以重试或者友好提示的恢复体验。不需要把所有细小的组件都拆成单独的包——额外产生的网络请求和加载态之间的抖动切换本身也是一种成本，应该按"用户是否马上就会用到"这个标准来决定拆分粒度。
 
+### 长列表：虚拟滚动
+
+数据量很大的列表（几千条以上）如果把所有条目一次性渲染成真实 DOM，会有明显的首次渲染卡顿和内存占用问题——即使配合 `memo` 优化了重渲染开销，"把几千个 DOM 节点都创建出来"这件事本身的成本也省不掉。虚拟滚动（也叫窗口化，windowing）的思路是**只渲染当前可视区域内的少量条目，滚动时动态替换内容**，通常用 `react-window` 这类库实现：
+
+```jsx
+import { FixedSizeList } from 'react-window';
+
+function BigList({ items }) {
+  const Row = ({ index, style }) => (
+    <div style={style}>{items[index].name}</div> // style 由 react-window 计算好，用来把这一行定位到正确的滚动位置
+  );
+
+  return (
+    <FixedSizeList height={600} itemCount={items.length} itemSize={40} width="100%">
+      {Row}
+    </FixedSizeList>
+  );
+}
+```
+
+`FixedSizeList` 只会真正渲染出可视区域（加上少量缓冲）内的那几十个 `Row`，滚动时通过绝对定位动态调整每一行的位置，而不是让浏览器原生滚动几千个真实节点。这一点和 Flutter 的 `ListView.builder`、Web 端"虚拟列表"要解决的是完全同一个问题——数据量大的列表，只有真正进入视口的部分才值得付出渲染成本。
+
 ### 动画的状态转换
 
 `react-transition-group` 的 `CSSTransition` 常见做法是通过 enter/exit 阶段的 CSS class 来控制过渡样式；动态增删的列表动画需要配合 `TransitionGroup` 统一管理。列表动画同样要求给每一项一个稳定的 `key`，不能用会随增删变化的 index。应该优先尊重用户系统设置的 `prefers-reduced-motion` 偏好，并且不要让动画的执行阻塞用户的正常交互。
@@ -589,7 +767,94 @@ const SettingsPage = lazy(() => import('./SettingsPage'));
 
 需要注意 React Router 主要版本之间 API 差异较大：v5 使用 `Switch`、给 `Route` 传 `component` prop、用 `useHistory` 做编程式导航、用 `Redirect` 组件做重定向；v6 起改用 `Routes`、给 `Route` 传 `element` prop（传入的是 JSX 而不是组件引用）、用 `useNavigate` 做编程式导航、用 `Navigate` 组件做重定向。面试回答时应该先说明自己使用/了解的是哪个版本，再解释具体原理，不要把两套 API 混着写。
 
-## 十三、Redux、不可变数据与状态管理
+### 嵌套路由与 Outlet
+
+v6 起，子路由通过嵌套声明，父路由组件里用 `<Outlet />` 占位，渲染当前匹配到的子路由内容——这比 v5 里"每个页面自己再手动嵌一层 `<Route>`"更清晰，父子路由的层级关系和组件树的层级关系直接对应：
+
+```jsx
+<Routes>
+  <Route path="/dashboard" element={<DashboardLayout />}>
+    <Route index element={<Overview />} />          {/* /dashboard，默认子路由 */}
+    <Route path="settings" element={<Settings />} /> {/* /dashboard/settings */}
+  </Route>
+</Routes>
+
+function DashboardLayout() {
+  return (
+    <div>
+      <Sidebar />
+      <Outlet /> {/* 匹配到的子路由（Overview 或 Settings）会渲染在这里 */}
+    </div>
+  );
+}
+```
+
+### v6.4+ 的 data router：路由和数据获取绑定在一起
+
+早期版本里，路由只负责"这个路径该渲染哪个组件"，数据请求是组件自己在 `useEffect` 里发起的——这意味着要等组件渲染出来、`useEffect` 执行、请求发出、请求返回，用户才能看到真正的数据，中间有一段"路由已经跳转但数据还没来"的等待。v6.4 引入的 data router 把数据获取提前到路由匹配的时候就开始，和组件渲染并行进行：
+
+```jsx
+import { createBrowserRouter, RouterProvider, useLoaderData } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: '/users/:id',
+    element: <UserDetail />,
+    loader: async ({ params }) => {
+      // 路由匹配到的同时就发起请求，不需要等组件渲染完再在 useEffect 里发
+      return fetch(`/api/users/${params.id}`).then(res => res.json());
+    },
+    action: async ({ request }) => {
+      // 处理这个路由下的表单提交（POST/PUT 等），替代手写 onSubmit 里的请求逻辑
+      const formData = await request.formData();
+      return fetch('/api/users', { method: 'POST', body: formData });
+    },
+  },
+]);
+
+function UserDetail() {
+  const user = useLoaderData(); // 直接拿到 loader 已经请求回来的数据，不需要自己 useEffect + useState
+  return <div>{user.name}</div>;
+}
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+这套模式把"进入某个路由需要哪些数据"这件事显式声明在路由配置里，而不是隐藏在某个组件内部的 `useEffect` 里，路由跳转和数据请求可以同时开始，减少了"先看到空白/loading 页面、请求返回后才看到内容"这段串行等待时间。
+
+### 受保护路由（Protected Route）
+
+判断用户是否登录、有没有权限访问某个路由，通常包一层组件，未通过校验时用 `Navigate` 重定向：
+
+```jsx
+function ProtectedRoute({ children }) {
+  const { isLoggedIn } = useAuth();
+  const location = useLocation();
+
+  if (!isLoggedIn) {
+    // 带上当前路径，登录后可以跳回原本想访问的页面
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return children;
+}
+
+<Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+```
+
+`replace` 让这次重定向不在浏览器历史记录里留下"未登录时访问过的这个页面"这一条，用户登录后点返回键不会又跳回这个被拦截的中间态。
+
+## 十三、状态管理生态：Redux、Zustand 与如何选择
+
+现代 React 项目里，全局状态管理不再是 Redux 一家独大，需要能讲清楚几种主流方案的心智模型差异，而不是只会背 Redux 的数据流。
+
+| 方案 | 心智模型 | 模板代码量 | 适合场景 |
+| --- | --- | --- | --- |
+| Redux（Toolkit） | 单一 store、reducer 纯函数、action 描述"发生了什么" | 较多（即使 Toolkit 简化了不少） | 大型应用、需要严格的状态变更可追溯性、团队已有 Redux 经验 |
+| Zustand | 一个 hook 风格的 store，直接读写状态，没有 action/reducer 这层强制约束 | 很少 | 中小型应用、想要 Redux 的全局共享能力但不想要它的模板代码 |
+| Jotai / Recoil | 原子化状态（atom），每个状态是独立的最小单元，按需订阅 | 少 | 状态之间关联性弱、大量细粒度独立状态（比如复杂表单的每个字段） |
+| Context + useReducer | 用 React 自带能力手搓一个简化版全局状态 | 中等（自己维护 Provider 和拆分逻辑） | 状态更新不频繁、不想引入额外依赖的小型场景 |
 
 ### Redux 数据流与 connect
 
@@ -616,6 +881,29 @@ const middleware = ({ getState, dispatch }) => next => action => {
 
 一些旧项目里可能会见到 `immutable.js` 这类持久化数据结构库提供的 `Map`、`getIn`、`setIn` 等 API；现代 React/Redux 项目更常见的做法是配合 Immer（或者内置了 Immer 的 Redux Toolkit）在普通对象上写"看起来像直接修改"的代码，底层自动帮你生成符合不可变更新规则、且做了结构共享的新对象。不要把"深拷贝"当成"不可变更新"的同义词，两者要解决的问题不同，深拷贝往往是没有必要的额外开销。
 
+### Zustand：不需要 Provider 的轻量方案
+
+```js
+import { create } from 'zustand';
+
+const useCounterStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+}));
+
+function Counter() {
+  const count = useCounterStore((state) => state.count); // 只订阅 count，count 之外的字段变化不会触发这个组件重渲染
+  const increment = useCounterStore((state) => state.increment);
+  return <button onClick={increment}>{count}</button>;
+}
+```
+
+Zustand 最大的体验差异是**不需要 `Provider` 包裹整棵组件树**——`create()` 返回的就是一个可以在任意组件里直接调用的 Hook，store 本身是一个模块级别的单例。组件通过传一个 selector 函数（如 `state => state.count`）只订阅自己关心的那部分状态，其他字段变化不会导致这个组件重渲染，这一点不需要额外配置就是默认行为（对比 Redux 需要 `useSelector` 也是同样的选择性订阅思路，但 Redux 还需要 `Provider`、`combineReducers` 这些额外的样板设置）。它的底层实现正是基于第十章提到的 `useSyncExternalStore`，把"store 变化"接入 React 的并发渲染调度，保证不会读到撕裂状态。
+
+### 怎么选
+
+不需要为了"用最新技术"强行替换掉已经跑得好好的 Redux 项目——如果团队已经熟悉 Redux 的数据流、项目本身需要严格的状态变更审计（比如需要时间旅行调试、精确的中间件拦截），继续用 Redux Toolkit 完全合理。新项目如果主要诉求是"少写模板代码、快速搭建全局状态"，Zustand 通常是更顺手的起点；如果应用里有大量互相独立、细粒度的状态（尤其是复杂表单场景），原子化方案（Jotai/Recoil）的心智模型会更贴合问题本身。面试里被问"除了 Redux 还了解什么"时，能说出这几种方案背后不同的设计取向（集中式 reducer vs 直接读写 vs 原子化），比"我用过 Zustand，它比较轻量"这种单薄回答更有说服力。
+
 ## 十四、服务端渲染（SSR）与 Hydration
 
 ### SSR 的完整链路
@@ -635,6 +923,36 @@ SSR 在服务器根据请求的 URL 渲染出初始 HTML，浏览器可以先展
 - `useEffect` 不会在服务端运行（服务端渲染只是把组件计算成字符串，不存在真实的浏览器环境和绘制这个概念），因此任何需要访问 `window`、`document` 的逻辑都应该放在客户端才会执行的 Effect 里，或者用明确的"只在客户端渲染"的边界包裹起来。
 - 较旧的资料里使用的是 `renderToString` 和 `ReactDOM.hydrate`；现代客户端入口应该使用 `hydrateRoot`。大型应用通常会直接采用像 Next.js 这类框架提供的流式 SSR、路由和数据加载能力，而不是从零手写这一整套机制。
 
+### React 18 的流式 SSR
+
+经典的 `renderToString` 必须等**整个组件树**渲染完成才能返回 HTML 字符串——如果页面里有一部分数据获取得特别慢（比如页面底部一个不那么重要的推荐模块），会拖慢整个页面的首字节返回时间，哪怕页面大部分内容早就准备好了。React 18 的 `renderToPipeableStream`（Node.js 环境）配合 `Suspense` 边界，可以把这部分慢的内容单独"摘出来"，先把其余内容的 HTML 流式发送给浏览器，慢的部分准备好之后再通过一段额外的 script 补发到对应位置：
+
+```jsx
+import { renderToPipeableStream } from 'react-dom/server';
+
+function App() {
+  return (
+    <Layout>
+      <MainContent />          {/* 快速可用的内容 */}
+      <Suspense fallback={<Spinner />}>
+        <SlowRecommendations /> {/* 数据获取慢，不阻塞其余内容先发送 */}
+      </Suspense>
+    </Layout>
+  );
+}
+
+app.get('/', (req, res) => {
+  const { pipe } = renderToPipeableStream(<App />, {
+    onShellReady() {
+      res.setHeader('Content-Type', 'text/html');
+      pipe(res); // 外层内容（不依赖 Suspense 里数据的部分）准备好就立即开始流式输出
+    },
+  });
+});
+```
+
+这个模式把"等最慢的那部分数据"从"阻塞整个页面首字节"变成了"只阻塞它自己包裹的那一小块内容"，用户能更快看到页面的大部分内容，`SlowRecommendations` 对应的内容会在数据就绪后，通过流里追加的一小段 `<script>` 把对应 DOM 替换/填充进去，整个过程不需要重新请求整个页面。这是 React 18 SSR 相比经典模型最主要的改进，也是 Next.js App Router 这类框架默认的 SSR 实现基础。
+
 > [!VISUALIZATION]
 > **类型：** flow
 > **优先级：** high
@@ -650,26 +968,30 @@ SSR 在服务器根据请求的 URL 渲染出初始 HTML，浏览器可以先展
 ### ⭐⭐⭐⭐⭐ 核心必会
 
 - `props`、`state`、单向数据流、受控组件与非受控组件的选择。
-- 状态更新的批处理与函数式更新，为什么不能直接修改 state。
+- 状态更新的批处理与函数式更新，为什么不能直接修改 state，`flushSync` 什么时候需要用。
 - JSX → React Element → 虚拟 DOM → 协调（Reconciliation）→ Fiber → commit 的完整链路。
+- 子节点 Diff 算法：单节点看 key+type，多节点两轮遍历（位置比较 + key 建 map 判断移动）。
 - `key` 的身份语义，状态在组件树中保留/重置的判断依据。
 - `useState`、`useEffect` 的依赖数组、闭包陷阱与 cleanup，render/commit/effect 的执行时序。
 - Hooks 为什么只能顶层调用（能结合简化版 `useState` 实现说明）。
 
 ### ⭐⭐⭐⭐ 高频重点
 
-- 类组件生命周期与它们在函数组件里的对应关系（不是机械一一映射）。
-- `Context`、`ref`、错误边界、高阶组件各自的适用边界。
-- `memo`/`useMemo`/`useCallback` 该在什么时候引入，而不是默认全部加上。
-- 并发渲染、`useTransition` 解决什么问题，和多线程并行的区别。
-- BrowserRouter/HashRouter 的差异，React Router v5 与 v6 的 API 变化。
-- Redux 的 dispatch → middleware → reducer 数据流，为什么强调不可变更新。
+- 类组件生命周期与它们在函数组件里的对应关系，以及并发模式下 render 阶段方法为什么可能被多次调用。
+- `Context` 的传播机制（绕过中间层直达消费者）、`ref`/`useImperativeHandle`、错误边界、高阶组件各自的适用边界。
+- `memo`/`useMemo`/`useCallback` 该在什么时候引入，而不是默认全部加上；长列表用 `react-window` 虚拟滚动。
+- 并发渲染、`useTransition`/`useDeferredValue` 解决什么问题，和多线程并行的区别。
+- `useSyncExternalStore` 是什么、为什么现代状态管理库依赖它。
+- BrowserRouter/HashRouter 的差异，React Router v5 与 v6 的 API 变化，v6.4+ data router 的 loader/action。
+- Redux 的 dispatch → middleware → reducer 数据流，为什么强调不可变更新；Zustand 等轻量方案的心智模型差异。
+- React 18 流式 SSR（`renderToPipeableStream` + Suspense）相比经典 `renderToString` 解决了什么问题。
 
 ### 容易连续追问的知识链
 
-- 状态更新 → 批处理 → 闭包快照 → 函数式更新 → Effect 依赖数组。
-- JSX → React Element → 虚拟 DOM → Reconciliation → Fiber → commit → useEffect。
-- 列表渲染 → `key` → 组件身份判断 → state 保留/重置。
-- Hooks 调用顺序 → Fiber 上的 Hook 链表 → 为什么不能条件调用。
-- Fiber → 可中断渲染 → lanes 优先级 → 紧急更新与 Transition。
-- SSR → 首屏 HTML → hydration → 两端渲染结果必须一致。
+- 状态更新 → 批处理 → 闭包快照 → 函数式更新 → Effect 依赖数组 → `flushSync` 逃生舱。
+- JSX → React Element → 虚拟 DOM → Reconciliation → Fiber → 子节点 Diff（单/多节点）→ commit → useEffect。
+- 列表渲染 → `key` → 组件身份判断 → state 保留/重置 → diff 算法里 key 的作用。
+- Hooks 调用顺序 → Fiber 上的 Hook 链表 → 为什么不能条件调用 → `useSyncExternalStore` 如何对接外部 store。
+- Fiber → 可中断渲染 → lanes 优先级 → 紧急更新与 Transition → `useDeferredValue`。
+- 路由跳转 → 组件渲染 → useEffect 发请求（旧模型的串行等待）→ data router 的 loader 并行取数。
+- SSR → 首屏 HTML → hydration → 两端渲染结果必须一致 → 流式 SSR 用 Suspense 拆分慢内容。
