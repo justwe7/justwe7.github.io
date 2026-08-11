@@ -11,7 +11,7 @@ slug: /
 
 ### 08-02 · AI / 职位 / 程序员
 
-- 又刷到 [FDE（Forward Deployed Engineer）指南](https://github.com/xdash/FDE-the-Guidance-Book-of-Forward-Deployed-Engineer)。最近这个职位概念又开始被跟风炒作；说得再花，很多岗位本质上还是驻场帮客户落地的外包，只是套了层 AI 叙事。
+- 刷到 [FDE（Forward Deployed Engineer）指南](https://github.com/xdash/FDE-the-Guidance-Book-of-Forward-Deployed-Engineer) 这个职位概念又在吹热度。
 - [AI 时代下程序员的价值](https://jt26wzz.com/posts/0017-the-value-of-programmers-in-the-ai-era/)：代码会越来越廉价，真正值钱的是定义问题、知道什么证据可信，以及为上线后的真实结果负责。
 
 ## 2026 年 7 月
@@ -22,15 +22,8 @@ slug: /
   - ES6 有了 Promise 后，语言规范里多了一类必须紧跟当前代码收尾的 Job，也就是日常说的微任务。JS 引擎跑完这一轮 `runCode`，会先把 Promise 产生的微任务清空，再把控制权还给宿主去取下一个任务；“微任务总在当前宏任务之后、下一个宏任务之前执行”就是这么来的。真实浏览器和 Node.js 在事件循环阶段、`process.nextTick` 等细节上还会有差别，但先抓住“宿主负责投递，JS 负责执行并清空微任务”这个分工，很多八股就没那么玄学了。
 
 ### 07-29 · U卡
-- bybit eu继续申请下，拿一张EWE电费账单手动P成自己提交成功，由于是护照申请，姓名那还是得中文。又跟我要无fanzui记录证明，找到【北京jing务】小程序能线上申请（什么市民中心都不好使）
-
-### 07-29 · AI / skill / 开发工作流
-- 用 `npx skills@latest add mattpocock/skills` 在项目里装了 15 个开发工作流 skills。
-  - 主流程是 `grill-with-docs`（需求拷问并沉淀术语、ADR；没有代码库时用 `grill-me`）→ `to-spec`（整理规格）→ `to-tickets`（拆成可独立交付的纵向任务）→ `implement`（编码并按 `tdd` 做红→绿循环）→ `code-review`（按代码规范与需求规格两条线走查）。
-  - 旧代码重构先用 `improve-codebase-architecture` 找架构摩擦，再用 `codebase-design` 设计测试接缝；疑难 Bug 用 `diagnosing-bugs`，外部需求或问题用 `triage`，不确定下一步时用 `ask-matt`。
-  - 当前 [Matt Pocock skills 仓库](https://github.com/mattpocock/skills) 已没有 `to-issues`，对应能力是 `to-tickets`；`tdd` 只负责红→绿，重构被放到了 `code-review` 阶段。首次正式使用整套工程 skills 前，还要先运行一次 `setup-matt-pocock-skills`。
+- bybit eu继续申请下，拿一张EWE电费账单手动P成自己提交成功，由于是护照申请，姓名那需要中文。又要求提交无fanzui记录证明，找到【北京jing务】小程序能线上申请
 - 看到一句话，记录下来以鞭策自己现在的状态：“具体，是一个人停止骗自己的开始。”
-- gg卡被封，看到一个买套餐复活的[方案](https://x.com/CryptoJHK/status/2082370965544268041)
 
 ### 07-27 · esim / U卡 / 学习
 - giffgaff 大面积封号了，留个备用的退款地址：[Log in | giffgaff](https://support2.giffgaff.com/app/ask/Plans-Credit-and-Payment-Details/Cancelling-a-plan-or-top-up-purchase/form/)。
@@ -39,8 +32,7 @@ slug: /
 
 ### 07-26 · AI / 学习 / 前端
 - GPT 目前的代码逻辑强化，前端 UI 需要使用 skill。可以参考 [Anthropic 的 frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)。
-- 需要华丽 UI 的项目，推荐直接使用官方插件 Product Design：它会先生成 3 张视觉设计稿供选择，再根据选中的风格复刻页面。
-- 如果只是简单调整 UI，就没必要使用 Product Design，纯粹浪费 Token。
+- 需要华丽 UI 的项目，直接使用官方插件 Product Design：它会先生成 3 张视觉设计稿供选择，再根据选中的风格复刻页面。如果只是简单调整 UI，就没必要使用 Product Design，纯粹浪费 Token。
 - 发现一套轻量级的 AI 编程工作流 [GSD Core](https://github.com/open-gsd/gsd-core/blob/next/README.zh-CN.md)，按照 Discuss → Plan → Execute → Verify → Ship 五个阶段推进任务，重点解决长任务里的上下文膨胀问题。
 - 从卖课手里拿了分面试题大纲https://y03l2iufsbl.feishu.cn/drive/folder/QuakfoOtZlsfffdaqKPc01Kankf
 
