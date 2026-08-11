@@ -9,9 +9,11 @@ slug: /
 
 ## 2026 年 8 月
 
-### 08-02 · AI / 职位 / 程序员
+### 08-01 · AI
+- [Codex 雷达](https://codexradar.com/)检测oai降智评分的网站
 
-- 刷到 [FDE（Forward Deployed Engineer）指南](https://github.com/xdash/FDE-the-Guidance-Book-of-Forward-Deployed-Engineer) 这个职位概念又在吹热度。
+### 08-02 · AI / 职位 / 程序员
+- 刷到 [FDE（Forward Deployed Engineer）指南](https://github.com/xdash/FDE-the-Guidance-Book-of-Forward-Deployed-Engineer) 这个职位概念又在炒热度，貌似和我自己接全栈一把梭的私活很像，核心就是客户不知道想要什么，得先“做做看”，但需要立好准则。
 - [AI 时代下程序员的价值](https://jt26wzz.com/posts/0017-the-value-of-programmers-in-the-ai-era/)：代码会越来越廉价，真正值钱的是定义问题、知道什么证据可信，以及为上线后的真实结果负责。
 
 ## 2026 年 7 月
