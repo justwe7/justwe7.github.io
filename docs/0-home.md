@@ -9,7 +9,7 @@ slug: /
 
 ## 2026 年 8 月
 
-### 08-01 · AI
+### 08-11 · AI
 - [Codex 雷达](https://codexradar.com/)检测oai降智评分的网站
 
 ### 08-02 · AI / 职位 / 程序员
