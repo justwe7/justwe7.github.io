@@ -9,6 +9,14 @@ slug: /
 
 ## 2026 年 8 月
 
+### 08-15 · AI / 本地模型
+
+- 收藏一个本地模型能力比较网站的 [local.ai](https://local.ai/wott/invite)。
+
+### 08-14 · AI / 学习
+
+- 记一下 Datawhale 的 [Hello-Agents](https://datawhalechina.github.io/hello-agents/#/./%E5%89%8D%E8%A8%80)，后面抽时间看看。
+
 ### 08-11 · AI
 - [Codex 雷达](https://codexradar.com/)检测oai降智评分的网站
 
