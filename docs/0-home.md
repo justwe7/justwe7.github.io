@@ -9,6 +9,10 @@ slug: /
 
 ## 2026 年 9 月
 
+### 09-14 · AI / SEO / Claude Code
+
+- 收藏一个 [GEO SEO Claude Code skill](https://github.com/zubair-trabzada/geo-seo-claude)：面向 AI 搜索优化，支持可引用性评分、AI 爬虫分析、品牌提及、Schema 检查和平台优化，还能生成 Markdown/PDF 报告。
+
 ### 09-04 · AI / Codex
 
 - 两个 Codex 任务协作：打开目标任务的菜单 → 选择「复制」→「复制深度链接」→ 把链接粘贴到另一个任务，并说明双方各自负责什么。
