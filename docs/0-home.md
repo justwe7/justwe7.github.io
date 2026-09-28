@@ -9,6 +9,15 @@ slug: /
 
 ## 2026 年 9 月
 
+### 09-28 · AI / 创意编程 / 提示词
+
+- 收藏 [Awesome Opus 5.5 Videos](https://github.com/yihui-dev/awesome-opus5-5-videos)：整理了 282 个用 Claude Opus 5.5 做出的创意视频案例，每个都附原作者分享的完整提示词，覆盖动效、解释视频、3D 场景和可交互游戏。
+- [GPT-6 Astra 3D 提示词合集](https://www.tripo3d.ai/zh/3d-prompts/models/gpt-6-astra)：收集可试玩的 Blender、Three.js 和浏览器游戏案例，按游戏、场景、资产、互动、动画分类，部分项目还附 GitHub 源码。
+
+### 09-21 · AI / 视频 / Agent
+
+- [Hypit](https://hypit.ai/zh/)：用 AI agent 克隆整条爆款视频，从参考视频重建镜头、节奏、字幕和特效；开源可自部署，还兼容 Claude、Codex 等 agent。
+
 ### 09-14 · AI / SEO / Claude Code
 
 - 收藏一个 [GEO SEO Claude Code skill](https://github.com/zubair-trabzada/geo-seo-claude)：面向 AI 搜索优化，支持可引用性评分、AI 爬虫分析、品牌提及、Schema 检查和平台优化，还能生成 Markdown/PDF 报告。

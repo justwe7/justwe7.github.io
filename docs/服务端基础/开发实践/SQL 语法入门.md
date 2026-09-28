@@ -37,6 +37,17 @@ LIMIT 数量;
 7. LIMIT     最后再截取需要的行数
 ```
 
+拿一条具体查询对照着读一遍会更直观:
+
+```sql
+SELECT nickname
+FROM users
+WHERE status = 'active'
+ORDER BY created_at DESC;
+```
+
+按逻辑理解:`FROM users` 先提供这张表的全部行;`WHERE status = 'active'` 从中保留状态是 active 的行;`SELECT nickname` 从剩下的行里选择 `nickname` 这一列作为输出;`ORDER BY created_at DESC` 决定这些结果按创建时间从新到旧排列。之后每一节遇到新的子句,都可以按"这个子句在这条链路里做了什么"去理解,比死记语法规则更容易记住。
+
 这解释了两个新手常见的困惑:
 
 - **为什么 `WHERE` 里不能用 `SELECT` 里起的别名**?因为执行到 `WHERE` 的时候,`SELECT` 那一步还没执行,别名根本还不存在。
@@ -317,6 +328,8 @@ GROUP BY user_id
 HAVING SUM(amount) > 1000;
 ```
 
+按逻辑理解:`FROM orders` 提供全部订单行;`WHERE status <> 'CANCELLED'` 先剔除已取消的行;`GROUP BY user_id` 把剩下的行按用户分成一堆一堆;`HAVING SUM(amount) > 1000` 再从这些堆里挑出总金额超过 1000 的;`SELECT user_id, SUM(amount)` 最后决定每一堆输出用户 id 和汇总金额这两个值。
+
 ## 六、多表关联:JOIN 全家桶
 
 业务表几乎不会孤立存在,`orders` 要关联 `users` 才知道是谁下的单。`JOIN` 就是把两张表按某个条件"拼"在一起查。
@@ -340,6 +353,8 @@ INNER JOIN users u ON u.id = o.user_id;
 ```
 
 `JOIN` 不写前缀默认就是 `INNER JOIN`,两者等价。`ON u.id = o.user_id` 是关联条件,意思是"`orders.user_id` 等于 `users.id` 的那些行才拼在一起"。如果某个用户被删了、`orders.user_id` 找不到对应的 `users.id`,这条订单在 `INNER JOIN` 的结果里会**直接消失**。
+
+按逻辑理解:`FROM orders o` 先提供订单这张表的行;`INNER JOIN users u ON u.id = o.user_id` 对每一行订单去找 `users` 里 `id` 相等的那一行,拼在一起,找不到的订单行整体丢弃;`SELECT o.order_no, u.email` 最后从拼好的行里只取订单号和邮箱两列。
 
 ### LEFT JOIN(左连接):以左表为准,右边找不到就补 NULL
 

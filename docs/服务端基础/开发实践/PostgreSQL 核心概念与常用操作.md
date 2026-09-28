@@ -227,6 +227,36 @@ CREATE TABLE users (
 | `FOREIGN KEY` | 外键,引用另一张表的某一列 | 见下方 |
 | `REFERENCES` | 外键约束的简写形式 | 见下方 |
 
+### 字段级约束 vs 命名的表级约束
+
+上面的写法是把约束直接跟在字段类型后面,叫字段级约束。约束也可以单独拿出来,用 `CONSTRAINT 约束名 ...` 写成表级约束,效果一样,区别在于有没有自己起名字:
+
+```sql
+CREATE TABLE medical_services (
+  id integer PRIMARY KEY,
+  code text NOT NULL,
+  name text NOT NULL,
+  price_cents integer NOT NULL,
+  is_active boolean NOT NULL DEFAULT true,
+  CONSTRAINT services_code_unique UNIQUE (code),
+  CONSTRAINT services_name_nonempty CHECK (name <> ''),
+  CONSTRAINT services_price_nonnegative CHECK (price_cents >= 0)
+);
+```
+
+`CONSTRAINT services_code_unique UNIQUE (code)` 和直接写 `code text UNIQUE` 是同一件事,只是显式给约束起了名字。不命名的话 PostgreSQL 会自动生成一个(类似 `medical_services_code_key`),自己命名的好处：
+
+- 违反约束时报错信息会带上这个名字,比如插入重复 `code` 会报 `duplicate key value violates unique constraint "services_code_unique"`,一看名字就知道是哪条业务规则挡住了,比自动生成的名字好读。
+- 以后要修改或删除这个约束,需要用名字定位:`ALTER TABLE medical_services DROP CONSTRAINT services_code_unique;`。
+
+`CONSTRAINT services_name_nonempty CHECK (name <> '')` 这条要留意:`NOT NULL` 只挡得住 `NULL`,挡不住空字符串 `''`,如果业务上"名称不能是空字符串"也是硬性要求,得单独加一条 `CHECK` 补上,两者不是一回事。
+
+单字段的约束写成字段级还是表级,纯粹是风格选择;但如果约束涉及**多个字段的组合**(比如"同一个用户对同一个产品只能有一条待处理订单"),就只能写成表级:
+
+```sql
+CONSTRAINT one_pending_order_per_user_product UNIQUE (user_id, offering_id)
+```
+
 外键关联的例子,一个订单属于一个用户:
 
 ```sql
@@ -426,6 +456,21 @@ COMMIT;
 ```
 
 - **`\dt` 看不到表,不代表表不存在**:很可能是表建在别的 Schema 下,或者当前角色没有权限看到它。先用 `\dn` 确认有哪些 Schema,再用 `\dt schema_name.*` 指定 Schema 查,或者用 `SET search_path TO schema_name;` 切一下当前会话的搜索路径。
+
+- **`pg_temp`:每个连接专属的临时表 Schema**。用 `CREATE TEMP TABLE` 建出来的表实际存放在一个类似 `pg_temp_3` 的 schema 里,`pg_temp` 是它的统一别名:
+
+  ```sql
+  CREATE TEMP TABLE tmp_result (id int, amount numeric);
+  INSERT INTO tmp_result SELECT id, amount FROM orders WHERE status = 'PAID';
+  SELECT * FROM tmp_result;
+
+  -- 事务提交/回滚后立刻自动删除,比断开连接的生命周期还短
+  CREATE TEMP TABLE tmp_result2 (...) ON COMMIT DROP;
+  ```
+
+  临时表只在当前会话可见,别的连接看不到也不会冲突,连接一断就自动清空,不用手动 `DROP`。业务代码用 ORM 写 CRUD 基本用不上,常见于手写复杂排查 SQL(中间结果要复用多次,比嵌套子查询/CTE 更直观)、批量导入清洗数据、PL/pgSQL 函数内部临时中转这几类场景。
+
+  有个容易踩的坑:PostgreSQL 查找不带 schema 前缀的表名时,**永远先查 `pg_temp`,再按 `search_path` 查**,这个顺序写死、不受配置影响——排查生产问题时手写脚本如果不小心建了一张和正式表同名的临时表,后面的查询会悄悄查到临时表而不是正式表,容易误判数据状态。
 
 ## 速查表汇总
 
