@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Harness 工作流：人定标准，Agent 执行闭环</title>
+  <desc id="desc">按人与 Agent 的责任划分需求对齐、增量实现、自测审查、端到端验证和交付判断，并在每次小 MR 后继续下一个增量。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#243b53" />
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172b4d; }
+      .title { font-size: 30px; font-weight: 700; }
+      .lane-title { font-size: 22px; font-weight: 700; }
+      .node-title { font-size: 19px; font-weight: 700; }
+      .node-detail { font-size: 15px; fill: #425466; }
+      .node { stroke: #526777; stroke-width: 2; rx: 16; }
+      .connector { fill: none; stroke: #243b53; stroke-width: 3; marker-end: url(#arrow); }
+      .loop { fill: none; stroke: #64748b; stroke-width: 2.5; stroke-dasharray: 8 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1440" height="900" fill="#ffffff" />
+  <text x="720" y="48" text-anchor="middle" class="title">Harness 工作流：人定标准，Agent 执行闭环</text>
+
+  <rect x="36" y="82" width="1368" height="270" rx="24" fill="#fff5f6" />
+  <text x="64" y="120" class="lane-title">人：提供业务目标与验收依据</text>
+  <rect x="82" y="154" width="345" height="126" class="node" fill="#ffe0e5" />
+  <text x="254" y="194" text-anchor="middle" class="node-title">提供需求上下文</text>
+  <text x="254" y="222" text-anchor="middle" class="node-detail">PRD、会议、用户反馈、Wiki、现有代码</text>
+  <text x="254" y="248" text-anchor="middle" class="node-detail">指出已知约束与需要确认的问题</text>
+
+  <rect x="544" y="154" width="345" height="126" class="node" fill="#ffe0e5" />
+  <text x="716" y="194" text-anchor="middle" class="node-title">确认业务契约</text>
+  <text x="716" y="222" text-anchor="middle" class="node-detail">明确目标、范围、取舍和预期结果</text>
+  <text x="716" y="248" text-anchor="middle" class="node-detail">关键未知项回到产品或同事确认</text>
+
+  <rect x="1016" y="154" width="345" height="126" class="node" fill="#ffe0e5" />
+  <text x="1188" y="194" text-anchor="middle" class="node-title">判断是否可以开始</text>
+  <text x="1188" y="222" text-anchor="middle" class="node-detail">剩余问题不再改变实现方向和验收</text>
+  <text x="1188" y="248" text-anchor="middle" class="node-detail">把稳定结论记录到 Spec / CONTEXT</text>
+
+  <path d="M427 217 H542" class="connector" />
+  <path d="M889 217 H1014" class="connector" />
+
+  <rect x="36" y="380" width="1368" height="320" rx="24" fill="#f0f7ff" />
+  <text x="64" y="420" class="lane-title">Agent：按小增量执行并留下验证证据</text>
+  <rect x="82" y="460" width="240" height="154" class="node" fill="#dceeff" />
+  <text x="202" y="502" text-anchor="middle" class="node-title">拆分增量</text>
+  <text x="202" y="532" text-anchor="middle" class="node-detail">简单任务直接做</text>
+  <text x="202" y="558" text-anchor="middle" class="node-detail">复杂任务拆成可验收 Issue</text>
+  <text x="202" y="584" text-anchor="middle" class="node-detail">独立部分才并行</text>
+
+  <rect x="370" y="460" width="240" height="154" class="node" fill="#dceeff" />
+  <text x="490" y="502" text-anchor="middle" class="node-title">实现与集成</text>
+  <text x="490" y="532" text-anchor="middle" class="node-detail">主 Agent 收口</text>
+  <text x="490" y="558" text-anchor="middle" class="node-detail">小步提交，保持范围可审</text>
+
+  <rect x="658" y="460" width="240" height="154" class="node" fill="#d9f2e2" />
+  <text x="778" y="502" text-anchor="middle" class="node-title">自测与交叉审查</text>
+  <text x="778" y="532" text-anchor="middle" class="node-detail">编码 Agent 先自测</text>
+  <text x="778" y="558" text-anchor="middle" class="node-detail">另一 Agent 寻找反例</text>
+
+  <rect x="946" y="460" width="240" height="154" class="node" fill="#d9f2e2" />
+  <text x="1066" y="502" text-anchor="middle" class="node-title">跑真实业务路径</text>
+  <text x="1066" y="532" text-anchor="middle" class="node-detail">浏览器、API 或 CLI</text>
+  <text x="1066" y="558" text-anchor="middle" class="node-detail">查询状态、日志和 Trace</text>
+
+  <rect x="1234" y="460" width="138" height="154" class="node" fill="#d9f2e2" />
+  <text x="1303" y="502" text-anchor="middle" class="node-title">整理结果</text>
+  <text x="1303" y="532" text-anchor="middle" class="node-detail">通过项</text>
+  <text x="1303" y="558" text-anchor="middle" class="node-detail">未验证项</text>
+
+  <path d="M322 537 H368" class="connector" />
+  <path d="M610 537 H656" class="connector" />
+  <path d="M898 537 H944" class="connector" />
+  <path d="M1186 537 H1232" class="connector" />
+
+  <rect x="36" y="730" width="1368" height="132" rx="24" fill="#fff9e8" />
+  <text x="64" y="770" class="lane-title">人：依据证据 Review，并决定交付</text>
+  <rect x="220" y="790" width="390" height="52" class="node" fill="#fff0bd" />
+  <text x="415" y="823" text-anchor="middle" class="node-title">核对验收、业务逻辑与高风险边界</text>
+  <rect x="760" y="790" width="280" height="52" class="node" fill="#fff0bd" />
+  <text x="900" y="823" text-anchor="middle" class="node-title">提交小 MR</text>
+  <rect x="1150" y="790" width="200" height="52" class="node" fill="#fff0bd" />
+  <text x="1250" y="823" text-anchor="middle" class="node-title">下一增量</text>
+  <path d="M1303 614 V760 H610" class="connector" />
+  <path d="M610 816 H758" class="connector" />
+  <path d="M1040 816 H1148" class="connector" />
+  <path d="M1250 790 V718 H202 V616" class="loop" />
+  <text x="720" y="716" text-anchor="middle" class="node-detail">通过后继续下一轮；发现问题则反馈给实现环节修复并重测</text>
+</svg>
