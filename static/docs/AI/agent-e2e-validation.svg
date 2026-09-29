@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 920" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 端到端验证：从业务契约到可追溯的验收结果</title>
+  <desc id="desc">人定义验收结果，Agent 通过测试入口运行真实业务、收集证据并对照预期；失败则修复复测，通过则生成含未验证项的报告，稳定流程沉淀为 Skill。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#243b53" />
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172b4d; }
+      .title { font-size: 29px; font-weight: 700; }
+      .node-title { font-size: 19px; font-weight: 700; }
+      .detail { font-size: 15px; fill: #425466; }
+      .node { stroke: #526777; stroke-width: 2; rx: 17; }
+      .arrow { fill: none; stroke: #243b53; stroke-width: 3; marker-end: url(#arrow); }
+      .feedback { fill: none; stroke: #64748b; stroke-width: 2.5; stroke-dasharray: 8 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1200" height="920" fill="#ffffff" />
+  <text x="600" y="48" text-anchor="middle" class="title">Agent 端到端验证：从业务契约到验收结果</text>
+
+  <rect x="300" y="82" width="600" height="100" class="node" fill="#ffe6ec" />
+  <text x="600" y="122" text-anchor="middle" class="node-title">业务契约 / 验收标准</text>
+  <text x="600" y="151" text-anchor="middle" class="detail">先定义什么结果算对，作为所有检查的依据</text>
+
+  <rect x="300" y="230" width="600" height="112" class="node" fill="#e6f2ff" />
+  <text x="600" y="272" text-anchor="middle" class="node-title">测试入口：CLI 或脚本</text>
+  <text x="600" y="301" text-anchor="middle" class="detail">检查环境和版本 · 准备数据、账号与权限</text>
+  <text x="600" y="324" text-anchor="middle" class="detail">支持清理与重置，便于重复运行</text>
+
+  <rect x="300" y="390" width="600" height="112" class="node" fill="#e6f2ff" />
+  <text x="600" y="432" text-anchor="middle" class="node-title">执行真实业务流程</text>
+  <text x="600" y="461" text-anchor="middle" class="detail">通过浏览器、API 或 CLI 操作测试环境</text>
+  <text x="600" y="484" text-anchor="middle" class="detail">尽量从用户实际使用的入口验证</text>
+
+  <rect x="300" y="550" width="600" height="112" class="node" fill="#e6f2ff" />
+  <text x="600" y="592" text-anchor="middle" class="node-title">收集实际证据</text>
+  <text x="600" y="621" text-anchor="middle" class="detail">页面行为 · 只读数据库状态 · 日志与 Trace</text>
+  <text x="600" y="644" text-anchor="middle" class="detail">工具提供证据，不替人定义正确答案</text>
+
+  <rect x="300" y="710" width="600" height="96" class="node" fill="#e6f2ff" />
+  <text x="600" y="748" text-anchor="middle" class="node-title">对照预期并形成验收报告</text>
+  <text x="600" y="778" text-anchor="middle" class="detail">列出通过项、失败项和未验证项</text>
+
+  <path d="M600 182 V228" class="arrow" />
+  <path d="M600 342 V388" class="arrow" />
+  <path d="M600 502 V548" class="arrow" />
+  <path d="M600 662 V708" class="arrow" />
+
+  <rect x="48" y="540" width="204" height="142" class="node" fill="#f0f7ff" />
+  <text x="150" y="579" text-anchor="middle" class="node-title">失败</text>
+  <text x="150" y="608" text-anchor="middle" class="detail">定位问题</text>
+  <text x="150" y="634" text-anchor="middle" class="detail">修复后重新运行</text>
+  <text x="150" y="660" text-anchor="middle" class="detail">保留失败证据</text>
+
+  <rect x="948" y="540" width="204" height="142" class="node" fill="#e2f5e8" />
+  <text x="1050" y="579" text-anchor="middle" class="node-title">通过</text>
+  <text x="1050" y="608" text-anchor="middle" class="detail">确认业务结果</text>
+  <text x="1050" y="634" text-anchor="middle" class="detail">继续人工 Review</text>
+  <text x="1050" y="660" text-anchor="middle" class="detail">仍检查未覆盖风险</text>
+
+  <path d="M300 758 H150 V684" class="feedback" />
+  <path d="M900 758 H1050 V684" class="arrow" />
+  <path d="M150 540 V446 H298" class="feedback" />
+
+  <rect x="120" y="838" width="960" height="58" rx="18" fill="#fff2c7" stroke="#d4a72c" stroke-width="2" />
+  <text x="600" y="863" text-anchor="middle" class="node-title">把重复有效的验证流程沉淀为 Skill</text>
+  <text x="600" y="885" text-anchor="middle" class="detail">什么时候测 · 怎么运行 · 结果怎么看 · 失败去哪查</text>
+</svg>
